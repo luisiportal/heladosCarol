@@ -13,7 +13,6 @@ import {
   writeLocalStorage,
 } from "../../hooks/useLocalStorage";
 import ActivarDesactModo from "../ModoOffline/ActivarDesactModo";
-import { descargarTodos } from "../ModoOffline/Sincronizar/descargarDatos";
 
 const Login = () => {
   const {
@@ -48,7 +47,8 @@ const Login = () => {
             .matches(/^[a-zA-Z0-9-. ]*$/, "Solo se permiten letras y números"),
         })}
         onSubmit={async (values, { setSubmitting }) => {
-          if (!isOnline) { // no conectado
+          if (!isOnline) {
+            // no conectado
             const responseLocal = readLocalStorage("user");
             if (!responseLocal)
               return setModalActivo({
@@ -69,7 +69,7 @@ const Login = () => {
               } else {
                 writeLocalStorage("user", response.data);
                 login(response.data);
-                 setIsAuthenticated(true);
+                setIsAuthenticated(true);
                 //descargarTodos(); // alamcena en el local storage los datos para que esten disponibles sin conexion
                 setLoader(false);
               }
@@ -159,7 +159,7 @@ const Login = () => {
           </Form>
         )}
       </Formik>
-   
+
       <ActivarDesactModo setIsOnline={setIsOnline} isOnline={isOnline} />
     </div>
   );
