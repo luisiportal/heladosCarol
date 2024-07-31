@@ -1,0 +1,49 @@
+import React from "react";
+import Bton_eliminar_producto from "./Bton_eliminar_producto";
+import DerretidoVainilla2 from "../apariencia/DerretidoVainilla2";
+
+const ProductoCarrito = ({ sabor, setCarrito, carrito, total_sabor,right }) => {
+  const handleEliminar = (id) => {
+    setCarrito(carrito.filter((sabor) => sabor.id_sabor !== id));
+  };
+
+  return (
+<>
+<section
+      key={sabor.id_sabor}
+      className={`flex p-1 rounded-xl bg-${sabor.color}  mb-4 items-center`}
+    >
+      <div
+        className={`flex justify-center  rounded-full w-16 h-16 m-2 bg-neutral-200`}
+      >
+        <h3 className="flex font-bold justify-center text-4xl items-center ">
+          {sabor.cantidad}
+        </h3>
+      </div>
+      <div className="p-2">
+        <h2 className="text-3xl font-semibold font-irish">
+          {sabor.nombre_sabor}
+        </h2>
+
+        <div className="flex gap-4">
+          {" "}
+          <h3 className="text-sm font-semibold">
+            Precio unidad: {sabor.precio_venta}
+          </h3>
+          <h3 className="text-sm font-semibold">Total: {total_sabor}</h3>
+        </div>
+      </div>
+      <button onClick={() => handleEliminar(sabor.id_sabor)}>
+        {" "}
+        <Bton_eliminar_producto />
+      </button>
+      
+    </section>
+    <div className={`relative bottom-4 left-${right}`}>
+    <DerretidoVainilla2 color={"#" + sabor.color} />
+  </div>
+</>
+  );
+};
+
+export default ProductoCarrito;
