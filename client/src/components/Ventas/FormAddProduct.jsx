@@ -36,12 +36,7 @@ const FormAddProduct = ({
   ).map((sabor) => {
     return {
       value: sabor.id_sabor,
-      label:
-        sabor.nombre_sabor +
-        " Precio: " +
-        sabor.precio_venta +
-        " Existencia: " +
-        sabor.existencia,
+      label: sabor.nombre_sabor,
       nombre_sabor: sabor.nombre_sabor,
       existencia: sabor.existencia,
       precio_venta: Number(sabor.precio_venta),
@@ -70,11 +65,22 @@ const FormAddProduct = ({
 
   return (
     <>
-      <div className=" flex  bg-neutral-200 rounded-xl justify-center p-4">
-        <label className="p-1 flex items-center" htmlFor="cantidad">
-          Cantidad :
-        </label>
+      <div className=" flex bg-neutral-200 rounded-xl justify-center p-4">
+       
+        <div className="rounded-xl flex items-center justify-center">
+          <Select
+            className="w-44"
+            name="nombre_sabor"
+            options={options}
+            value={selectedOption}
+            onChange={handleSelectChange}
+            isSearchable
+          />
+        </div>
         <div className="text-slate-900 p-1 flex flex-col">
+          <label className="p-1 flex items-center" htmlFor="cantidad">
+            Cantidad :
+          </label>
           <input
             className="text-black rounded-full w-16 h-16 flex text-center font-bold text-4xl mx-2"
             name="cantidad"
@@ -84,19 +90,10 @@ const FormAddProduct = ({
             placeholder="0"
           />
           {errors.cantidad && (
-            <span className="bg-red-500 fixed p-1 m-1 mx-auto rounded-xl z-0 top-40">{errors.cantidad}</span>
+            <span className="bg-red-500 fixed p-1 m-1 mx-auto rounded-xl z-0 top-40">
+              {errors.cantidad}
+            </span>
           )}
-          
-        </div>
-        <div className="rounded-xl flex items-center justify-center">
-          <Select
-            className="mx-4"
-            name="nombre_sabor"
-            options={options}
-            value={selectedOption}
-            onChange={handleSelectChange}
-            isSearchable
-          />
         </div>
       </div>
       <div>

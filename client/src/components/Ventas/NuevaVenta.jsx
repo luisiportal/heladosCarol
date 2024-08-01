@@ -142,7 +142,7 @@ const NuevaVenta = () => {
 
   return (
     <div>
-      <div className="">
+      <div>
         <div className="flex justify-center items-center pt-14">
           <div>
             <Formik

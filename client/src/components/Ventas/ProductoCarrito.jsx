@@ -11,10 +11,10 @@ const ProductoCarrito = ({ sabor, setCarrito, carrito, total_sabor,right }) => {
 <>
 <section
       key={sabor.id_sabor}
-      className={`flex p-1 rounded-xl bg-${sabor.color}  mb-4 items-center`}
+      className={`flex p-1 rounded-xl bg-${sabor.color} mb-4 items-center mx-2`}
     >
       <div
-        className={`flex justify-center  rounded-full w-16 h-16 m-2 bg-neutral-200`}
+        className={`flex justify-center rounded-full w-16 h-16 m-2 bg-neutral-200`}
       >
         <h3 className="flex font-bold justify-center text-4xl items-center ">
           {sabor.cantidad}

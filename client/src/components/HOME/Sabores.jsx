@@ -14,11 +14,11 @@ const Sabores = () => {
   }, []);
 
   return (
-    <div className="bg-neutral-200 rounded-lg mx-2">
+    <div className="bg-neutral-200 rounded-lg">
       <h2 className="flex justify-center font-inspiration text-4xl py-2">
         Sabores
       </h2>
-      <section className="flex justify- items-center">
+      <section className="flex items-center">
         <div className="w-44">
           {sabores.map(
             (sabor, index) =>
@@ -27,7 +27,7 @@ const Sabores = () => {
                   <FondoSabor
                     color={"bg-" + sabor.color}
                     sabor={sabor.nombre_sabor}
-                    width={"sabor" + (index + 1)}
+                    width={"sabor" + (index + 1 )}
                   />
                   <div className={`relative bottom-4 izquierda${index}`}>
                     <DerretidoVainilla2 color={"#" + sabor.color} />

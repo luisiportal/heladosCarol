@@ -30,11 +30,12 @@ import NuevaVenta from "./components/Ventas/NuevaVenta";
 
 const App = () => {
   return (
-    <div className="bg-neutral-100 min-h-screen ">
+    <div className="bg-neutral-100 min-h-screen">
       <SaboresContextProvider>
         <AuthProvider>
-          <Navbar />
+        
           <div className="container mx-auto">
+          <Navbar />
             <Routes>
               <Route path="/trabajador/login" element={<Trabajador />} />
 

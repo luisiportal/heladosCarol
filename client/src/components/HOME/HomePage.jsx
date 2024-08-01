@@ -8,7 +8,7 @@ import Sabores from "./Sabores";
 
 const HomePage = () => {
   return (
-    <div className="pt-10 mt-4">
+    <div className="pt-10 mt-4 mx-2">
       <PrimerElemento />
       <Carrusel />
       <Sabores />

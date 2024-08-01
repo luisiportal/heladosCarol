@@ -5,7 +5,7 @@ function Navbar() {
   const { isAuthenticated } = useAuth();
   if (!isAuthenticated) return "";
   return (
-    <div className="z-50 w-full">
+    <div className="z-50">
       <NavbarComponent></NavbarComponent>
     </div>
   );

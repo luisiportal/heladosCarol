@@ -52,13 +52,13 @@ background: #E188B5;
 
 
 
-.sabor1{width: 220px;}
-.sabor2{width: 180px;}
-.sabor3{width: 140px;}
-.sabor4{width: 100px;}
-.sabor5{width: 140px;}
-.sabor6{width: 160px;}
-.sabor7{width: 200px;}
+.sabor1{width: 18rem;}
+.sabor2{width: 12rem;}
+.sabor3{width: 10rem;}
+.sabor4{width: 8rem;}
+.sabor5{width: 10rem;}
+.sabor6{width: 12rem;}
+.sabor7{width: 18rem;}
 
 .izquierda0{
   left: 15vh;
