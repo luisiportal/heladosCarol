@@ -217,8 +217,8 @@ const NuevaVenta = () => {
           })}
       </div>
       <div className="flex  justify-end">
-        <div className="flex  items-center  bg-fresa rounded w-28">
-          {" "}
+       {carrito.length > 0 && ( <div className="flex  items-center  bg-fresa rounded w-28">
+          
           <Btn_Huellas
             text={`Entrega`}
             disbledText={"Sin productos"}
@@ -226,7 +226,7 @@ const NuevaVenta = () => {
             onclick={() => pagar()}
           />
           <ArrowRight />
-        </div>
+        </div>)}
       </div>
     </div>
   );

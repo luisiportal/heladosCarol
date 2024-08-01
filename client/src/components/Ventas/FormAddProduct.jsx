@@ -66,8 +66,11 @@ const FormAddProduct = ({
   return (
     <>
       <div className=" flex bg-neutral-200 rounded-xl justify-center p-4">
-       
-        <div className="rounded-xl flex items-center justify-center">
+     
+        <div className="rounded-xl flex flex-col items-center">
+           <label className="p-1 pb-4 mt-1  text-lg font-bold text-slate-900" htmlFor="sabores">
+            Sabores :
+          </label>
           <Select
             className="w-44"
             name="nombre_sabor"
@@ -78,7 +81,7 @@ const FormAddProduct = ({
           />
         </div>
         <div className="text-slate-900 p-1 flex flex-col">
-          <label className="p-1 flex items-center" htmlFor="cantidad">
+          <label className="p-1 flex items-center text-lg font-bold" htmlFor="cantidad">
             Cantidad :
           </label>
           <input
@@ -90,7 +93,7 @@ const FormAddProduct = ({
             placeholder="0"
           />
           {errors.cantidad && (
-            <span className="bg-red-500 fixed p-1 m-1 mx-auto rounded-xl z-0 top-40">
+            <span className="bg-red-500 fixed p-1 m-1 mx-auto rounded-xl z-0 top-52 text-xs">
               {errors.cantidad}
             </span>
           )}
