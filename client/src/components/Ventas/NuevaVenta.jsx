@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import { Form, Formik, isInteger } from "formik";
-import * as Yup from "yup";
+
+
 import ProductoCarrito from "./ProductoCarrito";
 import Btn_Huellas from "../Btn_Huellas";
 import { createVentaRequest } from "../../api/venta.api";
@@ -14,74 +14,25 @@ import {
   writeLocalStorageHacerVenta,
 } from "../../hooks/useLocalStorage";
 
-import FormAddProduct from "./FormAddProduct";
-import CarritosGuardados from "./CarritosGuardados";
-import { useCarritos } from "../../context/CarritosContext";
+
 import { useParams } from "react-router-dom";
-import { useSabores } from "../../context/SaboresProvider";
-import ArrowRight from "../SVG/ArrowRight";
+
 
 const NuevaVenta = () => {
-  const {
-    recargar,
-    setRecargar,
-    carrito,
-    setCarrito,
-    guardarCarrito,
-    cargarCarrito,
-    nuCart,
-    setnuCart,
-    cartSelect,
-  } = useCarritos();
-  const { loadSabores, sabores } = useSabores();
+
+
   let fechaActual = new Date();
   let fechaEnFormatoISO = fechaActual.toISOString();
 
-  const { loader, setLoader, isOnline, modalActivo, setModalActivo } =
-    useAuth();
+ 
   const [productos, setProductos] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [movimiento, setMovimiento] = useState({
-    cantidad: "",
-    nombre_sabor: "",
-    color: "",
-  });
+
 
   const params = useParams();
 
-  useEffect(() => {
-    const cargarProductos = async () => {
-      if (!isOnline) {
-        setProductos(readLocalStorage("productos"));
-      } else {
-        //const { data } = await getProductosRequest();
-        // setProductos(data);
-      }
-    };
 
-    cargarProductos();
 
-    if (params.id) {
-      cargarCarrito(params.id);
-    }
-  }, [recargar]);
 
-  const schema = Yup.object().shape({
-    cantidad: Yup.number()
-      .max(
-        movimiento.existencia,
-        "La cantidad no puede ser mayor que la existencia"
-      )
-      .required("Este campo es requerido")
-      .min(1, "Cantidad vacia"),
-  });
-  let total_venta = 0;
-  if (carrito) {
-    total_venta = carrito.reduce(
-      (sum, producto) => sum + producto.precio_venta * producto.cantidad,
-      0
-    );
-  }
 
   const pagar = async () => {
     try {
@@ -142,92 +93,7 @@ const NuevaVenta = () => {
 
   return (
     <div>
-      <div>
-        <div className="flex justify-center items-center pt-14">
-          <div>
-            <Formik
-              initialValues={movimiento}
-              enableReinitialize={true}
-              validationSchema={schema}
-              onSubmit={async (values, { resetForm }) => {
-                setLoader(true);
-
-                if (
-                  !carrito.some(
-                    (sabor) => sabor.nombre_sabor === values.nombre_sabor
-                  )
-                ) {
-                  setCarrito([...carrito, values]);
-                } else {
-                  setModalActivo({
-                    mensaje: `Ya este producto ha sido agregado`,
-                    activo: true,
-                    errorColor: true,
-                  });
-                }
-                resetForm();
-                setSelectedOption(null);
-                setLoader(false);
-              }}
-            >
-              {({
-                handleChange,
-
-                errors,
-                values,
-                isSubmitting,
-              }) => (
-                <Form>
-                  <FormAddProduct
-                    sabores={sabores}
-                    setMovimiento={setMovimiento}
-                    handleChange={handleChange}
-                    movimiento={movimiento}
-                    values={values}
-                    errors={errors}
-                    isSubmitting={isSubmitting}
-                    recargar={recargar}
-                    setSelectedOption={setSelectedOption}
-                    selectedOption={selectedOption}
-                  />
-                </Form>
-              )}
-            </Formik>
-            <div className="flex justify-center items-center mt-4"></div>
-          </div>
-        </div>
-        {loader && <Loader />}
-        <h2>Total a pagar : {total_venta}</h2>
-        {carrito &&
-          carrito.map((sabor) => {
-            const totalSabor = sabor.cantidad * sabor.precio_venta;
-            const miArray = [16, 32, 40];
-            const indiceAleatorio = Math.floor(Math.random() * miArray.length);
-            const right = miArray[indiceAleatorio];
-            return (
-              <ProductoCarrito
-                sabor={sabor}
-                key={sabor.id_sabor}
-                setCarrito={setCarrito}
-                carrito={carrito}
-                total_sabor={totalSabor}
-                right={right}
-              />
-            );
-          })}
-      </div>
-      <div className="flex  justify-end">
-       {carrito.length > 0 && ( <div className="flex  items-center  bg-fresa rounded w-28">
-          
-          <Btn_Huellas
-            text={`Entrega`}
-            disbledText={"Sin productos"}
-            disabled={carrito.length ? false : true}
-            onclick={() => pagar()}
-          />
-          <ArrowRight />
-        </div>)}
-      </div>
+     
     </div>
   );
 };

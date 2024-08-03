@@ -20,17 +20,6 @@ const FormAddProduct = ({
     (sabor) => Number(sabor.existencia) > 0
   );
 
-  useEffect(() => {
-    const mostrarProductos = () => {
-      if (conExistencia) {
-        setProductosElegir(productosConExistencia);
-      } else {
-        setProductosElegir(sabores);
-      }
-    };
-    mostrarProductos();
-  }, [conExistencia, selectedOption, recargar]);
-
   const options = (
     productosElegir.length > 0 ? productosElegir : productosConExistencia
   ).map((sabor) => {
@@ -66,9 +55,11 @@ const FormAddProduct = ({
   return (
     <>
       <div className=" flex bg-neutral-200 rounded-xl justify-center p-4">
-     
         <div className="rounded-xl flex flex-col items-center">
-           <label className="p-1 pb-4 mt-1  text-lg font-bold text-slate-900" htmlFor="sabores">
+          <label
+            className="p-1 pb-4 mt-1  text-lg font-bold text-slate-900"
+            htmlFor="sabores"
+          >
             Sabores :
           </label>
           <Select
@@ -81,13 +72,16 @@ const FormAddProduct = ({
           />
         </div>
         <div className="text-slate-900 p-1 flex flex-col">
-          <label className="p-1 flex items-center text-lg font-bold" htmlFor="cantidad">
+          <label
+            className="p-1 flex items-center text-lg font-bold"
+            htmlFor="cantidad"
+          >
             Cantidad :
           </label>
           <input
-            className="text-black rounded-full w-16 h-16 flex text-center font-bold text-4xl mx-2"
+            className="text-black rounded-full w-16 h-16 flex text-center font-bold text-4xl mx-2 quitarFlechas"
             name="cantidad"
-            type="text"
+            type="number"
             onChange={handleChange}
             value={values.cantidad}
             placeholder="0"

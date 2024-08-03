@@ -36,18 +36,16 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
       <div className="px-3 text-left text-slate-700 font-semibold w-full h-full align-middle flex flex-col">
         <p>Factura : {factura.id}</p>
 
-        {ventas.map((producto) => (
-          <div className="flex justify-between" key={producto.id_venta}>
+        {ventas.map((sabor) => (
+          <div className="flex justify-between" key={sabor.id_venta}>
             <div className="flex">
-              <h2> {producto.cantidad}x</h2>
-              <h2>
-                {producto.producto?.nombre_producto ?? producto.nombre_producto}
-              </h2>
+              <h2> {sabor.cantidad}x </h2>
+              <h2>{sabor.sabore?.nombre_sabor ?? sabor.nombre_sabor}</h2>
             </div>
 
             <h2>
-              {producto.precio_total_producto ??
-                producto.precio_venta * producto.cantidad}{" "}
+              {sabor.precio_total_sabor ??
+                sabor.precio_venta * sabor.cantidad}{" "}
               cup
             </h2>
           </div>
@@ -64,19 +62,29 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
           </p>
         </div>
 
-   {(perfil.privilegio =="Administrador") ? <>     <div>
-          <button className="flex" onClick={() => handleEliminar(factura.id)}>
-            <Bton_eliminar_producto /> Eliminar Factura
-          </button>
-        </div>
-        {editando == factura.id && (
-          <EditFechaFactura
-            factura={factura}
-            setEditando={setEditando}
-            setRecargar={setRecargar}
-            recargar={recargar}
-          />
-        )}</> :""}
+        {perfil.privilegio == "Administrador" ? (
+          <>
+            {" "}
+            <div>
+              <button
+                className="flex"
+                onClick={() => handleEliminar(factura.id)}
+              >
+                <Bton_eliminar_producto /> Eliminar Factura
+              </button>
+            </div>
+            {editando == factura.id && (
+              <EditFechaFactura
+                factura={factura}
+                setEditando={setEditando}
+                setRecargar={setRecargar}
+                recargar={recargar}
+              />
+            )}
+          </>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

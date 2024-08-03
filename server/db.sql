@@ -7,20 +7,11 @@ CREATE OR REPLACE FUNCTION public.calcular_costo_total_producto
 LANGUAGE plpgsql AS 
 $function$
 DECLARE
-	usd decimal;
-	euro decimal;
-	mlc decimal;
-	zelle decimal;
+	
 BEGIN
-	SELECT precio INTO usd FROM monedas WHERE moneda = 'USD';
-	SELECT precio INTO euro FROM monedas WHERE moneda = 'EURO';
-	SELECT precio INTO mlc FROM monedas WHERE moneda = 'MLC';
-	SELECT precio INTO zelle FROM monedas WHERE moneda = 'ZELLE';
+	
 	NEW.costo_total := NEW.costo_unitario * NEW.existencia;
-	NEW.costo_usd := NEW.costo_unitario / usd;
-	NEW.costo_euro := NEW.costo_unitario / euro;
-	NEW.costo_mlc := NEW.costo_unitario / mlc;
-	NEW.costo_zelle := NEW.costo_unitario / zelle;
+	
 	RETURN NEW;
 END;
 $function$
@@ -29,7 +20,7 @@ $function$
 create
 or replace trigger tr_actualizar_costo_total_producto before insert
 or
-update on public.productos for each row
+update on public.sabores for each row
 execute function calcular_costo_total_producto ();
 
 -- DROP FUNCTION public.actualizarExistenciaAlVender();
@@ -38,11 +29,11 @@ CREATE OR REPLACE FUNCTION public.actualizarExistenciaAlVender
 LANGUAGE plpgsql AS 
 $function$
 BEGIN
-	UPDATE productos
+	UPDATE sabores
 	SET
 	    existencia = existencia - NEW.cantidad
 	WHERE
-	    id_producto = NEW.id_producto;
+	    id_sabor = NEW.id_sabor;
 
 	RETURN NEW;
 END;
@@ -67,13 +58,13 @@ AS $function$
 begin
 	
  IF (OLD.tipo = 'Venta' OR OLD.tipo = 'Salida') THEN
-        UPDATE productos
+        UPDATE sabores
         SET existencia = existencia + OLD.cantidad
-        WHERE id_producto = OLD.id_producto;
+        WHERE id_sabor = OLD.id_sabor;
     ELSIF (OLD.tipo = 'Entrada' or OLD.tipo ='Existencia Inicial') THEN
-        UPDATE productos
+        UPDATE sabores
         SET existencia = existencia - OLD.cantidad
-        WHERE id_producto = OLD.id_producto;
+        WHERE id_sabor = OLD.id_sabor;
     END IF;
     RETURN NEW;
 END;
@@ -111,7 +102,7 @@ BEGIN
 	SELECT new.precio INTO euro FROM monedas WHERE moneda = 'EURO';
 	SELECT new.precio INTO mlc FROM monedas WHERE moneda = 'MLC';
 	SELECT new.precio INTO zelle FROM monedas WHERE moneda = 'ZELLE';
-	UPDATE productos
+	UPDATE sabores
 	SET
 	    costo_usd = costo_unitario / usd,
 	    costo_euro = costo_unitario / euro,
@@ -131,7 +122,7 @@ execute function actualizar_costo_productoMLC ();
 
 create
 or REPLACE trigger tr_insertar_movimi_existen_inicial
-after insert on public.productos for each row
+after insert on public.sabores for each row
 execute function insertar_movi_existencia_inicial ();
 
 -- DROP FUNCTION public.insertar_movi_existencia_inicial();
@@ -142,8 +133,8 @@ AS $function$
 
 BEGIN
 	IF NEW.existencia > 0 THEN
-		INSERT INTO movimientos (id_producto, tipo, cantidad)
-		VALUES (NEW.id_producto, 'Existencia Inicial', NEW.existencia_inicial);
+		INSERT INTO movimientos (id_sabor, tipo, cantidad)
+		VALUES (NEW.id_sabor, 'Existencia Inicial', NEW.existencia_inicial);
 		
 	END IF;
 		RETURN NEW;

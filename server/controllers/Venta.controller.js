@@ -1,41 +1,66 @@
-import { Op } from "sequelize";
 import sequelize from "../db.js";
 import { Factura } from "../models/Facturas.model.js";
 import { Venta } from "../models/Ventas.model.js";
-import { Producto } from "../models/Producto.model.js";
+
 import { registrarLog } from "./AuditLog.controllers.js";
 import { Movimiento } from "../models/Movimientos.model.js";
+import { Entrega } from "../models/Entrega.model.js";
+import { Sabor } from "../models/Sabor.model.js";
 
 export const createVenta = async (req, res) => {
-  const productos = req.body.values;
-  const { total } = req.body;
-  const { creado } = req.body;
+  const productos = req.body.productos;
+  const entrega = req.body.entrega;
+  const total_venta = productos.reduce(
+    (sum, producto) => sum + producto.precio_venta * producto.cantidad,
+    0
+  );
+
+  let fechaActual = new Date();
+  let creado = fechaActual.toISOString();
+
   try {
     await sequelize.transaction(async (t) => {
       // Crear la factura
       const factura = await Factura.create(
         {
-          total_venta: total, // Utiliza el valor del total recibido
+          total_venta: total_venta,
           creado: creado,
         },
         { transaction: t }
       );
-      await registrarLog("Facturó", "Venta", ` total : ${total} cup`, req, t);
-      // Recorre los productos
+      await Entrega.create(
+        {
+          id_factura: factura.id,
+          ordenante: entrega.ordenante,
+          beneficiario: entrega.beneficiario,
+          tel_beneficiario: entrega.tel_beneficiario,
+          direccion: entrega.direccion,
+          p_referencia: entrega.p_referencia,
+        },
+        { transaction: t }
+      );
+      await registrarLog(
+        "Facturó",
+        "Venta",
+        ` total : ${total_venta} cup`,
+        req,
+        t
+      );
+     
       for (const producto of productos) {
         // Crear la venta
         const ventaNueva = await Venta.create(
           {
-            id_producto: producto.id_producto,
+            id_sabor: producto.id_sabor,
             cantidad: producto.cantidad,
-            precio_total_producto: producto.cantidad * producto.precio_venta,
+            precio_total_sabor: producto.cantidad * producto.precio_venta,
             id_factura: factura.id,
           },
           { transaction: t }
         );
         await Movimiento.create(
           {
-            id_producto: producto.id_producto,
+            id_sabor: producto.id_sabor,
             tipo: "Venta",
             cantidad: producto.cantidad,
             id_venta: ventaNueva.id_venta,
@@ -98,7 +123,7 @@ export const getTodosFacturas = async (req, res) => {
           required: false,
           include: [
             {
-              model: Producto,
+              model: Sabor,
               required: false,
             },
           ],

@@ -7,7 +7,7 @@ export const Venta = sequelize.define("ventas", {
     primaryKey: true,
     autoIncrement: true,
   },
-  id_producto: {
+  id_sabor: {
     type: DataTypes.INTEGER,
   },
 
@@ -15,7 +15,7 @@ export const Venta = sequelize.define("ventas", {
     type: DataTypes.DECIMAL,
   },
 
-  precio_total_producto: {
+  precio_total_sabor: {
     type: DataTypes.DECIMAL,
   },
 });

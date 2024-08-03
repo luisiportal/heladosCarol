@@ -1,7 +1,7 @@
 import axios from "./axios.js";
 
-export const createVentaRequest = async (values, total, creado) => {
-  await axios.post(`/ventas`, { values, total, creado });
+export const createVentaRequest = async (ordenCompleta) => {
+  await axios.post(`/ventas`, ordenCompleta);
 };
 
 export const getTodosFacturasRequest = async (limit) =>

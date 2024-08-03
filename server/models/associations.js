@@ -5,6 +5,7 @@ import { Factura } from "./Facturas.model.js";
 import { Trabajador } from "./Trabajador.model.js";
 import { AuditLog } from "./AuditLog.model.js";
 import { Sabor } from "./Sabor.model.js";
+import { Entrega } from "./Entrega.model.js";
 
 export const associations = () => {
   Sabor.hasMany(Movimiento, {
@@ -23,6 +24,8 @@ Factura.hasMany(Venta, {
 });
 
 Venta.belongsTo(Factura, { foreignKey: "id_factura" });
+Entrega.belongsTo(Factura, { foreignKey: "id_factura" });
+
 Venta.belongsTo(Sabor, { foreignKey: "id_sabor" });
 Producto.hasMany(Venta, {
   foreignKey: "id_sabor",

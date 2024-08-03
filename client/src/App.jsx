@@ -26,16 +26,16 @@ import Edit from "./components/Movimientos/Edit";
 import ResumenVenta from "./components/Ventas/ResumenVenta";
 import SaboresPage from "./components/Sabores/SaboresPage";
 import SaboresForm from "./components/Sabores/SaboresForm";
-import NuevaVenta from "./components/Ventas/NuevaVenta";
+
+import ComprarPage from "./components/Comprar/ComprarPage";
 
 const App = () => {
   return (
     <div className="bg-neutral-100 min-h-screen">
       <SaboresContextProvider>
         <AuthProvider>
-        
           <div className="container mx-auto">
-          <Navbar />
+            <Navbar />
             <Routes>
               <Route path="/trabajador/login" element={<Trabajador />} />
 
@@ -69,10 +69,11 @@ const App = () => {
                   path="/comprar"
                   element={
                     <CarritosProvaider>
-                      <NuevaVenta />{" "}
+                      <ComprarPage />
                     </CarritosProvaider>
                   }
                 />
+
                 <Route path="/sabores" element={<SaboresPage />} />
                 <Route path="*" element={<NotFound />} />
                 <Route path="prueba" element={<Prueba />} />

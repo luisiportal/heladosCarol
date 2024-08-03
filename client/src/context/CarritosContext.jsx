@@ -11,6 +11,7 @@ export const useCarritos = () => {
 };
 
 export const CarritosProvaider = ({ children }) => {
+  const [total_venta, setTotalVenta] = useState([]);
   const [carrito1, setCarrito1] = useState([]);
   const [carrito2, setCarrito2] = useState([]);
   const [carrito3, setCarrito3] = useState([]);
@@ -109,6 +110,8 @@ export const CarritosProvaider = ({ children }) => {
         nuCart,
         setnuCart,
         cartSelect,
+        total_venta,
+        setTotalVenta
       }}
     >
       {children}
