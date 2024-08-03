@@ -14,7 +14,7 @@ const Navbar = ({ hidden }) => {
 
       <ElementoNavbar nombre={"Tipo Cambio"} href={"/cambio"}></ElementoNavbar>
       <ElementoNavbar
-        nombre={"Transacciones"}
+        nombre={"Facturas"}
         href={"/transacciones"}
       ></ElementoNavbar>
 
