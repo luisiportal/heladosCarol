@@ -101,19 +101,35 @@ background: #E188B5;
 bottom: -0.4rem;
 }
 
-/* HTML: <div class="loader"></div> */
 .loader {
-  width: 60px;
-  aspect-ratio: 4;
-  --c:#000 90%,#0000;
-  background: 
-    radial-gradient(circle closest-side at left  6px top 50%,var(--c)),
-    radial-gradient(circle closest-side                     ,var(--c)),
-    radial-gradient(circle closest-side at right 6px top 50%,var(--c));
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  animation: l4 1s infinite alternate;
+  width: 48px;
+  height: 48px;
+  border: 3px solid #FFF;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+} 
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-bottom-color: #E188B5;
 }
-@keyframes l4 {
-    to{width:25px;aspect-ratio: 1}
-}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
