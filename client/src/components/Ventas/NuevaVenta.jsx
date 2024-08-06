@@ -68,7 +68,7 @@ const NuevaVenta = () => {
       }
 
       setModalActivo({
-        mensaje: `Se ha realizado la venta por un total de ${total_venta} cup`,
+        mensaje: `Se ha realizado la venta por un total de ${total_venta} USD`,
         activo: true,
       });
 

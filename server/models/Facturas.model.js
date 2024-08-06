@@ -9,6 +9,9 @@ export const Factura = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    id_pago: {
+      type: DataTypes.STRING,
+    },
 
     total_venta: {
       type: DataTypes.DECIMAL,

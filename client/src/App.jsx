@@ -105,8 +105,18 @@ const App = () => {
                   }
                 />
                 <Route path="/transacciones/*" element={<VentasRoutes />} />
+
               </Route>
+
+             
+                 
+            
+                <Route path="/transacciones/*" element={<VentasRoutes />} />
+
+
+
             </Routes>
+            
           </div>
         </AuthProvider>
       </SaboresContextProvider>

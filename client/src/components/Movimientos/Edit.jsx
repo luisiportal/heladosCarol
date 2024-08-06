@@ -12,7 +12,7 @@ const schema = Yup.object().shape({
 });
 
 const Edit = ({ movimiento, setEditando, setRecargar,recargar }) => {
-  const { setModalActivo } = useAuth();
+  const { set } = useAuth();
   const params = useParams();
   const navigate = useNavigate();
 

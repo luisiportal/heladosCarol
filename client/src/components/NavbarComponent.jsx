@@ -10,11 +10,20 @@ import DerretidoVainilla from "./apariencia/DerretidoVainilla";
 import DerretidoVainilla2 from "./apariencia/DerretidoVainilla2";
 import DerretidoFresa2 from "./apariencia/DerretidoFresa2";
 import DerretidoChocolate2 from "./apariencia/DerretidoChocolate2";
+import ComponenteModal from "./Utilidades/ComponenteModal";
 
 const NavbarComponent = () => {
   const [abrirHamburguesa, setabrirHamburguesa] = useState(false);
-  const { isAuthenticated, logout, user, perfil, isOnline, setIsOnline } =
-    useAuth();
+  const {
+    isAuthenticated,
+    logout,
+    user,
+    perfil,
+    isOnline,
+    setIsOnline,
+    modalActivo,
+    setModalActivo,
+  } = useAuth();
 
   const sidebarRef = useRef(null);
   const openButtonRef = useRef(null);
@@ -45,6 +54,10 @@ const NavbarComponent = () => {
   };
   return (
     <div className="bg-slate-100">
+      <ComponenteModal
+        setModalActivo={setModalActivo}
+        modalActivo={modalActivo}
+      />
       {/*barra escritorio*/}
       <header className="fixed w-full bg-heladosCarol_color px-6 z-50 rounded shadow-xl">
         <div className="flex justify-between h-16 items-center max-w-7xl mx-auto">
@@ -75,7 +88,7 @@ const NavbarComponent = () => {
               <Navbar hidden={"hidden space-x-8"}></Navbar>
             </div>
           </div>
-        
+
           <div className="flex ">
             <div className="hidden lg:flex">
               {/*imagen de perfil*/}
@@ -131,17 +144,15 @@ const NavbarComponent = () => {
                   />
                 </svg>
               </button>
-              <div className="absolute -bottom-2 sm: left-10 " >
-             <DerretidoVainilla2/>
-            </div>
-            <div className="absolute -bottom-2 left-32 md:left-80 " >
-             <DerretidoFresa2/>
-            </div>
-
-            <div className="absolute bottom-04 left-3/4 " >
-            <DerretidoChocolate2/>
-            </div>
-
+              <div className="absolute -bottom-2 sm: left-10 ">
+                <DerretidoVainilla2 />
+              </div>
+              <div className="absolute -bottom-2 left-32 md:left-80 ">
+                <DerretidoFresa2 />
+              </div>
+              <div className="absolute bottom-04 left-3/4 ">
+                <DerretidoChocolate2 />
+              </div>
             </div>
           </div>
         </div>

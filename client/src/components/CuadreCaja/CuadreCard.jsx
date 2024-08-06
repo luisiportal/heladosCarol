@@ -24,7 +24,7 @@ function CuadreCard({ cuadre }) {
             Fecha : {new Date(cuadre.fecha).toLocaleString("es-ES")}
           </h4>
           <h2 className="text-xs text-slate-600">
-            Venta : {cuadre.total_venta} cup
+            Venta : {cuadre.total_venta} 
           </h2>
 
           <h2 className=" border-b-2 border-slate-200 font-semibold text-slate-900">

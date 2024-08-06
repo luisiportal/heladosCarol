@@ -43,7 +43,7 @@ const Sabores = () => {
               )
           )}
         </div>
-        <SeccionComprar />
+        <SeccionComprar sabor={sabores[0]}/>
       </section>
     </div>
   );
