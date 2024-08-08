@@ -101,6 +101,19 @@ background: #E188B5;
 bottom: -0.4rem;
 }
 
+.bg-fondoLogin {
+  background-image: url('/images/cdn-3.expansion.webp');
+}
+
+.bordeRadioImgLogin {
+  border-radius: 100% 46% 100% 148% / 0% 60% 40% 100%;
+}
+
+.bordeFrase {
+  text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+}
+
+
 .loader {
   width: 48px;
   height: 48px;

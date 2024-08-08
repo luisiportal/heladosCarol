@@ -16,7 +16,7 @@ const CardProductoPendiente = ({
       </div>
       {recursos.map((item, index) => (
         <h2
-          className="bg-white border-b-2 text-slate-700 font-semibold  border-l-2 border-x-heladosCarol_color p-5 pb-10"
+          className="bg-white border-b-2 text-slate-700 font-semibold  border-l-2 border-x-huellas_color p-5 pb-10"
           key={index}
         >
           {auxiliar}

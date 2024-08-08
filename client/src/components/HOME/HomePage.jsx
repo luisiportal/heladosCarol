@@ -6,12 +6,14 @@ import Reviews from "./Reviews";
 import Footer from "./Footer";
 import Sabores from "./Sabores";
 
+
 const HomePage = () => {
   return (
-    <div className="pt-10 mt-4 mx-2">
+    <div className="pt-10 mt-4 mx-auto max-w-sm">
       <PrimerElemento />
-      <Carrusel />
+
       <Sabores />
+      <Carrusel />
       <Reviews />
       <Footer />
     </div>

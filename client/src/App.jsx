@@ -31,14 +31,29 @@ import ComprarPage from "./components/Comprar/ComprarPage";
 
 const App = () => {
   return (
-    <div className="bg-neutral-100 min-h-screen">
+    <div className="bg-neutral-100">
       <SaboresContextProvider>
         <AuthProvider>
           <div className="container mx-auto">
             <Navbar />
             <Routes>
               <Route path="/trabajador/login" element={<Trabajador />} />
-
+              <Route
+                path="/"
+                element={
+                  <CarritosProvaider>
+                    <HomePage />
+                  </CarritosProvaider>
+                }
+              />
+              <Route
+                path="/comprar"
+                element={
+                  <CarritosProvaider>
+                    <ComprarPage />
+                  </CarritosProvaider>
+                }
+              />
               <Route element={<ProtectedRoutes />}>
                 <Route path="/logs/" element={<LogsPage />} />
                 <Route path="/new" element={<SaboresForm />} />
@@ -65,14 +80,6 @@ const App = () => {
                   path="/sabores/edit/:id_sabor"
                   element={<SaboresForm />}
                 />
-                <Route
-                  path="/comprar"
-                  element={
-                    <CarritosProvaider>
-                      <ComprarPage />
-                    </CarritosProvaider>
-                  }
-                />
 
                 <Route path="/sabores" element={<SaboresPage />} />
                 <Route path="*" element={<NotFound />} />
@@ -96,27 +103,11 @@ const App = () => {
                 <Route path="cambio/new" element={<TipoCambioPage />} />
                 <Route path="cambio/edit/:id" element={<TipoCambioForm />} />
 
-                <Route
-                  path="/"
-                  element={
-                    <CarritosProvaider>
-                      <HomePage />
-                    </CarritosProvaider>
-                  }
-                />
                 <Route path="/transacciones/*" element={<VentasRoutes />} />
-
               </Route>
 
-             
-                 
-            
-                <Route path="/transacciones/*" element={<VentasRoutes />} />
-
-
-
+              <Route path="/transacciones/*" element={<VentasRoutes />} />
             </Routes>
-            
           </div>
         </AuthProvider>
       </SaboresContextProvider>

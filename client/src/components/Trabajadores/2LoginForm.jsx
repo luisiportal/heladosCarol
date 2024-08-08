@@ -1,11 +1,11 @@
 import React from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
-import { loginRequest } from "../../api/login.api";
+import { cargarPerfilRequest, loginRequest } from "../../api/login.api";
 import MostrarErrorMessage from "../ValidacionForm/MostrarErrorMessage";
 import Loader from "../Utilidades/Loader";
 import {
@@ -13,7 +13,6 @@ import {
   writeLocalStorage,
 } from "../../hooks/useLocalStorage";
 import ActivarDesactModo from "../ModoOffline/ActivarDesactModo";
-import ImagenPrincipal from "../HOME/ImagenPrincipal";
 
 const Login = () => {
   const {
@@ -31,7 +30,11 @@ const Login = () => {
 
   useEffect(() => {}, [isAuthenticated]);
   return (
-    <div>
+    <div className="bg-heladosCarol_color h-screen">
+      <h1 className=" text-3xl text-heladosCarol_color font-bold mx-auto p-5 grid place-items-center">
+        Bienvenido
+      </h1>
+
       <Formik
         initialValues={{ username: "", password: "" }}
         validationSchema={Yup.object({
@@ -113,45 +116,44 @@ const Login = () => {
           }
         }}
       >
-        {({ isSubmitting, errors,handleChange }) => (
+        {({ isSubmitting, errors }) => (
           <Form>
-            <div className="h-screen">
-              <section className="w-full">
-               <ImagenPrincipal/>
-                <div>
-                  <div className="flex flex-col items-center mt-5 p-5 gap-3">
-                    <h2 className="font-irish font-bold text-2xl">Entrar</h2>{" "}
-                    <input
-                      className="bg-neutral-200 rounded-md  placeholder:text-black p-2"
-                      type="text"
-                      name="username"
-                      placeholder="Usuario"
-                      onChange={handleChange}
-                    />
-                    <MostrarErrorMessage campo={"username"} errors={errors} />
-                    <input
-                      className="bg-neutral-200 rounded-md  placeholder:text-black p-2"
-                      type="password"
-                      name="password"
-                      placeholder="Contraseña"
-                      onChange={handleChange}
-                    />
-                    <MostrarErrorMessage campo={"password"} errors={errors} />
-                    {credencial_invalida && (
-                      <span className="bg-red-500 p-1 m-1 rounded">
-                        {credencial_invalida}
-                      </span>
-                    )}
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="bg-fresa rounded-md p-2 text-white font-semibold"
-                    >
-                      Iniciar sesión
-                    </button>
-                  </div>
-                </div>
-              </section>
+            <div className="w-80 grid grid-cols-1 gap-2  p-4 min-h-80 m-auto mt-16 shadow-xl rounded-3xl text-gray-900 bg-neutral-200">
+              <img
+                className="h-16 rounded-full m-auto -mt-12"
+                src="../images/logo.png"
+                alt="Helados Carol"
+              />{" "}
+              <label className="text-gray-900" htmlFor="username">
+                Usuario :
+              </label>
+              <Field
+                className=" border-b-heladosCarol_color"
+                type="text"
+                name="username"
+              />
+              <MostrarErrorMessage campo={"username"} errors={errors} />
+              <label className="text-gray-900" htmlFor="password">
+                Contraseña :
+              </label>
+              <Field
+                className=" border-b-heladosCarol_color"
+                type="password"
+                name="password"
+              />
+              <MostrarErrorMessage campo={"password"} errors={errors} />
+              {credencial_invalida && (
+                <span className="bg-red-500 p-1 m-1 rounded">
+                  {credencial_invalida}
+                </span>
+              )}
+              <button
+                className="w-full bg-heladosCarol_color text-2md text-white font-semibold block p-2 rounded"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                Iniciar sesión
+              </button>
               {loader && <Loader />}
             </div>
           </Form>

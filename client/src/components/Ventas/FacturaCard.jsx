@@ -46,13 +46,13 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
             <h2>
               {sabor.precio_total_sabor ??
                 sabor.precio_venta * sabor.cantidad}{" "}
-              cup
+              USD
             </h2>
           </div>
         ))}
 
         <div className="text-right mt-5 flex-grow flex flex-col">
-          <p>Total {factura.total_venta} cup</p>
+          <p>Total {factura.total_venta} USD</p>
 
           <p>
             {new Date(factura.creado).toLocaleString("es-ES")}{" "}

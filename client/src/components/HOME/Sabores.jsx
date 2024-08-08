@@ -21,11 +21,11 @@ const Sabores = () => {
   }, []);
 
   return (
-    <div className="bg-neutral-200 rounded-lg">
+    <div className="bg-neutral-200 rounded-lg mt-4">
       <h2 className="flex justify-center font-inspiration text-4xl py-2">
         Sabores
       </h2>
-      <section className="flex items-center">
+      <section className="flex items-center justify-between">
         <div className="w-44">
           {sabores.map(
             (sabor, index) =>
@@ -43,7 +43,9 @@ const Sabores = () => {
               )
           )}
         </div>
-        <SeccionComprar sabor={sabores[0]}/>
+        <div>
+          <SeccionComprar sabor={sabores[0]} />
+        </div>
       </section>
     </div>
   );

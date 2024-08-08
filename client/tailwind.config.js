@@ -18,6 +18,10 @@ export default {
         amarillo: '#F9A217',
         coco:'#ffffff'
       },
+      backgroundImage: {
+        'fondoLogin': "url('/images/cdn-3.expansion.webp')",
+        
+      }
          },
   },
   plugins: [],
