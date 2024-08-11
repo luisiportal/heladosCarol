@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import CardReviewFrontend from "./CardReviewFrontend";
-import { getReviewsRequest } from "../../../api/reviews.api";
+
 import { useReviews } from "../../../context/ReviewProvaider";
 
 const ListarReviewsFrontend = () => {

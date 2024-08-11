@@ -10,7 +10,6 @@ const HomePage = () => {
   return (
     <div className="pt-10  mx-auto max-w-sm">
       <PrimerElemento />
-
       <Sabores />
       <Carrusel />
       <Reviews />

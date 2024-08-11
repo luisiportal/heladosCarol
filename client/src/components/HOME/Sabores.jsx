@@ -5,16 +5,16 @@ import DerretidoVainilla2 from "../apariencia/DerretidoVainilla2";
 import SeccionComprar from "./Sabores/SeccionComprar";
 import { useSabores } from "../../context/SaboresProvider";
 import { useAuth } from "../../context/AuthContext";
+import Loader from "../Utilidades/Loader";
 
 const Sabores = () => {
   const { loadSabores, sabores } = useSabores();
-  const [comprando, setComprando] = useState(0);
   const { loader, setLoader, isOnline } = useAuth();
 
   useEffect(() => {
     const cargarSabores = async () => {
       setLoader(true);
-      loadSabores();
+     await loadSabores();
       setLoader(false);
     };
     cargarSabores();
@@ -47,6 +47,9 @@ const Sabores = () => {
           <SeccionComprar sabor={sabores[0]} />
         </div>
       </section>
+      {loader && <div>
+        <span>Esperando los sabores</span>
+        <Loader /></div>}
     </div>
   );
 };
