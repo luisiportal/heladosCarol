@@ -28,13 +28,16 @@ import SaboresPage from "./components/Sabores/SaboresPage";
 import SaboresForm from "./components/Sabores/SaboresForm";
 
 import ComprarPage from "./components/Comprar/ComprarPage";
+import ListarReviewsBackend from "./components/Reviews/Backend/ListarReviewsBackend";
+import { ReviewContextProvider } from "./context/ReviewProvaider";
 
 const App = () => {
   return (
     <div className="bg-neutral-100">
       <SaboresContextProvider>
         <AuthProvider>
-          <div className="container mx-auto">
+          <ReviewContextProvider>
+          <div className="container">
             <Navbar />
             <Routes>
               <Route path="/trabajador/login" element={<Trabajador />} />
@@ -46,6 +49,7 @@ const App = () => {
                   </CarritosProvaider>
                 }
               />
+              <Route path="prueba" element={<Prueba />} />
               <Route
                 path="/comprar"
                 element={
@@ -55,6 +59,7 @@ const App = () => {
                 }
               />
               <Route element={<ProtectedRoutes />}>
+              <Route path="opiniones" element={<ListarReviewsBackend />} />
                 <Route path="/logs/" element={<LogsPage />} />
                 <Route path="/new" element={<SaboresForm />} />
                 <Route path="/trabajador/new" element={<AgregarTrabajador />} />
@@ -109,6 +114,8 @@ const App = () => {
               <Route path="/transacciones/*" element={<VentasRoutes />} />
             </Routes>
           </div>
+          </ReviewContextProvider>
+        
         </AuthProvider>
       </SaboresContextProvider>
     </div>

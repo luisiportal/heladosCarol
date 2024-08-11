@@ -11,6 +11,7 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
   const { setModalActivo, modalActivo, editando, setEditando, perfil } =
     useAuth();
 
+
   const handleEliminar = async (id) => {
     if (confirm("¿Estás a punto de eliminar una Venta ?")) {
       try {
@@ -44,8 +45,7 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
             </div>
 
             <h2>
-              {sabor.precio_total_sabor ??
-                sabor.precio_venta * sabor.cantidad}{" "}
+              {sabor.precio_total_sabor ?? sabor.precio_venta * sabor.cantidad}{" "}
               USD
             </h2>
           </div>
@@ -53,6 +53,21 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
 
         <div className="text-right mt-5 flex-grow flex flex-col">
           <p>Total {factura.total_venta} USD</p>
+          <p>Detalles:</p>
+          <h2>Ordenante: {factura.entrega.ordenante} </h2>
+          <h2>Contacto:  {factura.entrega.contacto_ordenante}</h2>
+
+           
+            {factura.entrega.contacto_ordenante}
+            {factura.entrega.beneficiario}
+            {factura.entrega.tel_beneficiario}
+            {factura.entrega.calle}
+            {factura.entrega.numero}
+            {factura.entrega.calle1}
+            {factura.entrega.calle2}
+            {factura.entrega.reparto}
+            {factura.entrega.p_referencia}
+        
 
           <p>
             {new Date(factura.creado).toLocaleString("es-ES")}{" "}

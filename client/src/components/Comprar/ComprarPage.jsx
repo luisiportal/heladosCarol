@@ -19,9 +19,15 @@ const ComprarPage = () => {
 
   const [entrega, setEntrega] = useState({
     ordenante: "",
+    contacto_ordenante:"",
     beneficiario: "",
     tel_beneficiario: "",
     direccion: "",
+    calle:"",
+    numero:"",
+    calle1:"",
+    calle2:"",
+    reparto:"",
     p_referencia: "",
   });
   return (

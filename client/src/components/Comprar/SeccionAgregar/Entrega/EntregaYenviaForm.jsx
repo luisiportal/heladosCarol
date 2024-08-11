@@ -9,29 +9,64 @@ import DerretidoDireccion from "../../../SVG/DerretidoDireccion";
 import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
 import { createVentaRequest } from "../../../../api/venta.api";
 import Loader from "../../../Utilidades/Loader";
+import InputEntrega from "./InputEntrega";
 
 const schema = Yup.object({
   ordenante: Yup.string()
     .required("Campo requerido")
-    .matches(/^[a-zA-Z ]*$/, "Solo se permiten letras")
-    .max(20, "El nombre de no debe tener más de 20 caracteres"),
+    .matches(/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/, "Solo se permiten letras")
+    .max(20, "El nombre no debe tener más de 20 caracteres"),
+
+  contacto_ordenante: Yup.string()
+    .required("Campo requerido")
+    .matches(/^[a-zA-Z-@.0-9 ]*$/, "Solo se permiten letras")
+    .max(50, "El nombre de no debe tener más de 50 caracteres"),
   beneficiario: Yup.string()
     .required("Campo requerido")
-    .matches(/^[a-zA-Z ]*$/, "Solo se permiten letras")
+    .matches(/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/, "Solo se permiten letras")
     .max(40, "El nombre de no debe tener más de 40 caracteres"),
 
   tel_beneficiario: Yup.string()
     .required("Campo requerido")
-    .matches(/^[0-9 ]*$/, "Solo se permiten numeros")
-    .max(8, "El telefono no debe tener más de 20 caracteres"),
-  direccion: Yup.string()
+    .matches(/^[0-9-+ ]*$/, "Solo se permiten numeros")
+    .max(20, "El telefono no debe tener más de 20 caracteres"),
+
+  calle: Yup.string()
     .required("Campo requerido")
-    .matches(/^[a-zA-Z0-9-. ]*$/, "Solo se permiten letras y números")
-    .max(200, "Dirección no debe tener más de 50 caracteres"),
+    .matches(
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9]*$/,
+      "Solo se permiten letras, números y espacios"
+    )
+    .max(20, "El nombre no debe tener más de 20 caracteres"),
+
+  calle1: Yup.string()
+    .required("Campo requerido")
+    .matches(
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9]*$/,
+      "Solo se permiten letras, números y espacios"
+    )
+    .max(20, "El nombre no debe tener más de 20 caracteres"),
+  calle2: Yup.string()
+    .required("Campo requerido")
+    .matches(
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9]*$/,
+      "Solo se permiten letras, números y espacios"
+    )
+    .max(20, "El nombre no debe tener más de 20 caracteres"),
+  reparto: Yup.string()
+    .required("Campo requerido")
+    .matches(
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9]*$/,
+      "Solo se permiten letras, números y espacios"
+    )
+    .max(20, "El nombre no debe tener más de 20 caracteres"),
   p_referencia: Yup.string()
     .required("Campo requerido")
-    .matches(/^[a-zA-Z0-9-. ]*$/, "Solo se permiten letras y números")
-    .max(40, "Punto Referencia no debe tener más de 40 caracteres"),
+    .matches(
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9]*$/,
+      "Solo se permiten letras, números y espacios"
+    )
+    .max(40, "El nombre no debe tener más de 20 caracteres"),
 });
 
 const EntregaYenviaForm = ({
@@ -63,19 +98,16 @@ const EntregaYenviaForm = ({
           setLoader(true);
 
           try {
-            const { error, paymentMethod } = await stripe.createPaymentMethod({
-              type: "card",
-              card: elements.getElement(CardElement),
-            });
+           
 
-            if (!error) {
-              const { id } = paymentMethod;
+            
+             
 
               const ordenCompleta = {
                 productos: carrito,
                 entrega: values,
                 total_venta: total_venta,
-                id_pago: id,
+              //  id_pago: id,
               };
 
               await createVentaRequest(ordenCompleta);
@@ -85,14 +117,7 @@ const EntregaYenviaForm = ({
                 navegarA: "/",
               });
               setCarrito([]);
-            } else {
-              setModalActivo({
-                mensaje: `No se ha completado el pago . ${error.message}"}`,
-                activo: true,
-
-                errorColor: error,
-              });
-            }
+           
             setLoader(false);
           } catch (error) {
             console.log(error);
@@ -111,60 +136,100 @@ const EntregaYenviaForm = ({
               <h2 className="font-inspiration text-2xl flex justify-center p-1">
                 Datos de Entrega
               </h2>
-              <input
-                className="rounded-xl w-full bg-neutral-200 placeholder:text-slate-800 font-semibold p-2 mb-4"
-                type="text"
-                name="ordenante"
-                placeholder="Ordenante:"
-                onChange={handleChangeMio}
+              <InputEntrega
+                type={"text"}
+                name={"ordenante"}
+                placeholder={"Ordenante"}
+                handlechange={handleChangeMio}
                 value={entrega.ordenante}
+                errors={errors}
               />
-              <MostrarErrorMessage campo={"ordenante"} errors={errors} />
+
               <div className="flex justify-end relative top-2 right-4">
                 <DerretidoBeneficiario />
               </div>
-              <input
-                className="rounded-xl w-full bg-neutral-200 placeholder:text-slate-800 font-semibold p-2 mb-4"
-                type="text"
-                placeholder="Beneficiario:"
-                name="beneficiario"
-                onChange={handleChangeMio}
+              <InputEntrega
+                type={"text"}
+                name={"contacto_ordenante"}
+                placeholder={"Correo o teléfono"}
+                handlechange={handleChangeMio}
+                value={entrega.contacto_ordenante}
+                errors={errors}
+              />
+              <InputEntrega
+                type={"text"}
+                name={"beneficiario"}
+                placeholder={"Beneficiario"}
+                handlechange={handleChangeMio}
                 value={entrega.beneficiario}
+                errors={errors}
               />
-              <MostrarErrorMessage campo={"beneficiario"} errors={errors} />
-              <input
-                className="rounded-xl w-full bg-neutral-200 placeholder:text-slate-800 font-semibold p-2 mb-4"
-                type="text"
-                placeholder="Teléfono del Beneficiario:"
-                name="tel_beneficiario"
-                onChange={handleChangeMio}
+              <InputEntrega
+                type={"text"}
+                name={"tel_beneficiario"}
+                placeholder={"Teléfono de beneficiario"}
+                handlechange={handleChangeMio}
                 value={entrega.tel_beneficiario}
+                errors={errors}
               />
-              <MostrarErrorMessage campo={"tel_beneficiario"} errors={errors} />
-              <textarea
-                className="rounded-xl w-full bg-neutral-200 placeholder:text-slate-800 font-semibold p-2 mb-4"
-                rows="3"
-                name="direccion"
-                placeholder="Dirección de Entrega:"
-                onChange={handleChangeMio}
-                value={entrega.direccion}
+              <label>Dirección de Entrega:</label>
+              <div className="flex gap-1">
+                <InputEntrega
+                  type={"text"}
+                  name={"calle"}
+                  placeholder={"Calle"}
+                  handlechange={handleChangeMio}
+                  value={entrega.calle}
+                  errors={errors}
+                />
+                <InputEntrega
+                  type={"text"}
+                  name={"numero"}
+                  placeholder={"Número Casa"}
+                  handlechange={handleChangeMio}
+                  value={entrega.numero}
+                  errors={errors}
+                />
+              </div>
+              <InputEntrega
+                type={"text"}
+                name={"calle1"}
+                placeholder={"Entre Calle"}
+                handlechange={handleChangeMio}
+                value={entrega.calle1}
+                errors={errors}
               />
-              <div className="left-6 relative bottom-5">
+              <InputEntrega
+                type={"text"}
+                name={"calle2"}
+                placeholder={"Entre calle"}
+                handlechange={handleChangeMio}
+                value={entrega.calle2}
+                errors={errors}
+              />
+              <InputEntrega
+                type={"text"}
+                name={"reparto"}
+                placeholder={"Reparto"}
+                handlechange={handleChangeMio}
+                value={entrega.reparto}
+                errors={errors}
+              />
+              <div className="left-6 relative bottom-4">
                 <DerretidoDireccion />
               </div>
-              <MostrarErrorMessage campo={"direccion"} errors={errors} />
-              <input
-                className="rounded-xl w-full bg-neutral-200 placeholder:text-slate-800 font-semibold p-2 mb-4"
-                type="text"
-                name="p_referencia"
-                placeholder="Punto Referencia:"
-                onChange={handleChangeMio}
+
+              <InputEntrega
+                type={"text"}
+                name={"p_referencia"}
+                placeholder={"Punto Referencia"}
+                handlechange={handleChangeMio}
                 value={entrega.p_referencia}
+                errors={errors}
               />
-              <MostrarErrorMessage campo={"p_referencia"} errors={errors} />
               <div className="mt-2 mx-2 ">
                 <CardElement />
-                <NavegacionEntrega />
+                <NavegacionEntrega setNavegacion={setNavegacion} />
               </div>
             </section>
           </Form>

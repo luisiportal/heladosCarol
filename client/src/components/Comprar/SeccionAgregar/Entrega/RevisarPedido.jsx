@@ -3,8 +3,7 @@ import RevisarProductos from "./Revision/RevisarProductos";
 import DireccionEntrega from "./Revision/DireccionEntrega";
 
 const RevisarPedido = ({ carrito, entrega }) => {
-  console.log(carrito);
-  console.log(entrega);
+ 
   return (
     <div className="pt-12">
       <h1>Revisar Pedido</h1>

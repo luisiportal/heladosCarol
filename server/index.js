@@ -12,6 +12,7 @@ import ventas from "./routes/venta.routes.js";
 import audiTlogs from "./routes/audilogs.routes.js";
 import cuadre_caja from "./routes/cuadre_caja.routes.js";
 import sabores from "./routes/sabores.routes.js";
+import reviews from "./routes/reviews.routes.js";
 
 const app = express();
 app.use(
@@ -40,6 +41,8 @@ app.use(moneda);
 app.use(ventas);
 app.use(audiTlogs);
 app.use(cuadre_caja);
+app.use(reviews);
+
 app.listen(PUERTO, () => {
   console.log(`El server esta en el puerto : ${PUERTO}....`);
 });

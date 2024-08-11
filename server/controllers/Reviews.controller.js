@@ -1,0 +1,100 @@
+import { saveImage } from "../controllers/upload.multer.js";
+
+import sequelize from "../db.js";
+import { Review } from "../models/Review.model.js";
+
+// listar todas los productos
+
+export const getTodosReviews = async (req, res) => {
+  try {
+    const response = await Review.findAll({
+      order: [["id_review", "ASC"]],
+    });
+    res.json(response);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+// listar un review
+export const getReview = async (req, res) => {
+  try {
+    const id_review = req.params.id_review;
+
+    const response = await Review.findByPk(id_review);
+    if (!response) return res.status(404).json({ message: "No encontrado" });
+
+    res.json(response);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+// crear una review
+export const createReview = async (req, res) => {
+  try {
+    const { autor, comentario } = req.body;
+
+    // Iniciar una transacción
+
+    try {
+      const response = await Review.create({
+        autor,
+        comentario,
+      });
+
+      res.json({
+        id_review: response.insertId,
+        autor,
+        comentario,
+      });
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+// actualizar
+
+export const updateReview = async (req, res) => {
+  try {
+    const { publicado } = req.body;
+
+    const response = await Review.findByPk(id_producto);
+
+    res.json(response);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const publicarReview = async (req, res) => {
+  try {
+    const response = await Review.findByPk(req.params.id_review);
+    response.publicado = true;
+    await response.save();
+
+    res.json(response);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+// borrar
+
+export const deleteReview = async (req, res) => {
+  try {
+    const reviewTraidoDB = await Review.findByPk(req.params.id_review);
+
+    const response = await Review.destroy({
+      where: {
+        id_review: req.params.id_review,
+      },
+    });
+
+    res.sendStatus(204);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};

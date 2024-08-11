@@ -14,6 +14,9 @@ export const Entrega = sequelize.define("entregas", {
   ordenante: {
     type: DataTypes.STRING,
   },
+  contacto_ordenante: {
+    type: DataTypes.STRING,
+  },
   beneficiario: {
     type: DataTypes.STRING,
   },
@@ -23,6 +26,22 @@ export const Entrega = sequelize.define("entregas", {
   direccion: {
     type: DataTypes.STRING,
   },
+  calle: {
+    type: DataTypes.STRING,
+  },
+  numero: {
+    type: DataTypes.STRING,
+  },
+  calle1: {
+    type: DataTypes.STRING,
+  },
+  calle2: {
+    type: DataTypes.STRING,
+  },
+  reparto: {
+    type: DataTypes.STRING,
+  },
+
   p_referencia: {
     type: DataTypes.STRING,
   },

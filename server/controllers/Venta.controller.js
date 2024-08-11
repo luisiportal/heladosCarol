@@ -15,6 +15,7 @@ const stripe = new Stripe(PAYKEY);
 export const createVenta = async (req, res) => {
   const productos = req.body.productos;
   const entrega = req.body.entrega;
+
   const id_pago = req.body.id_pago;
   const total_venta = productos.reduce(
     (sum, producto) => sum + producto.precio_venta * producto.cantidad,
@@ -25,7 +26,7 @@ export const createVenta = async (req, res) => {
   let creado = fechaActual.toISOString();
 
   try {
-   // StripePayment();
+    // StripePayment();
 
     await sequelize.transaction(async (t) => {
       // Crear la factura
@@ -41,19 +42,18 @@ export const createVenta = async (req, res) => {
         {
           id_factura: factura.id,
           ordenante: entrega.ordenante,
+          contacto_ordenante: entrega.contacto_ordenante,
           beneficiario: entrega.beneficiario,
           tel_beneficiario: entrega.tel_beneficiario,
           direccion: entrega.direccion,
+          calle: entrega.calle,
+          numero: entrega.numero,
+          calle1: entrega.calle1,
+          calle2: entrega.calle2,
+          reparto: entrega.reparto,
           p_referencia: entrega.p_referencia,
         },
         { transaction: t }
-      );
-      await registrarLog(
-        "Facturó",
-        "Venta",
-        ` total : ${total_venta} USD`,
-        req,
-        t
       );
 
       for (const producto of productos) {
@@ -137,7 +137,9 @@ export const getTodosFacturas = async (req, res) => {
             },
           ],
         },
+        { model: Entrega, required: false },
       ],
+
       order: [["creado", "DESC"]],
       limit: limit,
       offset: offset,

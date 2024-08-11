@@ -10,7 +10,7 @@ import {
 
 const ventas = Router();
 
-ventas.post("/ventas", authRequired, createVenta);
+ventas.post("/ventas",  createVenta);
 ventas.get("/ventas", authRequired, getTodosFacturas);
 ventas.delete("/facturas/:id", deleteFactura);
 ventas.put("/facturas/", authRequired, updateFechaFactura);

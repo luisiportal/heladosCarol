@@ -19,7 +19,7 @@ const BuscadorSabores = ({ loader, setLoader, isOnline }) => {
     }
   }, [filtroSabores]);
 
-  console.log(sabores);
+ 
   const handleChange = (e) => {
     e.preventDefault();
     try {

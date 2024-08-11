@@ -205,7 +205,7 @@ const NavbarComponent = () => {
           </div>
         </div>
       </header>
-      <ActivarDesactModo setIsOnline={setIsOnline} isOnline={isOnline} />
+
     </div>
   );
 };

@@ -10,6 +10,25 @@
   font-family: 'irish';
   src: url('./fonts/IrishGrover-Regular.ttf');
 }
+.image-gallery {
+  width: 100%;
+  height: auto;
+  
+}
+.image-gallery-thumbnail .image-gallery-thumbnail-image {
+
+  border-radius: 0.5rem;
+}
+
+.image-gallery-slide img {
+  width: 100%;
+  height: 200px;
+  max-height: 80vh;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 1rem;
+  object-position: center center;
+}
 
 
 .sombraHeader {

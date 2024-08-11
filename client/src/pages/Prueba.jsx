@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import NavbarComponent from "../components/NavbarComponent";
+import Carusel from "../components/Carusel/Carusel";
 
 const Prueba = () => {
   return (
     <div className="bg-slate-100">
       <header className="bg-white shadow px-6">
+        <Carusel/>
         <div className="flex justify-between h-16 items-center max-w-3xl mx-auto">
           <button className="text-heladosCarol_color border-black hover:bg-heladosCarol_color hover:text-slate-100 rounded p-1 -m-1 transition-colors focus:ring-2 focus:ring-slate-200">
             <svg
