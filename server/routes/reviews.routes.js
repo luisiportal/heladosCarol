@@ -11,11 +11,12 @@ import {
 
 const reviews = Router();
 
-reviews.get("/reviews", authRequired, getTodosReviews);
+reviews.get("/reviews", getTodosReviews);
+reviews.post("/reviews", createReview);
 
 reviews.get("/reviews/:id_review", authRequired, getReview);
 
-reviews.post("/reviews", createReview);
+
 
 reviews.put("/reviews/:id_review", authRequired, updateReview);
 reviews.put("/reviews/publicar/:id_review", authRequired, publicarReview);
