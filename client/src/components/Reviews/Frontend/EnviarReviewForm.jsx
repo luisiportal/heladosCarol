@@ -39,7 +39,7 @@ const EnviarReviewForm = () => {
       await createReviewRequest(values);
 
       setEnviado(true);
-      setRespMessage("Hemos recibido su comentario");
+      setRespMessage("Gracias por su opinión");
     } catch (error) {
       setEnviado(false);
       setRespMessage("Ha ocurrido un error. Vuelva a intentarlo");
@@ -56,7 +56,7 @@ const EnviarReviewForm = () => {
 
   return (
     <div>
-      <div className="p-2">
+      <div className="p-2 mb-10">
         <Formik
           initialValues={comentario}
           onSubmit={handleSubmit}
@@ -71,7 +71,7 @@ const EnviarReviewForm = () => {
                     <input
                       type="text"
                       name="autor"
-                      className="block border-2 border-gray-300 rounded-md p-2 mb-2"
+                      className="block border-2 border-gray-300 rounded-xl p-1 mb-2"
                       onChange={handleChange}
                       value={values.autor}
                     />
@@ -82,9 +82,9 @@ const EnviarReviewForm = () => {
                     <label>
                       Texto del Comentario:
                       <textarea
-                        rows="3"
+                        rows="2"
                         name="comentario"
-                        className="block border-2 border-gray-300 rounded-md p-2 min-w-full mb-2"
+                        className="block border-2 border-gray-300 rounded-xl p-1 min-w-full mb-2"
                         onChange={handleChange}
                         value={values.comentario}
                       />
@@ -93,10 +93,6 @@ const EnviarReviewForm = () => {
                         errors={errors}
                       />
                     </label>
-                    <p>
-                      Conteo de caracteres: {characterCount}/
-                      {MAX_CHARACTER_LIMIT}
-                    </p>
                   </div>
 
                   <button
@@ -113,9 +109,9 @@ const EnviarReviewForm = () => {
         </Formik>
 
         {enviado && (
-          <div className="bg-slate-600 z-50 h-auto p-14 bg-black/50 flex flex-1 justify-center items-center rounded">
+          <div className="z-50 h-auto p-14 flex flex-1 justify-center items-center rounded">
             {" "}
-            <h2 className="text-white font-semibold text-l">{respMessage}</h2>
+            <h2 className="text-slate-800 font-semibold text-sm">{respMessage}</h2>
           </div>
         )}
       </div>

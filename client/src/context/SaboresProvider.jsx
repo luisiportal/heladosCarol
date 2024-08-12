@@ -47,9 +47,8 @@ export const SaboresContextProvider = ({ children }) => {
   };
 
   const loadSabores = async () => {
-    console.log("llamado");
     const response = await getSaboresRequest();
-    console.log(response);
+
     setSabores(response.data);
   };
 

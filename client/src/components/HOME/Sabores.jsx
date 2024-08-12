@@ -3,27 +3,34 @@ import FondoSabor from "./Sabores/FondoSabor";
 
 import DerretidoVainilla2 from "../apariencia/DerretidoVainilla2";
 import SeccionComprar from "./Sabores/SeccionComprar";
+
+import Loader from "../Utilidades/Loader";
 import { useSabores } from "../../context/SaboresProvider";
 import { useAuth } from "../../context/AuthContext";
-import Loader from "../Utilidades/Loader";
 
 const Sabores = () => {
+
   const { loadSabores, sabores } = useSabores();
   const { loader, setLoader, isOnline } = useAuth();
+
+ 
 
   useEffect(() => {
     const cargarSabores = async () => {
       setLoader(true);
-     await loadSabores();
+      await loadSabores();
       setLoader(false);
     };
     cargarSabores();
   }, []);
 
+
+ 
+
   return (
     <div className="bg-neutral-200 rounded-lg mt-4">
-      <h2 className="flex justify-center font-inspiration text-4xl py-2">
-        Sabores
+      <h2 className="flex justify-center font-irish text-2xl py-2">
+        
       </h2>
       <section className="flex items-center justify-between">
         <div className="w-44">

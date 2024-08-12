@@ -13,25 +13,26 @@ const Carusel = () => {
       thumbnail: "../images/carusel/chocolateBoleadora.jpg",
     },
     {
+      original: "../images/carusel/imagen1.jpg",
+      thumbnail: "../images/carusel/imagen1.jpg",
+    },
+
+    {
       original: "../images/carusel/pote2.jpg",
       thumbnail: "../images/carusel/pote2.jpg",
     },
     {
       original: "../images/carusel/pote3.jpg",
       thumbnail: "../images/carusel/pote3.jpg",
-
     },
     {
       original: "../images/carusel/saboresSolo.jpg",
       thumbnail: "../images/carusel/saboresSolo.jpg",
-
     },
   ];
   return (
     <div className="w-full flex">
-      <ImageGallery items={images}
-      showPlayButton={false}
-      showNav={false} />
+      <ImageGallery items={images} showPlayButton={false} showNav={false} />
     </div>
   );
 };
