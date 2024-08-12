@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import Navbar from "./navbar/Navbar";
 import { useAuth } from "../context/AuthContext";
 
-import ActivarDesactModo from "./ModoOffline/ActivarDesactModo";
-import DerretidoFresa from "./apariencia/DerretidoFresa";
 import { DerretidoChocolate } from "./apariencia/DerretidoChocolate";
 import DerretidoVainilla from "./apariencia/DerretidoVainilla";
 import DerretidoVainilla2 from "./apariencia/DerretidoVainilla2";
@@ -205,7 +203,6 @@ const NavbarComponent = () => {
           </div>
         </div>
       </header>
-
     </div>
   );
 };
