@@ -102,7 +102,6 @@ export const SaboresContextProvider = ({ children }) => {
         deleteTrabajador,
         loadTrabajadores,
         trabajadores,
-        setSabores,
       }}
     >
       {children}
