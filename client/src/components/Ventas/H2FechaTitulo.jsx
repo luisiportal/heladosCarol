@@ -30,32 +30,7 @@ const H2FechaTitulo = ({
     <section className="flex flex-1 flex-col" key={fecha}>
       <h2>
         {fecha} Venta {totalVentaDia}
-        <div className="flex w-80">
-          <BTNHOME
-            texto={
-              <>
-                <CuadreSVG />
-                {mostrarCuadrarDialog ? "Ventas" : "Cuadre de Caja"}
-              </>
-            }
-            handleClick={() =>
-              setMostrarCuadrarDialog({
-                fechaVenta: facturasMismafecha[0].creado,
-                totalVentaDia,
-              })
-            }
-          />
-
-          <BTNHOME
-            texto={
-              <>
-                <CuadreSVG />
-                {"Listar"}
-              </>
-            }
-            enlace={`/cuadre/`}
-          />
-        </div>
+       
       </h2>
 
       {facturasMismafecha.map((factura) => {

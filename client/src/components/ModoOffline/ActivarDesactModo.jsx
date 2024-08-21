@@ -36,7 +36,7 @@ const ActivarDesactModo = ({ isOnline, setIsOnline }) => {
       >
         {isOnline ? (
           <h2 className="bg-green-600 fixed bottom-0 text-white p-2 rounded-md">
-            Conectado
+           
           </h2>
         ) : (
           <h2 className="bg-red-600 fixed bottom-0 text-white p-2 rounded-md">

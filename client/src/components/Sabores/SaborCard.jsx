@@ -56,7 +56,7 @@ function SaborCard({ sabor }) {
           </div>
 
           <div className="w-2/5 text-right">
-            <p>{sabor.precio_venta} cup</p>
+            <p>{sabor.precio_venta} USD</p>
 
             <p className="text-sm">
               {sabor.existencia}
