@@ -21,7 +21,7 @@ const CardReviewFrontend = ({ review, sabores, index }) => {
         </div>
       </div>
       <div className={`relative bottom-4 izquierda${index}`}>
-        <DerretidoVainilla2 color={"#" + sabores[index].color} />
+        <DerretidoVainilla2 color={"#" + sabores[index].color ||""} />
       </div>
     </div>
   );
