@@ -9,8 +9,6 @@ const ListarReviewsBackend = () => {
   useEffect(() => {
     const cargarReviews = async () => {
       await loadAllReviews();
-      console.log(recargarReviews);
-      
     };
     cargarReviews();
   }, [recargarReviews]);

@@ -63,14 +63,14 @@ const CardReviewBackend = ({review}) => {
       <button
         type="submit"
         onClick={handleClick}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
+        className="bg-fresa hover:bg-fresa-700 text-white font-bold py-2 px-4 rounded "
       >
         Publicar
       </button>
       <button
         type="submit"
         onClick={() => deleteReview(review.id_review)}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
+        className="bg-fresa hover:bg-fresa-700 text-white font-bold py-2 px-4 rounded "
       >
         Eliminar
       </button>
