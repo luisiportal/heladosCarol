@@ -16,7 +16,7 @@ export const useReviews = () => {
 
 export const ReviewContextProvider = ({ children }) => {
   const [reviews, setReviews] = useState([]);
-  const [recargarReviews, setRecargarReviews] = useState();
+  const [recargarReviews, setRecargarReviews] = useState(false);
 
   async function loadAllReviews() {
     const response = await getReviewsRequest();
