@@ -15,7 +15,7 @@ const schema = Yup.object({
   ordenante: Yup.string()
     .required("Campo requerido")
     .matches(/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/, "Solo se permiten letras")
-    .max(20, "El nombre no debe tener más de 20 caracteres"),
+    .max(100, "El nombre no debe tener más de 20 caracteres"),
 
   contacto_ordenante: Yup.string()
     .required("Campo requerido")
@@ -24,7 +24,7 @@ const schema = Yup.object({
   beneficiario: Yup.string()
     .required("Campo requerido")
     .matches(/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/, "Solo se permiten letras")
-    .max(40, "El nombre de no debe tener más de 40 caracteres"),
+    .max(100, "El nombre de no debe tener más de 40 caracteres"),
 
   tel_beneficiario: Yup.string()
     .required("Campo requerido")
