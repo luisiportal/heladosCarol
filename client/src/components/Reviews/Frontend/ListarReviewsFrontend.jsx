@@ -7,11 +7,10 @@ import { useSabores } from "../../../context/SaboresProvider";
 
 const ListarReviewsFrontend = () => {
   const { reviews, loadAllReviews, recargarReviews } = useReviews();
-  const { sabores, loadSabores } = useSabores();
+  const { sabores } = useSabores();
 
   useEffect(() => {
     const cargarReviews = async () => {
-      await loadSabores();
       await loadAllReviews();
     };
     cargarReviews();
