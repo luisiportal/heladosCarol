@@ -8,7 +8,7 @@ import { Review } from "../models/Review.model.js";
 export const getTodosReviews = async (req, res) => {
   try {
     const response = await Review.findAll({
-      order: [["id_review", "ASC"]],
+      order: [["id_review", "DESC"]],
     });
     res.json(response);
   } catch (error) {
