@@ -22,7 +22,7 @@ const CardReviewFrontend = ({ review, sabores, index }) => {
             <span className="text-gray-500 text-sm">- {review.fecha}</span>
           </div>
         </div>
-        <div className={`relative bottom-4 izquierda${index}`}>
+        <div className={`relative max-w-min bottom-4 izquierda${index}`}>
           <DerretidoVainilla2 color={"#" + sabores[index].color ||""} />
         </div>
       </div>
