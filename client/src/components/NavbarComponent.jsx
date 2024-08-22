@@ -88,18 +88,22 @@ const NavbarComponent = () => {
           </div>
 
           <div className="flex ">
-            <div className="hidden lg:flex">
+           
+              {isAuthenticated && (
+                 <div className="hidden lg:flex">
               {/*imagen de perfil*/}
-              <Link to={"trabajador/login"}>
-                <button className="text-slate-500 hover:bg-white hover:text-black-300 p-1 rounded-full transition-colors focus:ring-2 focus:ring-slate-200">
-                  <img
-                    className="h-12 w-12 rounded-full"
-                    src={"../images/trabajadores/perfil/" + perfil.foto_perfil}
-                    alt="perfil"
-                  />
-                </button>
-              </Link>
-              <button
+                <Link to={"trabajador/login"}>
+                  <button className="text-slate-500 hover:bg-white hover:text-black-300 p-1 rounded-full transition-colors focus:ring-2 focus:ring-slate-200">
+                    <img
+                      className="h-12 w-12 rounded-full"
+                      src={
+                        "../images/trabajadores/perfil/" + perfil.foto_perfil
+                      }
+                      alt="perfil"
+                    />
+                  </button>
+                </Link>
+                <button
                 onClick={logout}
                 className="text-slate-500 p-1 rounded-full transition-colors focus:ring-2 rotate-180"
               >
@@ -119,6 +123,8 @@ const NavbarComponent = () => {
                 </svg>
               </button>{" "}
             </div>
+              )}
+          
 
             {/* Boton hamburguesa*/}
             <div ref={openButtonRef}>

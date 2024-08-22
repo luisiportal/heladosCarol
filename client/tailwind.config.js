@@ -10,7 +10,7 @@ export default {
       },
       colors: {
         heladosCarol_color: "#E188B5",
-        chocolate: "#e6a07c",
+        chocolate: "#a56150",
         fresa: "#E188B5",
         naranja: "#E98746",
         cremaLeche: "#F5F5DC",

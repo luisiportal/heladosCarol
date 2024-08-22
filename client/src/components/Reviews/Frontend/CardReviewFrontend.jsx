@@ -3,12 +3,15 @@ import DerretidoVainilla2 from "../../apariencia/DerretidoVainilla2";
 
 const CardReviewFrontend = ({ review, sabores, index }) => {
 
+console.log(sabores[index]);
+
+
   try {
     return (
       <div>
         <div
           className={`flex items-center mb-4 bg-${
-            sabores[index].color || ""
+            sabores[index].color
           } rounded-xl p-2 shadow-md`}
         >
           <img
