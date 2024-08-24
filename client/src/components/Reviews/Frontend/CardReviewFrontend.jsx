@@ -4,15 +4,13 @@ import DerretidoVainilla2 from "../../apariencia/DerretidoVainilla2";
 const CardReviewFrontend = ({ review, sabores, index }) => {
   const indexColor = () => {
     const contador = sabores.length;
-    if (index <= contador) {
+    if (index < contador) {
       return index;
-    } if (index > contador) {
-      return 0;
+    } else {
+      return 1;
     }
   };
 
-  console.log(indexColor());
-  
   try {
     return (
       <div>
