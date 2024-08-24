@@ -31,7 +31,7 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
 
   return (
     <div
-      className={`mx-4 md:mx-1 my-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
+      className={`mx-4 my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
     >
       <div className="text-left text-slate-700 font-semibold w-full h-full align-middle flex flex-col">
         <div className="flex justify-between font-extralight  text-sm m-2">

@@ -39,7 +39,7 @@ const Sabores = () => {
               sabor.existencia > 0 && (
                 <div key={index}>
                   <FondoSabor
-                    color={"bg-" + sabor.color}
+                    color={sabor.color}
                     sabor={sabor.nombre_sabor}
                     width={"sabor" + (index + 1)}
                   />

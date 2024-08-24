@@ -15,8 +15,9 @@ const BTNCargarMas = ({
       texto={"Cargar +"}
       handleClick={async () => {
         setLoader(true);
-        const { data } = await getRecurso(estado.length + 10);
-        setEstado(data);
+        const response = await getRecurso(estado.length + 10);
+
+        setEstado(response.data);
         loadFechas ? loadFechas(estado) : "";
         setLoader(false);
       }}

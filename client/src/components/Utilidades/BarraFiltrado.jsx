@@ -101,7 +101,7 @@ const BarraFiltrado = ({ setFiltroSabores, sabores, order, setOrder }) => {
   };
 
   return (
-    <div className="flex  flex-wrap justify-center">
+    <div className=" mt-10 flex  flex-wrap justify-center">
       <BTNFiltrado
         handleOrdenar={ordenarFecha}
         campo={"Fecha"}
@@ -126,14 +126,7 @@ const BarraFiltrado = ({ setFiltroSabores, sabores, order, setOrder }) => {
         activeBTN={activeBTN === "Costo"}
         setActiveBTN={setActiveBTN}
       />
-      <BTNFiltrado
-        handleOrdenar={ordenarNombre}
-        campo={"A-Z"}
-        tipo={"DSC"}
-        estado={order}
-        activeBTN={activeBTN === "A-Z"}
-        setActiveBTN={setActiveBTN}
-      />
+     
       <BTNFiltrado
         handleOrdenar={ordenarExistencia}
         campo={"Existencia"}

@@ -3,16 +3,13 @@ import DerretidoVainilla2 from "../../apariencia/DerretidoVainilla2";
 
 const CardReviewFrontend = ({ review, sabores, index }) => {
 
-console.log(sabores[index]);
-
-
   try {
     return (
       <div>
         <div
-          className={`flex items-center mb-4 bg-${
-            sabores[index].color
-          } rounded-xl p-2 shadow-md`}
+          style={{ backgroundColor: "#" + sabores[index].color }}
+          className={`flex items-center mb-4 
+           rounded-xl p-2 shadow-md`}
         >
           <img
             src="images/avatar.png"
@@ -26,15 +23,13 @@ console.log(sabores[index]);
           </div>
         </div>
         <div className={`relative max-w-min bottom-4 izquierda${index}`}>
-          <DerretidoVainilla2 color={"#" + sabores[index].color ||""} />
+          <DerretidoVainilla2 color={"#" + sabores[index].color || ""} />
         </div>
       </div>
     );
   } catch (error) {
     console.log(error);
-    
   }
-
 };
 
 export default CardReviewFrontend;

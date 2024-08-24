@@ -34,7 +34,7 @@ const schema = Yup.object({
   calle: Yup.string()
     .required("Campo requerido")
     .matches(
-      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9]*$/,
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9-.]*$/,
       "Solo se permiten letras, números y espacios"
     )
     .max(20, "El nombre no debe tener más de 20 caracteres"),
@@ -42,21 +42,21 @@ const schema = Yup.object({
   calle1: Yup.string()
     .required("Campo requerido")
     .matches(
-      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9]*$/,
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9-.]*$/,
       "Solo se permiten letras, números y espacios"
     )
     .max(20, "El nombre no debe tener más de 20 caracteres"),
   calle2: Yup.string()
     .required("Campo requerido")
     .matches(
-      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9]*$/,
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9-.]*$/,
       "Solo se permiten letras, números y espacios"
     )
     .max(20, "El nombre no debe tener más de 20 caracteres"),
   reparto: Yup.string()
     .required("Campo requerido")
     .matches(
-      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9]*$/,
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9-.]*$/,
       "Solo se permiten letras, números y espacios"
     )
     .max(20, "El nombre no debe tener más de 20 caracteres"),
@@ -98,26 +98,21 @@ const EntregaYenviaForm = ({
           setLoader(true);
 
           try {
-           
-
-            
-             
-
-              const ordenCompleta = {
-                productos: carrito,
-                entrega: values,
-                total_venta: total_venta,
+            const ordenCompleta = {
+              productos: carrito,
+              entrega: values,
+              total_venta: total_venta,
               //  id_pago: id,
-              };
+            };
 
-              await createVentaRequest(ordenCompleta);
-              setModalActivo({
-                mensaje: "Pago realizado correctamente",
-                activo: true,
-                navegarA: "/",
-              });
-              setCarrito([]);
-           
+            await createVentaRequest(ordenCompleta);
+            setModalActivo({
+              mensaje: "Pago realizado correctamente",
+              activo: true,
+              navegarA: "/",
+            });
+            setCarrito([]);
+
             setLoader(false);
           } catch (error) {
             console.log(error);

@@ -12,7 +12,7 @@ const SaboresPage = () => {
   return (
     <div>
       <BTNRedondo ruta={"/new"} />
-      <h1 className=" px-2 pb-2 text-3xl text-slate-700 font-bold">Sabores</h1>
+      <h1 className="px-2 pb-2 text-3xl text-slate-700 font-bold">Sabores</h1>
       <div>
         <BuscadorSabores
           loader={loader}

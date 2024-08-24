@@ -23,7 +23,6 @@ const SeccionSaboresCarrito = ({
   return (
     <div>
       {loader && <Loader />}
-      <h2>Total a pagar : {totalLocal}</h2>
       {carrito &&
         carrito.map((sabor) => {
           const totalSabor = sabor.cantidad * sabor.precio_venta;
@@ -42,6 +41,7 @@ const SeccionSaboresCarrito = ({
           );
         })}
       <div className="flex  justify-end">
+      <h2 className="p-2 font-semibold text-slate-800">Total a pagar : {totalLocal} USD</h2>
         {carrito.length > 0 && (
           <div className="flex  items-center  bg-fresa rounded w-28">
             <Btn_Huellas

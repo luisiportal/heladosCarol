@@ -28,7 +28,7 @@ const H2FechaTitulo = ({
 
   return (
     <section className="flex flex-1 flex-col" key={fecha}>
-      <h2>
+      <h2 className="p-4">
         {fecha} Venta {totalVentaDia}
        
       </h2>

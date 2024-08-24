@@ -43,7 +43,7 @@ const MovimientosPage = () => {
   }, [recargar]);
   return (
     <div>
-      <h1 className="px-2 pb-2 text-3xl text-heladosCarol_color font-bold ">
+      <h1 className="px-2 pb-2 text-3xl text-heladosCarol_color font-bold">
         Movimientos
       </h1>
       <div className="pb-2 flex justify-end sm:justify-center mr-2 mt-8">

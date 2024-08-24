@@ -6,9 +6,12 @@ import { Review } from "../models/Review.model.js";
 // listar todas los productos
 
 export const getTodosReviews = async (req, res) => {
+  const { limit, offset } = req.query;
   try {
     const response = await Review.findAll({
       order: [["id_review", "DESC"]],
+      limit: limit,
+      offset: offset,
     });
     res.json(response);
   } catch (error) {

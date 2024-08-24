@@ -61,7 +61,7 @@ const AgregarMovimiento = (tipo) => {
   return (
     <div>
       <div>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center pt-10">
           <div>
             <Formik
               initialValues={movimiento}

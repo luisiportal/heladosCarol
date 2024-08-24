@@ -27,7 +27,7 @@ export const Sabor = sequelize.define("sabores", {
   },
 
   precio_venta: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DECIMAL(10, 2),
     
   },
 

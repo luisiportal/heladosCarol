@@ -5,6 +5,7 @@ import {
   getReviewsRequest,
   publicarReviewRequest,
 } from "../api/reviews.api";
+import { useAuth } from "./AuthContext";
 
 export const useReviews = () => {
   const context = useContext(ReviewContext);
@@ -17,10 +18,12 @@ export const useReviews = () => {
 export const ReviewContextProvider = ({ children }) => {
   const [reviews, setReviews] = useState([]);
   const [recargarReviews, setRecargarReviews] = useState(false);
+  const { setLoader } = useAuth();
 
-  async function loadAllReviews() {
-    const response = await getReviewsRequest();
+  async function loadAllReviews(limit) {
+    const response = await getReviewsRequest(limit);
     setReviews(response.data);
+    setLoader(false);
   }
 
   const deleteReview = async (id) => {
@@ -38,6 +41,7 @@ export const ReviewContextProvider = ({ children }) => {
     <ReviewContext.Provider
       value={{
         reviews,
+        setReviews,
         recargarReviews,
         loadAllReviews,
         deleteReview,

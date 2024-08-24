@@ -4,16 +4,20 @@ import CardReviewFrontend from "./CardReviewFrontend";
 
 import { useReviews } from "../../../context/ReviewProvaider";
 import { useSabores } from "../../../context/SaboresProvider";
+import BTNCargarMas from "../../Utilidades/BTNCargarMas";
+import { useAuth } from "../../../context/AuthContext";
+import Loader from "../../Utilidades/Loader";
+import { getReviewsRequest } from "../../../api/reviews.api";
 
 const ListarReviewsFrontend = () => {
-  const { reviews, loadAllReviews, recargarReviews } = useReviews();
+  const { reviews, setReviews, loadAllReviews, recargarReviews } = useReviews();
   const { sabores } = useSabores();
-
+  const { loader, setLoader, setModalActivo } = useAuth();
   useEffect(() => {
-    const cargarReviews = async () => {
-      await loadAllReviews();
+    const cargarReviews = async (limit) => {
+      await loadAllReviews(limit);
     };
-    cargarReviews();
+    cargarReviews(5);
   }, [recargarReviews]);
 
   return (
@@ -29,6 +33,12 @@ const ListarReviewsFrontend = () => {
             />
           )
       )}
+      <BTNCargarMas
+        estado={reviews}
+        setEstado={setReviews}
+        getRecurso={getReviewsRequest}
+        setLoader={setLoader}
+      />
     </div>
   );
 };
