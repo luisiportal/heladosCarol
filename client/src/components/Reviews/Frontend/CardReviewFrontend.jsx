@@ -11,6 +11,9 @@ const CardReviewFrontend = ({ review, sabores, index }) => {
     }
   };
 
+  
+  
+
   try {
     return (
       <div>
