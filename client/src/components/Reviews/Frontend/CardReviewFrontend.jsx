@@ -2,12 +2,20 @@ import React from "react";
 import DerretidoVainilla2 from "../../apariencia/DerretidoVainilla2";
 
 const CardReviewFrontend = ({ review, sabores, index }) => {
+  const indexColor = () => {
+    const contador = sabores.length - 1;
+    if (index < contador) {
+      return index;
+    } else {
+      return index - contador + 1;
+    }
+  };
 
   try {
     return (
       <div>
         <div
-          style={{ backgroundColor: "#" + sabores[index].color }}
+          style={{ backgroundColor: "#" + sabores[indexColor()].color }}
           className={`flex items-center mb-4 
            rounded-xl p-2 shadow-md`}
         >
@@ -22,8 +30,8 @@ const CardReviewFrontend = ({ review, sabores, index }) => {
             <span className="text-gray-500 text-sm">- {review.fecha}</span>
           </div>
         </div>
-        <div className={`relative max-w-min bottom-4 izquierda${index}`}>
-          <DerretidoVainilla2 color={"#" + sabores[index].color || ""} />
+        <div className={`relative max-w-min bottom-4 izquierda${indexColor()}`}>
+          <DerretidoVainilla2 color={"#" + sabores[indexColor()].color || ""} />
         </div>
       </div>
     );
