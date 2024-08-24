@@ -6,8 +6,8 @@ import { useReviews } from "../../../context/ReviewProvaider";
 import { useSabores } from "../../../context/SaboresProvider";
 import BTNCargarMas from "../../Utilidades/BTNCargarMas";
 import { useAuth } from "../../../context/AuthContext";
-import Loader from "../../Utilidades/Loader";
-import { getReviewsRequest } from "../../../api/reviews.api";
+
+import { getReviewsPublicadosRequest } from "../../../api/reviews.api";
 
 const ListarReviewsFrontend = () => {
   const { reviews, setReviews, loadReviewsPublicados, recargarReviews } = useReviews();
@@ -36,7 +36,7 @@ const ListarReviewsFrontend = () => {
       <BTNCargarMas
         estado={reviews}
         setEstado={setReviews}
-        getRecurso={getReviewsRequest}
+        getRecurso={getReviewsPublicadosRequest}
         setLoader={setLoader}
       />
     </div>
