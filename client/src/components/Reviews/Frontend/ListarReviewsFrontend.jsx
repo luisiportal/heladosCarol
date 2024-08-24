@@ -10,12 +10,12 @@ import Loader from "../../Utilidades/Loader";
 import { getReviewsRequest } from "../../../api/reviews.api";
 
 const ListarReviewsFrontend = () => {
-  const { reviews, setReviews, loadAllReviews, recargarReviews } = useReviews();
+  const { reviews, setReviews, loadReviewsPublicados, recargarReviews } = useReviews();
   const { sabores } = useSabores();
   const { loader, setLoader, setModalActivo } = useAuth();
   useEffect(() => {
     const cargarReviews = async (limit) => {
-      await loadAllReviews(limit);
+      await loadReviewsPublicados(limit);
     };
     cargarReviews(5);
   }, [recargarReviews]);

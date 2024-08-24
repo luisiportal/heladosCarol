@@ -4,6 +4,23 @@ import sequelize from "../db.js";
 import { Review } from "../models/Review.model.js";
 
 // listar todas los productos
+export const getTodosReviewsPublicados = async (req, res) => {
+  const { limit, offset } = req.query;
+  try {
+    const response = await Review.findAll({
+      where: {
+        publicado: true
+      },
+      order: [["id_review", "DESC"]],
+      limit: limit,
+      offset: offset,
+    });
+    
+    res.json(response);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 
 export const getTodosReviews = async (req, res) => {
   const { limit, offset } = req.query;

@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { ReviewContext } from "./ReviewContext";
 import {
   deleteReviewRequest,
+  getReviewsPublicadosRequest,
   getReviewsRequest,
   publicarReviewRequest,
 } from "../api/reviews.api";
@@ -25,6 +26,13 @@ export const ReviewContextProvider = ({ children }) => {
     setReviews(response.data);
     setLoader(false);
   }
+  async function loadReviewsPublicados(limit) {
+    const response = await getReviewsPublicadosRequest(limit);
+    setReviews(response.data);
+    setLoader(false);
+  }
+
+
 
   const deleteReview = async (id) => {
     deleteReviewRequest(id);
@@ -44,6 +52,7 @@ export const ReviewContextProvider = ({ children }) => {
         setReviews,
         recargarReviews,
         loadAllReviews,
+        loadReviewsPublicados,
         deleteReview,
         publicarReview,
       }}

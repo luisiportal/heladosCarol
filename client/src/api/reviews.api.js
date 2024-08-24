@@ -5,6 +5,9 @@ import axios from "./axios.js";
 export const getReviewsRequest = async (limit) =>
   await axios.get(`/reviews?limit=${limit}`);
 
+export const getReviewsPublicadosRequest = async (limit) =>
+  await axios.get(`/reviewsP?limit=${limit}`);
+
 
 export const createReviewRequest = async (formData) => {
   await axios.post(`/reviews`, formData);

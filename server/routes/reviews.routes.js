@@ -5,13 +5,17 @@ import {
   deleteReview,
   getReview,
   getTodosReviews,
+  getTodosReviewsPublicados,
   publicarReview,
   updateReview,
 } from "../controllers/Reviews.controller.js";
 
 const reviews = Router();
 
-reviews.get("/reviews", getTodosReviews);
+reviews.get("/reviews",authRequired, getTodosReviews);
+reviews.get("/reviewsP", getTodosReviewsPublicados);
+
+
 reviews.post("/reviews", createReview);
 
 reviews.get("/reviews/:id_review", authRequired, getReview);
