@@ -25,7 +25,7 @@ const CardReviewFrontend = ({ review, sabores, index }) => {
           <img
             src={`../images/perfilReviews/${review.ruta_image}`}
             alt="Avatar"
-            className="w-10 h-10 rounded-full mr-2 "
+            className="w-14 h-14 rounded-full mr-2 "
           />
           <div>
             <p className="text-slate-900">{review.comentario}</p>
