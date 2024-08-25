@@ -66,7 +66,7 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
               <h2>Teléfono : {factura.entrega.tel_beneficiario} </h2>
             </div>
 
-            <div className="bg-fresa text-slate-300 rounded-xl text-xs flex gap-2 p-2">
+            <div className="bg-fresa text-neutral-100 font-semibold rounded-xl text-xs flex gap-2 p-2">
               <h2>Enviado por: {factura.entrega.ordenante} </h2>
               <h2>Contacto: {factura.entrega.contacto_ordenante}</h2>
             </div>

@@ -12,18 +12,19 @@ export const Review = sequelize.define("reviews", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  ruta_image: {
+    type: DataTypes.STRING,
+    defaultValue: "defaultPerfil.jpg",
+  },
+
   comentario: {
     type: DataTypes.STRING,
     allowNull: false,
   },
   sabor_preferido: {
     type: DataTypes.STRING,
-   
   },
   publicado: {
     type: DataTypes.BOOLEAN,
-    
   },
-
 });
-

@@ -51,16 +51,26 @@ export const getReview = async (req, res) => {
 
 // crear una review
 export const createReview = async (req, res) => {
+  let ruta_image = "defaultPerfil.jpg";
+  if (req.file !== undefined) {
+    ruta_image = req.file.originalname;
+  }
+
+
   try {
     const { autor, comentario } = req.body;
 
     // Iniciar una transacción
+console.log(ruta_image);
 
     try {
       const response = await Review.create({
         autor,
         comentario,
+        ruta_image
       });
+
+      saveImage(req.file, "perfilReviews");
 
       res.json({
         id_review: response.insertId,

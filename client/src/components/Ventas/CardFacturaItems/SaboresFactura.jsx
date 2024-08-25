@@ -2,7 +2,7 @@ import React from "react";
 
 const SaboresFactura = ({ ventas }) => {
   return (
-    <div className="bg-neutral-300 rounded-xl flex flex-col justify-center p-3 w-full">
+    <div className="bg-neutral-100 rounded-xl flex flex-col justify-center p-3 w-full">
       {ventas.map((sabor) => (
         <div className="flex gap-6 justify-between">
           {" "}

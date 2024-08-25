@@ -8,6 +8,7 @@ import { useAuth } from "../../../context/AuthContext";
 const EnviarReviewForm = () => {
   const { loader, setLoader, setModalActivo } = useAuth();
   const MAX_CHARACTER_LIMIT = 500;
+  const [file, setFile] = useState();
   const [enviado, setEnviado] = useState(false);
   const [respMessage, setRespMessage] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
@@ -34,9 +35,17 @@ const EnviarReviewForm = () => {
       .max(500, "Es un poco extenso su comentario"),
   });
   const handleSubmit = async (values) => {
+    const formData = new FormData();
+    formData.append("autor", values.autor);
+    formData.append("comentario", values.comentario);
+
+    if (file !== null) {
+      formData.append("ruta_image", file);
+    }
+
     try {
       setLoader(true);
-      await createReviewRequest(values);
+      await createReviewRequest(formData);
 
       setEnviado(true);
       setRespMessage("Gracias por su opinión");
@@ -94,7 +103,24 @@ const EnviarReviewForm = () => {
                       />
                     </label>
                   </div>
-
+                  <label htmlFor="ruta_image" className="block">Imagen de Perfil</label>
+                  {
+                /*muestra la imagen preview */ file && (
+                  <img
+                 className="w-20 h-20 rounded-full mr-2"
+                    src={URL.createObjectURL(file)}
+                    alt=""
+                  />
+                )
+              }
+                  <input
+                    name="ruta_image"
+                    type="file"
+                    
+                    onChange={(e) => {
+                      setFile(e.target.files[0]);
+                    }}
+                  />
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -111,7 +137,9 @@ const EnviarReviewForm = () => {
         {enviado && (
           <div className="z-50 h-auto p-14 flex flex-1 justify-center items-center rounded">
             {" "}
-            <h2 className="text-slate-800 font-semibold text-sm">{respMessage}</h2>
+            <h2 className="text-slate-800 font-semibold text-sm">
+              {respMessage}
+            </h2>
           </div>
         )}
       </div>
