@@ -107,7 +107,7 @@ const EnviarReviewForm = () => {
                   {
                 /*muestra la imagen preview */ file && (
                   <img
-                 className="w-20 h-20 rounded-full mr-2"
+                 className="w-20 h-20 rounded-full mr-2  border-white border-2"
                     src={URL.createObjectURL(file)}
                     alt=""
                   />
