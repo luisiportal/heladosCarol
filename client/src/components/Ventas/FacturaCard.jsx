@@ -4,6 +4,8 @@ import Edit from "../Movimientos/Edit";
 import EditSVG from "../SVG/EditSVG";
 
 import Bton_eliminar_producto from "./Bton_eliminar_producto";
+import SaboresFactura from "./CardFacturaItems/SaboresFactura";
+import TotalFactura from "./CardFacturaItems/TotalFactura";
 import EditFechaFactura from "./EditFechaFactura";
 
 function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
@@ -44,42 +46,27 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
             </button>
           </p>
         </div>
-        <div className="bg-fresa rounded-2xl text-slate-900 font-extralight p-2 px-6 shadow-xl drop-shadow-xl mx-4">
-          {ventas.map((sabor) => (
-            <div className="flex justify-between" key={sabor.id_venta}>
-              <div className="flex text-xl">
-                <h2>
-                  {" "}
-                  {sabor.cantidad}x{" "}
-                  {sabor.sabore?.nombre_sabor ?? sabor.nombre_sabor}
-                </h2>
-              </div>
-
-              <h2>
-                {sabor.precio_total_sabor ??
-                  sabor.precio_venta * sabor.cantidad}{" "}
-                USD
-              </h2>
-            </div>
-          ))}
-          <p className="text-right">Total {factura.total_venta} USD</p>
+        <div className=" bg-fresa rounded-xl text-xs flex gap-2 p-2">
+          <SaboresFactura ventas={ventas} />
+          <TotalFactura total={factura.total_venta} />
         </div>
 
-        <div className="flex-grow flex flex-col space-y-2 font-light  p-4">
-          <p>Entregar a:</p>
-          <div className="flex flex-col gap-4 ml-4">
-            <div>
-              <h2>
-                <h2>Beneficiario : {factura.entrega.beneficiario} </h2>
+        <div className="flex-grow flex flex-col  p-2 text-xs">
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
+              <h2 className="">Entregar a : {factura.entrega.beneficiario} </h2>
+              <p>
+                {" "}
                 Dirección : Calle {factura.entrega.calle} #{" "}
                 {factura.entrega.numero} entre {factura.entrega.calle1} y{" "}
                 {factura.entrega.calle2} Reparto {factura.entrega.reparto}{" "}
-              </h2>
+              </p>
+
               <h2>Referencia : {factura.entrega.p_referencia} </h2>
               <h2>Teléfono : {factura.entrega.tel_beneficiario} </h2>
             </div>
 
-            <div>
+            <div className="bg-fresa text-slate-300 rounded-xl text-xs flex gap-2 p-2">
               <h2>Enviado por: {factura.entrega.ordenante} </h2>
               <h2>Contacto: {factura.entrega.contacto_ordenante}</h2>
             </div>
