@@ -1,12 +1,13 @@
 import React from "react";
 
-const SaboresFactura = ({ ventas }) => {
+const SaboresFactura = ({ ventas,envio }) => {
+
   return (
-    <div className="bg-neutral-100 rounded-xl flex flex-col justify-center p-3 w-full">
-      {ventas.map((sabor) => (
-        <div className="flex gap-6 justify-between">
-          {" "}
-          <div key={sabor.id_venta}>
+    <div  className="bg-neutral-100 rounded-xl flex flex-col justify-center p-3 w-full">
+      {ventas.map((sabor,index) => (
+        <div key={index} className="flex gap-6 justify-between">
+        
+          <div >
             <div className="flex justify-between">
               <div>
                 <h2>
@@ -22,6 +23,7 @@ const SaboresFactura = ({ ventas }) => {
           </div>
         </div>
       ))}
+      Envio : {envio} USD
     </div>
   );
 };

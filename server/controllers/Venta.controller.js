@@ -51,6 +51,7 @@ export const createVenta = async (req, res) => {
           calle1: entrega.calle1,
           calle2: entrega.calle2,
           reparto: entrega.reparto,
+          envio: entrega.envio,
           p_referencia: entrega.p_referencia,
         },
         { transaction: t }

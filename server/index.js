@@ -13,6 +13,7 @@ import audiTlogs from "./routes/audilogs.routes.js";
 import cuadre_caja from "./routes/cuadre_caja.routes.js";
 import sabores from "./routes/sabores.routes.js";
 import reviews from "./routes/reviews.routes.js";
+import repartos from "./routes/repartos.routes.js";
 
 const app = express();
 app.use(
@@ -30,7 +31,7 @@ sequelize.query(
   'ALTER TABLE public.movimientos ALTER COLUMN "updatedAt" SET DEFAULT now();'
 );
 
-
+app.disable('x-powered-by');
 app.use(cookieParser());
 app.use(express.json());
 app.use(indexRoutes);
@@ -42,6 +43,7 @@ app.use(ventas);
 app.use(audiTlogs);
 app.use(cuadre_caja);
 app.use(reviews);
+app.use(repartos);
 
 app.listen(PUERTO, () => {
   console.log(`El server esta en el puerto : ${PUERTO}....`);

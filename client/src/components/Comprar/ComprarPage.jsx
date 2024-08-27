@@ -50,9 +50,10 @@ const ComprarPage = () => {
           />
         </>
       )}
-      {navegacion == 2 && (
+      {navegacion != 1 && (
         <Elements stripe={stripePromise}>
           <EntregaYenviaForm
+          navegacion={navegacion}
             setNavegacion={setNavegacion}
             entrega={entrega}
             setEntrega={setEntrega}
@@ -64,7 +65,7 @@ const ComprarPage = () => {
           />
         </Elements>
       )}
-      {navegacion == 3 && <RevisarPedido carrito={carrito} entrega={entrega} />}
+    
     </div>
   );
 };

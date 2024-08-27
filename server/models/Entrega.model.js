@@ -41,6 +41,9 @@ export const Entrega = sequelize.define("entregas", {
   reparto: {
     type: DataTypes.STRING,
   },
+  envio: {
+    type: DataTypes.DECIMAL(10, 2),
+  },
 
   p_referencia: {
     type: DataTypes.STRING,

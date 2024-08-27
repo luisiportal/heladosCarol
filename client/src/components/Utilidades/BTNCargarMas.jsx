@@ -9,19 +9,23 @@ const BTNCargarMas = ({
   recargarFactura,
   setRecargarFactura,
   loadFechas,
+  texto,
 }) => {
   return (
-    <BTNHOME
-      texto={"Cargar +"}
-      handleClick={async () => {
-        setLoader(true);
-        const response = await getRecurso(estado.length + 10);
+    <div>
+      {" "}
+      <BTNHOME
+        texto={texto || "Cargar +"}
+        handleClick={async () => {
+          setLoader(true);
+          const response = await getRecurso(estado.length + 10);
 
-        setEstado(response.data);
-        loadFechas ? loadFechas(estado) : "";
-        setLoader(false);
-      }}
-    />
+          setEstado(response.data);
+          loadFechas ? loadFechas(estado) : "";
+          setLoader(false);
+        }}
+      />
+    </div>
   );
 };
 

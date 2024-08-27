@@ -38,17 +38,14 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
       <div className="text-left text-slate-700 font-semibold w-full h-full align-middle flex flex-col">
         <div className="flex justify-between font-extralight  text-sm m-2">
           {" "}
-          <p>Factura : {factura.id}</p>
-          <p>
-            {new Date(factura.creado).toLocaleString("es-ES")}{" "}
-            <button onClick={() => setEditando(factura.id)}>
-              <EditSVG />
-            </button>
-          </p>
+          {factura.id && <p>Factura : {factura.id}</p>}
+          {factura.creado && (
+            <p>{new Date(factura.creado).toLocaleString("es-ES")}</p>
+          )}
         </div>
         <div className=" bg-fresa rounded-xl text-xs flex gap-2 p-2">
-          <SaboresFactura ventas={ventas} />
-          <TotalFactura total={factura.total_venta} />
+          <SaboresFactura ventas={ventas} envio={factura.entrega.envio} />
+          <TotalFactura factura={factura} />
         </div>
 
         <div className="flex-grow flex flex-col  p-2 text-xs">
@@ -75,15 +72,16 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
 
         {perfil.privilegio == "Administrador" ? (
           <>
-            {" "}
-            <div>
-              <button
-                className="flex"
-                onClick={() => handleEliminar(factura.id)}
-              >
-                <Bton_eliminar_producto /> Eliminar Factura
-              </button>
-            </div>
+            {factura.id && (
+              <div>
+                <button
+                  className="flex"
+                  onClick={() => handleEliminar(factura.id)}
+                >
+                  <Bton_eliminar_producto /> Eliminar Factura
+                </button>
+              </div>
+            )}
             {editando == factura.id && (
               <EditFechaFactura
                 factura={factura}
