@@ -86,19 +86,24 @@ const EntregaYenviaForm = ({
   const [selectedOption, setSelectedOption] = useState(null);
   useEffect(() => {
     const cargarRepartos = async () => {
-      const { data } = await getRepartosRequest();
-      setRepartos(data);
+      try {
+        setLoader(true);
+        const { data } = await getRepartosRequest();
+        setRepartos(data);
+      } catch (error) {
+        alert(error);
+      }
+      setLoader(false);
     };
+
     cargarRepartos();
   }, []);
   const handleSelectChange = (p) => {
-    console.log(p);
-    
     setSelectedOption(p);
     setEntrega({
       ...entrega,
       reparto: p.value,
-      envio : p.envio,
+      envio: p.envio,
     });
   };
 
@@ -108,12 +113,10 @@ const EntregaYenviaForm = ({
   };
 
   const options = repartos.map((reparto) => {
-
-    
     return {
       value: reparto.reparto,
       label: reparto.reparto,
-      envio :reparto.costo,
+      envio: reparto.costo,
     };
   });
 
@@ -126,7 +129,7 @@ const EntregaYenviaForm = ({
         validationSchema={schema}
         onSubmit={async (values) => {
           setLoader(true);
-
+          setModalActivo({});
           try {
             const ordenCompleta = {
               productos: carrito,

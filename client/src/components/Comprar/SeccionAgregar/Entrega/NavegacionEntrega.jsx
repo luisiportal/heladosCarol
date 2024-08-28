@@ -49,10 +49,11 @@ const NavegacionEntrega = ({
                 console.log(errors);
 
                 return setModalActivo({
-                  mensaje: "Faltan datos por llenar en la entrega",
+                  mensaje: "Revise los datos de Entrega antes de pagar",
                   activo: true,
                   errorColor: true,
                 });
+                
               }
             }}
           />
