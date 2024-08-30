@@ -18,7 +18,6 @@ reviews.get("/reviewsP", getTodosReviewsPublicados);
 
 reviews.post(
   "/reviews",
-  authRequired,
   uploadPerfilReview.single("ruta_image"),
   createReview
 );

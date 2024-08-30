@@ -4,14 +4,12 @@ import SeccionSaboresCarrito from "./SeccionAgregar/SeccionSaboresCarrito";
 import { useCarritos } from "../../context/CarritosContext";
 import { useAuth } from "../../context/AuthContext";
 
-import RevisarPedido from "./SeccionAgregar/Entrega/RevisarPedido";
+
 import EntregaYenviaForm from "./SeccionAgregar/Entrega/EntregaYenviaForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe(
-  "pk_test_51PjYBu05bt2PGEkzmE9c5okzdM7GZ5kBLlu3HD7ywTOtuMXKrg9UcSWIxk8izXMc5G9tEpBnxYL0WltTmve3Iwfx00zn0OMthG"
-);
+const stripePromise = loadStripe(`${import.meta.env.STRIPE_KEY}`);
 const ComprarPage = () => {
   const { recargar, carrito, setCarrito } = useCarritos();
   const { loader, setLoader, setModalActivo } = useAuth();
@@ -19,15 +17,15 @@ const ComprarPage = () => {
 
   const [entrega, setEntrega] = useState({
     ordenante: "",
-    contacto_ordenante:"",
+    contacto_ordenante: "",
     beneficiario: "",
     tel_beneficiario: "",
     direccion: "",
-    calle:"",
-    numero:"",
-    calle1:"",
-    calle2:"",
-    reparto:"",
+    calle: "",
+    numero: "",
+    calle1: "",
+    calle2: "",
+    reparto: "",
     p_referencia: "",
   });
   return (
@@ -53,7 +51,7 @@ const ComprarPage = () => {
       {navegacion != 1 && (
         <Elements stripe={stripePromise}>
           <EntregaYenviaForm
-          navegacion={navegacion}
+            navegacion={navegacion}
             setNavegacion={setNavegacion}
             entrega={entrega}
             setEntrega={setEntrega}
@@ -65,7 +63,6 @@ const ComprarPage = () => {
           />
         </Elements>
       )}
-    
     </div>
   );
 };
