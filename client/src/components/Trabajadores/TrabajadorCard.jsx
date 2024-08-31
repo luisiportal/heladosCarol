@@ -27,7 +27,7 @@ const TrabajadorCard = ({ trabajador }) => {
           <div className="mx-auto w-32 h-32 relative -mt-28 border-4 border-white rounded-full overflow-hidden">
             <img
               className="object-cover object-center h-32"
-              src={"../images/trabajadores/perfil/" + trabajador.foto_perfil}
+              src={`${import.meta.env.VITE_BACKEND_URL}/images/trabajadores/perfil/${trabajador.foto_perfil}`}
               alt="Foto de perfil"
             />
           </div>

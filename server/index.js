@@ -14,6 +14,10 @@ import cuadre_caja from "./routes/cuadre_caja.routes.js";
 import sabores from "./routes/sabores.routes.js";
 import reviews from "./routes/reviews.routes.js";
 import repartos from "./routes/repartos.routes.js";
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(
@@ -30,7 +34,7 @@ sequelize.query(
 sequelize.query(
   'ALTER TABLE public.movimientos ALTER COLUMN "updatedAt" SET DEFAULT now();'
 );
-
+app.use('/images', express.static(path.join(__dirname, '/public/images')));
 app.disable('x-powered-by');
 app.use(cookieParser());
 app.use(express.json());
