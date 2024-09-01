@@ -7,11 +7,9 @@ import { Movimiento } from "../models/Movimientos.model.js";
 import { Entrega } from "../models/Entrega.model.js";
 import { Sabor } from "../models/Sabor.model.js";
 import Stripe from "stripe";
-import { PAYKEY } from "../config.js";
-import { StripePayment } from "./StripePayment.controller.js";
+import { SECRET_PAY_KEY } from "../config.js";
 
-const stripe = new Stripe('sk_test_51PuCdKRpMkMjmn3C9UXUOAoGwvJ0TbTYUqWFXJ4Mo92KNl00eTY2mDN38juBNlFZAmXHnNhIA1RaJPrzJ4ey6sEA005nstIipe');
-
+const stripe = new Stripe(SECRET_PAY_KEY);
 
 export const createVenta = async (req, res) => {
   const productos = req.body.productos;
@@ -23,20 +21,20 @@ export const createVenta = async (req, res) => {
     0
   );
 
+  const grandTotalCobrar = Number(total_venta) + Number(entrega.envio);
+
   let fechaActual = new Date();
   let creado = fechaActual.toISOString();
 
   try {
     const payment = await stripe.paymentIntents.create({
-      amount: total_venta * 100,
+      amount: grandTotalCobrar * 100,
       currency: "USD",
       description: "Potes de Helado Carol",
       payment_method: id_pago,
       confirm: true,
       return_url: "http://localhost:5173",
     });
-   
-    
 
     await sequelize.transaction(async (t) => {
       // Crear la factura
