@@ -41,7 +41,7 @@ function SaborCard({ sabor }) {
         <div /* imagen del prodcuto */>
           <img
             className="w-12 h-12 object-cover object-center shadow-xl border-slate-50 border-spacing-2 rounded-md"
-            src={`${import.meta.env.VITE_BACKEND_URL_LOCAL}/images/productos/${sabor.ruta_image}`}
+            src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${sabor.ruta_image}`}
             alt="Imagen de Producto"
           />
         </div>

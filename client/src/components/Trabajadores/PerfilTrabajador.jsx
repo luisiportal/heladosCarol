@@ -33,7 +33,7 @@ const PerfilTrabajador = () => {
           <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
             <img
               className="object-cover object-center h-32"
-              src={`${import.meta.env.VITE_BACKEND_URL_LOCAL}/images/trabajadores/perfil/${perfil.foto_perfil}`}
+              src={`${import.meta.env.VITE_BACKEND_URL}/images/trabajadores/perfil/${perfil.foto_perfil}`}
               alt="Foto de perfil"
             />
           </div>
