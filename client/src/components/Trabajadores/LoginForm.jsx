@@ -115,7 +115,7 @@ const Login = () => {
       >
         {({ isSubmitting, errors,handleChange }) => (
           <Form>
-            <div className="h-screen">
+            <div className="h-screen ">
               <section className="w-full">
                <ImagenPrincipal/>
                 <div>
