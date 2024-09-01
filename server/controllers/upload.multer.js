@@ -20,18 +20,18 @@ const fileFilter = (req, file, cb) => {
 };
 
 export const uploadPerfilReview = multer({
-  dest: `../server/public/images/perfilReviews/`,
+  dest: `public/images/perfilReviews/`,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 300 * 1024 // 300 KB en bytes
+    fileSize: 2000000 // 300 KB en bytes
   },
 });
 export const uploadProducto = multer({
-  dest: `../server/public/images/productos/`,
+  dest: `public/images/productos/`,
   fileFilter: fileFilter,
 });
 export const uploadTrabajador = multer({
-  dest: `../server/public/images/trabajadores/perfil/`,
+  dest: `public/images/trabajadores/perfil/`,
   fileFilter: fileFilter,
 });
 
@@ -40,7 +40,7 @@ export function saveImage(file, tipoFoto) {
     return;
   }
   try {
-    const newPath = `../server/public/images/${tipoFoto}/${file.originalname}`;
+    const newPath = `public/images/${tipoFoto}/${file.originalname}`;
 
     fs.renameSync(file.path, newPath);
 

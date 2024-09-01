@@ -122,14 +122,14 @@ const EnviarReviewForm = () => {
                       var file = file || e.target.files[0],
                         pattern = /^image/,
                         reader = new FileReader();
-if (file.size > 2000000){
-  setModalActivo({
-    mensaje: "La imagen es demasiado grande",
-    activo: true,
-    errorColor: true,
-  });
-  
-}
+                      if (file.size > 2000000) {
+                        setFile();
+                       return setModalActivo({
+                          mensaje: "La imagen es demasiado grande",
+                          activo: true,
+                          errorColor: true,
+                        });
+                      }
 
                       if (!pattern.test(file.type)) {
                         setFile();
