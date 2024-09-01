@@ -95,7 +95,7 @@ const NavbarComponent = () => {
                   <button className="text-slate-500 hover:bg-white hover:text-black-300 p-1 rounded-full transition-colors focus:ring-2 focus:ring-slate-200">
                     <img
                       className="h-12 w-12 rounded-full"
-                      src={`${import.meta.env.VITE_BACKEND_URL}/images/trabajadores/perfil/${perfil.foto_perfil}`}
+                      src={`${import.meta.env.VITE_BACKEND_URL_LOCAL}/images/trabajadores/perfil/${perfil.foto_perfil}`}
                       alt="perfil"
                     />
                   </button>
@@ -174,7 +174,7 @@ const NavbarComponent = () => {
                   <button className="text-slate-500 hover:bg-heladosCarol_color hover:text-black-300 p-1 rounded-full transition-colors focus:ring-2 focus:ring-slate-200">
                     <img
                       className="h-12 w-12 rounded-full"
-                      src={`${import.meta.env.VITE_BACKEND_URL}/images/trabajadores/perfil/${perfil.foto_perfil}`}
+                      src={`${import.meta.env.VITE_BACKEND_URL_LOCAL}/images/trabajadores/perfil/${perfil.foto_perfil}`}
                       alt="perfil"
                     />
                   </button>

@@ -64,7 +64,7 @@ const MovimientoCard = ({
         >
           <img
             className="object-cover object-center w-28 h-28 border-slate-50 border-spacing-2"
-            src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${movimiento.sabore.ruta_image}`}
+            src={`${import.meta.env.VITE_BACKEND_URL_LOCAL}/images/productos/${movimiento.sabore.ruta_image}`}
             alt="Imagen de Producto"
           />
           <div className="p-2 text-left">

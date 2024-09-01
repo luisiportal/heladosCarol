@@ -20,7 +20,7 @@ const CardReviewFrontend = ({ review, sabores, index }) => {
            rounded-xl p-2 shadow-md `}
         >
           <img
-            src={`${import.meta.env.VITE_BACKEND_URL}/images/perfilReviews/${review.ruta_image}`}
+            src={`${import.meta.env.VITE_BACKEND_URL_LOCAL}/images/perfilReviews/${review.ruta_image}`}
             alt="Avatar"
             className="w-14 h-14 rounded-full mr-2  border-white border-2 "
           />
