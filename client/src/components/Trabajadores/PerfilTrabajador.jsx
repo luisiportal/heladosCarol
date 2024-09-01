@@ -7,18 +7,11 @@ import EditSVG from "../SVG/EditSVG";
 
 const PerfilTrabajador = () => {
   const { logout, user, perfil, cargarPerfil, loader, setLoader } = useAuth();
-console.log(perfil);
+
 
   const navigate = useNavigate();
   const params = useParams();
-  useEffect(() => {
-    try {
-      cargarPerfil(user.id_trabajador);
-      setLoader(false);
-    } catch (error) {
-      return error;
-    }
-  }, []);
+
 
   return (
     <div>
