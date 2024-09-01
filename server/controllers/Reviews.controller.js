@@ -9,13 +9,13 @@ export const getTodosReviewsPublicados = async (req, res) => {
   try {
     const response = await Review.findAll({
       where: {
-        publicado: true
+        publicado: true,
       },
       order: [["id_review", "DESC"]],
       limit: limit,
       offset: offset,
     });
-    
+
     res.json(response);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -56,18 +56,22 @@ export const createReview = async (req, res) => {
     ruta_image = req.file.originalname;
   }
 
-
   try {
     const { autor, comentario } = req.body;
 
-    // Iniciar una transacción
-console.log(ruta_image);
+    function validarAlfanumerico(cadena) {
+      const regex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,. .-]*$/;
+      return regex.test(cadena);
+    }
+    if (!validarAlfanumerico(autor) || !validarAlfanumerico(comentario)) {
+      return res.json({ error: "Cadena inválida. Asegúrate de que solo contiene caracteres alfanuméricos." });
+    }
 
     try {
       const response = await Review.create({
         autor,
         comentario,
-        ruta_image
+        ruta_image,
       });
 
       saveImage(req.file, "perfilReviews");

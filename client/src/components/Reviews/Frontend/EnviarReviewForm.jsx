@@ -28,7 +28,7 @@ const EnviarReviewForm = () => {
     comentario: Yup.string()
       .required("Cuidado no ha comentado")
       .matches(
-        /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s\d.,¡?!]+$/,
+        /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s\d,.]+$/,
         "Solo se permiten letras y números"
       )
       .min(1, "Comenta algo más por favor")
@@ -103,24 +103,49 @@ const EnviarReviewForm = () => {
                       />
                     </label>
                   </div>
-                  <label htmlFor="ruta_image" className="block">Imagen de Perfil</label>
+                  <label htmlFor="ruta_image" className="block">
+                    Imagen de Perfil
+                  </label>
                   {
-                /*muestra la imagen preview */ file && (
-                  <img
-                 className="w-20 h-20 rounded-full mr-2  border-white border-2"
-                    src={URL.createObjectURL(file)}
-                    alt=""
-                  />
-                )
-              }
+                    /*muestra la imagen preview */ file && (
+                      <img
+                        className="w-20 h-20 rounded-full mr-2  border-white border-2"
+                        src={URL.createObjectURL(file)}
+                        alt=""
+                      />
+                    )
+                  }
                   <input
                     name="ruta_image"
                     type="file"
-                    
                     onChange={(e) => {
+                      var file = file || e.target.files[0],
+                        pattern = /^image/,
+                        reader = new FileReader();
+if (file.size > 2000000){
+  setModalActivo({
+    mensaje: "La imagen es demasiado grande",
+    activo: true,
+    errorColor: true,
+  });
+  
+}
+
+                      if (!pattern.test(file.type)) {
+                        setFile();
+                        setModalActivo({
+                          mensaje: "Formato de imagen inválido",
+                          activo: true,
+                          errorColor: true,
+                        });
+
+                        return;
+                      }
+
                       setFile(e.target.files[0]);
                     }}
                   />
+                  <MostrarErrorMessage campo={"ruta_image"} errors={errors} />
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -137,7 +162,7 @@ const EnviarReviewForm = () => {
         {enviado && (
           <div className="z-50 h-auto p-14 flex flex-1 justify-center items-center rounded">
             {" "}
-            <h2 className="text-slate-800 font-semibold text-sm">
+            <h2 className="text-slate-800 font-semibold text-md">
               {respMessage}
             </h2>
           </div>
