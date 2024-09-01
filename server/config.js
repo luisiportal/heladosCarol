@@ -9,5 +9,5 @@ export const SECURE = process.env.SECURE || false
 export const HTTPONLY = process.env.HTTPONLY || false
 export const SAMESITE = process.env.SAMESITE || "none"
 export const DOMAIN = process.env.DOMAIN || ""
-export const PAYKEY = process.env.PAYKEY || "sk_test_51PuCdKRpMkMjmn3C9UXUOAoGwvJ0TbTYUqWFXJ4Mo92KNl00eTY2mDN38juBNlFZAmXHnNhIA1RaJPrzJ4ey6sEA005nstIipe"
+export const PAYKEY = process.env.PAYKEY || ""
 
