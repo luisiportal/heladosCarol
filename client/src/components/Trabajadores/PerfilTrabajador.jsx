@@ -7,6 +7,7 @@ import EditSVG from "../SVG/EditSVG";
 
 const PerfilTrabajador = () => {
   const { logout, user, perfil, cargarPerfil, loader, setLoader } = useAuth();
+console.log(perfil);
 
   const navigate = useNavigate();
   const params = useParams();
@@ -40,7 +41,7 @@ const PerfilTrabajador = () => {
           <div className="flex justify-center">
             <button
               onClick={() =>
-                navigate(`../trabajador/profile/edit/${user.id_trabajador}`)
+                navigate(`../trabajador/profile/edit/${perfil.id_trabajador}`)
               }
             >
               {" "}
