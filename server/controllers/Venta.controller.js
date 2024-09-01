@@ -26,7 +26,7 @@ export const createVenta = async (req, res) => {
   let creado = fechaActual.toISOString();
 
   try {
-    // StripePayment();
+    StripePayment();
 
     await sequelize.transaction(async (t) => {
       // Crear la factura

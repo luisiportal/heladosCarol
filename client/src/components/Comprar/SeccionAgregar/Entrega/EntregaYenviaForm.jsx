@@ -130,22 +130,38 @@ const EntregaYenviaForm = ({
         onSubmit={async (values) => {
           setLoader(true);
           setModalActivo({});
+         
           try {
-            const ordenCompleta = {
-              productos: carrito,
-              entrega: values,
-              total_venta: total_venta,
-              //  id_pago: id,
-            };
-
-            await createVentaRequest(ordenCompleta);
-            setModalActivo({
-              mensaje: "Pago realizado correctamente",
-              activo: true,
-              navegarA: "/",
+            const { error, paymentMethod } = await stripe.createPaymentMethod({
+              type: "card",
+              card: elements.getElement(CardElement),
             });
-            setCarrito([]);
 
+            if (!error) {
+              const { id } = paymentMethod;
+
+              const ordenCompleta = {
+                productos: carrito,
+                entrega: values,
+                total_venta: total_venta,
+                id_pago: id,
+              };
+
+              await createVentaRequest(ordenCompleta);
+              setModalActivo({
+                mensaje: "Pago realizado correctamente",
+                activo: true,
+                navegarA: "/",
+              });
+              setCarrito([]);
+            } else {
+              setModalActivo({
+                mensaje: `No se ha completado el pago . ${error.message}"}`,
+                activo: true,
+
+                errorColor: error,
+              });
+            }
             setLoader(false);
           } catch (error) {
             console.log(error);
