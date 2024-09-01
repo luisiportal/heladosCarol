@@ -28,6 +28,7 @@ const SeccionAgregarSabores = ({
       .required("Este campo es requerido")
       .min(1, "Cantidad vacia"),
   });
+console.log(sabores);
 
   return (
     <div className="flex justify-center items-center pt-14">

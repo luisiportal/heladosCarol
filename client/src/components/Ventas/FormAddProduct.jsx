@@ -25,7 +25,7 @@ const FormAddProduct = ({
   ).map((sabor) => {
     return {
       value: sabor.id_sabor,
-      label: sabor.nombre_sabor,
+      label: sabor.nombre_sabor +" "+ sabor.precio_venta + " USD",
       nombre_sabor: sabor.nombre_sabor,
       existencia: sabor.existencia,
       precio_venta: Number(sabor.precio_venta),

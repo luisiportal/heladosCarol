@@ -21,7 +21,9 @@ export const createVenta = async (req, res) => {
     0
   );
 
-  const grandTotalCobrar = Number(total_venta) + Number(entrega.envio);
+  let grandTotalCobrar = Number(total_venta) + Number(entrega.envio);
+  grandTotalCobrar = Math.round(grandTotalCobrar * 10) / 10;
+  console.log(grandTotalCobrar);
 
   let fechaActual = new Date();
   let creado = fechaActual.toISOString();

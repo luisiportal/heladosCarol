@@ -18,6 +18,8 @@ const SeccionSaboresCarrito = ({
       (sum, producto) => sum + producto.precio_venta * producto.cantidad,
       0
     );
+    totalLocal = Math.round(totalLocal * 10) / 10;
+    console.log(totalLocal);
   }
 
   return (
@@ -25,10 +27,15 @@ const SeccionSaboresCarrito = ({
       {loader && <Loader />}
       {carrito &&
         carrito.map((sabor) => {
-          const totalSabor = sabor.cantidad * sabor.precio_venta;
+          let totalSabor =
+            Number(sabor.cantidad) * Number(sabor.precio_venta);
+            totalSabor = Math.round(totalSabor * 10) / 10;
           const miArray = [16, 32, 40];
           const indiceAleatorio = Math.floor(Math.random() * miArray.length);
           const right = miArray[indiceAleatorio];
+    
+          
+          
           return (
             <ProductoCarrito
               sabor={sabor}
@@ -41,7 +48,9 @@ const SeccionSaboresCarrito = ({
           );
         })}
       <div className="flex  justify-end">
-      <h2 className="p-2 font-semibold text-slate-800">Total a pagar : {totalLocal} USD</h2>
+        <h2 className="p-2 font-semibold text-slate-800">
+          Total a pagar : {totalLocal} USD
+        </h2>
         {carrito.length > 0 && (
           <div className="flex  items-center  bg-fresa rounded w-28">
             <Btn_Huellas
