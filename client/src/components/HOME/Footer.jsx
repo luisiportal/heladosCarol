@@ -1,16 +1,16 @@
-import React from 'react'
+import React from "react";
+import LogoHeladosCarol from "../Utilidades/LogoHeladosCarol";
 
 const Footer = () => {
   return (
-    <div className=' bg-fresa flex justify-center p-10 my-5 rounded-lg'>
-    <div className=' flex justify-center text-md text-slate-100 flex-col'>
-    <h2>heladoscarol@gmail.com</h2>
-    <h2>Holguín, Cuba</h2>
-
+    <div className=" bg-fresa flex flex-col justify-center items-center p-10 my-5 rounded-lg gap-2 ">
+      <LogoHeladosCarol />
+      <div className=" flex justify-center text-md text-slate-100 flex-col">
+        <a href="mailto:heladoscarol@gmail.com">heladoscarol@gmail.com</a>
+        <h2>Holguín, Cuba</h2>
+      </div>
     </div>
- 
-  </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

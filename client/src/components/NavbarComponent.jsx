@@ -9,6 +9,7 @@ import DerretidoVainilla2 from "./apariencia/DerretidoVainilla2";
 import DerretidoFresa2 from "./apariencia/DerretidoFresa2";
 import DerretidoChocolate2 from "./apariencia/DerretidoChocolate2";
 import ComponenteModal from "./Utilidades/ComponenteModal";
+import LogoHeladosCarol from "./Utilidades/LogoHeladosCarol";
 
 const NavbarComponent = () => {
   const [abrirHamburguesa, setabrirHamburguesa] = useState(false);
@@ -61,20 +62,7 @@ const NavbarComponent = () => {
         <div className="flex justify-between h-16 items-center max-w-7xl mx-auto">
           <div className="flex -mr-4">
             {/*Logo  */}
-            <div>
-              <Link className="text-heladosCarol_color" to={"/"}>
-                <div className="flex gap-4">
-                  <img
-                    className="w-12 h-12"
-                    src={"../images/logo.png"}
-                    alt="Logo Helados Carol"
-                  />
-                  <h1 className="text-white font-inspiration text-4xl font-normal sombraHeader">
-                    Helados Carol
-                  </h1>
-                </div>
-              </Link>
-            </div>
+          <LogoHeladosCarol/>
 
             <div className="absolute top-0 left-16">
               <DerretidoVainilla />
