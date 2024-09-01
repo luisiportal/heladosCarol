@@ -1,7 +1,6 @@
 import express from "express";
 import multer from "multer";
 import fs from "fs";
-import { error } from "console";
 
 const app = express();
 
@@ -23,7 +22,7 @@ export const uploadPerfilReview = multer({
   dest: `public/images/perfilReviews/`,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 2000000 // 300 KB en bytes
+    fileSize: 2000000, // 300 KB en bytes
   },
 });
 export const uploadProducto = multer({
