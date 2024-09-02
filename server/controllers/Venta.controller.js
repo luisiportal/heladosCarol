@@ -6,16 +6,11 @@ import { registrarLog } from "./AuditLog.controllers.js";
 import { Movimiento } from "../models/Movimientos.model.js";
 import { Entrega } from "../models/Entrega.model.js";
 import { Sabor } from "../models/Sabor.model.js";
-import Stripe from "stripe";
-import { SECRET_PAY_KEY } from "../config.js";
-
-const stripe = new Stripe(SECRET_PAY_KEY);
 
 export const createVenta = async (req, res) => {
   const productos = req.body.productos;
   const entrega = req.body.entrega;
 
-  const id_pago = req.body.id_pago;
   const total_venta = productos.reduce(
     (sum, producto) => sum + producto.precio_venta * producto.cantidad,
     0
@@ -29,21 +24,12 @@ export const createVenta = async (req, res) => {
   let creado = fechaActual.toISOString();
 
   try {
-    const payment = await stripe.paymentIntents.create({
-      amount: grandTotalCobrar * 100,
-      currency: "USD",
-      description: "Potes de Helado Carol",
-      payment_method: id_pago,
-      confirm: true,
-      return_url: "http://localhost:5173",
-    });
-
     await sequelize.transaction(async (t) => {
       // Crear la factura
       const factura = await Factura.create(
         {
           total_venta,
-          id_pago,
+
           creado,
         },
         { transaction: t }

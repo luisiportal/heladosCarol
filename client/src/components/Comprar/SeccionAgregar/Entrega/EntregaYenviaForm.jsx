@@ -4,7 +4,6 @@ import Select from "react-select";
 import * as Yup from "yup";
 import NavegacionEntrega from "./NavegacionEntrega";
 import DerretidoBeneficiario from "../../../SVG/DerretidoBeneficiario";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
 import DerretidoDireccion from "../../../SVG/DerretidoDireccion";
 
@@ -80,8 +79,6 @@ const EntregaYenviaForm = ({
   loader,
   navegacion,
 }) => {
-  const stripe = useStripe();
-  const elements = useElements();
   const [repartos, setRepartos] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   useEffect(() => {
@@ -130,38 +127,22 @@ const EntregaYenviaForm = ({
         onSubmit={async (values) => {
           setLoader(true);
           setModalActivo({});
-         
+
           try {
-            const { error, paymentMethod } = await stripe.createPaymentMethod({
-              type: "card",
-              card: elements.getElement(CardElement),
+            const ordenCompleta = {
+              productos: carrito,
+              entrega: values,
+              total_venta: total_venta,
+            };
+
+            await createVentaRequest(ordenCompleta);
+            setModalActivo({
+              mensaje: "Pago realizado correctamente",
+              activo: true,
+              navegarA: "/",
             });
+            setCarrito([]);
 
-            if (!error) {
-              const { id } = paymentMethod;
-
-              const ordenCompleta = {
-                productos: carrito,
-                entrega: values,
-                total_venta: total_venta,
-                id_pago: id,
-              };
-
-              await createVentaRequest(ordenCompleta);
-              setModalActivo({
-                mensaje: "Pago realizado correctamente",
-                activo: true,
-                navegarA: "/",
-              });
-              setCarrito([]);
-            } else {
-              setModalActivo({
-                mensaje: `No se ha completado el pago . ${error.message}"}`,
-                activo: true,
-
-                errorColor: error,
-              });
-            }
             setLoader(false);
           } catch (error) {
             console.log(error);
@@ -285,8 +266,6 @@ const EntregaYenviaForm = ({
                 />
               )}
               <div className="mt-2 mx-2 ">
-                <CardElement />
-
                 <NavegacionEntrega
                   setNavegacion={setNavegacion}
                   navegacion={navegacion}

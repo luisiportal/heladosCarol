@@ -5,13 +5,6 @@ import { useCarritos } from "../../context/CarritosContext";
 import { useAuth } from "../../context/AuthContext";
 
 import EntregaYenviaForm from "./SeccionAgregar/Entrega/EntregaYenviaForm";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-
-
-
-const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_STRIPE_KEY);
-
 
 const ComprarPage = () => {
   const { recargar, carrito, setCarrito } = useCarritos();
@@ -52,19 +45,17 @@ const ComprarPage = () => {
         </>
       )}
       {navegacion != 1 && (
-        <Elements stripe={stripePromise}>
-          <EntregaYenviaForm
-            navegacion={navegacion}
-            setNavegacion={setNavegacion}
-            entrega={entrega}
-            setEntrega={setEntrega}
-            setLoader={setLoader}
-            carrito={carrito}
-            setModalActivo={setModalActivo}
-            setCarrito={setCarrito}
-            loader={loader}
-          />
-        </Elements>
+        <EntregaYenviaForm
+          navegacion={navegacion}
+          setNavegacion={setNavegacion}
+          entrega={entrega}
+          setEntrega={setEntrega}
+          setLoader={setLoader}
+          carrito={carrito}
+          setModalActivo={setModalActivo}
+          setCarrito={setCarrito}
+          loader={loader}
+        />
       )}
     </div>
   );

@@ -11,6 +11,7 @@ export const Factura = sequelize.define(
     },
     id_pago: {
       type: DataTypes.STRING,
+      allowNull: true,
     },
 
     total_venta: {
