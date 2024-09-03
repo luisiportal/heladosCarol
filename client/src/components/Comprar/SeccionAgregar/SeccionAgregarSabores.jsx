@@ -9,9 +9,8 @@ const SeccionAgregarSabores = ({
   setLoader,
   carrito,
   setCarrito,
-  setModalActivo
+  setModalActivo,
 }) => {
-  const { sabores } = useSabores();
   const [selectedOption, setSelectedOption] = useState(null);
   const [movimiento, setMovimiento] = useState({
     cantidad: "",
@@ -28,7 +27,6 @@ const SeccionAgregarSabores = ({
       .required("Este campo es requerido")
       .min(1, "Cantidad vacia"),
   });
-console.log(sabores);
 
   return (
     <div className="flex justify-center items-center pt-14">
@@ -39,7 +37,6 @@ console.log(sabores);
           validationSchema={schema}
           onSubmit={async (values, { resetForm }) => {
             setLoader(true);
-           
 
             if (
               !carrito.some(
@@ -68,7 +65,6 @@ console.log(sabores);
           }) => (
             <Form>
               <FormAddProduct
-                sabores={sabores}
                 setMovimiento={setMovimiento}
                 handleChange={handleChange}
                 movimiento={movimiento}

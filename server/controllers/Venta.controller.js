@@ -6,10 +6,16 @@ import { registrarLog } from "./AuditLog.controllers.js";
 import { Movimiento } from "../models/Movimientos.model.js";
 import { Entrega } from "../models/Entrega.model.js";
 import { Sabor } from "../models/Sabor.model.js";
+import { saveImage } from "./upload.multer.js";
 
 export const createVenta = async (req, res) => {
-  const productos = req.body.productos;
-  const entrega = req.body.entrega;
+  let ruta_image = "defaultPerfil.jpg";
+  if (req.file !== undefined) {
+    ruta_image = req.file.originalname;
+  }
+
+  const productos = JSON.parse(req.body.productos);
+  const entrega = JSON.parse(req.body.entrega);
 
   const total_venta = productos.reduce(
     (sum, producto) => sum + producto.precio_venta * producto.cantidad,
@@ -18,7 +24,7 @@ export const createVenta = async (req, res) => {
 
   let grandTotalCobrar = Number(total_venta) + Number(entrega.envio);
   grandTotalCobrar = Math.round(grandTotalCobrar * 10) / 10;
-  console.log(grandTotalCobrar);
+
 
   let fechaActual = new Date();
   let creado = fechaActual.toISOString();
@@ -29,7 +35,7 @@ export const createVenta = async (req, res) => {
       const factura = await Factura.create(
         {
           total_venta,
-
+          ruta_image,
           creado,
         },
         { transaction: t }
@@ -76,6 +82,8 @@ export const createVenta = async (req, res) => {
       }
     });
 
+
+    saveImage(req.file, "pagos_facturas");
     return res.status(200).json({ message: "Ventas creadas correctamente" });
   } catch (error) {
     return res.status(500).json({ message: error.message });

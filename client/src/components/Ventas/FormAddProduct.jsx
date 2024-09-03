@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import Select from "react-select";
+import { useSabores } from "../../context/SaboresProvider";
 const FormAddProduct = ({
-  sabores,
   setMovimiento,
   handleChange,
   movimiento,
@@ -15,17 +15,21 @@ const FormAddProduct = ({
 }) => {
   const [conExistencia, setConExistencia] = useState(true);
   const [productosElegir, setProductosElegir] = useState([]);
-
+  const { sabores } = useSabores();
   const productosConExistencia = sabores.filter(
     (sabor) => Number(sabor.existencia) > 0
   );
+
+  useEffect(() => {
+   
+  }, []);
 
   const options = (
     productosElegir.length > 0 ? productosElegir : productosConExistencia
   ).map((sabor) => {
     return {
       value: sabor.id_sabor,
-      label: sabor.nombre_sabor +" "+ sabor.precio_venta + " USD",
+      label: sabor.nombre_sabor + " " + sabor.precio_venta + " USD",
       nombre_sabor: sabor.nombre_sabor,
       existencia: sabor.existencia,
       precio_venta: Number(sabor.precio_venta),

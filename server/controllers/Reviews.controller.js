@@ -1,6 +1,6 @@
 import { saveImage } from "../controllers/upload.multer.js";
 
-import sequelize from "../db.js";
+
 import { Review } from "../models/Review.model.js";
 
 // listar todas los productos

@@ -66,6 +66,13 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
             <div className="bg-fresa text-neutral-100 font-semibold rounded-xl text-xs flex gap-2 p-2">
               <h2>Enviado por: {factura.entrega.ordenante} </h2>
               <h2>Contacto: {factura.entrega.contacto_ordenante}</h2>
+              <a href={`${import.meta.env.VITE_BACKEND_URL}/images/pagos_facturas/${factura.ruta_image}`}>
+              <img
+            className="w-12 h-12 object-cover object-center shadow-xl border-slate-50 border-spacing-2 rounded-md"
+            src={`${import.meta.env.VITE_BACKEND_URL}/images/pagos_facturas/${factura.ruta_image}`}
+            alt="Imagen de Producto"
+          />
+</a>
             </div>
           </div>
         </div>

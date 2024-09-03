@@ -41,6 +41,13 @@ const schema = Yup.object({
       "Solo se permiten letras, números y espacios"
     )
     .max(20, "El nombre no debe tener más de 20 caracteres"),
+  numero: Yup.string()
+    .required("Campo requerido")
+    .matches(
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9-.]*$/,
+      "Solo se permiten letras, números y espacios"
+    )
+    .max(20, "El número de la casa no debe tener más de 5 caracteres"),
 
   calle1: Yup.string()
     .required("Campo requerido")
@@ -81,6 +88,7 @@ const EntregaYenviaForm = ({
 }) => {
   const [repartos, setRepartos] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [file, setFile] = useState();
   useEffect(() => {
     const cargarRepartos = async () => {
       try {
@@ -127,6 +135,13 @@ const EntregaYenviaForm = ({
         onSubmit={async (values) => {
           setLoader(true);
           setModalActivo({});
+          const formData = new FormData();
+          formData.append("productos", JSON.stringify(carrito));
+          formData.append("entrega", JSON.stringify(values));
+
+          if (file !== null) {
+            formData.append("factura_image", file);
+          }
 
           try {
             const ordenCompleta = {
@@ -135,7 +150,7 @@ const EntregaYenviaForm = ({
               total_venta: total_venta,
             };
 
-            await createVentaRequest(ordenCompleta);
+            await createVentaRequest(formData);
             setModalActivo({
               mensaje: "Pago realizado correctamente",
               activo: true,
@@ -263,6 +278,10 @@ const EntregaYenviaForm = ({
                   carrito={carrito}
                   entrega={entrega}
                   setNavegacion={setNavegacion}
+                  errors={errors}
+                  setModalActivo={setModalActivo}
+                  file={file}
+                  setFile={setFile}
                 />
               )}
               <div className="mt-2 mx-2 ">

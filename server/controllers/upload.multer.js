@@ -17,6 +17,13 @@ const fileFilter = (req, file, cb) => {
     console.log(error);
   }
 };
+export const uploadFactura = multer({
+  dest: `public/images/pagos_facturas/`,
+  fileFilter: fileFilter,
+  limits: {
+    fileSize: 2000000, // 300 KB en bytes
+  },
+});
 
 export const uploadPerfilReview = multer({
   dest: `public/images/perfilReviews/`,

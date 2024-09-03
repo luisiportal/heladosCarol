@@ -23,6 +23,9 @@ export const Factura = sequelize.define(
       type: DataTypes.DATE,
       allowNull: false,
     },
+    ruta_image: {
+      type: DataTypes.STRING,
+    },
   },
   {
     timestamps: true,
