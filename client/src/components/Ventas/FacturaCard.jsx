@@ -1,5 +1,6 @@
 import { deleteFacturaRequest } from "../../api/venta.api";
 import { useAuth } from "../../context/AuthContext";
+import EvidenciaPagoZelle from "../Comprar/SeccionAgregar/EvidenciaPagoZelle";
 import Edit from "../Movimientos/Edit";
 import EditSVG from "../SVG/EditSVG";
 
@@ -8,7 +9,7 @@ import SaboresFactura from "./CardFacturaItems/SaboresFactura";
 import TotalFactura from "./CardFacturaItems/TotalFactura";
 import EditFechaFactura from "./EditFechaFactura";
 
-function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
+function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar,total }) {
   const { ventas } = factura;
   const { setModalActivo, modalActivo, editando, setEditando, perfil } =
     useAuth();
@@ -45,7 +46,7 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
         </div>
         <div className=" bg-fresa rounded-xl text-xs flex gap-2 p-2">
           <SaboresFactura ventas={ventas} envio={factura.entrega.envio} />
-          <TotalFactura factura={factura} />
+          <TotalFactura total={total} />
         </div>
 
         <div className="flex-grow flex flex-col  p-2 text-xs">
@@ -66,19 +67,16 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar }) {
             <div className="bg-fresa text-neutral-100 font-semibold rounded-xl text-xs flex gap-2 p-2">
               <h2>Enviado por: {factura.entrega.ordenante} </h2>
               <h2>Contacto: {factura.entrega.contacto_ordenante}</h2>
-              <a href={`${import.meta.env.VITE_BACKEND_URL}/images/pagos_facturas/${factura.ruta_image}`}>
-              <img
-            className="w-12 h-12 object-cover object-center shadow-xl border-slate-50 border-spacing-2 rounded-md"
-            src={`${import.meta.env.VITE_BACKEND_URL}/images/pagos_facturas/${factura.ruta_image}`}
-            alt="Imagen de Producto"
-          />
-</a>
+           
             </div>
           </div>
         </div>
+     
 
         {perfil.privilegio == "Administrador" ? (
           <>
+        <div className="flex items-center gap-2 justify-end p-2 text-xs">  <h6>Evidencia Pago por Zelle :</h6>
+        <EvidenciaPagoZelle ruta_image={factura.ruta_image} setModalActivo={setModalActivo}/></div>
             {factura.id && (
               <div>
                 <button

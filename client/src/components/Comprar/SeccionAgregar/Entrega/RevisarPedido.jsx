@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import FacturaCard from "../../../Ventas/FacturaCard";
 import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
 
-const RevisarPedido = ({ carrito, entrega, setNavegacion,errors,setModalActivo,file,setFile }) => {
-
-
-
-
-
+const RevisarPedido = ({
+  carrito,
+  entrega,
+  setNavegacion,
+  errors,
+  setModalActivo,
+  file,
+  setFile,
+}) => {
   let totalLocal = 0;
   if (carrito) {
     totalLocal = carrito.reduce(
@@ -22,41 +25,60 @@ const RevisarPedido = ({ carrito, entrega, setNavegacion,errors,setModalActivo,f
     total_venta: totalLocal,
   };
 
+  let total = Number(factura.total_venta) + Number(factura.entrega.envio);
+  total = Math.round(total * 10) / 10;
+
   return (
     <div>
-      <h2>Productos</h2>
+      <FacturaCard factura={factura} total={total} />
 
-      <FacturaCard factura={factura} />
-      <input
-        name="factura_image"
-        type="file"
-        onChange={(e) => {
-          var file = file || e.target.files[0],
-            pattern = /^image/,
-            reader = new FileReader();
-          if (file.size > 2000000) {
-            setFile();
-            return setModalActivo({
-              mensaje: "La imagen es demasiado grande",
-              activo: true,
-              errorColor: true,
-            });
-          }
+      <div className="flex flex-col  justify-center text-slate-600 gap-2">
+        <h2 className="font-semibold text-slate-700 flex justify-center">
+          Pasos para realizar Pago
+        </h2>
+        <h4>1- Enviar {total} USD por Zelle al correo</h4>
+        <span className="font-semibold text-slate-800  flex justify-center">
+          heladoscarol@gmail.com
+        </span>
+        <h4>2- Realizar captura del pago</h4>
+        <h4>3-Subir captura del pago</h4>
+        <input
+          name="factura_image"
+          type="file"
+          onChange={(e) => {
+            var file = file || e.target.files[0],
+              pattern = /^image/,
+              reader = new FileReader();
+            if (file.size > 2000000) {
+              setFile();
+              return setModalActivo({
+                mensaje: "La imagen es demasiado grande",
+                activo: true,
+                errorColor: true,
+              });
+            }
 
-          if (!pattern.test(file.type)) {
-            setFile();
-            setModalActivo({
-              mensaje: "Formato de imagen inválido",
-              activo: true,
-              errorColor: true,
-            });
+            if (!pattern.test(file.type)) {
+              setFile();
+              setModalActivo({
+                mensaje: "Formato de imagen inválido",
+                activo: true,
+                errorColor: true,
+              });
 
-            return;
-          }
+              return;
+            }
 
-          setFile(e.target.files[0]);
-        }}
-      />
+            setFile(e.target.files[0]);
+          }}
+        />
+        <p>
+          Una vez que recibamos la confirmacion de su pago su orden sera
+          aceptada y procesada
+        </p>
+        <h4>Gracias por elegirnos</h4>
+      </div>
+
       <MostrarErrorMessage campo={"ruta_image"} errors={errors} />
     </div>
   );

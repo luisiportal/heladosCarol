@@ -40,7 +40,7 @@ const schema = Yup.object({
       /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9-.]*$/,
       "Solo se permiten letras, números y espacios"
     )
-    .max(20, "El nombre no debe tener más de 20 caracteres"),
+    .max(40, "El nombre no debe tener más de 40 caracteres"),
   numero: Yup.string()
     .required("Campo requerido")
     .matches(
@@ -55,14 +55,14 @@ const schema = Yup.object({
       /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9-.]*$/,
       "Solo se permiten letras, números y espacios"
     )
-    .max(20, "El nombre no debe tener más de 20 caracteres"),
+    .max(40, "El nombre no debe tener más de 40 caracteres"),
   calle2: Yup.string()
     .required("Campo requerido")
     .matches(
       /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9-.]*$/,
       "Solo se permiten letras, números y espacios"
     )
-    .max(20, "El nombre no debe tener más de 20 caracteres"),
+    .max(40, "El nombre no debe tener más de 40 caracteres"),
   reparto: Yup.string().required("Campo requerido"),
 
   p_referencia: Yup.string()
@@ -133,6 +133,14 @@ const EntregaYenviaForm = ({
         enableReinitialize={true}
         validationSchema={schema}
         onSubmit={async (values) => {
+          if (file == null) {
+          return  setModalActivo({
+              mensaje: "Debe subir una captura del pago",
+              activo: true,
+              errorColor: true,
+            });
+          }
+
           setLoader(true);
           setModalActivo({});
           const formData = new FormData();
