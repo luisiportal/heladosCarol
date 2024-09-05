@@ -160,7 +160,7 @@ const EntregaYenviaForm = ({
 
             await createVentaRequest(formData);
             setModalActivo({
-              mensaje: "Pago realizado correctamente",
+              mensaje: "Su orden ha sido creada",
               activo: true,
               navegarA: "/",
             });

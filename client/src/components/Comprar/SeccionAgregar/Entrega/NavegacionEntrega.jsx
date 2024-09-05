@@ -42,7 +42,7 @@ const NavegacionEntrega = ({
         )}
         {navegacion == 3 && (
           <Btn_Huellas
-            text={`Pagar`}
+            text={`Enviar`}
             type={"submit"}
             onclick={() => {
               if (errors) {

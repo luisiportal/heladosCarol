@@ -74,7 +74,7 @@ const RevisarPedido = ({
         />
         <p>
           Una vez que recibamos la confirmacion de su pago su orden sera
-          aceptada y procesada
+          aceptada y procesada.
         </p>
         <h4>Gracias por elegirnos</h4>
       </div>
