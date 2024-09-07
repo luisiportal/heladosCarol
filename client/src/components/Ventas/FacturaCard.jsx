@@ -22,8 +22,14 @@ function FacturaCard({
   total,
 }) {
   const { ventas } = factura;
-  const { setModalActivo, modalActivo, editando, setEditando, perfil } =
-    useAuth();
+  const {
+    setModalActivo,
+    modalActivo,
+    editando,
+    setEditando,
+    perfil,
+    setLoader,
+  } = useAuth();
 
   const handleEliminar = async (id) => {
     if (confirm("¿Estás a punto de eliminar una Venta ?")) {
@@ -44,8 +50,10 @@ function FacturaCard({
   };
 
   const handleConfirmar = async (id) => {
+    setLoader(true);
     await confirmarFacturaRequest(id);
     setRecargar(!recargar);
+    setLoader(false);
   };
 
   const grandTotal = grandTotalFactura(
@@ -124,7 +132,6 @@ function FacturaCard({
                     </h2>
 
                     <div className="flex justify-between">
-                      {" "}
                       <button
                         className="flex bg-fresa rounded-full p-2 text-neutral-100 hover:bg-vainilla hover:text-slate-600  transition-all duration-500"
                         onClick={() => handleConfirmar(factura.id)}
@@ -132,7 +139,6 @@ function FacturaCard({
                         <CheckedSVG /> Confirmar Factura
                       </button>
                       <div className="p-2">
-                        {" "}
                         <ElimiarFacturaBTN
                           id={factura.id}
                           handleEliminar={handleEliminar}
