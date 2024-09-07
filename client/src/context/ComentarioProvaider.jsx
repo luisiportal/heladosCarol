@@ -20,7 +20,7 @@ export const ComentarioContextProvider = ({ children }) => {
   const [reviews, setReviews] = useState([]);
 
   const loadAllReviews=async()=> {
-    console.log("hjhjh");
+ 
 
     const response = await getReviewsRequest();
     console.log(response);

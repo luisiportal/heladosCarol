@@ -49,7 +49,7 @@ const NavegacionEntrega = ({
                 console.log(errors);
 
                 return setModalActivo({
-                  mensaje: "Revise los datos de Entrega antes de pagar",
+                  mensaje: "Revise los datos de Entrega antes de enviar la orden",
                   activo: true,
                   errorColor: true,
                 });

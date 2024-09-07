@@ -120,7 +120,7 @@ export const AuthProvider = ({ children }) => {
         }
 
         setIsAuthenticated(true);
-
+        cargarPerfil(res.data.id_trabajador)
         setUser(res.data);
 
         setLoading(false);
@@ -144,6 +144,7 @@ export const AuthProvider = ({ children }) => {
         loading,
         setIsAuthenticated,
         cargarPerfil,
+        setPerfil,
         perfil,
         loader,
         setLoader,

@@ -13,6 +13,16 @@ export const Factura = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    confirmado: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+    estado: {
+      type: DataTypes.STRING,
+
+      defaultValue: "Sin confirmar",
+    },
 
     total_venta: {
       type: DataTypes.DECIMAL,

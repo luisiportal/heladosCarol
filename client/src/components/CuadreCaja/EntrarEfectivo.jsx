@@ -46,7 +46,7 @@ const EntrarEfectivo = ({ perfil, venta }) => {
     x5: 0,
     x1: 0,
   });
-  console.log(venta);
+ 
 
   useEffect(() => {
     const suma = Object.values(totalDenominacion).reduce((a, b) => a + b, 0);

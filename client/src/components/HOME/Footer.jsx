@@ -7,6 +7,7 @@ const Footer = () => {
       <LogoHeladosCarol />
       <div className=" flex justify-center text-md text-slate-100 flex-col">
         <a href="mailto:heladoscarol@gmail.com">heladoscarol@gmail.com</a>
+        <h2>+ 53 55079490</h2>
         <h2>Holguín, Cuba</h2>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FacturaCard from "../../../Ventas/FacturaCard";
 import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
+import { grandTotalFactura } from "../../../../utils/grandTotalFactura";
 
 const RevisarPedido = ({
   carrito,
@@ -25,8 +26,7 @@ const RevisarPedido = ({
     total_venta: totalLocal,
   };
 
-  let total = Number(factura.total_venta) + Number(factura.entrega.envio);
-  total = Math.round(total * 10) / 10;
+  const total = grandTotalFactura(factura.total_venta, factura.entrega.envio);
 
   return (
     <div>

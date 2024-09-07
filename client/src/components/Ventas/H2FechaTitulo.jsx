@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const H2FechaTitulo = ({
   fecha,
   facturas,
+  setFacturas,
   opciones,
   setRecargarFactura,
   setRecargar,
@@ -30,13 +31,13 @@ const H2FechaTitulo = ({
     <section className="flex flex-1 flex-col" key={fecha}>
       <h2 className="p-4">
         {fecha} Venta {totalVentaDia}
-       
       </h2>
 
       {facturasMismafecha.map((factura) => {
         return (
           <FacturaCard
             factura={factura}
+            setFacturas={setFacturas}
             key={factura.id}
             setRecargarFactura={setRecargarFactura}
             recargar={recargar}

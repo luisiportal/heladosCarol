@@ -19,7 +19,7 @@ const SeccionSaboresCarrito = ({
       0
     );
     totalLocal = Math.round(totalLocal * 10) / 10;
-    console.log(totalLocal);
+
   }
 
   return (

@@ -1,15 +1,26 @@
+import { confirmarFacturaRequest } from "../../api/factura.api";
 import { deleteFacturaRequest } from "../../api/venta.api";
 import { useAuth } from "../../context/AuthContext";
+import { grandTotalFactura } from "../../utils/grandTotalFactura";
 import EvidenciaPagoZelle from "../Comprar/SeccionAgregar/EvidenciaPagoZelle";
 import Edit from "../Movimientos/Edit";
+import CheckedSVG from "../SVG/CheckedSVG";
 import EditSVG from "../SVG/EditSVG";
 
 import Bton_eliminar_producto from "./Bton_eliminar_producto";
+import ElimiarFacturaBTN from "./CardFacturaItems/ElimiarFacturaBTN";
 import SaboresFactura from "./CardFacturaItems/SaboresFactura";
 import TotalFactura from "./CardFacturaItems/TotalFactura";
 import EditFechaFactura from "./EditFechaFactura";
 
-function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar,total }) {
+function FacturaCard({
+  factura,
+  setFacturas,
+  setRecargarFactura,
+  setRecargar,
+  recargar,
+  total,
+}) {
   const { ventas } = factura;
   const { setModalActivo, modalActivo, editando, setEditando, perfil } =
     useAuth();
@@ -32,6 +43,16 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar,total 
     }
   };
 
+  const handleConfirmar = async (id) => {
+    await confirmarFacturaRequest(id);
+    setRecargar(!recargar);
+  };
+
+  const grandTotal = grandTotalFactura(
+    factura.total_venta,
+    factura.entrega.envio
+  );
+
   return (
     <div
       className={`mx-4 my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
@@ -46,7 +67,7 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar,total 
         </div>
         <div className=" bg-fresa rounded-xl text-xs flex gap-2 p-2">
           <SaboresFactura ventas={ventas} envio={factura.entrega.envio} />
-          <TotalFactura total={total} />
+          <TotalFactura total={total ?? grandTotal} />
         </div>
 
         <div className="flex-grow flex flex-col  p-2 text-xs">
@@ -67,33 +88,60 @@ function FacturaCard({ factura, setRecargarFactura, setRecargar, recargar,total 
             <div className="bg-fresa text-neutral-100 font-semibold rounded-xl text-xs flex gap-2 p-2">
               <h2>Enviado por: {factura.entrega.ordenante} </h2>
               <h2>Contacto: {factura.entrega.contacto_ordenante}</h2>
-           
             </div>
           </div>
         </div>
-     
 
         {perfil.privilegio == "Administrador" ? (
           <>
-        <div className="flex items-center gap-2 justify-end p-2 text-xs">  <h6>Evidencia Pago por Zelle :</h6>
-        <EvidenciaPagoZelle ruta_image={factura.ruta_image} setModalActivo={setModalActivo}/></div>
+            <div className="flex  justify-center items-center gap-2  p-2 text-xs">
+              {" "}
+              <h6>Evidencia Pago por Zelle :</h6>
+              <EvidenciaPagoZelle
+                ruta_image={factura.ruta_image}
+                setModalActivo={setModalActivo}
+              />
+            </div>
             {factura.id && (
               <div>
-                <button
-                  className="flex"
-                  onClick={() => handleEliminar(factura.id)}
-                >
-                  <Bton_eliminar_producto /> Eliminar Factura
-                </button>
+                {factura.confirmado == true ? (
+                  <>
+                    {" "}
+                    <h2 className="bg-green-400 flex justify-center text-neutral-100">
+                      Factura Aceptada
+                    </h2>
+                    <div className="flex justify-end p-2">
+                      <ElimiarFacturaBTN
+                        id={factura.id}
+                        handleEliminar={handleEliminar}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h2 className="bg-red-400 flex justify-center text-neutral-100 mb-2">
+                      Pendiente a confirmar
+                    </h2>
+
+                    <div className="flex justify-between">
+                      {" "}
+                      <button
+                        className="flex bg-fresa rounded-full p-2 text-neutral-100 hover:bg-vainilla hover:text-slate-600  transition-all duration-500"
+                        onClick={() => handleConfirmar(factura.id)}
+                      >
+                        <CheckedSVG /> Confirmar Factura
+                      </button>
+                      <div className="p-2">
+                        {" "}
+                        <ElimiarFacturaBTN
+                          id={factura.id}
+                          handleEliminar={handleEliminar}
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
-            )}
-            {editando == factura.id && (
-              <EditFechaFactura
-                factura={factura}
-                setEditando={setEditando}
-                setRecargar={setRecargar}
-                recargar={recargar}
-              />
             )}
           </>
         ) : (
