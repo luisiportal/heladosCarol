@@ -1,6 +1,10 @@
 import React from "react";
-import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share';
-
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+} from "react-share";
 
 const ShareButtonFB = ({ sabores }) => {
   const shareUrl = "https://heladoscarol.onrender.com/";
@@ -8,14 +12,13 @@ const ShareButtonFB = ({ sabores }) => {
   return (
     <div className="flex gap-2 items-center">
       <h2 className="text-sm">Compartir en: </h2>
-    <FacebookShareButton url={shareUrl} hashtag={sabores}>
-      <FacebookIcon size={32} round />
-    </FacebookShareButton>
-    <WhatsappShareButton url={shareUrl} title={sabores}>
-      <WhatsappIcon size={32} round />
-    </WhatsappShareButton>
-  </div>
-  
+      <FacebookShareButton url={shareUrl} hashtag={sabores}>
+        <FacebookIcon size={32} round />
+      </FacebookShareButton>
+      <WhatsappShareButton url={shareUrl} title={sabores}>
+        <WhatsappIcon size={32} round />
+      </WhatsappShareButton>
+    </div>
   );
 };
 
