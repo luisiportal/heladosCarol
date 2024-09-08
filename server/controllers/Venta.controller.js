@@ -26,7 +26,6 @@ export const createVenta = async (req, res) => {
   let grandTotalCobrar = Number(total_venta) + Number(entrega.envio);
   grandTotalCobrar = Math.round(grandTotalCobrar * 10) / 10;
 
-
   let fechaActual = new Date();
   let creado = fechaActual.toISOString();
 
@@ -56,6 +55,7 @@ export const createVenta = async (req, res) => {
           reparto: entrega.reparto,
           envio: entrega.envio,
           p_referencia: entrega.p_referencia,
+          observaciones: entrega.observaciones,
         },
         { transaction: t }
       );
@@ -83,16 +83,13 @@ export const createVenta = async (req, res) => {
       }
     });
 
-
     saveImage(req.file, "pagos_facturas");
-    sendMessageToNumber("+5358155198","prueba de envio")
+
     return res.status(200).json({ message: "Ventas creadas correctamente" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
-
-
 
 export const getTodosVentas = async (req, res) => {
   try {

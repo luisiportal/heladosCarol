@@ -48,4 +48,8 @@ export const Entrega = sequelize.define("entregas", {
   p_referencia: {
     type: DataTypes.STRING,
   },
+  observaciones: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 });

@@ -279,6 +279,15 @@ const EntregaYenviaForm = ({
                     value={entrega.p_referencia}
                     errors={errors}
                   />
+                    <InputEntrega
+                    type={"text"}
+                    name={"observaciones"}
+                    handlechange={handleChangeMio}
+                    placeholder={"Alguna especificación adicional"}
+                    value={entrega.observaciones}
+                    errors={errors}
+                  />
+                  
                 </div>
               )}
               {navegacion == 3 && (

@@ -16,6 +16,8 @@ import reviews from "./routes/reviews.routes.js";
 import repartos from "./routes/repartos.routes.js";
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { sendMessageToNumber } from "./TelegramBot/telegramBot.js";
+import rastrearOrden from "./routes/rastrearOrden.routes.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -48,6 +50,7 @@ app.use(audiTlogs);
 app.use(cuadre_caja);
 app.use(reviews);
 app.use(repartos);
+app.use(rastrearOrden);
 
 
 app.listen(PUERTO, () => {

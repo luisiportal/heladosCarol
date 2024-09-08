@@ -30,6 +30,7 @@ import SaboresForm from "./components/Sabores/SaboresForm";
 import ComprarPage from "./components/Comprar/ComprarPage";
 import ListarReviewsBackend from "./components/Reviews/Backend/ListarReviewsBackend";
 import { ReviewContextProvider } from "./context/ReviewProvaider";
+import RastrearOrden from "./components/RastrearOrden/RastrearOrden";
 
 const App = () => {
   return (
@@ -50,6 +51,7 @@ const App = () => {
                 }
               />
               <Route path="prueba" element={<Prueba />} />
+              <Route path="/ordenes" element={<RastrearOrden />} />
               <Route
                 path="/comprar"
                 element={

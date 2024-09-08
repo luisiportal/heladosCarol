@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import { confirmarFacturaRequest } from "../../api/factura.api";
 import { deleteFacturaRequest } from "../../api/venta.api";
 import { useAuth } from "../../context/AuthContext";
@@ -30,6 +31,11 @@ function FacturaCard({
     perfil,
     setLoader,
   } = useAuth();
+
+
+  const params = useParams();
+  
+  
 
   const handleEliminar = async (id) => {
     if (confirm("¿Estás a punto de eliminar una Venta ?")) {
@@ -97,40 +103,46 @@ function FacturaCard({
               <h2>Enviado por: {factura.entrega.ordenante} </h2>
               <h2>Contacto: {factura.entrega.contacto_ordenante}</h2>
             </div>
+            {factura.entrega.observaciones && (
+              <p>Observaciones : {factura.entrega.observaciones}</p>
+            )}
           </div>
         </div>
 
-        {perfil.privilegio == "Administrador" ? (
-          <>
-            <div className="flex  justify-center items-center gap-2  p-2 text-xs">
-              {" "}
-              <h6>Evidencia Pago por Zelle :</h6>
-              <EvidenciaPagoZelle
-                ruta_image={factura.ruta_image}
-                setModalActivo={setModalActivo}
-              />
-            </div>
-            {factura.id && (
-              <div>
-                {factura.confirmado == true ? (
-                  <>
-                    {" "}
-                    <h2 className="bg-green-400 flex justify-center text-neutral-100">
-                      Factura Aceptada
-                    </h2>
+        <>
+          <div className="flex  justify-center items-center gap-2  p-2 text-xs">
+            {" "}
+            <h6>Evidencia Pago por Zelle :</h6>
+            <EvidenciaPagoZelle
+              ruta_image={factura.ruta_image}
+              setModalActivo={setModalActivo}
+            />
+          </div>
+          {factura.id && (
+            <div>
+              {factura.confirmado == true ? (
+                <>
+                  {" "}
+                  <h2 className="bg-green-400 flex justify-center text-neutral-100 rounded-lg m-2">
+                    Factura Aceptada
+                  </h2>
+                  {perfil.privilegio == "Administrador" ? (
                     <div className="flex justify-end p-2">
                       <ElimiarFacturaBTN
                         id={factura.id}
                         handleEliminar={handleEliminar}
                       />
                     </div>
-                  </>
-                ) : (
-                  <>
-                    <h2 className="bg-red-400 flex justify-center text-neutral-100 mb-2">
-                      Pendiente a confirmar
-                    </h2>
-
+                  ) : (
+                    ""
+                  )}
+                </>
+              ) : (
+                <>
+                  <h2 className="bg-red-400 flex justify-center text-neutral-100 mb-2 rounded-lg m-2">
+                    Pendiente a confirmar
+                  </h2>
+                  {perfil.privilegio == "Administrador" ? (
                     <div className="flex justify-between">
                       <button
                         className="flex bg-fresa rounded-full p-2 text-neutral-100 hover:bg-vainilla hover:text-slate-600  transition-all duration-500"
@@ -145,14 +157,14 @@ function FacturaCard({
                         />
                       </div>
                     </div>
-                  </>
-                )}
-              </div>
-            )}
-          </>
-        ) : (
-          ""
-        )}
+                  ) : (
+                    ""
+                  )}
+                </>
+              )}
+            </div>
+          )}
+        </>
       </div>
     </div>
   );

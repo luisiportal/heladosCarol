@@ -23,6 +23,8 @@ const ComprarPage = () => {
     calle2: "",
     reparto: "",
     p_referencia: "",
+    observaciones: "",
+
   });
   return (
     <div>
