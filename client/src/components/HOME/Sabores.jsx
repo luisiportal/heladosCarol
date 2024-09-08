@@ -7,13 +7,11 @@ import SeccionComprar from "./Sabores/SeccionComprar";
 import Loader from "../Utilidades/Loader";
 import { useSabores } from "../../context/SaboresProvider";
 import { useAuth } from "../../context/AuthContext";
+import ShareButtonFB from "../Social/ShareButtonFB";
 
 const Sabores = () => {
-
   const { loadSabores, sabores } = useSabores();
   const { loader, setLoader, isOnline } = useAuth();
-
- 
 
   useEffect(() => {
     const cargarSabores = async () => {
@@ -24,14 +22,13 @@ const Sabores = () => {
     cargarSabores();
   }, []);
 
+  const nombreSabores = sabores.map((sabor) => ` ${sabor.nombre_sabor}`);
 
- 
+  
 
   return (
     <div className="bg-neutral-200 rounded-lg mt-4">
-      <h2 className="flex justify-center font-irish text-2xl py-2">
-        
-      </h2>
+    
       <section className="flex items-center justify-between">
         <div className="w-44">
           {sabores.map(
@@ -54,9 +51,17 @@ const Sabores = () => {
           <SeccionComprar sabor={sabores[0]} />
         </div>
       </section>
-      {loader && <div>
-        <span>Esperando los sabores</span>
-        <Loader /></div>}
+      <h2 className="flex justify-center font-irish text-2xl py-2">
+        <ShareButtonFB
+          sabores={`Exelente Calidad disponibles ${nombreSabores}`}
+        />
+      </h2>
+      {loader && (
+        <div>
+          <span>Esperando los sabores</span>
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };
