@@ -12,8 +12,8 @@ const ShareButtonFB = ({ sabores }) => {
   return (
     <div className="flex gap-2 items-center">
       <h2 className="text-sm">Compartir en: </h2>
-      <FacebookShareButton url={shareUrl} hashtag={sabores}>
-        <FacebookIcon size={32} round />
+      <FacebookShareButton url={shareUrl} quote={sabores} hashtag={sabores}>
+      <FacebookIcon size={32} round />
       </FacebookShareButton>
       <WhatsappShareButton url={shareUrl} title={sabores}>
         <WhatsappIcon size={32} round />
