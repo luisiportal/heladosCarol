@@ -36,12 +36,15 @@ const SaboresForm = () => {
 
   useEffect(() => {
     const loadSabor = async () => {
+   
       if (params.id_sabor) {
+        setLoader(true);
         const sabor = await getSabor(params.id_sabor);
         setSabor(sabor);
         (e) => {
           setFile(e.target.files[0]);
         };
+        setLoader(false);
       }
     };
     loadSabor();
@@ -137,7 +140,6 @@ const SaboresForm = () => {
                 className="my-2 px-2 py-1 rounded-sm w-full"
                 value={values.nombre_sabor}
                 onChange={handleChange}
-               
               />
               {errors.nombre_sabor && (
                 <span className="bg-red-500 p-1 m-1">

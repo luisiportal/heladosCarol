@@ -36,11 +36,11 @@ const RevisarPedido = ({
         <h2 className="font-semibold text-slate-700 flex justify-center">
           Pasos para realizar Pago
         </h2>
-        <h4>1- Enviar {total} USD por Zelle al correo</h4>
+        <h4>1- Enviar <span className="font-bold">{total} USD</span> USD por <span className="font-bold">Zelle</span> al correo</h4>
         <span className="font-semibold text-slate-800  flex justify-center">
           heladoscarol@gmail.com
         </span>
-        <h4>2- Realizar captura del pago</h4>
+        <h4>2- Realizar captura del <span className="font-bold">pago realizado por Zelle</span></h4>
         <h4>3-Subir captura del pago</h4>
         <input
           name="factura_image"
