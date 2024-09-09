@@ -7,7 +7,7 @@ import {
 } from "react-share";
 
 const ShareButtonFB = ({ sabores }) => {
-  const shareUrl = "https://heladoscarol.onrender.com";
+  const shareUrl = "https://heladoscarol.onrender.com/";
 
   return (
     <div className="flex gap-2 items-center">
