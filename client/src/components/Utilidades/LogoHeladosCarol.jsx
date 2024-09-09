@@ -5,9 +5,9 @@ const LogoHeladosCarol = () => {
   return (
     <div>
     <Link className="text-heladosCarol_color" to={"/"}>
-      <div className="flex gap-4">
+      <div className="flex gap-2">
         <img
-          className="w-12 h-12"
+          className="w-12 h-12 rounded-full"
           src={"../images/logo.png"}
           alt="Logo Helados Carol"
         />
