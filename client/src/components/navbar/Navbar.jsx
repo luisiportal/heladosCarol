@@ -7,7 +7,12 @@ const Navbar = ({ hidden, isAuthenticated }) => {
     <div className={`${hidden} m-4 md:m-0 lg:flex md:ml-8 font-semibold`}>
       <ElementoNavbar nombre={"Inicio"} href={"/"}></ElementoNavbar>
       {/*<ElementoNavbar nombre={"Rastrear Orden"} href={"/ordenes/"}></ElementoNavbar>*/}
-      {!isAuthenticated && <ElementoNavbar nombre={"Entrar"} href={"/trabajadores/login"}></ElementoNavbar>}
+      {!isAuthenticated && (
+        <ElementoNavbar
+          nombre={"Entrar"}
+          href={"/trabajadores/login"}
+        ></ElementoNavbar>
+      )}
 
       {isAuthenticated && (
         <>
@@ -17,7 +22,6 @@ const Navbar = ({ hidden, isAuthenticated }) => {
             nombre={"Movimientos"}
             href={"/movimientos"}
           ></ElementoNavbar>
-         
           <ElementoNavbar
             nombre={"Facturas"}
             href={"/transacciones"}
@@ -26,9 +30,15 @@ const Navbar = ({ hidden, isAuthenticated }) => {
             nombre={"Plantilla"}
             href={"/trabajador/plantilla"}
           ></ElementoNavbar>
-          <ElementoNavbar nombre={"Opiniones"} href={"/opiniones"}></ElementoNavbar>
-
+          <ElementoNavbar
+            nombre={"Opiniones"}
+            href={"/opiniones"}
+          ></ElementoNavbar>
           <ElementoNavbar nombre={"Logs"} href={"/logs"}></ElementoNavbar>
+          <ElementoNavbar
+            nombre={"Modo Cerrado"}
+            href={"/cerrado"}
+          ></ElementoNavbar>
         </>
       )}
     </div>

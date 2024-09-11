@@ -78,7 +78,6 @@ const RevisarPedido = ({
         </p>
         <h4>Gracias por elegirnos</h4>
       </div>
-
       <MostrarErrorMessage campo={"ruta_image"} errors={errors} />
     </div>
   );

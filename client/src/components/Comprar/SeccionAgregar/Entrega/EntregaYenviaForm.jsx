@@ -71,7 +71,16 @@ const schema = Yup.object({
       /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9]*$/,
       "Solo se permiten letras, números y espacios"
     )
-    .max(40, "El nombre no debe tener más de 20 caracteres"),
+    .max(400, "La Referencia no debe tener más de 400 caracteres"),
+
+    observaciones: Yup.string()
+    .matches(
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9]*$/,
+      "Solo se permiten letras, números y espacios"
+    )
+    .max(400, "No debe tener más de 400 caracteres"),
+
+
 });
 
 const EntregaYenviaForm = ({

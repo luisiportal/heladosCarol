@@ -10,6 +10,7 @@ const Reviews = () => {
       </h2>
       <ListarReviewsFrontend />
       <EnviarReviewForm />
+
      
     </div>
   );
