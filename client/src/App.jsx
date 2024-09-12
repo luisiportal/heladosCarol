@@ -42,7 +42,7 @@ const App = () => {
             <div className="container">
               <Navbar />
               <Routes>
-                <Route path="/trabajador/login" element={<Trabajador />} />
+                <Route path="/pote" element={<Trabajador />} />
                 <Route
                   path="/"
                   element={
