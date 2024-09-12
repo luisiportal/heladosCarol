@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { GMAIL_KEY } from '../config';
+import { GMAIL_KEY } from '../config.js';
 // import nodemailer from "nodemailer";
 
 export const enviarCorreo = async (to, subject, text) => {
