@@ -8,6 +8,7 @@ import { Entrega } from "../models/Entrega.model.js";
 import { Sabor } from "../models/Sabor.model.js";
 import { saveImage } from "./upload.multer.js";
 import { sendMessageToNumber } from "../TelegramBot/telegramBot.js";
+import { enviarCorreo } from "../Gmail/NodeMailer.js";
 
 export const createVenta = async (req, res) => {
   let ruta_image = "defaultPerfil.jpg";
@@ -84,6 +85,7 @@ export const createVenta = async (req, res) => {
     });
 
     saveImage(req.file, "pagos_facturas");
+    enviarCorreo("heladoscarol@gmail.com", "Nueva Factura pendiente de aprobación",`Datos de la Factura Total : ${total_venta}` )
 
     return res.status(200).json({ message: "Ventas creadas correctamente" });
   } catch (error) {

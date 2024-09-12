@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import PoteHelado from "./PoteHelado";
 import BTN from "./BTN";
 
-import { useNavigate } from "react-router-dom";
-
-const SeccionComprar = () => {
-  const navigate = useNavigate();
+const SeccionComprar = ({navigate}) => {
+  
 
   return (
     <section className="w-40 pt-12 mr-4">

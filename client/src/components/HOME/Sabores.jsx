@@ -8,6 +8,7 @@ import Loader from "../Utilidades/Loader";
 import { useSabores } from "../../context/SaboresProvider";
 import { useAuth } from "../../context/AuthContext";
 import ShareButtonFB from "../Social/ShareButtonFB";
+import { useNavigate } from "react-router-dom";
 
 const Sabores = () => {
   const { loadSabores, sabores } = useSabores();
@@ -21,7 +22,7 @@ const Sabores = () => {
     };
     cargarSabores();
   }, []);
-
+  const navigate = useNavigate();
   const nombreSabores = sabores.map((sabor) => ` ${sabor.nombre_sabor}`);
 
   return (
@@ -36,6 +37,7 @@ const Sabores = () => {
                     color={sabor.color}
                     sabor={sabor.nombre_sabor}
                     width={"sabor" + (index + 1)}
+                    navigate={navigate}
                   />
                   <div className={`relative bottom-4 izquierda${index}`}>
                     <DerretidoVainilla2 color={"#" + sabor.color} />
@@ -45,7 +47,7 @@ const Sabores = () => {
           )}
         </div>
         <div>
-          <SeccionComprar sabor={sabores[0]} />
+          <SeccionComprar sabor={sabores[0]} navigate={navigate} />
         </div>
       </section>
       <h2 className="flex justify-center font-irish text-2xl py-2">

@@ -49,7 +49,7 @@ const RevisarPedido = ({
             var file = file || e.target.files[0],
               pattern = /^image/,
               reader = new FileReader();
-            if (file.size > 2000000) {
+            if (file.size > 5000000) {
               setFile();
               return setModalActivo({
                 mensaje: "La imagen es demasiado grande",

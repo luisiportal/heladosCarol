@@ -1,0 +1,33 @@
+import nodemailer from 'nodemailer';
+import { GMAIL_KEY } from '../config';
+// import nodemailer from "nodemailer";
+
+export const enviarCorreo = async (to, subject, text) => {
+    // Create a transporter
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "heladoscarol@gmail.com",
+        pass: GMAIL_KEY,
+      },
+    });
+  
+    // Set up email options
+    let mailOptions = {
+      from: "heladoscarol@gmail.com",
+      to: to,
+      subject: subject,
+      text: text,
+    };
+  
+    // Send the email
+    try {
+      let info = await transporter.sendMail(mailOptions);
+      console.log("Email sent: " + info.response);
+      return info;
+    } catch (error) {
+      console.error("Error sending email:", error);
+      throw error;
+    }
+  };
+  
