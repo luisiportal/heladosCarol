@@ -87,19 +87,21 @@ export const createVenta = async (req, res) => {
         "Nueva Factura pendiente de aprobación",
         `Datos de la Factura: \n
         Factura ${factura.id}: \n
-        Fecha: \n
+        Fecha: ${factura.creado}\n
         Sabores: \n
+
+        ------------------------------------------------------------------------------------------------------------------\n
         Entrega: \n
         Entregar a : ${entrega.beneficiario} \n
-        Dirección : Calle ${entrega.calle} # ${entrega.numero}\n
-        Referencia : \n
-        Teléfono : \n
-        Enviado Por: \n
-        Contacto: \n
-        Observaciones: \n
+        Dirección : Calle ${entrega.calle} # ${entrega.numero} entre ${entrega.calle1} y ${entrega.calle2} Reparto ${entrega.reparto}\n
+        Referencia : ${entrega.p_referencia}\n
+        Teléfono :${entrega.tel_beneficiario} \n
+        Enviado Por: ${entrega.ordenante} \n
+        Contacto: ${entrega.contacto_ordenante}\n
+        Observaciones: ${entrega.observaciones} \n
   
   
-        Total : ${total_venta}`
+        Total : ${total_venta} USD`
       );
     });
 
