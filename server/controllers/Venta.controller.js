@@ -85,7 +85,25 @@ export const createVenta = async (req, res) => {
     });
 
     saveImage(req.file, "pagos_facturas");
-    enviarCorreo("heladoscarol@gmail.com", "Nueva Factura pendiente de aprobación",`Datos de la Factura Total : ${total_venta}` )
+    enviarCorreo(
+      "heladoscarol@gmail.com",
+      "Nueva Factura pendiente de aprobación",
+      `Datos de la Factura: \n
+      Factura ${factura.id}: \n
+      Fecha: \n
+      Sabores: \n
+      Entrega: \n
+      Entregar a : ${entrega.beneficiario} \n
+      Dirección : Calle ${entrega.calle} # ${entrega.numero}\n
+      Referencia : \n
+      Teléfono : \n
+      Enviado Por: \n
+      Contacto: \n
+      Observaciones: \n
+
+
+      Total : ${total_venta}`
+    );
 
     return res.status(200).json({ message: "Ventas creadas correctamente" });
   } catch (error) {
