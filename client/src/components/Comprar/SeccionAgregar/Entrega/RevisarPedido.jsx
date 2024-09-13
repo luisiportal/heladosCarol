@@ -30,7 +30,7 @@ const RevisarPedido = ({
 
   return (
     <div>
-      <FacturaCard factura={factura} total={total} />
+      <FacturaCard factura={factura} total={total} file={file} />
 
       <div className="flex flex-col  justify-center text-slate-600 gap-2">
         <h2 className="font-semibold text-slate-700 flex justify-center">
@@ -73,7 +73,7 @@ const RevisarPedido = ({
           }}
         />
         <p>
-          Una vez que recibamos la confirmacion de su pago su orden sera
+          Una vez que recibamos la confirmación de su pago su orden será
           aceptada y procesada.
         </p>
         <h4>Gracias por elegirnos</h4>

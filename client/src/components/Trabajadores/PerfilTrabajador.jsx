@@ -19,7 +19,7 @@ const PerfilTrabajador = () => {
           <div className="rounded-t-lg h-32 overflow-hidden">
             <img
               className="object-cover object-top w-full"
-              //src={"../images/trabajadores/portada/" + perfil.foto_portada}
+              src={"../images/carusel/imagen1.jpg"}
               alt="Foto portada"
             />
           </div>

@@ -21,6 +21,7 @@ function FacturaCard({
   setRecargar,
   recargar,
   total,
+  file,
 }) {
   const { ventas } = factura;
   const {
@@ -32,10 +33,7 @@ function FacturaCard({
     setLoader,
   } = useAuth();
 
-
   const params = useParams();
-  
-  
 
   const handleEliminar = async (id) => {
     if (confirm("¿Estás a punto de eliminar una Venta ?")) {
@@ -114,6 +112,7 @@ function FacturaCard({
             {" "}
             <h6>Evidencia Pago por Zelle :</h6>
             <EvidenciaPagoZelle
+              file={file}
               ruta_image={factura.ruta_image}
               setModalActivo={setModalActivo}
             />

@@ -79,7 +79,7 @@ const NavbarComponent = () => {
             {isAuthenticated && (
               <div className="hidden lg:flex">
                 {/*imagen de perfil*/}
-                <Link to={"trabajador/login"}>
+                <Link to={"/pote"}>
                   <button className="text-slate-500 hover:bg-white hover:text-black-300 p-1 rounded-full transition-colors focus:ring-2 focus:ring-slate-200">
                     <img
                       className="h-12 w-12 rounded-full"
@@ -158,7 +158,7 @@ const NavbarComponent = () => {
             {isAuthenticated && (
               <div className="flex justify-center gap-2">
                 {/*imagen de perfil movil*/}
-                <Link to={"trabajador/login"}>
+                <Link to={"/pote"}>
                   <button className="text-slate-500 hover:bg-heladosCarol_color hover:text-black-300 p-1 rounded-full transition-colors focus:ring-2 focus:ring-slate-200">
                     <img
                       className="h-12 w-12 rounded-full"
