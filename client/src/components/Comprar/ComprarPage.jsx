@@ -5,6 +5,7 @@ import { useCarritos } from "../../context/CarritosContext";
 import { useAuth } from "../../context/AuthContext";
 
 import EntregaYenviaForm from "./SeccionAgregar/Entrega/EntregaYenviaForm";
+import Horario from "../Horario/Horario";
 
 const ComprarPage = () => {
   const { recargar, carrito, setCarrito } = useCarritos();
@@ -27,10 +28,11 @@ const ComprarPage = () => {
 
   });
   return (
-    <div>
+    <div className="pt-10">
       Comprar
       {navegacion == 1 && (
         <>
+        <Horario/>
           <SeccionAgregarSabores
             recargar={recargar}
             setLoader={setLoader}

@@ -108,15 +108,20 @@ function FacturaCard({
         </div>
 
         <>
-          <div className="flex  justify-center items-center gap-2  p-2 text-xs">
-            {" "}
-            <h6>Evidencia Pago por Zelle :</h6>
-            <EvidenciaPagoZelle
-              file={file}
-              ruta_image={factura.ruta_image}
-              setModalActivo={setModalActivo}
-            />
-          </div>
+          {file || factura.ruta_image ? (
+            <div className="flex  justify-center items-center gap-2  p-2 text-xs">
+              {" "}
+              <h6>Evidencia Pago por Zelle :</h6>
+              <EvidenciaPagoZelle
+                file={file}
+                ruta_image={factura.ruta_image}
+                setModalActivo={setModalActivo}
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
           {factura.id && (
             <div>
               {factura.confirmado == true ? (

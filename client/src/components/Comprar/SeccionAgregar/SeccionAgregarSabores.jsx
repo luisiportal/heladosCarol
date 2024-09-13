@@ -29,7 +29,7 @@ const SeccionAgregarSabores = ({
   });
 
   return (
-    <div className="flex justify-center items-center pt-14">
+    <div className="flex justify-center items-center pt-4">
       <div>
         <Formik
           initialValues={movimiento}

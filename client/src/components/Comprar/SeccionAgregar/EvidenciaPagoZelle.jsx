@@ -1,10 +1,9 @@
 import React from "react";
 
 const EvidenciaPagoZelle = ({ ruta_image, setModalActivo, file }) => {
-  const rutacompleta = file
-    ? URL.createObjectURL(file)
-    : `${import.meta.env.VITE_BACKEND_URL}/images/pagos_facturas/${ruta_image}`;
-
+  const rutacompleta = ruta_image
+    ? `${import.meta.env.VITE_BACKEND_URL}/images/pagos_facturas/${ruta_image}`
+    : URL.createObjectURL(file);
   return (
     <img
       onClick={() => {

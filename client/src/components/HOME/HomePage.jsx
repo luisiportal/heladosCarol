@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import Sabores from "./Sabores";
 import MensajeCerrado from "../Modos/MensajeCerrado";
 import { useModocerrado } from "../Modos/useModoCerrado";
+import Horario from "../Horario/Horario";
 
 const HomePage = () => {
   const {modo} = useModocerrado();
@@ -15,7 +16,9 @@ const HomePage = () => {
   return (
     <div className="pt-10  mx-auto max-w-sm">
       <PrimerElemento />
+    
       {modo.activado == true ? <MensajeCerrado modo={modo} /> : <Sabores />}
+      <Horario/>
       <Carrusel />
       <Reviews />
       <Footer />
