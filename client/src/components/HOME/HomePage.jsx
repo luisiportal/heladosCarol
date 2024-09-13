@@ -10,15 +10,16 @@ import { useModocerrado } from "../Modos/useModoCerrado";
 import Horario from "../Horario/Horario";
 
 const HomePage = () => {
-  const {modo} = useModocerrado();
+  const { modo } = useModocerrado();
   console.log("renderizo");
 
   return (
     <div className="pt-10  mx-auto max-w-sm">
+      <Horario />
       <PrimerElemento />
-    
+      
       {modo.activado == true ? <MensajeCerrado modo={modo} /> : <Sabores />}
-      <Horario/>
+
       <Carrusel />
       <Reviews />
       <Footer />

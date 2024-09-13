@@ -26,7 +26,7 @@ const Sabores = () => {
   const nombreSabores = sabores.map((sabor) => ` ${sabor.nombre_sabor}`);
 
   return (
-    <div className="bg-neutral-200 rounded-lg mt-4">
+    <div className="bg-neutral-200 rounded-lg mt-4 pt-4">
       <section className="flex items-center justify-between">
         <div className="w-44">
           {sabores.map(
