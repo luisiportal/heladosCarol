@@ -6,6 +6,9 @@ const Navbar = ({ hidden, isAuthenticated }) => {
   return (
     <div className={`${hidden} m-4 md:m-0 lg:flex md:ml-8 font-semibold`}>
       <ElementoNavbar nombre={"Inicio"} href={"/"}></ElementoNavbar>
+      <ElementoNavbar nombre={"Descripción Producto"} href={"/descripcion"}></ElementoNavbar>
+      <ElementoNavbar nombre={"Historia"} href={"/historia"}></ElementoNavbar>
+      <ElementoNavbar nombre={"Contacto"} href={"/contacto"}></ElementoNavbar>
       {/*<ElementoNavbar nombre={"Rastrear Orden"} href={"/ordenes/"}></ElementoNavbar>*/}
     
 
@@ -30,6 +33,7 @@ const Navbar = ({ hidden, isAuthenticated }) => {
             href={"/opiniones"}
           ></ElementoNavbar>
           <ElementoNavbar nombre={"Logs"} href={"/logs"}></ElementoNavbar>
+          <ElementoNavbar nombre={"Frases"} href={"/frases"}></ElementoNavbar>
           <ElementoNavbar
             nombre={"Modo Cerrado"}
             href={"/cerrado"}

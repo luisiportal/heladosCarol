@@ -32,6 +32,11 @@ import ListarReviewsBackend from "./components/Reviews/Backend/ListarReviewsBack
 import { ReviewContextProvider } from "./context/ReviewProvaider";
 import RastrearOrden from "./components/RastrearOrden/RastrearOrden";
 import CerradoForm from "./components/Modos/CerradoForm";
+import DescripcionProducto from "./components/Landing/DescripcionProducto";
+import Historia from "./components/Landing/Historia";
+import Contacto from "./components/Landing/Contacto";
+import FrasesPage from "./components/Frases/FrasesPage";
+import FrasesForm from "./components/Frases/FrasesForm";
 
 const App = () => {
   return (
@@ -52,6 +57,10 @@ const App = () => {
                   }
                 />
                 <Route path="prueba" element={<Prueba />} />
+                <Route path="/descripcion" element={<DescripcionProducto />} />
+                <Route path="/historia" element={<Historia />} />
+                <Route path="/contacto" element={<Contacto />} />
+
                 <Route path="/ordenes" element={<RastrearOrden />} />
                 <Route
                   path="/comprar"
@@ -64,6 +73,11 @@ const App = () => {
                 <Route element={<ProtectedRoutes />}>
                   <Route path="/cerrado" element={<CerradoForm />} />
                   <Route path="/opiniones" element={<ListarReviewsBackend />} />
+                  <Route path="/frases" element={<FrasesPage />} />
+                  <Route
+                    path="/frases/edit/:id"
+                    element={<FrasesForm/>}
+                  />
                   <Route path="/logs/" element={<LogsPage />} />
                   <Route path="/new" element={<SaboresForm />} />
                   <Route
