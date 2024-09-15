@@ -18,7 +18,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import rastrearOrden from "./routes/rastrearOrden.routes.js";
 import modos from "./routes/Modos.routes.js";
-import frases from "./routes/Frases.routes.js";
+import Frases from "./routes/Frases.routes.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -54,7 +55,7 @@ app.use(reviews);
 app.use(repartos);
 app.use(rastrearOrden);
 app.use(modos);
-app.use(frases);
+app.use(Frases);
 
 app.listen(PUERTO, () => {
   console.log(`El server esta en el puerto : ${PUERTO}....`);
