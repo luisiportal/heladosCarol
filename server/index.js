@@ -16,9 +16,9 @@ import reviews from "./routes/reviews.routes.js";
 import repartos from "./routes/repartos.routes.js";
 import path from "path";
 import { fileURLToPath } from "url";
+import frases from "./routes/frases.routes.js";
 import rastrearOrden from "./routes/rastrearOrden.routes.js";
 import modos from "./routes/Modos.routes.js";
-import Frases from "./routes/Frases.routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -55,7 +55,7 @@ app.use(reviews);
 app.use(repartos);
 app.use(rastrearOrden);
 app.use(modos);
-app.use(Frases);
+app.use(frases);
 
 app.listen(PUERTO, () => {
   console.log(`El server esta en el puerto : ${PUERTO}....`);
