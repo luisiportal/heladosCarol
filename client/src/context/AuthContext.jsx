@@ -101,18 +101,18 @@ export const AuthProvider = ({ children }) => {
     async function checkLogin() {
       const cookies = Cookies.get();
 
-console.log(cookies);
+      console.log(Cookies.get());
 
       if (!cookies.token) {
         // setIsAuthenticated(false); probando
-        console.log('no cookie');
-        
+        console.log("no cookie");
+
         return setUser(null);
       }
       try {
         const res = await verifyTokenRequest(cookies.token);
-        console.log('token verificadoi');
-        
+        console.log("token verificadoi");
+
         if (res.status != 200)
           return setModalActivo({
             mensaje: "No hay conexión",
@@ -126,7 +126,7 @@ console.log(cookies);
         }
 
         setIsAuthenticated(true);
-        cargarPerfil(res.data.id_trabajador)
+        cargarPerfil(res.data.id_trabajador);
         setUser(res.data);
 
         setLoading(false);
