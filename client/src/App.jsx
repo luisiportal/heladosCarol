@@ -44,8 +44,8 @@ const App = () => {
       <SaboresContextProvider>
         <AuthProvider>
           <ReviewContextProvider>
-            <div className="container">
-              <Navbar />
+            <Navbar />
+            <div className="container max-w-md mx-auto">
               <Routes>
                 <Route path="/pote" element={<Trabajador />} />
                 <Route
@@ -74,10 +74,7 @@ const App = () => {
                   <Route path="/cerrado" element={<CerradoForm />} />
                   <Route path="/opiniones" element={<ListarReviewsBackend />} />
                   <Route path="/frases" element={<FrasesPage />} />
-                  <Route
-                    path="/frases/edit/:id"
-                    element={<FrasesForm/>}
-                  />
+                  <Route path="/frases/edit/:id" element={<FrasesForm />} />
                   <Route path="/logs/" element={<LogsPage />} />
                   <Route path="/new" element={<SaboresForm />} />
                   <Route

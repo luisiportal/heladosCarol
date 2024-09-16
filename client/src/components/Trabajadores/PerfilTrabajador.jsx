@@ -8,17 +8,16 @@ import EditSVG from "../SVG/EditSVG";
 const PerfilTrabajador = () => {
   const { logout, user, perfil, cargarPerfil, loader, setLoader } = useAuth();
 
-
   const navigate = useNavigate();
   const params = useParams();
 
   return (
     <div>
-      <div className="pt-24">
-        <div className=" min-h-80 max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto bg-neutral-200 shadow-xl rounded-lg text-gray-900">
-          <div className="rounded-t-lg h-32 overflow-hidden">
+      <div className="pt-24 rounded-lg">
+        <div className=" min-h-80 max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto bg-neutral-200 shadow-xl  text-gray-900">
+          <div className="h-32 overflow-hidden rounded-xl">
             <img
-              className="object-cover object-top w-full"
+              className="object-cover object-top w-full rounded-xl"
               src={"../images/carusel/imagen1.jpg"}
               alt="Foto portada"
             />
