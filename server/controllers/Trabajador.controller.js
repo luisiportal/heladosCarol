@@ -85,7 +85,7 @@ export const login = async (req, res) => {
     }
 
     const token = await createAccessToken({ id: userFound.id_trabajador });
-    console.log(token);
+ 
 
     res.cookie("token", token, {
       domain: DOMAIN, // Establece el dominio de la cookie
@@ -94,6 +94,7 @@ export const login = async (req, res) => {
       sameSite: "none",
       maxAge: 3600000 // La cookie expirará en 1 hora (3600000 milisegundos)
     });
+  
 
     await registrarLog(
       "Inicio",
