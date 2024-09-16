@@ -104,10 +104,14 @@ export const AuthProvider = ({ children }) => {
 
       if (!cookies.token) {
         // setIsAuthenticated(false); probando
+        console.log('no cookie');
+        
         return setUser(null);
       }
       try {
         const res = await verifyTokenRequest(cookies.token);
+        console.log('token verificadoi');
+        
         if (res.status != 200)
           return setModalActivo({
             mensaje: "No hay conexión",
