@@ -26,8 +26,10 @@ export const EnviarCorreo = async (to, subject, text) => {
       console.log("Email sent: " + info.response);
       return info;
     } catch (error) {
+     console.log(error);
+           
       console.error("Error sending email:", error);
-      throw error;
+      
     }
   };
   

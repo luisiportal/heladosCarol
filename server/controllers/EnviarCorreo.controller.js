@@ -6,7 +6,7 @@ export const NotificarConfirmadoFacturaCliente = (entrega) => {
   EnviarCorreo(
     `${entrega.contacto_ordenante}`,
     "Su factura ha sido confirmada",
-    `Hola ${entrega.ordenante} , hemos confimado su pago y su orden ya esta en proceso de entrega.`
+    `Hola ${entrega.ordenante} , hemos confimado su pago y su orden ya esta en proceso de entrega. \n Atentamente HeladosCarol.com`
   );
 };
 
@@ -50,7 +50,9 @@ export const NotificarFacturaCliente = (
         Observaciones: ${entrega.observaciones} \n
   
   
-        Total : ${total_venta} USD`
+        Total : ${total_venta} USD \n
+        HeladosCarol.com`
+        
   );
 };
 

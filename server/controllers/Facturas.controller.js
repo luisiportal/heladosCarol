@@ -16,8 +16,7 @@ export const confirmarFactura = async (req, res) => {
       },
     });
 
-    console.log(entrega);
-
+    
     response.confirmado = true;
     response.estado = "Aceptada";
     await response.save();
