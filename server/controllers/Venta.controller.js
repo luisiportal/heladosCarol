@@ -7,8 +7,11 @@ import { Movimiento } from "../models/Movimientos.model.js";
 import { Entrega } from "../models/Entrega.model.js";
 import { Sabor } from "../models/Sabor.model.js";
 import { saveImage } from "./upload.multer.js";
-import { sendMessageToNumber } from "../TelegramBot/telegramBot.js";
-import { enviarCorreo } from "../Gmail/NodeMailer.js";
+
+import {
+  NotificarFactura,
+  NotificarFacturaCliente,
+} from "./EnviarCorreo.controller.js";
 
 export const createVenta = async (req, res) => {
   let ruta_image = "defaultPerfil.jpg";
@@ -82,31 +85,11 @@ export const createVenta = async (req, res) => {
           { transaction: t }
         );
       }
-      enviarCorreo(
-        "heladoscarol@gmail.com",
-        "Nueva Factura pendiente de aprobación",
-        `Datos de la Factura: \n
-        Factura ${factura.id}: \n
-        Fecha: ${factura.creado}\n
-        Sabores: \n
-
-        ------------------------------------------------------------------------------------------------------------------\n
-        Entrega: \n
-        Entregar a : ${entrega.beneficiario} \n
-        Dirección : Calle ${entrega.calle} # ${entrega.numero} entre ${entrega.calle1} y ${entrega.calle2} Reparto ${entrega.reparto}\n
-        Referencia : ${entrega.p_referencia}\n
-        Teléfono :${entrega.tel_beneficiario} \n
-        Enviado Por: ${entrega.ordenante} \n
-        Contacto: ${entrega.contacto_ordenante}\n
-        Observaciones: ${entrega.observaciones} \n
-  
-  
-        Total : ${total_venta} USD`
-      );
+      NotificarFactura(productos, factura, entrega, total_venta);
+      NotificarFacturaCliente(productos, factura, entrega, total_venta);
     });
 
     saveImage(req.file, "pagos_facturas");
- 
 
     return res.status(200).json({ message: "Ventas creadas correctamente" });
   } catch (error) {
