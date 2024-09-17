@@ -15,7 +15,7 @@ export const NotificarEntregadoFacturaCliente = (entrega) => {
       `${entrega.contacto_ordenante}`,
       "Su factura ha sido entregada",
       `Hola ${entrega.ordenante} , su orden ha sido entregada. \n 
-      Puede dejarnos su opinión en www.heladoscarol.com`
+      Puede dejarnos su opinión en https://www.heladoscarol.com`
     );
   };
   
@@ -35,7 +35,7 @@ export const NotificarFacturaCliente = (
     `Datos de la Factura: \n
         Factura ${factura.id}: \n
         Fecha: ${factura.creado}\n
-        Sabores: ${productos.map((producto) => producto.nombre_sabor)}\n
+        Sabores: ${productos.map((producto) => producto.nombre_sabor +"Cantidad : "+producto.cantidad )}\n
 
         ------------------------------------------------------------------------------------------------------------------\n
         Entrega: \n
@@ -51,7 +51,7 @@ export const NotificarFacturaCliente = (
   
   
         Total : ${total_venta} USD \n
-        HeladosCarol.com`
+        https://www.heladoscarol.com`
         
   );
 };
@@ -67,7 +67,7 @@ export const NotificarFactura = (productos, factura, entrega, total_venta) => {
     `Datos de la Factura: \n
         Factura ${factura.id}: \n
         Fecha: ${factura.creado}\n
-        Sabores: ${productos.map((producto) => producto.nombre_sabor)}\n
+      Sabores: ${productos.map((producto) => producto.nombre_sabor +"Cantidad : "+producto.cantidad )}\n
 
         ------------------------------------------------------------------------------------------------------------------\n
         Entrega: \n
@@ -82,6 +82,7 @@ export const NotificarFactura = (productos, factura, entrega, total_venta) => {
         Observaciones: ${entrega.observaciones} \n
   
   
-        Total : ${total_venta} USD`
+        Total : ${total_venta} USD \n
+        https://www.heladoscarol.com`
   );
 };
