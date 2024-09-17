@@ -32,7 +32,7 @@ export const NotificarFacturaCliente = (
     `Datos de la Factura: \n
         Factura ${factura.id}: \n
         Fecha: ${factura.creado}\n
-        Sabores: ${productos.map((producto) => producto.nombre_sabor +" Cantidad : "+producto.cantidad + "\n" )}
+        Sabores: ${productos.map((producto) =>` ${producto.nombre_sabor} Cantidad : ${producto.cantidad} \n` )}
 
         ------------------------------------------------------------------------------------------------------------------\n
         Entrega: \n
