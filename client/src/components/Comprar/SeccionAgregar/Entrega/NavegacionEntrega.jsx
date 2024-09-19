@@ -4,6 +4,7 @@ import ArrowRight from "../../../SVG/ArrowRight";
 
 import ArrowLeftSVG from "../../../SVG/ArrowLeftSVG";
 import { validateYupSchema } from "formik";
+import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
 
 const NavegacionEntrega = ({
   setNavegacion,
@@ -36,6 +37,7 @@ const NavegacionEntrega = ({
             text={`Continuar`}
             type={"button"}
             onclick={() => {
+              
               setNavegacion(3);
             }}
           />
@@ -45,15 +47,14 @@ const NavegacionEntrega = ({
             text={`Enviar`}
             type={"submit"}
             onclick={() => {
+              validateYupSchema(entrega,schema);
               if (errors) {
-                console.log(errors);
-
                 return setModalActivo({
-                  mensaje: "Revise los datos de Entrega antes de enviar la orden",
+                  mensaje:
+                    "Revise los datos de Entrega antes de enviar la orden",
                   activo: true,
                   errorColor: true,
                 });
-                
               }
             }}
           />

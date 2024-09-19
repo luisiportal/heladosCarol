@@ -23,7 +23,7 @@ export const ComentarioContextProvider = ({ children }) => {
  
 
     const response = await getReviewsRequest();
-    console.log(response);
+
 
     setReviews(response.data);
   }

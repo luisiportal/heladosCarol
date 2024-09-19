@@ -5,7 +5,7 @@ const InputEntrega = ({type,name,placeholder,handlechange,value,errors}) => {
   return (
     <>
       <input
-        className="rounded-xl w-full bg-neutral-200 placeholder:text-slate-800 font-semibold p-2 mb-4"
+        className="rounded-xl w-full bg-neutral-200 placeholder:text-slate-600 font-semibold p-2 mb-3"
         type={type}
         name={name}
         placeholder={placeholder}

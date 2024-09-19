@@ -10,8 +10,8 @@ const SeccionComprar = ({navigate}) => {
       <div className="flex justify-center mb-2">
         <PoteHelado />
       </div>
-      <h2 className="flex justify-center text-slate-700 text-xs">
-       
+      <h2 className="flex justify-center text-slate-800 font-semibold  text-xs mb-2">
+       296 ml (10 onz)
       </h2>
       <h2 className="flex justify-center text-xs text-slate-700">
        

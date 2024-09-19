@@ -11,7 +11,7 @@ import Horario from "../Horario/Horario";
 
 const HomePage = () => {
   const { modo } = useModocerrado();
-  console.log("renderizo");
+
 
   return (
     <div className="pt-10  mx-auto max-w-sm">

@@ -16,54 +16,47 @@ import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
 
 const schema = Yup.object({
   ordenante: Yup.string()
-    .required("Campo requerido")
+    .required("Falta el Ordenante")
     .matches(/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/, "Solo se permiten letras")
-    .max(100, "El nombre no debe tener más de 20 caracteres"),
+    .max(400, "El nombre no debe tener más de 400 caracteres"),
 
   contacto_ordenante: Yup.string()
-    .required("Campo requerido")
+    .required("Falta contacto del ordenante")
     .matches(/^[a-zA-Z-@.0-9 ]*$/, "Solo se permiten letras")
-    .max(50, "El nombre de no debe tener más de 50 caracteres"),
+    .max(400, "El correo de no debe tener más de 400 caracteres"),
   beneficiario: Yup.string()
-    .required("Campo requerido")
+    .required("Falta el beneficiario")
     .matches(/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/, "Solo se permiten letras")
-    .max(100, "El nombre de no debe tener más de 40 caracteres"),
+    .max(400, "El nombre  no debe tener más de 40 caracteres"),
 
   tel_beneficiario: Yup.string()
-    .required("Campo requerido")
-    .matches(/^[0-9-+ ]*$/, "Solo se permiten numeros")
-    .max(20, "El telefono no debe tener más de 20 caracteres"),
+    .required("Falta teléfono beneficiario")
+    .matches(/^[0-9-+ ]*$/, "Solo se permiten números")
+    .max(20, "El teléfono no debe tener más de 20 caracteres"),
 
   calle: Yup.string()
-    .required("Campo requerido")
+    .required("Falta la Calle")
     .matches(
       /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9-.]*$/,
-      "Solo se permiten letras, números y espacios"
+      "Solo se permiten letras, numeros y espacios"
     )
-    .max(40, "El nombre no debe tener más de 40 caracteres"),
+    .max(400, "El nombre no debe tener más de 400 caracteres"),
   numero: Yup.string()
-    .required("Campo requerido")
+    .required("Falta la casa o APTO")
     .matches(
       /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9-.]*$/,
       "Solo se permiten letras, números y espacios"
     )
-    .max(20, "El número de la casa no debe tener más de 5 caracteres"),
+    .max(20, "El número de la casa no debe tener más de 20 caracteres"),
 
   calle1: Yup.string()
-    .required("Campo requerido")
+    .required("Falta entre calles o Apto")
     .matches(
       /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9-.]*$/,
       "Solo se permiten letras, números y espacios"
     )
-    .max(40, "El nombre no debe tener más de 40 caracteres"),
-  calle2: Yup.string()
-    .required("Campo requerido")
-    .matches(
-      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9-.]*$/,
-      "Solo se permiten letras, números y espacios"
-    )
-    .max(40, "El nombre no debe tener más de 40 caracteres"),
-  reparto: Yup.string().required("Campo requerido"),
+    .max(40, "La calle no debe tener más de 400 caracteres"),
+  reparto: Yup.string().required("Falta el Reparto"),
 
   p_referencia: Yup.string()
 
@@ -73,14 +66,12 @@ const schema = Yup.object({
     )
     .max(400, "La Referencia no debe tener más de 400 caracteres"),
 
-    observaciones: Yup.string()
+  observaciones: Yup.string()
     .matches(
       /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s0-9]*$/,
       "Solo se permiten letras, números y espacios"
     )
     .max(400, "No debe tener más de 400 caracteres"),
-
-
 });
 
 const EntregaYenviaForm = ({
@@ -143,7 +134,7 @@ const EntregaYenviaForm = ({
         validationSchema={schema}
         onSubmit={async (values) => {
           if (file == null) {
-          return  setModalActivo({
+            return setModalActivo({
               mensaje: "Debe subir una captura del pago",
               activo: true,
               errorColor: true,
@@ -197,25 +188,28 @@ const EntregaYenviaForm = ({
                   <h2 className="font-inspiration text-2xl flex justify-center p-1">
                     Datos de Entrega
                   </h2>
-                  <InputEntrega
-                    type={"text"}
-                    name={"ordenante"}
-                    placeholder={"Ordenante"}
-                    handlechange={handleChangeMio}
-                    value={entrega.ordenante}
-                    errors={errors}
-                  />
-                  <div className="flex justify-end relative top-2 right-4">
-                    <DerretidoBeneficiario />
+                  <div className="bg-fresa p-2 mb-2 pt-5 rounded-xl">
+                    {" "}
+                    <InputEntrega
+                      type={"text"}
+                      name={"ordenante"}
+                      placeholder={"Ordenante"}
+                      handlechange={handleChangeMio}
+                      value={entrega.ordenante}
+                      errors={errors}
+                    />
+                    <div className="flex justify-end relative top-2 right-4">
+                      <DerretidoBeneficiario />
+                    </div>
+                    <InputEntrega
+                      type={"text"}
+                      name={"contacto_ordenante"}
+                      placeholder={"Correo o teléfono"}
+                      handlechange={handleChangeMio}
+                      value={entrega.contacto_ordenante}
+                      errors={errors}
+                    />
                   </div>
-                  <InputEntrega
-                    type={"text"}
-                    name={"contacto_ordenante"}
-                    placeholder={"Correo o teléfono"}
-                    handlechange={handleChangeMio}
-                    value={entrega.contacto_ordenante}
-                    errors={errors}
-                  />
                   <InputEntrega
                     type={"text"}
                     name={"beneficiario"}
@@ -233,38 +227,28 @@ const EntregaYenviaForm = ({
                     errors={errors}
                   />
                   <label>Dirección de Entrega:</label>
-                  <div className="flex gap-1">
-                    <InputEntrega
-                      type={"text"}
-                      name={"calle"}
-                      placeholder={"Calle"}
-                      handlechange={handleChangeMio}
-                      value={entrega.calle}
-                      errors={errors}
-                    />
-                    <InputEntrega
-                      type={"text"}
-                      name={"numero"}
-                      placeholder={"Número Casa"}
-                      handlechange={handleChangeMio}
-                      value={entrega.numero}
-                      errors={errors}
-                    />
-                  </div>
                   <InputEntrega
                     type={"text"}
-                    name={"calle1"}
-                    placeholder={"Entre Calle"}
+                    name={"calle"}
+                    placeholder={"Calle"}
                     handlechange={handleChangeMio}
-                    value={entrega.calle1}
+                    value={entrega.calle}
                     errors={errors}
                   />
                   <InputEntrega
                     type={"text"}
-                    name={"calle2"}
-                    placeholder={"Entre calle"}
+                    name={"numero"}
+                    placeholder={"Número Casa o Apto"}
                     handlechange={handleChangeMio}
-                    value={entrega.calle2}
+                    value={entrega.numero}
+                    errors={errors}
+                  />
+                  <InputEntrega
+                    type={"text"}
+                    name={"calle1"}
+                    placeholder={"Entre Calles o Edificio"}
+                    handlechange={handleChangeMio}
+                    value={entrega.calle1}
                     errors={errors}
                   />
                   <div className="left-6 relative bottom-4">
@@ -288,7 +272,7 @@ const EntregaYenviaForm = ({
                     value={entrega.p_referencia}
                     errors={errors}
                   />
-                    <InputEntrega
+                  <InputEntrega
                     type={"text"}
                     name={"observaciones"}
                     handlechange={handleChangeMio}
@@ -296,7 +280,6 @@ const EntregaYenviaForm = ({
                     value={entrega.observaciones}
                     errors={errors}
                   />
-                  
                 </div>
               )}
               {navegacion == 3 && (

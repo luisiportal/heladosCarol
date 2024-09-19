@@ -1,6 +1,6 @@
 import { EnviarCorreo } from "../Gmail/NodeMailer.js";
 
-
+() => {};
 
 export const NotificarConfirmadoFacturaCliente = (entrega) => {
   EnviarCorreo(
@@ -11,20 +11,22 @@ export const NotificarConfirmadoFacturaCliente = (entrega) => {
 };
 
 export const NotificarEntregadoFacturaCliente = (entrega) => {
-    EnviarCorreo(
-      `${entrega.contacto_ordenante}`,
-      "Su factura ha sido entregada",
-      `Hola ${entrega.ordenante} , su orden ha sido entregada. \n 
+  EnviarCorreo(
+    `${entrega.contacto_ordenante}`,
+    "Su factura ha sido entregada",
+    `Hola ${entrega.ordenante} , su orden ha sido entregada. \n 
       Puede dejarnos su opinión en https://www.heladoscarol.com`
-    );
-  };
-  
+  );
+};
+
 export const NotificarFacturaCliente = (
   productos,
   factura,
   entrega,
   total_venta
 ) => {
+  let grandTotalCobrar = Number(total_venta) + Number(entrega.envio);
+  grandTotalCobrar = Math.round(grandTotalCobrar * 10) / 10;
 
   EnviarCorreo(
     `${entrega.contacto_ordenante}`,
@@ -32,7 +34,10 @@ export const NotificarFacturaCliente = (
     `Datos de la Factura: \n
         Factura ${factura.id}: \n
         Fecha: ${factura.creado}\n
-        Sabores: ${productos.map((producto) =>` ${producto.nombre_sabor} Cantidad : ${producto.cantidad} \n` )}
+        Sabores: ${productos.map(
+          (producto) =>
+            ` ${producto.nombre_sabor} Cantidad : ${producto.cantidad} \n`
+        )}
 
         ------------------------------------------------------------------------------------------------------------------\n
         Entrega: \n
@@ -47,24 +52,22 @@ export const NotificarFacturaCliente = (
         Observaciones: ${entrega.observaciones} \n
   
   
-        Total : ${total_venta} USD \n
+        Total : ${grandTotalCobrar} USD \n
         https://www.heladoscarol.com`
-        
   );
 };
 
 export const NotificarFactura = (productos, factura, entrega, total_venta) => {
-  console.log(
-    productos.map((producto) => producto.nombre_sabor + "" + producto.cantidad)
-  );
-
   EnviarCorreo(
     "heladoscarol@gmail.com",
     "Nueva Factura pendiente de aprobación",
     `Datos de la Factura: \n
         Factura ${factura.id}: \n
         Fecha: ${factura.creado}\n
-      Sabores: ${productos.map((producto) => producto.nombre_sabor +"Cantidad : "+producto.cantidad )}\n
+      Sabores: ${productos.map(
+        (producto) =>
+          ` ${producto.nombre_sabor} Cantidad : ${producto.cantidad} \n`
+      )}
 
         ------------------------------------------------------------------------------------------------------------------\n
         Entrega: \n
