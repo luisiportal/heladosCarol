@@ -1,9 +1,9 @@
-import { where } from "sequelize";
+
 import sequelize from "../db.js";
 import { Entrega } from "../models/Entrega.model.js";
 import { Factura } from "../models/Facturas.model.js";
 import { registrarLog } from "./AuditLog.controllers.js";
-import { NotificarConfirmadoFacturaCliente } from "./EnviarCorreo.controller.js";
+import { NotificarConfirmadoFacturaCliente, NotificarEntregadoFacturaCliente } from "./EnviarCorreo.controller.js";
 
 export const confirmarFactura = async (req, res) => {
   const id = req.params.id;
@@ -23,6 +23,27 @@ export const confirmarFactura = async (req, res) => {
     res.json(response);
     await registrarLog("Confirmo", "Factura", `${response.id}`, req, "");
     NotificarConfirmadoFacturaCliente(entrega);
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const estadoFacturaEntregada = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const response = await Factura.findByPk(id);
+    const entrega = await Entrega.findOne({
+      where: {
+        id_factura: id,
+      },
+    });
+
+    
+    response.estado = "Entregada";
+    await response.save();
+    res.json(response);
+    await registrarLog("Confirmo", "Factura", `${response.id}`, req, "");
+    NotificarEntregadoFacturaCliente(entrega);
   } catch (error) {
     console.error(error);
   }

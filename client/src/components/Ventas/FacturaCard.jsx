@@ -1,5 +1,8 @@
 import { useParams } from "react-router-dom";
-import { confirmarFacturaRequest } from "../../api/factura.api";
+import {
+  confirmarFacturaRequest,
+  estadoEntregadaFacturaRequest,
+} from "../../api/factura.api";
 import { deleteFacturaRequest } from "../../api/venta.api";
 import { useAuth } from "../../context/AuthContext";
 import { grandTotalFactura } from "../../utils/grandTotalFactura";
@@ -13,6 +16,7 @@ import ElimiarFacturaBTN from "./CardFacturaItems/ElimiarFacturaBTN";
 import SaboresFactura from "./CardFacturaItems/SaboresFactura";
 import TotalFactura from "./CardFacturaItems/TotalFactura";
 import EditFechaFactura from "./EditFechaFactura";
+import TruckEntregaSVG from "../SVG/TruckEntregaSVG";
 
 function FacturaCard({
   factura,
@@ -56,6 +60,12 @@ function FacturaCard({
   const handleConfirmar = async (id) => {
     setLoader(true);
     await confirmarFacturaRequest(id);
+    setRecargar(!recargar);
+    setLoader(false);
+  };
+  const handleEstadoEntregada = async (id) => {
+    setLoader(true);
+    await estadoEntregadaFacturaRequest(id);
     setRecargar(!recargar);
     setLoader(false);
   };
@@ -128,10 +138,16 @@ function FacturaCard({
                 <>
                   {" "}
                   <h2 className="bg-green-400 flex justify-center text-neutral-100 rounded-lg m-2">
-                    Factura Aceptada
+                    {factura.estado}
                   </h2>
                   {perfil.privilegio == "Administrador" ? (
-                    <div className="flex justify-end p-2">
+                    <div className="flex  p-2 justify-between">
+                      <button
+                        className="w-8 h-8"
+                        onClick={() => handleEstadoEntregada(factura.id)}
+                      >
+                        {(factura.estado =="Entregada")?"":<TruckEntregaSVG />}
+                      </button>
                       <ElimiarFacturaBTN
                         id={factura.id}
                         handleEliminar={handleEliminar}
