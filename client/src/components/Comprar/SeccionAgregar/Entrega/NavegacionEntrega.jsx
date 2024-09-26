@@ -3,7 +3,7 @@ import Btn_Huellas from "../../../Btn_Huellas";
 import ArrowRight from "../../../SVG/ArrowRight";
 
 import ArrowLeftSVG from "../../../SVG/ArrowLeftSVG";
-import { validateYupSchema } from "formik";
+import { Formik, validateYupSchema } from "formik";
 import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
 
 const NavegacionEntrega = ({
@@ -37,8 +37,19 @@ const NavegacionEntrega = ({
             text={`Continuar`}
             type={"button"}
             onclick={() => {
-              
-              setNavegacion(3);
+              schema
+                .validate(entrega)
+                .then(() => {
+                  console.log("El objeto es válido");
+                  setNavegacion(3);
+                })
+                .catch((err) => {
+                  setModalActivo({
+                    mensaje: `${err.errors}`,
+                    activo: true,
+                    errorColor: true,
+                  });
+                });
             }}
           />
         )}
@@ -47,7 +58,7 @@ const NavegacionEntrega = ({
             text={`Enviar`}
             type={"submit"}
             onclick={() => {
-              validateYupSchema(entrega,schema);
+              validateYupSchema(entrega, schema);
               if (errors) {
                 return setModalActivo({
                   mensaje:
