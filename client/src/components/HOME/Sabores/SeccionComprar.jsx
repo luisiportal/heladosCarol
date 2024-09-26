@@ -11,7 +11,7 @@ const SeccionComprar = ({navigate}) => {
         <PoteHelado />
       </div>
       <h2 className="flex justify-center text-slate-800 font-semibold  text-xs mb-2">
-       296 ml (10 onz)
+       0.85 USD | 355 ml (12 onz)
       </h2>
       <h2 className="flex justify-center text-xs text-slate-700">
        

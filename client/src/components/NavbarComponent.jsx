@@ -62,7 +62,7 @@ const NavbarComponent = () => {
         <div className="flex justify-between h-16 items-center max-w-7xl mx-auto">
           <div className="flex -mr-4">
             {/*Logo  */}
-          <LogoHeladosCarol/>
+            <LogoHeladosCarol />
 
             <div className="absolute top-0 left-16">
               <DerretidoVainilla />
@@ -79,15 +79,18 @@ const NavbarComponent = () => {
             {isAuthenticated && (
               <div className="hidden lg:flex">
                 {/*imagen de perfil*/}
-                <Link to={"/pote"}>
+                <a href="/pote">
+                  {" "}
                   <button className="text-slate-500 hover:bg-white hover:text-black-300 p-1 rounded-full transition-colors focus:ring-2 focus:ring-slate-200">
                     <img
                       className="h-12 w-12 rounded-full"
-                      src={`${import.meta.env.VITE_BACKEND_URL}/images/trabajadores/perfil/${perfil.foto_perfil}`}
+                      src={`${
+                        import.meta.env.VITE_BACKEND_URL
+                      }/images/trabajadores/perfil/${perfil.foto_perfil}`}
                       alt="perfil"
                     />
                   </button>
-                </Link>
+                </a>
                 <button
                   onClick={logout}
                   className="text-slate-500 p-1 rounded-full transition-colors focus:ring-2 rotate-180"
@@ -162,7 +165,9 @@ const NavbarComponent = () => {
                   <button className="text-slate-500 hover:bg-heladosCarol_color hover:text-black-300 p-1 rounded-full transition-colors focus:ring-2 focus:ring-slate-200">
                     <img
                       className="h-12 w-12 rounded-full"
-                      src={`${import.meta.env.VITE_BACKEND_URL}/images/trabajadores/perfil/${perfil.foto_perfil}`}
+                      src={`${
+                        import.meta.env.VITE_BACKEND_URL
+                      }/images/trabajadores/perfil/${perfil.foto_perfil}`}
                       alt="perfil"
                     />
                   </button>
