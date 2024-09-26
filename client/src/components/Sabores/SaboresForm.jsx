@@ -8,6 +8,7 @@ import Loader from "../Utilidades/Loader";
 
 const schema = Yup.object().shape({
   nombre_sabor: Yup.string().required("Nombre producto requerido"),
+  envase: Yup.string().required("Envase requerido"),
   costo_unitario: Yup.number()
     .typeError("Debes escribir solo números")
     .positive("El precio debe ser mayor que cero")
@@ -28,6 +29,7 @@ const SaboresForm = () => {
   const [file, setFile] = useState();
   const [sabor, setSabor] = useState({
     nombre_sabor: "",
+    envase:"",
     description_producto: "",
     costo_unitario: 0,
     precio_venta: 0,
@@ -56,6 +58,7 @@ const SaboresForm = () => {
   const handleSubmit = async (values) => {
     const formData = new FormData();
     formData.append("nombre_sabor", values.nombre_sabor);
+    formData.append("envase", values.envase);
     formData.append("color", values.color);
     formData.append("costo_unitario", values.costo_unitario);
     formData.append("precio_venta", values.precio_venta);
@@ -144,6 +147,22 @@ const SaboresForm = () => {
               {errors.nombre_sabor && (
                 <span className="bg-red-500 p-1 m-1">
                   {errors.nombre_sabor}
+                </span>
+              )}
+                <label htmlFor="envase" className="block">
+                * Envase:
+              </label>
+              <input
+                type="text"
+                name="envase"
+                placeholder=""
+                className="my-2 px-2 py-1 rounded-sm w-full"
+                value={values.envase}
+                onChange={handleChange}
+              />
+               {errors.nombre_sabor && (
+                <span className="bg-red-500 p-1 m-1">
+                  {errors.envase}
                 </span>
               )}
               <label htmlFor="color" className="block">

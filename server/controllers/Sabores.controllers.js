@@ -53,6 +53,7 @@ export const createSabor = async (req, res) => {
             color,
             existencia,
             stockMinimo,
+            envase,
             ruta_image,
           },
           { transaction: t }
@@ -70,6 +71,7 @@ export const createSabor = async (req, res) => {
           color,
           existencia,
           stockMinimo,
+          envase,
           ruta_image,
         });
       });
@@ -95,13 +97,15 @@ export const updateSabor = async (req, res) => {
       if (req.file !== undefined) {
         ruta_image = req.file.originalname;
       }
-      const { nombre_sabor, color, existencia, stockMinimo,precio_venta,costo_unitario } = req.body;
+      const { nombre_sabor, color,envase, existencia, stockMinimo,precio_venta,costo_unitario } = req.body;
 
       const response = await Sabor.findByPk(id_sabor);
       response.nombre_sabor = nombre_sabor;
       response.precio_venta = precio_venta;
       response.costo_unitario = costo_unitario;
       response.color = color;
+      response.envase = envase;
+
       ruta_image && (response.ruta_image = ruta_image);
       response.stockMinimo = stockMinimo;
 

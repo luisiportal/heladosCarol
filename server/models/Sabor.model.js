@@ -14,6 +14,9 @@ export const Sabor = sequelize.define("sabores", {
   color: {
     type: DataTypes.STRING,
   },
+  envase: {
+    type: DataTypes.STRING,
+  },
 
   existencia: {
     type: DataTypes.INTEGER,
