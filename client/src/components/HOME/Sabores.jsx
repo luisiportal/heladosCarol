@@ -47,7 +47,7 @@ const Sabores = () => {
           )}
         </div>
         <div>
-          <SeccionComprar sabor={sabores[0]} navigate={navigate} />
+          <SeccionComprar sabor={sabores[0]?? ""} navigate={navigate} />
         </div>
       </section>
       <h2 className="flex justify-center font-irish text-2xl py-2">
