@@ -82,7 +82,7 @@ function FacturaCard({
         </div>
         <div className=" bg-fresa rounded-xl text-xs flex gap-2 p-2 mx-2">
           <SaboresFactura ventas={ventas} envio={factura.entrega.envio} />
-          <TotalFactura total={total.toFixed(2) ?? grandTotal.toFixed(2)} />
+          <TotalFactura total={total ?? grandTotal.toFixed(2)} />
         </div>
 
         <div className="flex-grow flex flex-col  p-2 text-xs">
