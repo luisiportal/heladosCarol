@@ -7,20 +7,16 @@ import { deleteFacturaRequest } from "../../api/venta.api";
 import { useAuth } from "../../context/AuthContext";
 import { grandTotalFactura } from "../../utils/grandTotalFactura";
 import EvidenciaPagoZelle from "../Comprar/SeccionAgregar/EvidenciaPagoZelle";
-import Edit from "../Movimientos/Edit";
-import CheckedSVG from "../SVG/CheckedSVG";
-import EditSVG from "../SVG/EditSVG";
 
-import Bton_eliminar_producto from "./Bton_eliminar_producto";
+import CheckedSVG from "../SVG/CheckedSVG";
+
 import ElimiarFacturaBTN from "./CardFacturaItems/ElimiarFacturaBTN";
 import SaboresFactura from "./CardFacturaItems/SaboresFactura";
 import TotalFactura from "./CardFacturaItems/TotalFactura";
-import EditFechaFactura from "./EditFechaFactura";
 import TruckEntregaSVG from "../SVG/TruckEntregaSVG";
 
 function FacturaCard({
   factura,
-  setFacturas,
   setRecargarFactura,
   setRecargar,
   recargar,
@@ -30,9 +26,6 @@ function FacturaCard({
   const { ventas } = factura;
   const {
     setModalActivo,
-    modalActivo,
-    editando,
-    setEditando,
     perfil,
     setLoader,
   } = useAuth();
@@ -77,7 +70,7 @@ function FacturaCard({
 
   return (
     <div
-      className={`mx-4 my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
+      className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
     >
       <div className="text-left text-slate-700 font-semibold w-full h-full align-middle flex flex-col">
         <div className="flex justify-between font-extralight  text-sm m-2">
@@ -87,9 +80,9 @@ function FacturaCard({
             <p>{new Date(factura.creado).toLocaleString("es-ES")}</p>
           )}
         </div>
-        <div className=" bg-fresa rounded-xl text-xs flex gap-2 p-2">
+        <div className=" bg-fresa rounded-xl text-xs flex gap-2 p-2 mx-2">
           <SaboresFactura ventas={ventas} envio={factura.entrega.envio} />
-          <TotalFactura total={total ?? grandTotal} />
+          <TotalFactura total={total.toFixed(2) ?? grandTotal.toFixed(2)} />
         </div>
 
         <div className="flex-grow flex flex-col  p-2 text-xs">
@@ -99,7 +92,7 @@ function FacturaCard({
               <p>
                 {" "}
                 Dirección : Calle {factura.entrega.calle} #{" "}
-                {factura.entrega.numero} entre {factura.entrega.calle1} y{" "}
+                {factura.entrega.numero} entre {factura.entrega.calle1}
                 {factura.entrega.calle2} Reparto {factura.entrega.reparto}{" "}
               </p>
 
@@ -146,7 +139,11 @@ function FacturaCard({
                         className="w-8 h-8"
                         onClick={() => handleEstadoEntregada(factura.id)}
                       >
-                        {(factura.estado =="Entregada")?"":<TruckEntregaSVG />}
+                        {factura.estado == "Entregada" ? (
+                          ""
+                        ) : (
+                          <TruckEntregaSVG />
+                        )}
                       </button>
                       <ElimiarFacturaBTN
                         id={factura.id}

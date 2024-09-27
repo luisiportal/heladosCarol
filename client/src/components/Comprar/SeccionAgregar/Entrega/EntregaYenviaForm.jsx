@@ -180,7 +180,7 @@ const EntregaYenviaForm = ({
           validateForm,
         }) => (
           <Form>
-            <section className=" p-4 mx-2 bg-vainilla rounded-xl">
+            <section className=" p-2 mx-2 bg-vainilla rounded-xl">
               {navegacion == 2 && (
                 <div>
                   {" "}
