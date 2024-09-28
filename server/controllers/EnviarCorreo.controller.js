@@ -1,7 +1,5 @@
 import { EnviarCorreo } from "../Gmail/NodeMailer.js";
 
-() => {};
-
 export const NotificarConfirmadoFacturaCliente = (entrega) => {
   EnviarCorreo(
     `${entrega.contacto_ordenante}`,
@@ -44,7 +42,7 @@ export const NotificarFacturaCliente = (
         Entregar a : ${entrega.beneficiario} \n
         Dirección : Calle ${entrega.calle} # ${entrega.numero} entre ${
       entrega.calle1
-    } y ${entrega.calle2} Reparto ${entrega.reparto}\n
+    }  Reparto ${entrega.reparto}\n
         Referencia : ${entrega.p_referencia}\n
         Teléfono :${entrega.tel_beneficiario} \n
         Enviado Por: ${entrega.ordenante} \n
@@ -58,6 +56,9 @@ export const NotificarFacturaCliente = (
 };
 
 export const NotificarFactura = (productos, factura, entrega, total_venta) => {
+
+  let grandTotalCobrar = Number(total_venta) + Number(entrega.envio);
+  grandTotalCobrar = Math.round(grandTotalCobrar * 10) / 10;
   EnviarCorreo(
     "heladoscarol@gmail.com",
     "Nueva Factura pendiente de aprobación",
@@ -74,7 +75,7 @@ export const NotificarFactura = (productos, factura, entrega, total_venta) => {
         Entregar a : ${entrega.beneficiario} \n
         Dirección : Calle ${entrega.calle} # ${entrega.numero} entre ${
       entrega.calle1
-    } y ${entrega.calle2} Reparto ${entrega.reparto}\n
+    } Reparto ${entrega.reparto}\n
         Referencia : ${entrega.p_referencia}\n
         Teléfono :${entrega.tel_beneficiario} \n
         Enviado Por: ${entrega.ordenante} \n
@@ -82,7 +83,7 @@ export const NotificarFactura = (productos, factura, entrega, total_venta) => {
         Observaciones: ${entrega.observaciones} \n
   
   
-        Total : ${total_venta} USD \n
+        Total : ${grandTotalCobrar} USD \n
         https://www.heladoscarol.com`
   );
 };
