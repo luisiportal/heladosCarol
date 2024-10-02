@@ -39,7 +39,7 @@ export const createSabor = async (req, res) => {
   }
 
   try {
-    const { nombre_sabor, color, existencia, stockMinimo,precio_venta,costo_unitario } = req.body;
+    const { nombre_sabor, color,envase, existencia, stockMinimo,precio_venta,costo_unitario } = req.body;
 
     // Iniciar una transacción
 

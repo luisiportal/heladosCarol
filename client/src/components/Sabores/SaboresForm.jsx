@@ -24,7 +24,7 @@ const schema = Yup.object().shape({
 const SaboresForm = () => {
   const { createSabor, getSabor, updateSabor } = useSabores();
 
-  const { loader, setLoader, isOnline, modalActivo, setModalActivo } =
+  const { loader, setLoader,  setModalActivo } =
     useAuth();
   const [file, setFile] = useState();
   const [sabor, setSabor] = useState({
