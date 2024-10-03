@@ -18,8 +18,7 @@ const SeccionSaboresCarrito = ({
       (sum, producto) => sum + producto.precio_venta * producto.cantidad,
       0
     );
-    totalLocal = Math.round(totalLocal * 10) / 10;
-
+    
   }
 
   return (
@@ -29,7 +28,7 @@ const SeccionSaboresCarrito = ({
         carrito.map((sabor) => {
           let totalSabor =
             Number(sabor.cantidad) * Number(sabor.precio_venta);
-            totalSabor = Math.round(totalSabor * 10) / 10;
+            
           const miArray = [16, 32, 40];
           const indiceAleatorio = Math.floor(Math.random() * miArray.length);
           const right = miArray[indiceAleatorio];

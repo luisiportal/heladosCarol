@@ -19,7 +19,7 @@ const SaboresFactura = ({ ventas, envio }) => {
           </div>
           <div>
             {sabor.precio_total_sabor ??
-              Math.round(sabor.precio_venta * sabor.cantidad * 10) / 10}
+              (sabor.precio_venta * sabor.cantidad )}
             USD
           </div>
         </div>

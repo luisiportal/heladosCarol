@@ -24,7 +24,7 @@ export const NotificarFacturaCliente = (
   total_venta
 ) => {
   let grandTotalCobrar = Number(total_venta) + Number(entrega.envio);
-  grandTotalCobrar = Math.round(grandTotalCobrar * 10) / 10;
+
 
   EnviarCorreo(
     `${entrega.contacto_ordenante}`,
@@ -56,9 +56,8 @@ export const NotificarFacturaCliente = (
 };
 
 export const NotificarFactura = (productos, factura, entrega, total_venta) => {
-
   let grandTotalCobrar = Number(total_venta) + Number(entrega.envio);
-  grandTotalCobrar = Math.round(grandTotalCobrar * 10) / 10;
+
   EnviarCorreo(
     "heladoscarol@gmail.com",
     "Nueva Factura pendiente de aprobación",
