@@ -89,7 +89,7 @@ export const login = async (req, res) => {
 
     res.cookie("token", token, {
       domain: DOMAIN, // Establece el dominio de la cookie
-      secure: SECURE, // La cookie sólo se envía a través de HTTPS
+      secure: false, // La cookie sólo se envía a través de HTTPS
       httpOnly: HTTPONLY,
       sameSite: "none",
       maxAge: 3600000 // La cookie expirará en 1 hora (3600000 milisegundos)
