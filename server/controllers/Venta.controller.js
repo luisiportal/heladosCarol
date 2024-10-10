@@ -28,7 +28,6 @@ export const createVenta = async (req, res) => {
   );
 
   let grandTotalCobrar = Number(total_venta) + Number(entrega.envio);
- 
 
   let fechaActual = new Date();
   let creado = fechaActual.toISOString();
@@ -86,7 +85,9 @@ export const createVenta = async (req, res) => {
         );
       }
       NotificarFactura(productos, factura, entrega, total_venta);
-      NotificarFacturaCliente(productos, factura, entrega, total_venta);
+      if (entrega.contacto_ordenante.includes("@")) {
+        NotificarFacturaCliente(productos, factura, entrega, total_venta);
+      }
     });
 
     saveImage(req.file, "pagos_facturas");
