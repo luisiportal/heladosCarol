@@ -3,6 +3,8 @@ import { GMAIL_KEY } from '../config.js';
 // import nodemailer from "nodemailer";
 
 export const EnviarCorreo = async (to, subject, text) => {
+
+  if (!to) return 0;
     // Create a transporter
     let transporter = nodemailer.createTransport({
       service: "gmail",
