@@ -101,10 +101,11 @@ export const AuthProvider = ({ children }) => {
     async function checkLogin() {
       if (!isAuthenticated) {
         const userStorage = readLocalStorage("user");
-   
+
         try {
           const res = await verifyTokenRequest({ token: userStorage.token });
-
+          console.log(res.status);
+          
           if (res.status != 200)
             return setModalActivo({
               mensaje: "No hay conexión",
