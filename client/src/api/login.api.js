@@ -1,7 +1,7 @@
 import axios from "./axios.js";
 
 export const verifyTokenRequest = async (token) => {
-  await axios.post(`/auth/verify`, token);
+  return await axios.post(`/auth/verify`, token);
 };
 
 // usuarios
