@@ -85,16 +85,14 @@ export const login = async (req, res) => {
     }
 
     const token = await createAccessToken({ id: userFound.id_trabajador });
- 
 
     res.cookie("token", token, {
       domain: DOMAIN, // Establece el dominio de la cookie
       secure: SECURE, // La cookie sólo se envía a través de HTTPS
       httpOnly: HTTPONLY,
-      sameSite: "none",
-      maxAge: 3600000 // La cookie expirará en 1 hora (3600000 milisegundos)
+      //sameSite: "none",
+      maxAge: 3600000, // La cookie expirará en 1 hora (3600000 milisegundos)
     });
-  
 
     await registrarLog(
       "Inicio",
@@ -107,6 +105,7 @@ export const login = async (req, res) => {
     res.json({
       id_trabajador: userFound.id_trabajador,
       username: userFound.username,
+      token,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -213,7 +212,7 @@ export const plantillaTrabajadores = async (req, res) => {
 // verifivar token
 
 export const verifyToken = (req, res) => {
-  const { token } = req.cookies;
+  const { token } = req.body;
 
   if (!token) return res.status(401).json("No autorizado");
 

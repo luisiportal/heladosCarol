@@ -99,37 +99,34 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     async function checkLogin() {
-      const cookies = Cookies.get();
+      if (!isAuthenticated) {
+        const userStorage = readLocalStorage("user");
+   
+        try {
+          const res = await verifyTokenRequest({ token: userStorage.token });
 
-      if (!cookies.token) {
-        // setIsAuthenticated(false); probando
+          if (res.status != 200)
+            return setModalActivo({
+              mensaje: "No hay conexión",
+              activo: true,
+              errorColor: true,
+            });
+          if (!res.data) {
+            setIsAuthenticated(false);
+            setLoading(false);
+            return;
+          }
 
-        return setUser(null);
-      }
-      try {
-        const res = await verifyTokenRequest(cookies.token);
+          setIsAuthenticated(true);
+          cargarPerfil(res.data.id_trabajador);
+          setUser(res.data);
 
-        if (res.status != 200)
-          return setModalActivo({
-            mensaje: "No hay conexión",
-            activo: true,
-            errorColor: true,
-          });
-        if (!res.data) {
-          setIsAuthenticated(false);
           setLoading(false);
-          return;
+        } catch (error) {
+          setIsAuthenticated(false);
+          setUser(null);
+          setLoading(false);
         }
-
-        setIsAuthenticated(true);
-        cargarPerfil(res.data.id_trabajador);
-        setUser(res.data);
-
-        setLoading(false);
-      } catch (error) {
-        setIsAuthenticated(false);
-        setUser(null);
-        setLoading(false);
       }
     }
     checkLogin();

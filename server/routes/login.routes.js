@@ -34,6 +34,6 @@ loginRouter.put(
 loginRouter.get("/trabajadores/plantilla", authRequired, plantillaTrabajadores);
 loginRouter.delete("/trabajadores/profile/:id", authRequired, deleteTrabajador);
 
-loginRouter.get("/auth/verify", verifyToken);
+loginRouter.post("/auth/verify", verifyToken);
 
 export default loginRouter;

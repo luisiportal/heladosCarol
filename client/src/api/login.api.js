@@ -1,6 +1,8 @@
 import axios from "./axios.js";
 
-export const verifyTokenRequest = () => axios.get(`/auth/verify`);
+export const verifyTokenRequest = async (token) => {
+  await axios.post(`/auth/verify`, token);
+};
 
 // usuarios
 export const registerRequest = async (formData) =>
@@ -9,7 +11,6 @@ export const registerRequest = async (formData) =>
 //login
 export const loginRequest = async (values) =>
   await axios.post(`trabajadores/login/`, values);
-
 
 //logout
 
@@ -28,9 +29,8 @@ export const perfilRequest = async (values) =>
   await axios.post(`trabajadores/profile`, values);
 
 // actualizar trabajador
-export const updateTrabajadorRequest = async (id, formData) => 
-await axios.put(`trabajadores/profile/${id}`, formData);
-
+export const updateTrabajadorRequest = async (id, formData) =>
+  await axios.put(`trabajadores/profile/${id}`, formData);
 
 export const deleteTrabajadorRequest = async (id) =>
   await axios.delete(`trabajadores/profile/${id}`);
