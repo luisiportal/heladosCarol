@@ -118,7 +118,7 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(true);
         console.log(res.data.id_trabajador);
 
-        cargarPerfil(res.data.id_trabajador);
+        await cargarPerfil(res.data.id_trabajador);
         setUser(res.data);
 
         setLoading(false);
