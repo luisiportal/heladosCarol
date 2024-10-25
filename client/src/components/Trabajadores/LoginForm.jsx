@@ -44,80 +44,69 @@ const Login = () => {
             .matches(/^[a-zA-Z0-9-. ]*$/, "Solo se permiten letras y números"),
         })}
         onSubmit={async (values, { setSubmitting }) => {
-          if (!isOnline) {
-            // no conectado
-            const responseLocal = readLocalStorage("user");
-            if (!responseLocal)
-              return setModalActivo({
-                mensaje: "Debes iniciar sesión con conexión",
+          try {
+            setLoader(true);
+            const response = await loginRequest(values);
+
+            if (response.status != 200) {
+              setLoader(false);
+              throw new Error("No hay conexión");
+            } else {
+              writeLocalStorage("user", response.data);
+              login(response.data);
+              setIsAuthenticated(true);
+              //descargarTodos(); // alamcena en el local storage los datos para que esten disponibles sin conexion
+              setLoader(false);
+            }
+          } catch (error) {
+            console.log(error);
+            
+            setLoader(false);
+
+            if (error.message.includes("Network Error")) {
+              setModalActivo({
+                mensaje: "No hay conexión",
                 activo: true,
                 errorColor: true,
               });
-            login(responseLocal);
-            setLoader(false);
-          } else {
-            try {
-              setLoader(true);
-              const response = await loginRequest(values);
 
-              if (response.status != 200) {
-                setLoader(false);
-                throw new Error("No hay conexión");
-              } else {
-                writeLocalStorage("user", response.data);
-                login(response.data);
-                setIsAuthenticated(true);
-                //descargarTodos(); // alamcena en el local storage los datos para que esten disponibles sin conexion
-                setLoader(false);
-              }
-            } catch (error) {
-              setLoader(false);
+              let modoSinConexion = confirm(
+                "¿Quieres activar el modo sin conexión?"
+              );
 
-              if (error.message.includes("Network Error")) {
+              if (modoSinConexion) {
+                setIsOnline(false);
+
                 setModalActivo({
-                  mensaje: "No hay conexión",
+                  mensaje: "Modo sin conexión activado",
                   activo: true,
                   errorColor: true,
                 });
-
-                let modoSinConexion = confirm(
-                  "¿Quieres activar el modo sin conexión?"
-                );
-
-                if (modoSinConexion) {
-                  setIsOnline(false);
-
-                  setModalActivo({
-                    mensaje: "Modo sin conexión activado",
-                    activo: true,
-                    errorColor: true,
-                  });
-                } else {
-                  setIsOnline(true);
-                }
-
-                return;
+              } else {
+                setIsOnline(true);
               }
 
-              if (error.response.status === 400) {
-                setCredencial_invalida("Credenciales inválidas");
-              } else if (error.message === "No hay conexión") {
-                setCredencial_invalida("No hay conexión con el servidor");
-              }
-              setTimeout(() => {
-                setCredencial_invalida(null);
-              }, 2000);
-
-              console.error(error);
+              return;
             }
+
+            if (error.response.status === 400) {
+              setCredencial_invalida("Credenciales inválidas");
+            } else if (error.message === "No hay conexión") {
+              setCredencial_invalida("No hay conexión con el servidor");
+            }
+            setTimeout(() => {
+              setCredencial_invalida(null);
+            }, 2000);
+
+            console.error(error);
           }
         }}
       >
-        {({ isSubmitting, errors,handleChange }) => (
+        {({ isSubmitting, errors, handleChange }) => (
           <Form>
             <div className="h-screen ">
               <section className="w-full">
-               <ImagenPrincipal/>
+                <ImagenPrincipal />
                 <div>
                   <div className="flex flex-col items-center mt-5 p-5 gap-3">
                     <h2 className="font-irish font-bold text-2xl">Entrar</h2>{" "}

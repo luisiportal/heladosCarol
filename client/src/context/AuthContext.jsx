@@ -70,13 +70,11 @@ export const AuthProvider = ({ children }) => {
 
   const cargarPerfil = async (id) => {
     try {
-      if (!isOnline) {
-        setPerfil(readLocalStorage("perfil"));
-      } else {
-        const { data } = await cargarPerfilRequest(id);
-        setPerfil(data);
-      }
+      const { data } = await cargarPerfilRequest(id);
+      setPerfil(data);
     } catch (error) {
+      console.log(error);
+      localStorage.removeItem("user");
       return setModalActivo({
         mensaje: error,
         activo: true,
@@ -99,10 +97,11 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     async function checkLogin() {
-      const userStorage = readLocalStorage("user");
-
       try {
+        const userStorage = readLocalStorage("user");
+
         const res = await verifyTokenRequest({ token: userStorage.token });
+        console.log(res);
 
         if (res.status != 200)
           return setModalActivo({
@@ -117,11 +116,15 @@ export const AuthProvider = ({ children }) => {
         }
 
         setIsAuthenticated(true);
+        console.log(res.data.id_trabajador);
+
         cargarPerfil(res.data.id_trabajador);
         setUser(res.data);
 
         setLoading(false);
       } catch (error) {
+     
+        localStorage.removeItem("user");
         setIsAuthenticated(false);
         setUser(null);
         setLoading(false);

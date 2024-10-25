@@ -4,6 +4,7 @@ import { TOKEN_SECRET } from "../libs/jwt.js";
 export const authRequired = (req, res, next) => {
   const { token } = req.cookies;
 
+ try {
   if (!token)
     return res.status(401).json({ mesagge: "No tiene permitido el acceso" });
 
@@ -13,4 +14,8 @@ export const authRequired = (req, res, next) => {
     next();
    
   });
+ } catch (error) {
+  console.log(error);
+  
+ }
 };
