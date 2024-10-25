@@ -87,6 +87,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoader(true);
       const res = await logoutRequest();
+      localStorage.removeItem("user")
       setLoader(false);
       setUser(res.data);
       setIsAuthenticated(false);
@@ -116,7 +117,6 @@ export const AuthProvider = ({ children }) => {
         }
 
         setIsAuthenticated(true);
-        console.log(res.data.id_trabajador);
 
         await cargarPerfil(res.data.id_trabajador);
         setUser(res.data);

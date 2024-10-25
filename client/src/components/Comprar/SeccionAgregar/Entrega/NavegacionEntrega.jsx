@@ -40,7 +40,7 @@ const NavegacionEntrega = ({
               schema
                 .validate(entrega)
                 .then(() => {
-                  console.log("El objeto es válido");
+                 
                   setNavegacion(3);
                 })
                 .catch((err) => {
