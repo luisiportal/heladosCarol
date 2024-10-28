@@ -35,6 +35,7 @@ export const Factura = sequelize.define(
     },
     ruta_image: {
       type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {

@@ -3,15 +3,7 @@ import FacturaCard from "../../../Ventas/FacturaCard";
 import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
 import { grandTotalFactura } from "../../../../utils/grandTotalFactura";
 
-const RevisarPedido = ({
-  carrito,
-  entrega,
-  setNavegacion,
-  errors,
-  setModalActivo,
-  file,
-  setFile,
-}) => {
+const RevisarPedido = ({ carrito, entrega, errors, file }) => {
   let totalLocal = 0;
   if (carrito) {
     totalLocal = carrito.reduce(
@@ -36,42 +28,14 @@ const RevisarPedido = ({
         <h2 className="font-semibold text-slate-700 flex justify-center">
           Pasos para realizar Pago
         </h2>
-        <h4>1- Enviar <span className="font-bold">{total.toFixed(2)} USD</span> por <span className="font-bold">Zelle</span> al correo</h4>
+        <h4>
+          1- Enviar <span className="font-bold">{total.toFixed(2)} USD</span>{" "}
+          por <span className="font-bold">Zelle</span> al correo
+        </h4>
         <span className="font-semibold text-slate-800  flex justify-center">
           heladoscarol@gmail.com
         </span>
-        <h4>2- Realizar captura del <span className="font-bold">pago realizado por Zelle</span></h4>
-        <h4>3-Subir captura del pago</h4>
-        <input
-          name="factura_image"
-          type="file"
-          onChange={(e) => {
-            var file = file || e.target.files[0],
-              pattern = /^image/,
-              reader = new FileReader();
-            if (file.size > 5000000) {
-              setFile();
-              return setModalActivo({
-                mensaje: "La imagen es demasiado grande",
-                activo: true,
-                errorColor: true,
-              });
-            }
 
-            if (!pattern.test(file.type)) {
-              setFile();
-              setModalActivo({
-                mensaje: "Formato de imagen inválido",
-                activo: true,
-                errorColor: true,
-              });
-
-              return;
-            }
-
-            setFile(e.target.files[0]);
-          }}
-        />
         <p>
           Una vez que recibamos la confirmación de su pago su orden será
           aceptada y procesada.

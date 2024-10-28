@@ -17,21 +17,33 @@ import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
 const schema = Yup.object({
   ordenante: Yup.string()
     .required("Falta el Ordenante")
-    .matches(/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/, "Solo se permiten letras en el Ordenante")
+    .matches(
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/,
+      "Solo se permiten letras en el Ordenante"
+    )
     .max(400, "El Ordenante no debe tener más de 400 caracteres"),
 
   contacto_ordenante: Yup.string()
     .required("Falta contacto del ordenante")
-    .matches(/^[a-zA-Z-@.0-9 ]*$/, "Solo se permiten letras y numeros en el contacto del Ordenante")
+    .matches(
+      /^[a-zA-Z-@.0-9 ]*$/,
+      "Solo se permiten letras y numeros en el contacto del Ordenante"
+    )
     .max(400, "El correo de no debe tener más de 400 caracteres"),
   beneficiario: Yup.string()
     .required("Falta el beneficiario")
-    .matches(/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/, "Solo se permiten letras en el Beneficiario")
+    .matches(
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/,
+      "Solo se permiten letras en el Beneficiario"
+    )
     .max(400, "El nombre del Beneficiario no debe tener más de 400 caracteres"),
 
   tel_beneficiario: Yup.string()
     .required("Falta teléfono beneficiario")
-    .matches(/^[0-9-+ ]*$/, "Solo se permiten números en el teléfono del beneficiario")
+    .matches(
+      /^[0-9-+ ]*$/,
+      "Solo se permiten números en el teléfono del beneficiario"
+    )
     .max(20, "El teléfono no debe tener más de 20 caracteres"),
 
   calle: Yup.string()
@@ -133,13 +145,6 @@ const EntregaYenviaForm = ({
         enableReinitialize={true}
         validationSchema={schema}
         onSubmit={async (values) => {
-          if (file == null) {
-            return setModalActivo({
-              mensaje: "Debe subir una captura del pago",
-              activo: true,
-              errorColor: true,
-            });
-          }
           setLoader(true);
           setModalActivo({});
           const formData = new FormData();
@@ -292,7 +297,7 @@ const EntregaYenviaForm = ({
                   setFile={setFile}
                 />
               )}
-            
+
               <div className="mt-2 mx-2 ">
                 <NavegacionEntrega
                   setNavegacion={setNavegacion}

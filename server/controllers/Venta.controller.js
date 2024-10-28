@@ -38,7 +38,7 @@ export const createVenta = async (req, res) => {
       const factura = await Factura.create(
         {
           total_venta,
-          ruta_image,
+
           creado,
         },
         { transaction: t }
