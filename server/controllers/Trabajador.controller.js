@@ -213,21 +213,23 @@ export const plantillaTrabajadores = async (req, res) => {
 
 export const verifyToken = (req, res) => {
   const { token } = req.body;
-console.log(token);
-
   if (!token) return res.status(401).json("No autorizado");
+  try {
+    jwt.verify(token, TOKEN_SECRET, async (err, user) => {
+      if (err) return res.status(401).json("No autorizado");
 
-  jwt.verify(token, TOKEN_SECRET, async (err, user) => {
-    if (err) return res.status(401).json("No autorizado");
+      const respuestaUserExist = await Trabajador.findByPk(user.id);
 
-    const respuestaUserExist = await Trabajador.findByPk(user.id);
+      const userFound = respuestaUserExist;
+      if (!userFound) return res.sendStatus(401);
 
-    const userFound = respuestaUserExist;
-    if (!userFound) return res.sendStatus(401);
-
-    return res.json({
-      id_trabajador: userFound.id_trabajador,
-      username: userFound.username,
+      return res.json({
+        id_trabajador: userFound.id_trabajador,
+        username: userFound.username,
+      });
     });
-  });
+  } catch (error) {
+    console.log(error);
+    return res.status(401).json("No autorizado");
+  }
 };

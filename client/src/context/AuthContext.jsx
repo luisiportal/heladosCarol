@@ -87,7 +87,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoader(true);
       const res = await logoutRequest();
-      localStorage.removeItem("user")
+      localStorage.removeItem("user");
       setLoader(false);
       setUser(res.data);
       setIsAuthenticated(false);
@@ -102,7 +102,6 @@ export const AuthProvider = ({ children }) => {
         const userStorage = readLocalStorage("user");
 
         const res = await verifyTokenRequest({ token: userStorage.token });
-        console.log(res);
 
         if (res.status != 200)
           return setModalActivo({
@@ -123,7 +122,6 @@ export const AuthProvider = ({ children }) => {
 
         setLoading(false);
       } catch (error) {
-     
         localStorage.removeItem("user");
         setIsAuthenticated(false);
         setUser(null);
