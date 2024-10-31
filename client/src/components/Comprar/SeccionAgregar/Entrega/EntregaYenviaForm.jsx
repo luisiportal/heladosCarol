@@ -101,6 +101,8 @@ const EntregaYenviaForm = ({
   const [repartos, setRepartos] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [file, setFile] = useState();
+  const [metoPago, setMetoPago] = useState("");
+
   useEffect(() => {
     const cargarRepartos = async () => {
       try {
@@ -150,6 +152,7 @@ const EntregaYenviaForm = ({
           const formData = new FormData();
           formData.append("productos", JSON.stringify(carrito));
           formData.append("entrega", JSON.stringify(values));
+          formData.append("pasarela", JSON.stringify(metoPago));
 
           if (file !== null) {
             formData.append("factura_image", file);
@@ -295,6 +298,8 @@ const EntregaYenviaForm = ({
                   setModalActivo={setModalActivo}
                   file={file}
                   setFile={setFile}
+                  metoPago={metoPago}
+                  setMetoPago={setMetoPago}
                 />
               )}
 

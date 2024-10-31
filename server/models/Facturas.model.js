@@ -23,6 +23,10 @@ export const Factura = sequelize.define(
 
       defaultValue: "Sin confirmar",
     },
+    pasarela: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
 
     total_venta: {
       type: DataTypes.DECIMAL,

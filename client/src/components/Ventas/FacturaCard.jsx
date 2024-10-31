@@ -24,11 +24,7 @@ function FacturaCard({
   file,
 }) {
   const { ventas } = factura;
-  const {
-    setModalActivo,
-    perfil,
-    setLoader,
-  } = useAuth();
+  const { setModalActivo, perfil, setLoader } = useAuth();
 
   const params = useParams();
 
@@ -75,7 +71,7 @@ function FacturaCard({
       <div className="text-left text-slate-700 font-semibold w-full h-full align-middle flex flex-col">
         <div className="flex justify-between font-extralight  text-sm m-2">
           {" "}
-          {factura.id && <p>Factura : {factura.id}</p>}
+          {factura.id && <p>Factura : {factura.id} -- {factura.pasarela}</p>}
           {factura.creado && (
             <p>{new Date(factura.creado).toLocaleString("es-ES")}</p>
           )}
