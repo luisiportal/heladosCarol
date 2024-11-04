@@ -22,8 +22,11 @@ export const CarritosProvaider = ({ children }) => {
   const [recargar, setRecargar] = useState(false);
   const { setModalActivo, modalActivo } = useAuth();
   useEffect(() => {
-    cargarCarritosGuardados();
-    getNucart();
+    const carritoLocal = readLocalStorage("sabores");
+
+    if (carritoLocal) {
+      setCarrito(carritoLocal);
+    }
   }, [recargar]);
 
   const cargarCarritosGuardados = () => {
@@ -111,7 +114,7 @@ export const CarritosProvaider = ({ children }) => {
         setnuCart,
         cartSelect,
         total_venta,
-        setTotalVenta
+        setTotalVenta,
       }}
     >
       {children}

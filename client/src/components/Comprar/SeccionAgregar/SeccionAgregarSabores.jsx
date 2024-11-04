@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { Form, Formik, isInteger } from "formik";
 import FormAddProduct from "../../Ventas/FormAddProduct";
-import { useSabores } from "../../../context/SaboresProvider";
+import { writeLocalStorage } from "../../../hooks/useLocalStorage";
 
 const SeccionAgregarSabores = ({
   recargar,
@@ -44,6 +44,7 @@ const SeccionAgregarSabores = ({
               )
             ) {
               setCarrito([...carrito, values]);
+              writeLocalStorage("sabores",  [...carrito, values] );
             } else {
               setModalActivo({
                 mensaje: `Ya este producto ha sido agregado`,

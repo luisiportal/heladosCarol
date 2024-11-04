@@ -1,6 +1,7 @@
 import React from "react";
 import Bton_eliminar_producto from "./Bton_eliminar_producto";
 import DerretidoVainilla2 from "../apariencia/DerretidoVainilla2";
+import { writeLocalStorage } from "../../hooks/useLocalStorage";
 
 const ProductoCarrito = ({
   sabor,
@@ -10,8 +11,11 @@ const ProductoCarrito = ({
   right,
 }) => {
   const handleEliminar = (id) => {
-    setCarrito(carrito.filter((sabor) => sabor.id_sabor !== id));
+    const deleteSabor = carrito.filter((sabor) => sabor.id_sabor !== id)
+    setCarrito(deleteSabor);
+    writeLocalStorage("sabores", deleteSabor);
   };
+  
 
   return (
     <>

@@ -4,7 +4,7 @@ import ArrowRight from "../../../SVG/ArrowRight";
 
 import ArrowLeftSVG from "../../../SVG/ArrowLeftSVG";
 import { Formik, validateYupSchema } from "formik";
-import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
+import { writeLocalStorage } from "../../../../hooks/useLocalStorage";
 
 const NavegacionEntrega = ({
   setNavegacion,
@@ -13,6 +13,7 @@ const NavegacionEntrega = ({
   entrega,
   errors,
   setModalActivo,
+  carrito,
 }) => {
   return (
     <div className="flex  justify-between">
@@ -40,7 +41,8 @@ const NavegacionEntrega = ({
               schema
                 .validate(entrega)
                 .then(() => {
-                 
+                  ///guardar local storage
+                  writeLocalStorage("entrega",entrega);
                   setNavegacion(3);
                 })
                 .catch((err) => {

@@ -27,6 +27,9 @@ const ComprarPage = () => {
     observaciones: "",
 
   });
+
+
+
   return (
     <div className="pt-10">
       Comprar

@@ -13,6 +13,7 @@ import InputEntrega from "./InputEntrega";
 import RevisarPedido from "./RevisarPedido";
 import { getRepartosRequest } from "../../../../api/repartos.api";
 import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
+import { readLocalStorage } from "../../../../hooks/useLocalStorage";
 
 const schema = Yup.object({
   ordenante: Yup.string()
@@ -116,6 +117,11 @@ const EntregaYenviaForm = ({
     };
 
     cargarRepartos();
+
+    const entregaLocal = readLocalStorage("entrega");
+    if (entregaLocal) {
+      setEntrega(entregaLocal);
+    }
   }, []);
   const handleSelectChange = (p) => {
     setSelectedOption(p);
@@ -172,6 +178,8 @@ const EntregaYenviaForm = ({
               navegarA: "/",
             });
             setCarrito([]);
+            localStorage.removeItem("entrega");
+            localStorage.removeItem("sabores");
 
             setLoader(false);
           } catch (error) {
@@ -311,6 +319,7 @@ const EntregaYenviaForm = ({
                   schema={schema}
                   errors={errors}
                   setModalActivo={setModalActivo}
+                  carrito={carrito}
                 />
               </div>
             </section>
