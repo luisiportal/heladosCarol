@@ -1,4 +1,4 @@
-import { CLIENT_ID, CLIENT_SECRET } from "../config.js";
+import { BACKEND_URL, CLIENT_ID, CLIENT_SECRET } from "../config.js";
 
 export const getNotificationPayment = async (req, res) => {
   console.log(req.body);
@@ -9,7 +9,7 @@ export const getNotificationPayment = async (req, res) => {
 export const createPago = async (req, res) => {
   const { description, totalCobrar, fechaFactura } = req.body;
   const token = await getAccessToken();
-
+  const notificacionURL = `${BACKEND_URL}/verificarpago`;
   const options = {
     method: "POST",
     headers: {
@@ -29,7 +29,7 @@ export const createPago = async (req, res) => {
       lang: "es",
       urlSuccess: "https://www.heladoscarol.com/pagoOk",
       urlFailed: "https://www.heladoscarol.com/payment-ko",
-      urlNotification: "https://www.heladoscarol.com/verificarpago",
+      urlNotification: notificacionURL,
       serviceDate: fechaFactura,
       directPayment: true,
       paymentMethods: ["EXT", "TPP"],
