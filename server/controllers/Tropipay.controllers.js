@@ -1,24 +1,42 @@
 import { BACKEND_URL, CLIENT_ID, CLIENT_SECRET } from "../config.js";
+import crypto from "crypto";
+
+// Función para crear un hash SHA-1
+const sha1 = (data) => {
+  return crypto.createHash("sha1").update(data).digest("hex");
+};
+
+// Función para crear un hash SHA-256
+const sha256 = (data) => {
+  return crypto.createHash("sha256").update(data).digest("hex");
+};
 
 export const getNotificationPayment = async (req, res) => {
-  const { bankOrderCode, userPassword, originalCurrencyAmount } =
-    req.body.data;
+  try {
+    const { bankOrderCode, userPassword, originalCurrencyAmount } =
+      req.body.data;
+    const { signaturev2 } = req.body.data;
+    const { clientEmail } = req.body.data.clientData;
 
-  const { signaturev2 } = req.body.data;
-  const { clientEmail } = req.body.data.clientData;
-  const signatureLocal = sha256(
-    bankOrderCode + clientEmail + sha1(userPassword) + originalCurrencyAmount
-  );
+    // Generar la firma local
+    const signatureLocal = sha256(
+      bankOrderCode + clientEmail + sha1(userPassword) + originalCurrencyAmount
+    );
 
-  if (signaturev2 == signatureLocal) {
-    console.log("sirvio");
-  } else {
-    console.log("nada no es");
+    // Validar la firma
+    if (signaturev2 === signatureLocal) {
+      console.log("La firma es válida.");
+    } else {
+      console.log("La firma no es válida.");
+    }
+
+    console.log(req.body);
+
+    res.status(204).send(); // Enviar respuesta con estado 204 (sin contenido)
+  } catch (error) {
+    console.error("Error en la validación de la firma:", error);
+    res.status(500).json({ error: error.message }); // Enviar error al cliente
   }
-
-  console.log(req.body);
-
-  res.status(204);
 };
 
 export const createPago = async (req, res) => {
