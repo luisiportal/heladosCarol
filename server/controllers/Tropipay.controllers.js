@@ -4,8 +4,8 @@ export const getNotificationPayment = async (req, res) => {
   const { bankOrderCode, userPassword, originalCurrencyAmount } =
     req.body.data;
 
-  const { signaturev2 } = req.body.charges;
-  const { clientEmail } = req.body.clientData;
+  const { signaturev2 } = req.body.data;
+  const { clientEmail } = req.body.data.clientData;
   const signatureLocal = sha256(
     bankOrderCode + clientEmail + sha1(userPassword) + originalCurrencyAmount
   );
