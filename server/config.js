@@ -12,4 +12,6 @@ export const DOMAIN = process.env.DOMAIN || ""
 export const TBOT = process.env.TBOT || "7534147770:AAFYQOZgFK4bPlSk62ajqD12B3bmaficmtU" 
 export const SECRET_PAY_KEY = process.env.SECRET_PAY_KEY
 export const GMAIL_KEY = process.env.GMAIL_KEY
+export const CLIENT_ID = process.env.CLIENT_ID
+export const CLIENT_SECRET = process.env.CLIENT_SECRET
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SeccionAgregarSabores from "./SeccionAgregar/SeccionAgregarSabores";
 import SeccionSaboresCarrito from "./SeccionAgregar/SeccionSaboresCarrito";
 import { useCarritos } from "../../context/CarritosContext";
@@ -6,11 +6,22 @@ import { useAuth } from "../../context/AuthContext";
 
 import EntregaYenviaForm from "./SeccionAgregar/Entrega/EntregaYenviaForm";
 import Horario from "../Horario/Horario";
+import { useParams } from "react-router-dom";
 
 const ComprarPage = () => {
   const { recargar, carrito, setCarrito } = useCarritos();
   const { loader, setLoader, setModalActivo } = useAuth();
   const [navegacion, setNavegacion] = useState(1);
+
+  const params = useParams();
+
+  useEffect(() => {
+    console.log(params);
+    
+    if (params.id == 3) {
+      setNavegacion(3);
+    }
+  }, []);
 
   const [entrega, setEntrega] = useState({
     ordenante: "",
@@ -25,17 +36,14 @@ const ComprarPage = () => {
     reparto: "",
     p_referencia: "",
     observaciones: "",
-
   });
-
-
 
   return (
     <div className="pt-10">
       Comprar
       {navegacion == 1 && (
         <>
-        <Horario/>
+          <Horario />
           <SeccionAgregarSabores
             recargar={recargar}
             setLoader={setLoader}

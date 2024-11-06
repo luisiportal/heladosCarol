@@ -70,6 +70,14 @@ const App = () => {
                     </CarritosProvaider>
                   }
                 />
+                <Route
+                  path="/comprar/:id"
+                  element={
+                    <CarritosProvaider>
+                      <ComprarPage />
+                    </CarritosProvaider>
+                  }
+                />
                 <Route element={<ProtectedRoutes />}>
                   <Route path="/cerrado" element={<CerradoForm />} />
                   <Route path="/opiniones" element={<ListarReviewsBackend />} />

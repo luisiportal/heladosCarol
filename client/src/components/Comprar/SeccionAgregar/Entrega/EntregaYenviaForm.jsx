@@ -4,16 +4,20 @@ import Select from "react-select";
 import * as Yup from "yup";
 import NavegacionEntrega from "./NavegacionEntrega";
 import DerretidoBeneficiario from "../../../SVG/DerretidoBeneficiario";
-
 import DerretidoDireccion from "../../../SVG/DerretidoDireccion";
 
-import { createVentaRequest } from "../../../../api/venta.api";
+import {
+  createPagoRequest,
+  createVentaRequest,
+} from "../../../../api/venta.api";
 import Loader from "../../../Utilidades/Loader";
 import InputEntrega from "./InputEntrega";
 import RevisarPedido from "./RevisarPedido";
 import { getRepartosRequest } from "../../../../api/repartos.api";
 import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
 import { readLocalStorage } from "../../../../hooks/useLocalStorage";
+import { useParams } from "react-router-dom";
+import { useAuth } from "../../../../context/AuthContext";
 
 const schema = Yup.object({
   ordenante: Yup.string()
@@ -165,11 +169,12 @@ const EntregaYenviaForm = ({
           }
 
           try {
-            const ordenCompleta = {
-              productos: carrito,
-              entrega: values,
-              total_venta: total_venta,
-            };
+            const responsePago = await createPagoRequest({
+              description: "carrito",
+              totalCobrar: 9000,
+              fechaFactura: new Date(),
+            });
+            console.log(responsePago);
 
             await createVentaRequest(formData);
             setModalActivo({
