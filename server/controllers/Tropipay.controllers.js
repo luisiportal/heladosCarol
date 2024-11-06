@@ -1,4 +1,4 @@
-import { CLIENT_ID, CLIENT_SECRET } from "../config";
+import { CLIENT_ID, CLIENT_SECRET } from "../config.js";
 
 export const getNotificationPayment = async (req, res) => {
   console.log(req.body);
