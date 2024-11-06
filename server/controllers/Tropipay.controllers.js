@@ -1,6 +1,21 @@
 import { BACKEND_URL, CLIENT_ID, CLIENT_SECRET } from "../config.js";
 
 export const getNotificationPayment = async (req, res) => {
+  const { bankOrderCode, userPassword, originalCurrencyAmount } =
+    req.body.data;
+
+  const { signaturev2 } = req.body.charges;
+  const { clientEmail } = req.body.clientData;
+  const signatureLocal = sha256(
+    bankOrderCode + clientEmail + sha1(userPassword) + originalCurrencyAmount
+  );
+
+  if (signaturev2 == signatureLocal) {
+    console.log("sirvio");
+  } else {
+    console.log("nada no es");
+  }
+
   console.log(req.body);
 
   res.status(204);
