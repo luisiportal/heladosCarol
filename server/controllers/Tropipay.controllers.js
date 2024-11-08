@@ -2,6 +2,8 @@ import { BACKEND_URL, CLIENT_ID, CLIENT_SECRET } from "../config.js";
 import { Factura } from "../models/Facturas.model.js";
 
 export const getNotificationPayment = async (req, res) => {
+  console.log(req.body);
+  
   const { reference } = req.body.data;
   try {
     const response = await Factura.findOne({
@@ -20,12 +22,9 @@ export const getNotificationPayment = async (req, res) => {
 };
 
 export const createPago = async (req, res) => {
-  console.log(req.body);
-
+  
   const { description, totalCobrar, fechaFactura, reference } = req.body;
   const token = await getAccessToken();
-  console.log(token);
-  console.log(reference);
 
   const notificacionURL = `${BACKEND_URL}/verificarpago`;
   const options = {
