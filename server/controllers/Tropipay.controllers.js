@@ -4,7 +4,7 @@ import { Factura } from "../models/Facturas.model.js";
 export const getNotificationPayment = async (req, res) => {
 console.log(req.body.data);
 
-  const { reference } = JSON.parse(req.body.data);
+  const reference  = JSON.parse(req.body.data.reference);
   const referencia = `${reference}`;
 
   try {
