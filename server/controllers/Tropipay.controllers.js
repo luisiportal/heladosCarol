@@ -3,16 +3,19 @@ import { Factura } from "../models/Facturas.model.js";
 
 export const getNotificationPayment = async (req, res) => {
   console.log(req.body);
-  
-  const { reference:referencia } = req.body.data;
-  console.log(referencia);
-  
+
+  const { reference } = req.body.data;
+  const referencia = reference.toString();
+
   try {
     const response = await Factura.findOne({
       where: {
         reference: referencia,
       },
     });
+
+    console.log(response);
+    
 
     response.pagado = "Pagado";
     await response.save();
@@ -24,7 +27,6 @@ export const getNotificationPayment = async (req, res) => {
 };
 
 export const createPago = async (req, res) => {
-  
   const { description, totalCobrar, fechaFactura, reference } = req.body;
   const token = await getAccessToken();
 
