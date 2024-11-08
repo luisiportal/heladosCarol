@@ -11,7 +11,7 @@ const Tropipay = ({
   useEffect(() => {
     const loadPaymentLink = async () => {
       const { data } = await createPagoRequest({
-        reference: new Date().getTime(),
+        reference: new Date().getTime().toString(),
         description: description,
         totalCobrar: totalCobrar,
         fechaFactura: new Date(),

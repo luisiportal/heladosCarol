@@ -166,15 +166,13 @@ const EntregaYenviaForm = ({
           formData.append("pasarela", JSON.stringify(metoPago));
           formData.append("pasarela", JSON.stringify(payLink.reference));
 
-
           if (file !== null) {
             formData.append("factura_image", file);
           }
 
           try {
             const venta = await createVentaRequest(formData);
-console.log(payLink.reference);
-
+         
             setModalActivo({
               mensaje:
                 metoPago == "TropiPay" ? (
