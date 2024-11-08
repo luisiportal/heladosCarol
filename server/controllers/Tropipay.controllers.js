@@ -41,7 +41,7 @@ export const createPago = async (req, res) => {
       favorite: true,
       description: description,
       amount: totalCobrar,
-      currency: "EUR",
+      currency: "USD",
       singleUse: true,
       reasonId: 4,
       expirationDays: 1,

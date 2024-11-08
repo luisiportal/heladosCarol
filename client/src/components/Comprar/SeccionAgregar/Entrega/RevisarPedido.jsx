@@ -16,8 +16,6 @@ const RevisarPedido = ({
   setMetoPago,
   metoPago,
   setPayLink,
-  description,
-  totalCobrar,
 }) => {
   const { perfil } = useAuth();
   const params = useParams();
@@ -41,6 +39,12 @@ const RevisarPedido = ({
   };
 
   const total = grandTotalFactura(factura.total_venta, factura.entrega.envio);
+  const envio = entrega.envio;
+  const sabores = carrito.map(
+    (item) => item.cantidad + "x " + item.nombre_sabor
+  );
+  const description = sabores +" Envio: "+ envio;
+  console.log(description);
 
   return (
     <div>
@@ -72,9 +76,9 @@ const RevisarPedido = ({
             {metoPago == "TropiPay" ? (
               <Tropipay
                 total={total}
-                description={description}
+                description={description.toString()}
                 setPayLink={setPayLink}
-                totalCobrar={totalCobrar}
+                totalCobrar={total * 100}
               />
             ) : (
               <Zelle total={total} />

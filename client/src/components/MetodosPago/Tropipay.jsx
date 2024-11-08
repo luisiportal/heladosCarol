@@ -4,7 +4,7 @@ import { createPagoRequest } from "../../api/venta.api";
 const Tropipay = ({
   total,
   setPayLink,
-  reference,
+
   description,
   totalCobrar,
 }) => {

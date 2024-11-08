@@ -171,20 +171,21 @@ const EntregaYenviaForm = ({
           }
 
           try {
-            console.log(payLink.reference);
-            
             const venta = await createVentaRequest(formData);
-         
-            setModalActivo({
-              mensaje:
-                metoPago == "TropiPay" ? (
-                  <a href={payLink.shortUrl}>Ir a pagar a TropiPay</a>
-                ) : (
-                  "Su orden ha sido creada"
-                ),
-              activo: true,
-              navegarA: metoPago == "TropiPay" ? "" : "/",
-            });
+
+            if (metoPago == "TropiPay") {
+              setModalActivo({
+                mensaje: <a href={payLink.shortUrl}>Ir a pagar a TropiPay</a>,
+                activo: true,
+              });
+            } else {
+              setModalActivo({
+                mensaje: "Su Orden ha sido creada",
+                activo: true,
+                navegarA: "/",
+              });
+            }
+
             setCarrito([]);
             localStorage.removeItem("entrega");
             localStorage.removeItem("sabores");
@@ -317,8 +318,6 @@ const EntregaYenviaForm = ({
                   metoPago={metoPago}
                   setMetoPago={setMetoPago}
                   setPayLink={setPayLink}
-                  description={"description"}
-                  totalCobrar={4500}
                 />
               )}
 
