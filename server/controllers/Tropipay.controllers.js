@@ -26,7 +26,9 @@ export const createPago = async (req, res) => {
   const { description, totalCobrar, fechaFactura, reference } = req.body;
   const token = await getAccessToken();
 
-  const notificacionURL = `${BACKEND_URL}/verificarpago`;
+  const notificacionURL = 'https://api.heladoscarol.com';
+
+  
   const options = {
     method: "POST",
     headers: {

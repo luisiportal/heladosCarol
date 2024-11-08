@@ -164,13 +164,15 @@ const EntregaYenviaForm = ({
           formData.append("productos", JSON.stringify(carrito));
           formData.append("entrega", JSON.stringify(values));
           formData.append("pasarela", JSON.stringify(metoPago));
-          formData.append("pasarela", JSON.stringify(payLink.reference));
+          formData.append("reference", JSON.stringify(payLink.reference));
 
           if (file !== null) {
             formData.append("factura_image", file);
           }
 
           try {
+            console.log(payLink.reference);
+            
             const venta = await createVentaRequest(formData);
          
             setModalActivo({
