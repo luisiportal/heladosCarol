@@ -108,7 +108,7 @@ const EntregaYenviaForm = ({
   const [payLink, setPayLink] = useState("");
   const fecha = new Date();
   const milisegundos = fecha.getTime();
-  const reference = milisegundos.toString(10)
+  const reference = "hc" + milisegundos;
   console.log(reference);
 
   useEffect(() => {
