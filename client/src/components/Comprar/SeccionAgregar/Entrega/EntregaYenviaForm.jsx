@@ -106,10 +106,9 @@ const EntregaYenviaForm = ({
   const [file, setFile] = useState();
   const [metoPago, setMetoPago] = useState("");
   const [payLink, setPayLink] = useState("");
+  const [reference, setReference] = useState("");
   const fecha = new Date();
   const milisegundos = fecha.getTime();
-  const reference = "hc" + milisegundos;
-  console.log(reference);
 
   useEffect(() => {
     const cargarRepartos = async () => {
@@ -117,6 +116,8 @@ const EntregaYenviaForm = ({
         setLoader(true);
         const { data } = await getRepartosRequest();
         setRepartos(data);
+
+        setReference(new Date().getTime().toString());
       } catch (error) {
         alert(error);
       }
@@ -137,6 +138,7 @@ const EntregaYenviaForm = ({
       envio: p.envio,
     });
   };
+  console.log(reference);
 
   const handleChangeMio = (e) => {
     const { name, value } = e.target;
@@ -161,6 +163,7 @@ const EntregaYenviaForm = ({
         onSubmit={async (values) => {
           setLoader(true);
           setModalActivo({});
+          console.log(reference);
 
           const formData = new FormData();
           formData.append("productos", JSON.stringify(carrito));
