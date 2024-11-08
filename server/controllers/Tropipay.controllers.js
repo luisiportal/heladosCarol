@@ -5,7 +5,7 @@ export const getNotificationPayment = async (req, res) => {
   console.log(req.body);
 
   const { reference } = req.body.data;
-  const referencia = reference.toString();
+  const referencia = `${reference}`;
 
   try {
     const response = await Factura.findOne({
@@ -13,9 +13,11 @@ export const getNotificationPayment = async (req, res) => {
         reference: referencia,
       },
     });
+    typeof reference;
+    typeof response.reference;
+    typeof referencia;
 
     console.log(response);
-    
 
     response.pagado = "Pagado";
     await response.save();
