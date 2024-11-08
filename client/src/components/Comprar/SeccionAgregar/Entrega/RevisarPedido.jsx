@@ -48,7 +48,7 @@ const RevisarPedido = ({
 
   return (
     <div>
-      <FacturaCard factura={factura} total={total} file={file} />
+      <FacturaCard factura={factura} total={total.toFixed(2)} file={file} />
 
       {params.id == 3 ? (
         "Pago por TropiPay Correcto"
