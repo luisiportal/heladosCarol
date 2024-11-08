@@ -46,7 +46,7 @@ export const createPago = async (req, res) => {
       lang: "es",
       urlSuccess: "https://www.heladoscarol.com/comprar/3",
       urlFailed: "https://www.heladoscarol.com/comprar/0",
-      urlNotification: "api.heladoscarol.com/revisarpago",
+      urlNotification: notificacionURL,
       serviceDate: fechaFactura,
       directPayment: true,
       paymentMethods: ["EXT", "TPP"],
