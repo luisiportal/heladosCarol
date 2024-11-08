@@ -16,7 +16,6 @@ const RevisarPedido = ({
   setMetoPago,
   metoPago,
   setPayLink,
-  reference,
   description,
   totalCobrar,
 }) => {
@@ -74,7 +73,6 @@ const RevisarPedido = ({
               <Tropipay
                 total={total}
                 description={description}
-                reference={reference}
                 setPayLink={setPayLink}
                 totalCobrar={totalCobrar}
               />

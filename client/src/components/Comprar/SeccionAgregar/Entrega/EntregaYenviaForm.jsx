@@ -105,19 +105,16 @@ const EntregaYenviaForm = ({
   const [selectedOption, setSelectedOption] = useState(null);
   const [file, setFile] = useState();
   const [metoPago, setMetoPago] = useState("");
-  const [payLink, setPayLink] = useState("");
-  const [reference, setReference] = useState("");
-  const fecha = new Date();
-  const milisegundos = fecha.getTime();
-
+  const [payLink, setPayLink] = useState({
+    reference: "",
+    shortUrl: "",
+  });
   useEffect(() => {
     const cargarRepartos = async () => {
       try {
         setLoader(true);
         const { data } = await getRepartosRequest();
         setRepartos(data);
-
-        setReference(new Date().getTime().toString());
       } catch (error) {
         alert(error);
       }
@@ -138,7 +135,6 @@ const EntregaYenviaForm = ({
       envio: p.envio,
     });
   };
-  console.log(reference);
 
   const handleChangeMio = (e) => {
     const { name, value } = e.target;
@@ -163,13 +159,13 @@ const EntregaYenviaForm = ({
         onSubmit={async (values) => {
           setLoader(true);
           setModalActivo({});
-          console.log(reference);
 
           const formData = new FormData();
           formData.append("productos", JSON.stringify(carrito));
           formData.append("entrega", JSON.stringify(values));
           formData.append("pasarela", JSON.stringify(metoPago));
-          formData.append("reference", JSON.stringify(reference));
+          formData.append("pasarela", JSON.stringify(payLink.reference));
+
 
           if (file !== null) {
             formData.append("factura_image", file);
@@ -177,11 +173,12 @@ const EntregaYenviaForm = ({
 
           try {
             const venta = await createVentaRequest(formData);
+console.log(payLink.reference);
 
             setModalActivo({
               mensaje:
                 metoPago == "TropiPay" ? (
-                  <a href={payLink}>Ir a pagar a TropiPay</a>
+                  <a href={payLink.shortUrl}>Ir a pagar a TropiPay</a>
                 ) : (
                   "Su orden ha sido creada"
                 ),
@@ -322,7 +319,6 @@ const EntregaYenviaForm = ({
                   setPayLink={setPayLink}
                   description={"description"}
                   totalCobrar={4500}
-                  reference={reference}
                 />
               )}
 
