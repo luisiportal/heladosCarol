@@ -106,7 +106,10 @@ const EntregaYenviaForm = ({
   const [file, setFile] = useState();
   const [metoPago, setMetoPago] = useState("");
   const [payLink, setPayLink] = useState("");
-  const reference = new Date().getTime().toString();
+  const fecha = new Date();
+  const milisegundos = fecha.getTime();
+  const reference = milisegundos.toString(10)
+  console.log(reference);
 
   useEffect(() => {
     const cargarRepartos = async () => {
