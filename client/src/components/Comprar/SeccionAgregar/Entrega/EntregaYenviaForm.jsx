@@ -159,7 +159,6 @@ const EntregaYenviaForm = ({
           setLoader(true);
           setModalActivo({});
 
-
           const formData = new FormData();
           formData.append("productos", JSON.stringify(carrito));
           formData.append("entrega", JSON.stringify(values));
@@ -171,7 +170,6 @@ const EntregaYenviaForm = ({
           }
 
           try {
-        
             const venta = await createVentaRequest(formData);
 
             setModalActivo({
@@ -182,7 +180,7 @@ const EntregaYenviaForm = ({
                   "Su orden ha sido creada"
                 ),
               activo: true,
-              navegarA: "/",
+              navegarA: metoPago == "TropiPay" ? "" : "/",
             });
             setCarrito([]);
             localStorage.removeItem("entrega");

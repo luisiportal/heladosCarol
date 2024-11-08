@@ -71,7 +71,12 @@ function FacturaCard({
       <div className="text-left text-slate-700 font-semibold w-full h-full align-middle flex flex-col">
         <div className="flex justify-between font-extralight  text-sm m-2">
           {" "}
-          {factura.id && <p>Factura : {factura.id} -- {factura.pasarela}</p>}
+          {factura.id && (
+            <p>
+              Factura : {factura.id} -- {factura.pasarela}{" "}
+              {factura.pasarela == "TropiPay" && `-- ${factura.pagado}`}
+            </p>
+          )}
           {factura.creado && (
             <p>{new Date(factura.creado).toLocaleString("es-ES")}</p>
           )}

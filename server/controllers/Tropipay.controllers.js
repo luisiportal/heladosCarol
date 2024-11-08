@@ -10,7 +10,7 @@ export const getNotificationPayment = async (req, res) => {
       },
     });
 
-    response.pagado = true;
+    response.pagado = "Pagado";
     await response.save();
 
     res.sendStatus(204);
