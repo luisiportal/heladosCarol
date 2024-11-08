@@ -6,14 +6,13 @@ const Tropipay = ({
   setPayLink,
 
   description,
-  totalCobrar,
 }) => {
   useEffect(() => {
     const loadPaymentLink = async () => {
       const { data } = await createPagoRequest({
         reference: new Date().getTime().toString(),
         description: description,
-        totalCobrar: totalCobrar,
+        totalCobrar: total.toFixed(2) * 100,
         fechaFactura: new Date(),
       });
       setPayLink({

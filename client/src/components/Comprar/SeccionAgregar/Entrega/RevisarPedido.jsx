@@ -43,7 +43,7 @@ const RevisarPedido = ({
   const sabores = carrito.map(
     (item) => item.cantidad + "x " + item.nombre_sabor
   );
-  const description = sabores +" Envio: "+ envio;
+  const description = sabores + " Envio: " + envio;
   console.log(description);
 
   return (
@@ -78,7 +78,6 @@ const RevisarPedido = ({
                 total={total}
                 description={description.toString()}
                 setPayLink={setPayLink}
-                totalCobrar={total * 100}
               />
             ) : (
               <Zelle total={total} />
