@@ -31,7 +31,7 @@ export const createPago = async (req, res) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // Aquí agregamos el token Bearer
+      "Authorization": `Bearer ${token}`, // Aquí agregamos el token Bearer
     },
     body: JSON.stringify({
       reference: reference,
