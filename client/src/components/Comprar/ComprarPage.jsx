@@ -17,9 +17,22 @@ const ComprarPage = () => {
 
   useEffect(() => {
     console.log(params);
-    
+
     if (params.id == 3) {
       setNavegacion(3);
+      setModalActivo({
+        mensaje: "Su orden ha sido creada",
+        activo: true,
+        navegarA: "/",
+      });
+    }
+    if (params.id == 0) {
+      setNavegacion(3);
+      setModalActivo({
+        mensaje: "No se pudo validar el pago",
+        activo: true,
+        navegarA: "/",
+      });
     }
   }, []);
 

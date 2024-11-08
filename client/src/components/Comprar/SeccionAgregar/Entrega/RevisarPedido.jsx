@@ -15,6 +15,10 @@ const RevisarPedido = ({
   file,
   setMetoPago,
   metoPago,
+  setPayLink,
+  reference,
+  description,
+  totalCobrar,
 }) => {
   const { perfil } = useAuth();
   const params = useParams();
@@ -67,7 +71,13 @@ const RevisarPedido = ({
           </section>
           <section>
             {metoPago == "TropiPay" ? (
-              <Tropipay total={total} />
+              <Tropipay
+                total={total}
+                description={description}
+                reference={reference}
+                setPayLink={setPayLink}
+                totalCobrar={totalCobrar}
+              />
             ) : (
               <Zelle total={total} />
             )}

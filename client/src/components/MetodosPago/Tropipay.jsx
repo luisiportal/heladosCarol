@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { createPagoRequest } from "../../api/venta.api";
 
-const Tropipay = ({ total }) => {
-  const [payLink, setPayLink] = useState("")
-
-
+const Tropipay = ({
+  total,
+  setPayLink,
+  reference,
+  description,
+  totalCobrar,
+}) => {
   useEffect(() => {
     const loadPaymentLink = async () => {
-      const {data} = await createPagoRequest({
-        description: "carrito",
-        totalCobrar: 9000,
-        fechaFactura: new Date,
+      const { data } = await createPagoRequest({
+        reference: reference,
+        description: description,
+        totalCobrar: totalCobrar,
+        fechaFactura: new Date(),
       });
 
-      setPayLink(data.shortUrl)
+      setPayLink(data.shortUrl);
     };
 
     loadPaymentLink();
@@ -27,14 +31,7 @@ const Tropipay = ({ total }) => {
       <h4>
         1- Enviar <span className="font-bold">{total.toFixed(2)} USD</span> por{" "}
         <span className="font-bold">TropiPay </span>
-        <a
-          className="flex justify-center text-slate-700 font-bold bg-fresa"
-          href={payLink}
-          target="_blank"
-        >
-          {" "}
-          En este enlace
-        </a>
+        
       </h4>
 
       <p>

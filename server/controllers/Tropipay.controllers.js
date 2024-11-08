@@ -1,47 +1,32 @@
 import { BACKEND_URL, CLIENT_ID, CLIENT_SECRET } from "../config.js";
-import crypto from "crypto";
-
-// Función para crear un hash SHA-1
-const sha1 = (data) => {
-  return crypto.createHash("sha1").update(data).digest("hex");
-};
-
-// Función para crear un hash SHA-256
-const sha256 = (data) => {
-  return crypto.createHash("sha256").update(data).digest("hex");
-};
+import { Factura } from "../models/Facturas.model.js";
 
 export const getNotificationPayment = async (req, res) => {
+  const { reference } = req.body.data;
   try {
-    const { bankOrderCode, userPassword, originalCurrencyAmount } =
-      req.body.data;
-    const { signaturev2 } = req.body.data;
-    const { clientEmail } = req.body.data.clientData;
+    const response = await Factura.findOne({
+      where: {
+        reference: reference,
+      },
+    });
 
-    // Generar la firma local
-    const signatureLocal = sha256(
-      bankOrderCode + clientEmail + sha1(userPassword) + originalCurrencyAmount
-    );
+    response.pagado = true;
+    await response.save();
 
-    // Validar la firma
-    if (signaturev2 === signatureLocal) {
-      console.log("La firma es válida.");
-    } else {
-      console.log("La firma no es válida.");
-    }
-
-    console.log(req.body);
-
-    res.status(204).send(); // Enviar respuesta con estado 204 (sin contenido)
+    res.sendStatus(204);
   } catch (error) {
-    console.error("Error en la validación de la firma:", error);
-    res.status(500).json({ error: error.message }); // Enviar error al cliente
+    console.error(error);
   }
 };
 
 export const createPago = async (req, res) => {
-  const { description, totalCobrar, fechaFactura } = req.body;
+  console.log(req.body);
+
+  const { description, totalCobrar, fechaFactura, reference } = req.body;
   const token = await getAccessToken();
+  console.log(token);
+  console.log(reference);
+
   const notificacionURL = `${BACKEND_URL}/verificarpago`;
   const options = {
     method: "POST",
@@ -50,7 +35,7 @@ export const createPago = async (req, res) => {
       Authorization: `Bearer ${token}`, // Aquí agregamos el token Bearer
     },
     body: JSON.stringify({
-      reference: "Helados Carol Holguín",
+      reference: reference,
       concept: "Pago a Helados Carol Holguín",
       favorite: true,
       description: description,
@@ -60,9 +45,9 @@ export const createPago = async (req, res) => {
       reasonId: 4,
       expirationDays: 1,
       lang: "es",
-      urlSuccess: "https://www.heladoscarol.com/pagoOk",
-      urlFailed: "https://www.heladoscarol.com/payment-ko",
-      urlNotification: notificacionURL,
+      urlSuccess: "https://www.heladoscarol.com/comprar/3",
+      urlFailed: "https://www.heladoscarol.com/comprar/0",
+      urlNotification: "api.heladoscarol.com/revisarpago",
       serviceDate: fechaFactura,
       directPayment: true,
       paymentMethods: ["EXT", "TPP"],
@@ -79,8 +64,11 @@ export const createPago = async (req, res) => {
     }
 
     const data = await response.json();
+
     res.json(data);
   } catch (error) {
+    console.log(error);
+
     console.error("Error en la creación del pago:", error);
     res.status(500).json({ error: error.message });
   }

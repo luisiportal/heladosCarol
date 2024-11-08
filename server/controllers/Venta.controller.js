@@ -22,6 +22,9 @@ export const createVenta = async (req, res) => {
   const productos = JSON.parse(req.body.productos);
   const entrega = JSON.parse(req.body.entrega);
   const pasarela =  JSON.parse(req.body.pasarela);
+  const reference =  JSON.parse(req.body.reference);
+
+
 
   const total_venta = productos.reduce(
     (sum, producto) => sum + producto.precio_venta * producto.cantidad,
@@ -40,6 +43,7 @@ export const createVenta = async (req, res) => {
         {
           total_venta,
           pasarela,
+          reference,
           creado,
         },
         { transaction: t }

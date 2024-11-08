@@ -16,8 +16,6 @@ import RevisarPedido from "./RevisarPedido";
 import { getRepartosRequest } from "../../../../api/repartos.api";
 import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
 import { readLocalStorage } from "../../../../hooks/useLocalStorage";
-import { useParams } from "react-router-dom";
-import { useAuth } from "../../../../context/AuthContext";
 
 const schema = Yup.object({
   ordenante: Yup.string()
@@ -107,6 +105,8 @@ const EntregaYenviaForm = ({
   const [selectedOption, setSelectedOption] = useState(null);
   const [file, setFile] = useState();
   const [metoPago, setMetoPago] = useState("");
+  const [payLink, setPayLink] = useState("");
+  const reference = new Date().getTime().toString();
 
   useEffect(() => {
     const cargarRepartos = async () => {
@@ -119,7 +119,6 @@ const EntregaYenviaForm = ({
       }
       setLoader(false);
     };
-
     cargarRepartos();
 
     const entregaLocal = readLocalStorage("entrega");
@@ -159,26 +158,29 @@ const EntregaYenviaForm = ({
         onSubmit={async (values) => {
           setLoader(true);
           setModalActivo({});
+
+
           const formData = new FormData();
           formData.append("productos", JSON.stringify(carrito));
           formData.append("entrega", JSON.stringify(values));
           formData.append("pasarela", JSON.stringify(metoPago));
+          formData.append("reference", JSON.stringify(reference));
 
           if (file !== null) {
             formData.append("factura_image", file);
           }
 
           try {
-            const responsePago = await createPagoRequest({
-              description: "carrito",
-              totalCobrar: 9000,
-              fechaFactura: new Date(),
-            });
-            console.log(responsePago);
+        
+            const venta = await createVentaRequest(formData);
 
-            await createVentaRequest(formData);
             setModalActivo({
-              mensaje: "Su orden ha sido creada",
+              mensaje:
+                metoPago == "TropiPay" ? (
+                  <a href={payLink}>Ir a pagar a TropiPay</a>
+                ) : (
+                  "Su orden ha sido creada"
+                ),
               activo: true,
               navegarA: "/",
             });
@@ -313,6 +315,10 @@ const EntregaYenviaForm = ({
                   setFile={setFile}
                   metoPago={metoPago}
                   setMetoPago={setMetoPago}
+                  setPayLink={setPayLink}
+                  description={"description"}
+                  totalCobrar={4500}
+                  reference={reference}
                 />
               )}
 

@@ -1,9 +1,11 @@
-
 import sequelize from "../db.js";
 import { Entrega } from "../models/Entrega.model.js";
 import { Factura } from "../models/Facturas.model.js";
 import { registrarLog } from "./AuditLog.controllers.js";
-import { NotificarConfirmadoFacturaCliente, NotificarEntregadoFacturaCliente } from "./EnviarCorreo.controller.js";
+import {
+  NotificarConfirmadoFacturaCliente,
+  NotificarEntregadoFacturaCliente,
+} from "./EnviarCorreo.controller.js";
 
 export const confirmarFactura = async (req, res) => {
   const id = req.params.id;
@@ -16,7 +18,6 @@ export const confirmarFactura = async (req, res) => {
       },
     });
 
-    
     response.confirmado = true;
     response.estado = "Aceptada";
     await response.save();
@@ -38,7 +39,6 @@ export const estadoFacturaEntregada = async (req, res) => {
       },
     });
 
-    
     response.estado = "Entregada";
     await response.save();
     res.json(response);

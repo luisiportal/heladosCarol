@@ -41,6 +41,18 @@ export const Factura = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    reference: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    pagado: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    userId: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
   },
   {
     timestamps: true,
