@@ -2,10 +2,9 @@ import { BACKEND_URL, CLIENT_ID, CLIENT_SECRET } from "../config.js";
 import { Factura } from "../models/Facturas.model.js";
 
 export const getNotificationPayment = async (req, res) => {
-console.log(req.body.data);
+  console.log(req.body.data.reference);
 
-  const reference  = JSON.parse(req.body.data.reference);
-  const referencia = `${reference}`;
+  const referencia = req.body.data.reference;
 
   try {
     const response = await Factura.findOne({
@@ -13,11 +12,6 @@ console.log(req.body.data);
         reference: referencia,
       },
     });
-    typeof reference;
-    typeof response.reference;
-    typeof referencia;
-
-    console.log(response);
 
     response.pagado = "Pagado";
     await response.save();
