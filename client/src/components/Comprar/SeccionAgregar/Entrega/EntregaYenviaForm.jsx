@@ -173,12 +173,7 @@ const EntregaYenviaForm = ({
           try {
             const venta = await createVentaRequest(formData);
 
-            if (metoPago == "TropiPay") {
-              setModalActivo({
-                mensaje: <a href={payLink.shortUrl}>Ir a pagar a TropiPay</a>,
-                activo: true,
-              });
-            } else {
+            if (metoPago != "TropiPay") {
               setModalActivo({
                 mensaje: "Su Orden ha sido creada",
                 activo: true,
@@ -318,6 +313,7 @@ const EntregaYenviaForm = ({
                   metoPago={metoPago}
                   setMetoPago={setMetoPago}
                   setPayLink={setPayLink}
+                  payLink={payLink}
                 />
               )}
 

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { createPagoRequest } from "../../api/venta.api";
+import Loader from "../Utilidades/Loader";
 
 const Tropipay = ({
   total,
   setPayLink,
+  payLink,
 
   description,
 }) => {
@@ -38,6 +40,21 @@ const Tropipay = ({
         Una vez que recibamos la confirmación de su pago su orden será aceptada
         y procesada.
       </p>
+      {payLink.shortUrl > "" ? (
+        <button
+          className="flex justify-center opacity-100 transition-all duration-500"
+          type="submit"
+          onClick={() => (location.href = payLink.shortUrl)}
+        >
+          <img
+            className="w-48 h-12 rounded-lg"
+            src="../images/pagarTropiPay.png"
+            alt="Pagar con TropiPay"
+          />
+        </button>
+      ) : (
+        <div className="flex justify-center font-light bg-slate-800 text-white ">"Cargando enlace de pago..."   <div className="w-1 h-1"><Loader/></div></div>
+      )}
       <h4>Gracias por elegirnos</h4>
     </div>
   );

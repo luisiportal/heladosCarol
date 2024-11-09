@@ -16,6 +16,7 @@ const RevisarPedido = ({
   setMetoPago,
   metoPago,
   setPayLink,
+  payLink
 }) => {
   const { perfil } = useAuth();
   const params = useParams();
@@ -73,15 +74,15 @@ const RevisarPedido = ({
             )}
           </section>
           <section>
-            {metoPago == "TropiPay" ? (
+            {metoPago == "TropiPay" && (
               <Tropipay
                 total={total}
                 description={description.toString()}
                 setPayLink={setPayLink}
+                payLink={payLink}
               />
-            ) : (
-              <Zelle total={total} />
             )}
+            {metoPago == "Zelle" && <Zelle total={total} />}
           </section>
         </>
       )}

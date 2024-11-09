@@ -4,7 +4,7 @@ import { Factura } from "../models/Facturas.model.js";
 export const getNotificationPayment = async (req, res) => {
   console.log(req.body.data.reference);
 
-  const referencia = req.body.data.reference;
+  const {referencia} = req.body.data;
 
   try {
     const response = await Factura.findOne({
