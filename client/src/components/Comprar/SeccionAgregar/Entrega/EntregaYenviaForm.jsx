@@ -157,6 +157,14 @@ const EntregaYenviaForm = ({
         enableReinitialize={true}
         validationSchema={schema}
         onSubmit={async (values) => {
+          if (metoPago == ""){
+           return setModalActivo({
+              mensaje: "Debe Escojer una forma de pago",
+              activo: true,
+              errorColor: true,
+  
+            });
+          }
           setLoader(true);
           setModalActivo({});
 

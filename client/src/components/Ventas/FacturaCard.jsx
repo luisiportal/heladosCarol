@@ -64,6 +64,8 @@ function FacturaCard({
     factura.entrega.envio
   );
 
+  const color_factura = `bg-`;
+
   return (
     <div
       className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
