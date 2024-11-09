@@ -187,8 +187,11 @@ const EntregaYenviaForm = ({
                 activo: true,
                 navegarA: "/",
               });
+            
             } else {
+              (location.href = payLink.shortUrl)
               setLoader(true);
+
             }
 
             setCarrito([]);
@@ -338,6 +341,7 @@ const EntregaYenviaForm = ({
                   errors={errors}
                   setModalActivo={setModalActivo}
                   carrito={carrito}
+                  metoPago={metoPago}
                 />
               </div>
             </section>

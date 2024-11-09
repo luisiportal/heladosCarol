@@ -14,6 +14,7 @@ const NavegacionEntrega = ({
   errors,
   setModalActivo,
   carrito,
+  metoPago,
 }) => {
   return (
     <div className="flex  justify-between">
@@ -42,7 +43,7 @@ const NavegacionEntrega = ({
                 .validate(entrega)
                 .then(() => {
                   ///guardar local storage
-                  writeLocalStorage("entrega",entrega);
+                  writeLocalStorage("entrega", entrega);
                   setNavegacion(3);
                 })
                 .catch((err) => {
@@ -56,23 +57,25 @@ const NavegacionEntrega = ({
           />
         )}
         {navegacion == 3 && (
-          <Btn_Huellas
-            text={`Enviar`}
-            type={"submit"}
-            onclick={() => {
-              validateYupSchema(entrega, schema);
-              if (errors) {
-                return setModalActivo({
-                  mensaje:
-                    "Revise los datos de Entrega antes de enviar la orden",
-                  activo: true,
-                  errorColor: true,
-                });
-              }
-            }}
-          />
+          <>
+            <Btn_Huellas
+              text={`Enviar`}
+              type={"submit"}
+              onclick={() => {
+                validateYupSchema(entrega, schema);
+                if (errors) {
+                  return setModalActivo({
+                    mensaje:
+                      "Revise los datos de Entrega antes de enviar la orden",
+                    activo: true,
+                    errorColor: true,
+                  });
+                }
+              }}
+            />
+            <ArrowRight />
+          </>
         )}
-        <ArrowRight />
       </div>
     </div>
   );
