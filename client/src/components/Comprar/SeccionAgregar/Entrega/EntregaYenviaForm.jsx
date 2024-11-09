@@ -235,7 +235,7 @@ const EntregaYenviaForm = ({
                     <InputEntrega
                       type={"text"}
                       name={"contacto_ordenante"}
-                      placeholder={"Correo o teléfono"}
+                      placeholder={"Correo electrónico"}
                       handlechange={handleChangeMio}
                       value={entrega.contacto_ordenante}
                       errors={errors}

@@ -14,6 +14,7 @@ import ElimiarFacturaBTN from "./CardFacturaItems/ElimiarFacturaBTN";
 import SaboresFactura from "./CardFacturaItems/SaboresFactura";
 import TotalFactura from "./CardFacturaItems/TotalFactura";
 import TruckEntregaSVG from "../SVG/TruckEntregaSVG";
+import IconoPasarela from "./CardFacturaItems/IconoPasarela";
 
 function FacturaCard({
   factura,
@@ -71,11 +72,12 @@ function FacturaCard({
       className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
     >
       <div className="text-left text-slate-700 font-semibold w-full h-full align-middle flex flex-col">
-        <div className="flex justify-between font-extralight  text-sm m-2">
+        <div className="flex justify-between items-center font-extralight  text-sm m-2">
           {" "}
           {factura.id && (
-            <p>
-              Factura : {factura.id} -- {factura.pasarela}{" "}
+            <p className="flex items-center">
+              {<IconoPasarela pasarela={factura.pasarela} />}
+              Factura : {factura.id}
               {factura.pasarela == "TropiPay" && `-- ${factura.pagado}`}
             </p>
           )}
