@@ -44,7 +44,7 @@ const Tropipay = ({
         <button
           className="flex justify-center opacity-100 transition-all duration-500"
           type="submit"
-          onClick={() => window.open(payLink.shortUrl, "_blank")}
+          onClick={() => (location.href = payLink.shortUrl)}
         >
           <img
             className="w-48 h-12 rounded-lg"
@@ -53,14 +53,9 @@ const Tropipay = ({
           />
         </button>
       ) : (
-        <div className="flex justify-center font-light bg-slate-800 text-white ">
-          "Cargando enlace de pago..."{" "}
-          <div className="w-1 h-1">
-            <Loader />
-          </div>
-        </div>
+        <div className="flex justify-center font-light bg-slate-800 text-white ">"Cargando enlace de pago..."   <div className="w-1 h-1"><Loader/></div></div>
       )}
-      <h4>Gracias por elegirnos</h4>
+      <h4 className="flex justify-center">Gracias por elegirnos</h4>
     </div>
   );
 };

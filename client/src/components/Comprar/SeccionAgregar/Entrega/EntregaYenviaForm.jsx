@@ -179,13 +179,17 @@ const EntregaYenviaForm = ({
                 activo: true,
                 navegarA: "/",
               });
+            } else {
+              setLoader(true);
             }
 
             setCarrito([]);
             localStorage.removeItem("entrega");
             localStorage.removeItem("sabores");
 
-            setLoader(false);
+            if (metoPago != "TropiPay") {
+              setLoader(false);
+            }
           } catch (error) {
             console.log(error);
           }
