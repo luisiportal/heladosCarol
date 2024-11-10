@@ -10,7 +10,7 @@ const Tinas = ({ tinas }) => {
   }));
   return (
     <div className="bg-neutral-200 my-4 rounded-lg group">
-      <div className="p-2">
+      <div className="p-2 overflow-hidden">
         {" "}
         <div className="relative">
           <img
