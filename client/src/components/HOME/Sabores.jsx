@@ -27,13 +27,18 @@ const Sabores = () => {
   const nombreSabores = sabores.map((sabor) => ` ${sabor.nombre_sabor}`);
 
   const potes = sabores.filter((item) => !item.nombre_sabor.includes("Tina"));
+
   const tinas = sabores.filter((item) => item.nombre_sabor.includes("Tina"));
+  const sinPote = potes.map((item) => ({
+    nombre_sabor: item.nombre_sabor.replace("Pote", "").trim(),
+    color: item.color,
+  }));
   return (
     <>
       <div className="bg-neutral-200 rounded-lg mt-4 pt-4">
         <section className="flex items-center justify-between">
           <div className="w-44">
-            {potes.map(
+            {sinPote.map(
               (sabor, index) =>
                 sabor.existencia > 0 && (
                   <div key={index}>
