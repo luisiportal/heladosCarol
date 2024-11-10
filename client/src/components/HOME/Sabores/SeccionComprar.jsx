@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PoteHelado from "./PoteHelado";
-import BTN from "./BTN";
+import BTN_Comprar from "./BTN_Comprar";
 
-const SeccionComprar = ({ navigate, sabor }) => {
+const SeccionComprar = ({ sabor }) => {
   return (
     <section className="w-40 pt-12 mr-4">
       <div className="flex justify-center mb-2">
@@ -13,10 +13,7 @@ const SeccionComprar = ({ navigate, sabor }) => {
       </h2>
       <h2 className="flex justify-center text-xs text-slate-700"></h2>
       <div className="flex justify-center">
-        {" "}
-        <button onClick={() => navigate("/comprar")}>
-          <BTN />
-        </button>
+      <BTN_Comprar/>
       </div>
     </section>
   );
