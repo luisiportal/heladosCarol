@@ -6,6 +6,7 @@ const Tinas = ({ tinas }) => {
   const sinTina = tinas.map((item) => ({
     nombre_sabor: item.nombre_sabor.replace("Tina", "").trim(),
     color: item.color,
+    existencia: item.existencia,
   }));
   return (
     <div className="bg-neutral-200 my-4 rounded-lg group">
@@ -33,11 +34,14 @@ const Tinas = ({ tinas }) => {
       </h2>
 
       <div className="flex justify-center gap-2 flex-wrap py-4">
-        {sinTina.map((item, index) => (
-          <div key={index} className="">
-            <TinaCardElement tina={item} />
-          </div>
-        ))}
+        {sinTina.map(
+          (item, index) =>
+            item.existencia > 0 && (
+              <div key={index} className="">
+                <TinaCardElement tina={item} />
+              </div>
+            )
+        )}
       </div>
     </div>
   );

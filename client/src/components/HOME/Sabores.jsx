@@ -32,6 +32,7 @@ const Sabores = () => {
   const sinPote = potes.map((item) => ({
     nombre_sabor: item.nombre_sabor.replace("Pote", "").trim(),
     color: item.color,
+    existencia: item.existencia,
   }));
   return (
     <>
