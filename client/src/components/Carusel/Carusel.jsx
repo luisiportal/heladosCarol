@@ -9,16 +9,32 @@ const Carusel = () => {
       thumbnail: "../images/carusel/saboresSolo.jpg",
     },
     {
+      original: "../images/carusel/flores.jpg",
+      thumbnail: "../images/carusel/flores.jpg",
+    },
+    {
       original: "../images/carusel/chocolateBoleadora.jpg",
       thumbnail: "../images/carusel/chocolateBoleadora.jpg",
+    },
+    {
+      original: "../images/carusel/tinas.jpg",
+      thumbnail: "../images/carusel/tinas.jpg",
     },
     {
       original: "../images/carusel/2.jpg",
       thumbnail: "../images/carusel/2.jpg",
     },
     {
+      original: "../images/carusel/sacos.jpg",
+      thumbnail: "../images/carusel/sacos.jpg",
+    },
+    {
       original: "../images/carusel/imagen1.jpg",
       thumbnail: "../images/carusel/imagen1.jpg",
+    },
+    {
+      original: "../images/carusel/extractos.jpg",
+      thumbnail: "../images/carusel/extractos.jpg",
     },
 
     {

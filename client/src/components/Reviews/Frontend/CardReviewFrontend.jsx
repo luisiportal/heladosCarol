@@ -15,12 +15,16 @@ const CardReviewFrontend = ({ review, sabores, index }) => {
     return (
       <div>
         <div
-          style={{ backgroundColor: "#" + sabores[indexColor()].color }}
+          style={{
+            backgroundColor: "#" + (sabores?.[indexColor()]?.color ?? ""),
+          }}
           className={`flex items-center mb-4 
            rounded-xl p-2 shadow-md `}
         >
           <img
-            src={`${import.meta.env.VITE_BACKEND_URL}/images/perfilReviews/${review.ruta_image}`}
+            src={`${import.meta.env.VITE_BACKEND_URL}/images/perfilReviews/${
+              review.ruta_image
+            }`}
             alt="Avatar"
             className="w-14 h-14 rounded-full mr-2  border-white border-2 "
           />

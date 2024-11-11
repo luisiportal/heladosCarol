@@ -30,7 +30,9 @@ const Tinas = ({ tinas }) => {
       </div>
 
       <h2 className="font-irish flex justify-center pt-2">
-        {tinas?.[0]?.precio_venta ?? ""} USD | 4 litros
+        {tinas?.[0]?.existencia > 0
+          ? `${tinas?.[0]?.precio_venta ?? ""} USD | 4 litros`
+          : "Agotadas por hoy"}
       </h2>
 
       <div className="flex justify-center gap-2 flex-wrap py-4">
