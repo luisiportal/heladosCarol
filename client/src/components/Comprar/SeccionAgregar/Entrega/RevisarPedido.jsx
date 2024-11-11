@@ -16,7 +16,7 @@ const RevisarPedido = ({
   setMetoPago,
   metoPago,
   setPayLink,
-  payLink
+  payLink,
 }) => {
   const { perfil } = useAuth();
   const params = useParams();
@@ -65,13 +65,12 @@ const RevisarPedido = ({
               imagen={"zelle.png"}
               onclick={() => handleMetoPago("Zelle")}
             />
-            {perfil.privilegio == "Administrador" && (
-              <BTN_MePago
-                name={"TropiPay"}
-                imagen={"tropipay.jpg"}
-                onclick={() => handleMetoPago("TropiPay")}
-              />
-            )}
+
+            <BTN_MePago
+              name={"TropiPay"}
+              imagen={"tropipay.jpg"}
+              onclick={() => handleMetoPago("TropiPay")}
+            />
           </section>
           <section>
             {metoPago == "TropiPay" && (

@@ -91,7 +91,7 @@ export const getAccessToken = async () => {
 
   try {
     const response = await fetch(
-      "https://tropipay-dev.herokuapp.com/api/v2/access/token",
+      "https://www.tropipay.com/api/v2/access/token",
       options
     );
     if (!response.ok) {
