@@ -58,7 +58,7 @@ export const createPago = async (req, res) => {
 
   try {
     const response = await fetch(
-      "https://tropipay-dev.herokuapp.com/api/v2/paymentcards",
+      "https://www.tropipay.com/api/v2/paymentcards",
       options
     );
     if (!response.ok) {
