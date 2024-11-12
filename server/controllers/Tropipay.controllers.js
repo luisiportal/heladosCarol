@@ -5,7 +5,7 @@ export const getNotificationPayment = async (req, res) => {
   console.log(req.body.data.reference);
 
   const referencia = req.body.data.reference;
-console.log(referencia);
+  console.log(referencia);
 
   try {
     const response = await Factura.findOne({
@@ -26,15 +26,15 @@ console.log(referencia);
 export const createPago = async (req, res) => {
   const { description, totalCobrar, fechaFactura, reference } = req.body;
   const token = await getAccessToken();
+  console.log(req.body);
 
-  const notificacionURL = 'https://api.heladoscarol.com/verificarpago';
+  const notificacionURL = "https://api.heladoscarol.com/verificarpago";
 
-  
   const options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`, // Aquí agregamos el token Bearer
+      Authorization: `Bearer ${token}`, // Aquí agregamos el token Bearer
     },
     body: JSON.stringify({
       reference: reference,
