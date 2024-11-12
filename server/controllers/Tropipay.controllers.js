@@ -28,6 +28,7 @@ export const createPago = async (req, res) => {
   const token = await getAccessToken();
   console.log(req.body);
 
+
   const notificacionURL = "https://api.heladoscarol.com/verificarpago";
 
   const options = {
@@ -41,7 +42,7 @@ export const createPago = async (req, res) => {
       concept: "Pago a Helados Carol Holguín",
       favorite: true,
       description: description,
-      amount: totalCobrar,
+      amount: parseInt(totalCobrar),
       currency: "USD",
       singleUse: true,
       reasonId: 4,
