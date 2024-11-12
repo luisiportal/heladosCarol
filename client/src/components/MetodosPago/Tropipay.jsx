@@ -14,7 +14,7 @@ const Tropipay = ({
       const { data } = await createPagoRequest({
         reference: new Date().getTime().toString(),
         description: description,
-        totalCobrar: (total * 100).toFixed(2),
+        totalCobrar: parseInt((total * 100).toFixed(2)),
         fechaFactura: new Date(),
       });
       setPayLink({
@@ -53,7 +53,12 @@ const Tropipay = ({
           />
         </button>
       ) : (
-        <div className="flex justify-center font-light bg-slate-800 text-white ">"Cargando enlace de pago..."   <div className="w-1 h-1"><Loader/></div></div>
+        <div className="flex justify-center font-light bg-slate-800 text-white ">
+          "Cargando enlace de pago..."{" "}
+          <div className="w-1 h-1">
+            <Loader />
+          </div>
+        </div>
       )}
       <h4 className="flex justify-center">Gracias por elegirnos</h4>
     </div>
