@@ -14,7 +14,7 @@ const Tropipay = ({
       const { data } = await createPagoRequest({
         reference: new Date().getTime().toString(),
         description: description,
-        totalCobrar: total.toFixed(2) * 100,
+        totalCobrar: (total * 100).toFixed(2),
         fechaFactura: new Date(),
       });
       setPayLink({
