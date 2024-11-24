@@ -65,6 +65,9 @@ function FacturaCard({
     factura.entrega.envio
   );
 
+  const moneda =
+    metoPago == "CUP" || factura.pasarela == "CUP" ? " CUP" : " USD";
+
   return (
     <div
       className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
@@ -84,8 +87,16 @@ function FacturaCard({
           )}
         </div>
         <div className=" bg-fresa rounded-xl text-xs flex gap-2 p-2 mx-2">
-          <SaboresFactura ventas={ventas} envio={factura.entrega.envio} metoPago={metoPago}/>
-          <TotalFactura total={total ?? grandTotal.toFixed(2)} metoPago={metoPago} />
+          <SaboresFactura
+            ventas={ventas}
+            envio={factura.entrega.envio}
+            metoPago={metoPago}
+            moneda={moneda}
+          />
+          <TotalFactura
+            total={total ?? grandTotal.toFixed(2)}
+            moneda={moneda}
+          />
         </div>
 
         <div className="flex-grow flex flex-col  p-2 text-xs">
