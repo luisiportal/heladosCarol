@@ -9,13 +9,13 @@ const ProductoCarrito = ({
   carrito,
   total_sabor,
   right,
+  metoPago,
 }) => {
   const handleEliminar = (id) => {
-    const deleteSabor = carrito.filter((sabor) => sabor.id_sabor !== id)
+    const deleteSabor = carrito.filter((sabor) => sabor.id_sabor !== id);
     setCarrito(deleteSabor);
     writeLocalStorage("sabores", deleteSabor);
   };
-  
 
   return (
     <>
@@ -39,7 +39,8 @@ const ProductoCarrito = ({
           <div className="flex gap-4">
             {" "}
             <h3 className="text-sm font-semibold">
-              Precio: {sabor.precio_venta} USD
+              Precio: {sabor.precio_venta}
+              {metoPago == "CUP" ? " CUP" : " USD"}
             </h3>
             <h3 className="text-sm font-semibold">Total: {total_sabor}</h3>
           </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const SaboresFactura = ({ ventas, envio }) => {
+const SaboresFactura = ({ ventas, envio,metoPago }) => {
   return (
     <div className="bg-neutral-100 rounded-xl flex flex-col justify-center p-3 w-full">
       {ventas.map((sabor, index) => (
@@ -17,11 +17,11 @@ const SaboresFactura = ({ ventas, envio }) => {
           </div>
           <div>
             {sabor.precio_total_sabor ?? sabor.precio_venta * sabor.cantidad}
-               {" USD"}
+            {(metoPago == "CUP") ? " CUP" : " USD"}
           </div>
         </div>
       ))}
-      Envio : {envio} USD
+      Envio : {envio} {(metoPago == "CUP") ? " CUP" : " USD"}
     </div>
   );
 };

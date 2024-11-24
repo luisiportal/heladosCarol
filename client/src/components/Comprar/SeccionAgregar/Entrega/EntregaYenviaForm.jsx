@@ -100,11 +100,13 @@ const EntregaYenviaForm = ({
   setCarrito,
   loader,
   navegacion,
+  metoPago,
+  setMetoPago,
 }) => {
   const [repartos, setRepartos] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [file, setFile] = useState();
-  const [metoPago, setMetoPago] = useState("");
+
   const [payLink, setPayLink] = useState({
     reference: "",
     shortUrl: "",
@@ -145,7 +147,7 @@ const EntregaYenviaForm = ({
     return {
       value: reparto.reparto,
       label: reparto.reparto,
-      envio: reparto.costo,
+      envio: metoPago == "CUP" ? reparto.costo_cup : reparto.costo,
     };
   });
 
@@ -157,12 +159,11 @@ const EntregaYenviaForm = ({
         enableReinitialize={true}
         validationSchema={schema}
         onSubmit={async (values) => {
-          if (metoPago == ""){
-           return setModalActivo({
+          if (metoPago == "") {
+            return setModalActivo({
               mensaje: "Debe Escojer una forma de pago",
               activo: true,
               errorColor: true,
-  
             });
           }
           setLoader(true);
@@ -187,11 +188,9 @@ const EntregaYenviaForm = ({
                 activo: true,
                 navegarA: "/",
               });
-            
             } else {
-              (location.href = payLink.shortUrl)
+              location.href = payLink.shortUrl;
               setLoader(true);
-
             }
 
             setCarrito([]);
@@ -332,18 +331,20 @@ const EntregaYenviaForm = ({
                 />
               )}
 
-              <div className="mt-2 mx-2 ">
-                <NavegacionEntrega
-                  setNavegacion={setNavegacion}
-                  entrega={entrega}
-                  navegacion={navegacion}
-                  schema={schema}
-                  errors={errors}
-                  setModalActivo={setModalActivo}
-                  carrito={carrito}
-                  metoPago={metoPago}
-                />
-              </div>
+              {navegacion != 0 && (
+                <div className="mt-2 mx-2 ">
+                  <NavegacionEntrega
+                    setNavegacion={setNavegacion}
+                    entrega={entrega}
+                    navegacion={navegacion}
+                    schema={schema}
+                    errors={errors}
+                    setModalActivo={setModalActivo}
+                    carrito={carrito}
+                    metoPago={metoPago}
+                  />
+                </div>
+              )}
             </section>
           </Form>
         )}

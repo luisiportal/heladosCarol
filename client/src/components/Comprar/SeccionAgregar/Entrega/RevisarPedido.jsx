@@ -7,6 +7,7 @@ import Zelle from "../../../MetodosPago/Zelle";
 import Tropipay from "../../../MetodosPago/Tropipay";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../../../context/AuthContext";
+import MonedaNacional from "../../../MetodosPago/MonedaNacional";
 
 const RevisarPedido = ({
   carrito,
@@ -18,7 +19,6 @@ const RevisarPedido = ({
   setPayLink,
   payLink,
 }) => {
-  const { perfil } = useAuth();
   const params = useParams();
   let totalLocal = 0;
   if (carrito) {
@@ -27,11 +27,6 @@ const RevisarPedido = ({
       0
     );
   }
-
-  const handleMetoPago = (metodo) => {
-    setMetoPago(metodo);
-    console.log(metodo);
-  };
 
   const factura = {
     ventas: carrito,
@@ -55,24 +50,8 @@ const RevisarPedido = ({
         "Pago por TropiPay Correcto"
       ) : (
         <>
-          {" "}
-          <h2 className="flex justify-center text-slate-700 font-semibold">
-            Escoja el método de pago de su preferencia
-          </h2>{" "}
-          <section className="flex gap-4 justify-center mt-2">
-            <BTN_MePago
-              name={"Zelle"}
-              imagen={"zelle.png"}
-              onclick={() => handleMetoPago("Zelle")}
-            />
-
-            <BTN_MePago
-              name={"TropiPay"}
-              imagen={"tropipay.jpg"}
-              onclick={() => handleMetoPago("TropiPay")}
-            />
-          </section>
           <section>
+            {metoPago == "CUP" && <MonedaNacional total={total} />}
             {metoPago == "TropiPay" && (
               <Tropipay
                 total={total}

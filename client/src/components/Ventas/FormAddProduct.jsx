@@ -12,30 +12,35 @@ const FormAddProduct = ({
   recargar,
   setSelectedOption,
   selectedOption,
+  metoPago,
 }) => {
   const [conExistencia, setConExistencia] = useState(true);
   const [productosElegir, setProductosElegir] = useState([]);
   const { sabores } = useSabores();
+
   const productosConExistencia = sabores.filter(
     (sabor) => Number(sabor.existencia) > 0
   );
 
-  useEffect(() => {
-   
-  }, []);
-
   const options = (
     productosElegir.length > 0 ? productosElegir : productosConExistencia
   ).map((sabor) => {
+    const precio =
+      metoPago == "CUP"
+        ? sabor.precio_venta_cup + " CUP"
+        : sabor.precio_venta + " USD";
     return {
       value: sabor.id_sabor,
-      label: sabor.nombre_sabor + " " + sabor.precio_venta + " USD",
+      label: sabor.nombre_sabor + " " + precio,
       nombre_sabor: sabor.nombre_sabor,
       existencia: sabor.existencia,
-      precio_venta: Number(sabor.precio_venta),
+      precio_venta:
+        metoPago == "CUP"
+          ? sabor.precio_venta_cup
+          : sabor.precio_venta,
       ruta_image: sabor.ruta_image,
       color: sabor.color,
-    };
+      };
   });
 
   const handleSelectChange = (p) => {

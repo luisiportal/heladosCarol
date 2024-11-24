@@ -14,24 +14,28 @@ const Navbar = ({ hidden, isAuthenticated }) => {
 
       {isAuthenticated && (
         <>
-          {" "}
+        <ElementoNavbar
+            nombre={"Facturas"}
+            href={"/transacciones"}
+          ></ElementoNavbar>
+           <ElementoNavbar
+            nombre={"Opiniones"}
+            href={"/opiniones"}
+          ></ElementoNavbar>
           <ElementoNavbar nombre={"Sabores"} href={"/sabores"}></ElementoNavbar>
           <ElementoNavbar
             nombre={"Movimientos"}
             href={"/movimientos"}
           ></ElementoNavbar>
-          <ElementoNavbar
-            nombre={"Facturas"}
-            href={"/transacciones"}
+           <ElementoNavbar
+            nombre={"Cambio"}
+            href={"/cambio"}
           ></ElementoNavbar>
           <ElementoNavbar
             nombre={"Plantilla"}
             href={"/trabajador/plantilla"}
           ></ElementoNavbar>
-          <ElementoNavbar
-            nombre={"Opiniones"}
-            href={"/opiniones"}
-          ></ElementoNavbar>
+         
           <ElementoNavbar nombre={"Logs"} href={"/logs"}></ElementoNavbar>
           <ElementoNavbar nombre={"Frases"} href={"/frases"}></ElementoNavbar>
           <ElementoNavbar

@@ -37,6 +37,7 @@ import Historia from "./components/Landing/Historia";
 import Contacto from "./components/Landing/Contacto";
 import FrasesPage from "./components/Frases/FrasesPage";
 import FrasesForm from "./components/Frases/FrasesForm";
+import EscojerMetodoPago from "./components/MetodosPago/EscojerMetodoPago";
 
 const App = () => {
   return (
@@ -66,7 +67,7 @@ const App = () => {
                   path="/comprar"
                   element={
                     <CarritosProvaider>
-                      <ComprarPage />
+                      <ComprarPage/>
                     </CarritosProvaider>
                   }
                 />
@@ -79,6 +80,7 @@ const App = () => {
                   }
                 />
                 <Route element={<ProtectedRoutes />}>
+                <Route path="/cambio" element={<TipoCambioPage />} />
                   <Route path="/cerrado" element={<CerradoForm />} />
                   <Route path="/opiniones" element={<ListarReviewsBackend />} />
                   <Route path="/frases" element={<FrasesPage />} />

@@ -17,6 +17,10 @@ const schema = Yup.object().shape({
     .typeError("Debes escribir solo números")
     .positive("El precio debe ser mayor que cero")
     .required("Precio Requerido"),
+  precio_venta_cup: Yup.number()
+    .typeError("Debes escribir solo números")
+    .positive("El precio debe ser mayor que cero")
+    .required("Precio Requerido"),
   color: Yup.string(),
   stockMinimo: Yup.number().typeError("Debes escribir solo números"),
 });
@@ -24,21 +28,20 @@ const schema = Yup.object().shape({
 const SaboresForm = () => {
   const { createSabor, getSabor, updateSabor } = useSabores();
 
-  const { loader, setLoader,  setModalActivo } =
-    useAuth();
+  const { loader, setLoader, setModalActivo } = useAuth();
   const [file, setFile] = useState();
   const [sabor, setSabor] = useState({
     nombre_sabor: "",
-    envase:"",
+    envase: "",
     description_producto: "",
     costo_unitario: 0,
     precio_venta: 0,
+    precio_venta_cup: 0,
     categoria: "Sin categoria",
   });
 
   useEffect(() => {
     const loadSabor = async () => {
-   
       if (params.id_sabor) {
         setLoader(true);
         const sabor = await getSabor(params.id_sabor);
@@ -54,7 +57,6 @@ const SaboresForm = () => {
 
   const params = useParams();
 
-
   const handleSubmit = async (values) => {
     const formData = new FormData();
     formData.append("nombre_sabor", values.nombre_sabor);
@@ -62,7 +64,6 @@ const SaboresForm = () => {
     formData.append("color", values.color);
     formData.append("costo_unitario", values.costo_unitario);
     formData.append("precio_venta", values.precio_venta);
-
     formData.append("stockMinimo", values.stockMinimo || 0);
     formData.append("existencia", values.existencia || 0);
 
@@ -149,7 +150,7 @@ const SaboresForm = () => {
                   {errors.nombre_sabor}
                 </span>
               )}
-                <label htmlFor="envase" className="block">
+              <label htmlFor="envase" className="block">
                 * Envase:
               </label>
               <input
@@ -160,10 +161,8 @@ const SaboresForm = () => {
                 value={values.envase}
                 onChange={handleChange}
               />
-               {errors.nombre_sabor && (
-                <span className="bg-red-500 p-1 m-1">
-                  {errors.envase}
-                </span>
+              {errors.nombre_sabor && (
+                <span className="bg-red-500 p-1 m-1">{errors.envase}</span>
               )}
               <label htmlFor="color" className="block">
                 *Color:
@@ -212,7 +211,7 @@ const SaboresForm = () => {
                   {errors.precio_venta}
                 </span>
               )}
-
+             
               <label htmlFor="stockMinimo" className="block">
                 Cant mínima:
               </label>

@@ -7,7 +7,7 @@ import {
   registerRequest,
   verifyTokenRequest,
 } from "../api/login.api";
-import { readLocalStorage, writeLocalStorage } from "../hooks/useLocalStorage";
+import { readLocalStorage } from "../hooks/useLocalStorage";
 
 export const AuthContext = createContext();
 

@@ -31,7 +31,9 @@ const Tinas = ({ tinas }) => {
 
       <h2 className="font-irish flex justify-center pt-2">
         {tinas?.[0]?.existencia > 0
-          ? `${tinas?.[0]?.precio_venta ?? ""} USD | 4 litros`
+          ? `Desde ${tinas?.[0]?.precio_venta ?? ""} USD  o ${
+              tinas?.[0]?.precio_venta_cup ?? ""
+            } cup | 4 litros`
           : "Agotadas por hoy"}
       </h2>
 

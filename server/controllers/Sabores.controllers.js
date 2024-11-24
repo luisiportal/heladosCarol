@@ -4,6 +4,7 @@ import sequelize from "../db.js";
 
 import { registrarLog } from "./AuditLog.controllers.js";
 import { Sabor } from "../models/Sabor.model.js";
+import { Moneda } from "../models/Monedas.model.js";
 
 // listar todas los sabores
 
@@ -39,7 +40,15 @@ export const createSabor = async (req, res) => {
   }
 
   try {
-    const { nombre_sabor, color,envase, existencia, stockMinimo,precio_venta,costo_unitario } = req.body;
+    const {
+      nombre_sabor,
+      color,
+      envase,
+      existencia,
+      stockMinimo,
+      precio_venta,
+      costo_unitario,
+    } = req.body;
 
     // Iniciar una transacción
 
@@ -90,6 +99,7 @@ export const createSabor = async (req, res) => {
 // actualizar
 
 export const updateSabor = async (req, res) => {
+  const { precio: usd } = await Moneda.findByPk(2);
   try {
     sequelize.transaction(async (t) => {
       const id_sabor = req.params.id_sabor;
@@ -97,7 +107,15 @@ export const updateSabor = async (req, res) => {
       if (req.file !== undefined) {
         ruta_image = req.file.originalname;
       }
-      const { nombre_sabor, color,envase, existencia, stockMinimo,precio_venta,costo_unitario } = req.body;
+      const {
+        nombre_sabor,
+        color,
+        envase,
+        existencia,
+        stockMinimo,
+        precio_venta,
+        costo_unitario,
+      } = req.body;
 
       const response = await Sabor.findByPk(id_sabor);
       response.nombre_sabor = nombre_sabor;
@@ -105,7 +123,7 @@ export const updateSabor = async (req, res) => {
       response.costo_unitario = costo_unitario;
       response.color = color;
       response.envase = envase;
-
+      response.precio_venta_cup = Math.round(precio_venta * usd);
       ruta_image && (response.ruta_image = ruta_image);
       response.stockMinimo = stockMinimo;
 

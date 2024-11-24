@@ -87,13 +87,11 @@ export const CarritosProvaider = ({ children }) => {
         });
     }
   };
-  const cargarCarrito = (nuCart) => {
+  const cargarCarrito = () => {
     //setCarrito([0]); // vaciar el carrito
-    const getCarrito = readLocalStorage("carrito" + nuCart);
+    const getCarrito = readLocalStorage("carrito");
     if (getCarrito) {
       setCarrito(getCarrito);
-
-      setCartSelect(nuCart);
     }
   };
 

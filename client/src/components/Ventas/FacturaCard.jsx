@@ -15,6 +15,7 @@ import SaboresFactura from "./CardFacturaItems/SaboresFactura";
 import TotalFactura from "./CardFacturaItems/TotalFactura";
 import TruckEntregaSVG from "../SVG/TruckEntregaSVG";
 import IconoPasarela from "./CardFacturaItems/IconoPasarela";
+import { useMetoPago } from "../../Stores/Pago.store";
 
 function FacturaCard({
   factura,
@@ -26,8 +27,7 @@ function FacturaCard({
 }) {
   const { ventas } = factura;
   const { setModalActivo, perfil, setLoader } = useAuth();
-
-  const params = useParams();
+  const { metoPago, setMetoPago } = useMetoPago();
 
   const handleEliminar = async (id) => {
     if (confirm("¿Estás a punto de eliminar una Venta ?")) {
@@ -65,8 +65,6 @@ function FacturaCard({
     factura.entrega.envio
   );
 
-  const color_factura = `bg-`;
-
   return (
     <div
       className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
@@ -86,8 +84,8 @@ function FacturaCard({
           )}
         </div>
         <div className=" bg-fresa rounded-xl text-xs flex gap-2 p-2 mx-2">
-          <SaboresFactura ventas={ventas} envio={factura.entrega.envio} />
-          <TotalFactura total={total ?? grandTotal.toFixed(2)} />
+          <SaboresFactura ventas={ventas} envio={factura.entrega.envio} metoPago={metoPago}/>
+          <TotalFactura total={total ?? grandTotal.toFixed(2)} metoPago={metoPago} />
         </div>
 
         <div className="flex-grow flex flex-col  p-2 text-xs">

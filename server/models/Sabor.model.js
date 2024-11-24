@@ -33,7 +33,26 @@ export const Sabor = sequelize.define("sabores", {
     type: DataTypes.DECIMAL(10, 2),
     
   },
-
+  precio_venta_cup: {
+    type: DataTypes.DECIMAL(10, 2),
+    
+  },
+  costo_usd: {
+    type: DataTypes.DECIMAL(10, 2),
+    
+  },
+  costo_euro: {
+    type: DataTypes.DECIMAL(10, 2),
+    
+  },
+  costo_zelle: {
+    type: DataTypes.DECIMAL(10, 2),
+    
+  },
+  costo_mlc: {
+    type: DataTypes.DECIMAL(10, 2),
+    
+  },
   stockMinimo: {
     type: DataTypes.INTEGER,
     defaultValue: 0,

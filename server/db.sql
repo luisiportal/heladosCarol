@@ -107,11 +107,14 @@ BEGIN
 	    costo_usd = costo_unitario / usd,
 	    costo_euro = costo_unitario / euro,
 	    costo_mlc = costo_unitario / mlc,
-	    costo_zelle = costo_unitario / zelle;
+	    costo_zelle = costo_unitario / zelle,
+		precio_venta_cup = ROUND(precio_venta * usd);
 	RETURN NEW;
 END;
 $function$
 ;
+
+
 
 create
 or replace trigger trMoneda_actualizar_costo_total_producto
@@ -119,6 +122,7 @@ after insert
 or
 update on public.monedas for each row
 execute function actualizar_costo_productoMLC ();
+
 
 create
 or REPLACE trigger tr_insertar_movimi_existen_inicial

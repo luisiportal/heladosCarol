@@ -7,12 +7,14 @@ import { useAuth } from "../../context/AuthContext";
 import EntregaYenviaForm from "./SeccionAgregar/Entrega/EntregaYenviaForm";
 import Horario from "../Horario/Horario";
 import { useParams } from "react-router-dom";
+import EscojerMetodoPago from "../MetodosPago/EscojerMetodoPago";
+import { useMetoPago } from "../../Stores/Pago.store";
 
 const ComprarPage = () => {
   const { recargar, carrito, setCarrito } = useCarritos();
   const { loader, setLoader, setModalActivo } = useAuth();
-  const [navegacion, setNavegacion] = useState(1);
-
+  const [navegacion, setNavegacion] = useState(0);
+  const { metoPago, setMetoPago } = useMetoPago();
   const params = useParams();
 
   useEffect(() => {
@@ -54,6 +56,12 @@ const ComprarPage = () => {
   return (
     <div className="pt-10">
       Comprar
+      {navegacion == 0 && (
+        <EscojerMetodoPago
+          setNavegacion={setNavegacion}
+          setMetoPago={setMetoPago}
+        />
+      )}
       {navegacion == 1 && (
         <>
           <Horario />
@@ -63,12 +71,14 @@ const ComprarPage = () => {
             carrito={carrito}
             setCarrito={setCarrito}
             setModalActivo={setModalActivo}
+            metoPago={metoPago}
           />
           <SeccionSaboresCarrito
             carrito={carrito}
             loader={loader}
             setCarrito={setCarrito}
             setNavegacion={setNavegacion}
+            metoPago={metoPago}
           />
         </>
       )}
@@ -83,6 +93,8 @@ const ComprarPage = () => {
           setModalActivo={setModalActivo}
           setCarrito={setCarrito}
           loader={loader}
+          metoPago={metoPago}
+          setMetoPago={setMetoPago}
         />
       )}
     </div>

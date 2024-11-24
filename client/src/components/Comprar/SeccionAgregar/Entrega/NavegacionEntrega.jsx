@@ -23,7 +23,7 @@ const NavegacionEntrega = ({
         <Btn_Huellas text={`Sabores`} onclick={() => setNavegacion(1)} />
       </div>
       <div>
-        {" "}
+    
         {navegacion != 2 && (
           <Btn_Huellas
             text={`Entrega`}

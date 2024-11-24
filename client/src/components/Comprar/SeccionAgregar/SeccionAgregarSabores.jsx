@@ -10,6 +10,7 @@ const SeccionAgregarSabores = ({
   carrito,
   setCarrito,
   setModalActivo,
+  metoPago,
 }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [movimiento, setMovimiento] = useState({
@@ -44,7 +45,11 @@ const SeccionAgregarSabores = ({
               )
             ) {
               setCarrito([...carrito, values]);
-              writeLocalStorage("sabores",  [...carrito, values] );
+              // Agregar la nueva propiedad 'metoPago' al objeto 'values'
+              const valuesConPago = { ...values, metoPago };
+
+              // Escribir en el almacenamiento local
+              writeLocalStorage("sabores", [...carrito, valuesConPago]);
             } else {
               setModalActivo({
                 mensaje: `Ya este producto ha sido agregado`,
@@ -75,6 +80,7 @@ const SeccionAgregarSabores = ({
                 recargar={recargar}
                 setSelectedOption={setSelectedOption}
                 selectedOption={selectedOption}
+                metoPago={metoPago}
               />
             </Form>
           )}

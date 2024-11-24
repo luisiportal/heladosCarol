@@ -16,4 +16,8 @@ export const Reparto = sequelize.define("repartos", {
     type: DataTypes.DECIMAL(10, 2),
     allowNull: false,
   },
+  costo_cup: {
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: true,
+  },
 });
