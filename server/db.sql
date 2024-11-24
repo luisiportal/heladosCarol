@@ -88,10 +88,12 @@ SET DEFAULT now();
 
 --calcular al actualizar monedas
 
-CREATE OR REPLACE FUNCTION public.actualizar_costo_productoMLC
-() RETURNS trigger 
-LANGUAGE plpgsql AS 
-$function$
+-- DROP FUNCTION public.actualizar_costo_productomlc();
+
+CREATE OR REPLACE FUNCTION public.actualizar_costo_productomlc()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
 DECLARE
 	usd decimal;
 	euro decimal;
@@ -99,29 +101,18 @@ DECLARE
 	zelle decimal;
 BEGIN
 	SELECT new.precio INTO usd FROM monedas WHERE moneda = 'USD';
-	SELECT new.precio INTO euro FROM monedas WHERE moneda = 'EURO';
-	SELECT new.precio INTO mlc FROM monedas WHERE moneda = 'MLC';
-	SELECT new.precio INTO zelle FROM monedas WHERE moneda = 'ZELLE';
+	
 	UPDATE sabores
 	SET
 	    costo_usd = costo_unitario / usd,
-	    costo_euro = costo_unitario / euro,
-	    costo_mlc = costo_unitario / mlc,
-	    costo_zelle = costo_unitario / zelle,
-		precio_venta_cup = ROUND(precio_venta * usd);
+	   	precio_venta_cup = ROUND(precio_venta * usd);
+	   
+	   update repartos set costo_cup = ROUND(costo * usd);
 	RETURN NEW;
 END;
 $function$
 ;
 
-
-
-create
-or replace trigger trMoneda_actualizar_costo_total_producto
-after insert
-or
-update on public.monedas for each row
-execute function actualizar_costo_productoMLC ();
 
 
 create

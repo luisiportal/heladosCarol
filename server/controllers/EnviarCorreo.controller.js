@@ -50,7 +50,7 @@ export const NotificarFacturaCliente = (
         Observaciones: ${entrega.observaciones} \n
   
   
-        Total : ${grandTotalCobrar} USD \n
+        Total : ${grandTotalCobrar} ${(factura.pasarela == "CUP") ? "CUP" : "USD"} \n
         https://www.heladoscarol.com`
   );
 };
@@ -82,7 +82,7 @@ export const NotificarFactura = (productos, factura, entrega, total_venta) => {
         Observaciones: ${entrega.observaciones} \n
   
   
-        Total : ${grandTotalCobrar} USD \n
+        Total : ${grandTotalCobrar} ${(factura.pasarela == "CUP") ? "CUP" : "USD"} \n
         https://www.heladoscarol.com`
   );
 };
