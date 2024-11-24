@@ -15,13 +15,13 @@ const SaboresFactura = ({ ventas, envio,metoPago }) => {
               </div>
             </div>
           </div>
-          <div>
+          <div >
             {sabor.precio_total_sabor ?? sabor.precio_venta * sabor.cantidad}
             {(metoPago == "CUP") ? " CUP" : " USD"}
           </div>
         </div>
       ))}
-      Envio : {envio} {(metoPago == "CUP") ? " CUP" : " USD"}
+      <div className="flex justify-end">Envio : {envio} {(metoPago == "CUP") ? " CUP" : " USD"}</div>
     </div>
   );
 };

@@ -26,18 +26,14 @@ const SeccionSaboresCarrito = ({
     );
   }
 
-console.log(carrito);
-
-
-
+  console.log(carrito);
+  const carrito2 = carrito[0].metoPago == metoPago ? carrito : [];
 
   return (
     <div>
       {loader && <Loader />}
-      {carrito &&
-        carrito.map((sabor) => {
-                 console.log(sabor);
-                 
+      {carrito2 &&
+        carrito2.map((sabor) => {
           let totalSabor = Number(sabor.cantidad) * Number(sabor.precio_venta);
 
           const miArray = [16, 32, 40];
@@ -59,7 +55,8 @@ console.log(carrito);
         })}
       <div className="flex  justify-end">
         <h2 className="p-2 font-semibold text-slate-800">
-          Total a pagar : {totalLocal.toFixed(2)} {(metoPago == "CUP") ?"CUP" :"USD"}
+          Total a pagar : {totalLocal.toFixed(2)}{" "}
+          {metoPago == "CUP" ? "CUP" : "USD"}
         </h2>
         {carrito.length > 0 && (
           <div className="flex  items-center  bg-fresa rounded w-28">

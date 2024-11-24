@@ -18,8 +18,7 @@ const ComprarPage = () => {
   const params = useParams();
 
   useEffect(() => {
-    console.log(params);
-
+  
     if (params.id == 3) {
       setNavegacion(3);
       setModalActivo({

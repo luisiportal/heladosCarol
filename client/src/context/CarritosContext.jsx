@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { readLocalStorage, writeLocalStorage } from "../hooks/useLocalStorage";
 import { useAuth } from "./AuthContext";
+import { useMetoPago } from "../Stores/Pago.store";
 
 export const CarritosContext = createContext();
 
@@ -21,6 +22,7 @@ export const CarritosProvaider = ({ children }) => {
   const [nuCart, setnuCart] = useState([]);
   const [recargar, setRecargar] = useState(false);
   const { setModalActivo, modalActivo } = useAuth();
+  const { setMetoPago } = useMetoPago();
   useEffect(() => {
     const carritoLocal = readLocalStorage("sabores");
 
@@ -92,6 +94,7 @@ export const CarritosProvaider = ({ children }) => {
     const getCarrito = readLocalStorage("carrito");
     if (getCarrito) {
       setCarrito(getCarrito);
+      setm;
     }
   };
 
