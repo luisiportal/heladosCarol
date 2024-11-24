@@ -26,14 +26,11 @@ const SeccionSaboresCarrito = ({
     );
   }
 
-  console.log(carrito);
-  const carrito2 = carrito[0].metoPago == metoPago ? carrito : [];
-
   return (
     <div>
       {loader && <Loader />}
-      {carrito2 &&
-        carrito2.map((sabor) => {
+      {carrito &&
+        carrito.map((sabor) => {
           let totalSabor = Number(sabor.cantidad) * Number(sabor.precio_venta);
 
           const miArray = [16, 32, 40];
