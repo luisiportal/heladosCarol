@@ -28,8 +28,8 @@ const SeccionSaboresCarrito = ({
 
   useEffect(() => {
     const carritoLocal = readLocalStorage("sabores");
-    console.log(carritoLocal[0].metoPago);
-    if (carritoLocal && carritoLocal[0].metoPago == metoPago) {
+  
+    if (carritoLocal && carritoLocal[0]?.metoPago == metoPago) {
       setCarrito(carritoLocal);
     } else {
       setCarrito([]);
