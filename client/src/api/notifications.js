@@ -2,10 +2,11 @@ import axios from "./axios.js";
 
 const PUBLICWpKey = import.meta.env.WEBPUSH_PUBLIC;
 
-const registerServiceWorker = async () => {
+
+export const suscribeRequest = async () => {
   if ("serviceWorker" in navigator) {
     try {
-      const registration = await navigator.serviceWorker.register("/sw.js", {
+      const registration = await navigator.serviceWorker.register("../sw.js", {
         scope: "/",
       });
       if (registration.installing) {
@@ -19,9 +20,10 @@ const registerServiceWorker = async () => {
       console.error(`Falló el registro con el ${error}`);
     }
   }
-};
 
-export const suscribeRequest = async () => {
-  const suscription = registerServiceWorker();
+  const suscription = registration.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: PUBLICWpKey,
+  });
   await axios.post(`/suscription`, JSON.stringify(suscription));
 };
