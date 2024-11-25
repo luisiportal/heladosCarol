@@ -6,7 +6,7 @@ export const suscribeRequest = async () => {
   if ("serviceWorker" in navigator) {
     try {
       // Verifica si el navegador soporta Service Workers
-      const registration = await navigator.serviceWorker.register('./sw.js');
+      const registration = await navigator.serviceWorker.register(`${import.meta.env.VITE_BACKEND_URL}/sw.js`);
       console.log('Service Worker registrado con éxito:', registration);
 
       const subscription = await registration.pushManager.subscribe({
