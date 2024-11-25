@@ -1,7 +1,15 @@
+
 import webPush from "web-push";
+import { WEBPUSH_PRIVATE, WEBPUSH_PUBLIC } from "../config.js";
 
 export const suscribe = async (req, res) => {
   const pushSubscription = req.body;
+
+ webPush.setVapidDetails(
+    "mailto:helados@example.com",
+    WEBPUSH_PUBLIC,
+    WEBPUSH_PRIVATE
+  );
 
   // Responde inmediatamente al cliente para confirmar la recepción
   res.status(200).json("Subscription received");
