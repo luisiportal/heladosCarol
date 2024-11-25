@@ -15,7 +15,7 @@ const EscojerMetodoPago = ({setNavegacion,setMetoPago}) => {
       <h2 className="flex justify-center text-slate-700 font-semibold">
         Por favor escoja el método de pago de su preferencia
       </h2>{" "}
-      <section className="flex flex-col items-center gap-4 justify-center mt-2">
+      <section className="flex flex-col  items-center gap-4 justify-center mt-4">
         <BTN_MePago
           name={"Zelle"}
           imagen={"zelle.png"}

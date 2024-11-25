@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductoCarrito from "../../Ventas/ProductoCarrito";
 import Loader from "../../Utilidades/Loader";
 import Btn_Huellas from "../../Btn_Huellas";
@@ -25,6 +25,16 @@ const SeccionSaboresCarrito = ({
       0
     );
   }
+
+  useEffect(() => {
+    const carritoLocal = readLocalStorage("sabores");
+    console.log(carritoLocal[0].metoPago);
+    if (carritoLocal && carritoLocal[0].metoPago == metoPago) {
+      setCarrito(carritoLocal);
+    } else {
+      setCarrito([]);
+    }
+  }, []);
 
   return (
     <div>

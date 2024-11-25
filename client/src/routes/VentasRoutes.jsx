@@ -2,7 +2,6 @@ import React from "react";
 import { CarritosProvaider } from "../context/CarritosContext";
 import { Route, Routes } from "react-router-dom";
 
-import NuevaVenta from "../components/Ventas/NuevaVenta";
 import VentasPage from "../pages/VentasPage";
 
 const VentasRoutes = () => {

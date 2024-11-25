@@ -35,6 +35,7 @@ const ComprarPage = () => {
         navegarA: "/",
       });
     }
+
   }, []);
 
   const [entrega, setEntrega] = useState({

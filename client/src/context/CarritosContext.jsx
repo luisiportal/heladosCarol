@@ -24,11 +24,7 @@ export const CarritosProvaider = ({ children }) => {
   const { setModalActivo, modalActivo } = useAuth();
   const { setMetoPago } = useMetoPago();
   useEffect(() => {
-    const carritoLocal = readLocalStorage("sabores");
-
-    if (carritoLocal) {
-      setCarrito(carritoLocal);
-    }
+ 
   }, [recargar]);
 
   const cargarCarritosGuardados = () => {

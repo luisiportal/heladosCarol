@@ -14,6 +14,7 @@ import {
 } from "../../hooks/useLocalStorage";
 import ActivarDesactModo from "../ModoOffline/ActivarDesactModo";
 import ImagenPrincipal from "../HOME/ImagenPrincipal";
+import { suscribeRequest } from "../../api/notifications";
 
 const Login = () => {
   const {
@@ -55,12 +56,13 @@ const Login = () => {
               writeLocalStorage("user", response.data);
               login(response.data);
               setIsAuthenticated(true);
+              //const suscribeServiceWorker = await suscribeRequest();
               //descargarTodos(); // alamcena en el local storage los datos para que esten disponibles sin conexion
               setLoader(false);
             }
           } catch (error) {
             console.log(error);
-            
+
             setLoader(false);
 
             if (error.message.includes("Network Error")) {
