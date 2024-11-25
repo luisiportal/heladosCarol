@@ -8,9 +8,7 @@ const VentasRoutes = () => {
   return (
     <CarritosProvaider>
       <Routes>
-        <Route path="/new" element={<NuevaVenta />} />
         <Route path="/" element={<VentasPage />} />
-        <Route path="/new/:id" element={<NuevaVenta />} />
       </Routes>
     </CarritosProvaider>
   );
