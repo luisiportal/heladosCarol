@@ -6,4 +6,5 @@ const suscription = Router();
 
 suscription.post("/suscription", authRequired, suscribe);
 
+
 export default suscription;

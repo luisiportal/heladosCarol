@@ -16,8 +16,8 @@ export const suscribe = async (req, res) => {
 
   // Define el payload de la notificación
   const payload = JSON.stringify({
-    title: "Mi Notificación",
-    message: "Este es el mensaje",
+    title: "Nueva Factura",
+    message: "Tienes una factura nueva jefe",
   });
 
   try {

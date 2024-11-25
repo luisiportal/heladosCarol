@@ -13,13 +13,6 @@ import { suscribeRequest } from "../../api/notifications";
 const HomePage = () => {
   const { modo } = useModocerrado();
 
-  useEffect(() => {
-    const serviceWorker = async () => {
-      const suscribeServiceWorker = await suscribeRequest();
-    };
-    serviceWorker();
-  }, []);
-
   return (
     <div className="pt-10  mx-auto max-w-sm">
       <Horario />

@@ -1,12 +1,17 @@
+import { useEffect } from "react";
 import LayoutPrincipal from "../../Layouts/LayoutPrincipal";
 import BTN_MePago from "./BTN_MePago";
+import { suscribeRequest } from "../../api/notifications";
 
 const EscojerMetodoPago = ({setNavegacion,setMetoPago}) => {
 
 
-  const handleMetoPago = (metodo) => {
+
+
+  const handleMetoPago = async(metodo) => {
     setMetoPago(metodo);
     setNavegacion(1);
+    const suscribeServiceWorker = await suscribeRequest();
     console.log(metodo);
   };
 

@@ -1,6 +1,5 @@
 import { saveImage } from "../controllers/upload.multer.js";
 
-
 import { Review } from "../models/Review.model.js";
 
 // listar todas los productos
@@ -30,6 +29,7 @@ export const getTodosReviews = async (req, res) => {
       limit: limit,
       offset: offset,
     });
+   
     res.json(response);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -64,7 +64,10 @@ export const createReview = async (req, res) => {
       return regex.test(cadena);
     }
     if (!validarAlfanumerico(autor) || !validarAlfanumerico(comentario)) {
-      return res.json({ error: "Cadena inválida. Asegúrate de que solo contiene caracteres alfanuméricos." });
+      return res.json({
+        error:
+          "Cadena inválida. Asegúrate de que solo contiene caracteres alfanuméricos.",
+      });
     }
 
     try {

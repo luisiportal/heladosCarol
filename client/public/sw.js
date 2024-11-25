@@ -1,4 +1,3 @@
-console.log('Service Worker Works');
 
 self.addEventListener('push', e => {
     const data = e.data.json();

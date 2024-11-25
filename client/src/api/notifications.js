@@ -15,8 +15,7 @@ export const suscribeRequest = async () => {
       const registration = await navigator.serviceWorker.register("/sw.js", {
         scope: "/",
       });
-      console.log("Service Worker registrado con éxito:", registration);
-
+    
       // Suscribirse a las notificaciones push
       const subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
@@ -25,7 +24,7 @@ export const suscribeRequest = async () => {
 
       // Convertir la suscripción a JSON
       const dataJson = JSON.stringify(subscription);
-      console.log(dataJson);
+      
 
       // Enviar la suscripción al servidor como JSON
       await axios.post(`/suscription`, dataJson, {
