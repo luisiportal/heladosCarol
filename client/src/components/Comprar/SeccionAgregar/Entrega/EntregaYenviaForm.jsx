@@ -167,51 +167,43 @@ const EntregaYenviaForm = ({
             });
           }
 
-          if (confirm("Esta a punto de enviar la orden, si no ha realizado el pago presione cancelar")) {
+          setLoader(true);
+          setModalActivo({});
 
-            setLoader(true);
-            setModalActivo({});
-  
-            const formData = new FormData();
-            formData.append("productos", JSON.stringify(carrito));
-            formData.append("entrega", JSON.stringify(values));
-            formData.append("pasarela", JSON.stringify(metoPago));
-            formData.append("reference", JSON.stringify(payLink.reference));
-  
-            if (file !== null) {
-              formData.append("factura_image", file);
-            }
-  
-            try {
-              const venta = await createVentaRequest(formData);
-  
-              if (metoPago != "TropiPay") {
-                setModalActivo({
-                  mensaje: "Su Orden ha sido creada",
-                  activo: true,
-                  navegarA: "/",
-                });
-              } else {
-                location.href = payLink.shortUrl;
-                setLoader(true);
-              }
-  
-              setCarrito([]);
-              localStorage.removeItem("entrega");
-              localStorage.removeItem("sabores");
-  
-              if (metoPago != "TropiPay") {
-                setLoader(false);
-              }
-            } catch (error) {
-              console.log(error);
-            }
+          const formData = new FormData();
+          formData.append("productos", JSON.stringify(carrito));
+          formData.append("entrega", JSON.stringify(values));
+          formData.append("pasarela", JSON.stringify(metoPago));
+          formData.append("reference", JSON.stringify(payLink.reference));
 
-          } else {
-
+          if (file !== null) {
+            formData.append("factura_image", file);
           }
 
-        
+          try {
+            const venta = await createVentaRequest(formData);
+
+            if (metoPago != "TropiPay") {
+              setModalActivo({
+                mensaje: "Su Orden ha sido creada",
+                activo: true,
+                navegarA: "/",
+              });
+            } else {
+              location.href = payLink.shortUrl;
+              setLoader(true);
+            }
+
+            setCarrito([]);
+            localStorage.removeItem("entrega");
+            localStorage.removeItem("sabores");
+
+            if (metoPago != "TropiPay") {
+              setLoader(false);
+            }
+          } catch (error) {
+            console.log(error);
+          }
         }}
       >
         {({
