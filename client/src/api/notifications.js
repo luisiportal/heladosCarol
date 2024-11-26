@@ -1,6 +1,6 @@
 import axios from "./axios.js";
 
-const PUBLICWpKey = "BGDQF2_2shYwHTVyLKtRqrib_Ay3iyVGBdAT6beP2bo80aJNK5OJpAl63cv8bp_JA52dsihmHAqk1b3ojilZoO4";
+const PUBLICWpKey = import.meta.env.PUBLICWpKey;
 
 export const suscribeRequest = async () => {
  // Check for service worker
@@ -27,7 +27,7 @@ async function send() {
 
   // Send Push Notification
   console.log("Sending Push...");
-  await fetch("http://localhost:4000/suscription", {
+  await fetch(`${import.meta.env.VITE_BACKEND_URL}/suscription`, {
     method: "POST",
     body: JSON.stringify(subscription),
     headers: {

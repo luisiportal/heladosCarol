@@ -15,8 +15,5 @@ export const SECRET_PAY_KEY = process.env.SECRET_PAY_KEY;
 export const GMAIL_KEY = process.env.GMAIL_KEY;
 export const CLIENT_ID = process.env.CLIENT_ID;
 export const CLIENT_SECRET = process.env.CLIENT_SECRET;
-export const WEBPUSH_PRIVATE = process.env.WEBPUSH_PRIVATE || "6N5ZEMbmrGhv0UhxL3wuFedsb8xkAu22MlODHJpS-BQ";
-export const WEBPUSH_PUBLIC = process.env.WEBPUSH_PUBLIC || "BGDQF2_2shYwHTVyLKtRqrib_Ay3iyVGBdAT6beP2bo80aJNK5OJpAl63cv8bp_JA52dsihmHAqk1b3ojilZoO4";
-
-
-
+export const WEBPUSH_PRIVATE = process.env.WEBPUSH_PRIVATE;
+export const WEBPUSH_PUBLIC = process.env.WEBPUSH_PUBLIC;
