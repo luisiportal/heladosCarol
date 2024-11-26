@@ -2,16 +2,12 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 import { loginRequest } from "../../api/login.api";
 import MostrarErrorMessage from "../ValidacionForm/MostrarErrorMessage";
 import Loader from "../Utilidades/Loader";
-import {
-  readLocalStorage,
-  writeLocalStorage,
-} from "../../hooks/useLocalStorage";
+import { writeLocalStorage } from "../../hooks/useLocalStorage";
 import ActivarDesactModo from "../ModoOffline/ActivarDesactModo";
 import ImagenPrincipal from "../HOME/ImagenPrincipal";
 import { suscribeRequest } from "../../api/notifications";
@@ -56,7 +52,7 @@ const Login = () => {
               writeLocalStorage("user", response.data);
               login(response.data);
               setIsAuthenticated(true);
-              //const suscribeServiceWorker = await suscribeRequest();
+              const suscribeServiceWorker = await suscribeRequest();
               //descargarTodos(); // alamcena en el local storage los datos para que esten disponibles sin conexion
               setLoader(false);
             }

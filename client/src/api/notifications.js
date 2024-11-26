@@ -1,43 +1,54 @@
 import axios from "./axios.js";
 
-const PUBLICWpKey = import.meta.env.VITE_WEBPUSH_PUBLIC;
+const PUBLICWpKey = "BGDQF2_2shYwHTVyLKtRqrib_Ay3iyVGBdAT6beP2bo80aJNK5OJpAl63cv8bp_JA52dsihmHAqk1b3ojilZoO4";
 
 export const suscribeRequest = async () => {
-  if ("serviceWorker" in navigator) {
-    try {
-      // Solicitar permisos de notificaciones dentro de un evento generado por el usuario
-      const permission = await Notification.requestPermission();
-      if (permission !== "granted") {
-        throw new Error("Permiso para notificaciones denegado");
-      }
+ // Check for service worker
+if ("serviceWorker" in navigator) {
+  send().catch((err) => console.error(err));
+}
 
-      // Registrar el Service Worker
-      const registration = await navigator.serviceWorker.register("/sw.js", {
-        scope: "/",
-      });
-    
-      // Suscribirse a las notificaciones push
-      const subscription = await registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: PUBLICWpKey,
-      });
+// Register SW, Register Push, Send Push
+async function send() {
+  // Register Service Worker
+  console.log("Registering service worker...");
+  const register = await navigator.serviceWorker.register("./sw.js", {
+    scope: "/",
+  });
+  console.log("Service Worker Registered...");
 
-      // Convertir la suscripción a JSON
-      const dataJson = JSON.stringify(subscription);
-      
+  // Register Push
+  console.log("Registering Push...");
+  const subscription = await register.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: urlBase64ToUint8Array(PUBLICWpKey),
+  });
+  console.log("Push Registered...");
 
-      // Enviar la suscripción al servidor como JSON
-      await axios.post(`/suscription`, dataJson, {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
+  // Send Push Notification
+  console.log("Sending Push...");
+  await fetch("http://localhost:4000/suscription", {
+    method: "POST",
+    body: JSON.stringify(subscription),
+    headers: {
+      "content-type": "application/json",
+    },
+  });
+  console.log("Push Sent...");
+}
 
-      console.log("Solicitud de suscripción realizada con éxito");
-    } catch (error) {
-      console.error(`Falló el registro con el error: ${error}`);
-    }
-  } else {
-    console.log("Service Worker no es soportado por este navegador.");
+function urlBase64ToUint8Array(base64String) {
+  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, "+")
+    .replace(/_/g, "/");
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
   }
+  return outputArray;
+}
 };

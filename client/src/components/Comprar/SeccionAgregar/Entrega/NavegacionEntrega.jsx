@@ -23,7 +23,6 @@ const NavegacionEntrega = ({
         <Btn_Huellas text={`Sabores`} onclick={() => setNavegacion(1)} />
       </div>
       <div>
-    
         {navegacion != 2 && (
           <Btn_Huellas
             text={`Entrega`}
@@ -63,14 +62,6 @@ const NavegacionEntrega = ({
               type={"submit"}
               onclick={() => {
                 validateYupSchema(entrega, schema);
-                if (errors) {
-                  return setModalActivo({
-                    mensaje:
-                      "Revise los datos de Entrega antes de enviar la orden",
-                    activo: true,
-                    errorColor: true,
-                  });
-                }
               }}
             />
             <ArrowRight />

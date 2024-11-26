@@ -66,7 +66,7 @@ function FacturaCard({
   );
 
   const monedaPago = factura.pasarela || metoPago;
-  const moneda = (monedaPago == "Tropipay" || monedaPago == "Zelle" ) ? "USD" : "CUP";
+  const moneda = (monedaPago == "TropiPay" || monedaPago == "Zelle" ) ? " USD" : " CUP";
   return (
     <div
       className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}

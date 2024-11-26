@@ -40,7 +40,6 @@ const RevisarPedido = ({
     (item) => item.cantidad + "x " + item.nombre_sabor
   );
   const description = sabores + " Envio: " + envio;
-  console.log(description);
 
   return (
     <div>

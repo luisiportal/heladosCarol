@@ -12,6 +12,7 @@ import {
   NotificarFactura,
   NotificarFacturaCliente,
 } from "./EnviarCorreo.controller.js";
+import { enviaNotification } from "./suscriptions.controller.js";
 
 export const createVenta = async (req, res) => {
   let ruta_image = "defaultPerfil.jpg";
@@ -94,6 +95,7 @@ export const createVenta = async (req, res) => {
     });
 
     saveImage(req.file, "pagos_facturas");
+    enviaNotification();
 
     return res.status(200).json({ message: "Ventas creadas correctamente" });
   } catch (error) {

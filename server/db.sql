@@ -107,7 +107,7 @@ BEGIN
 	    costo_usd = costo_unitario / usd,
 	   	precio_venta_cup = ROUND(precio_venta * usd);
 	   
-	   update repartos set costo_cup = ROUND(costo * usd);
+	  ;
 	RETURN NEW;
 END;
 $function$
