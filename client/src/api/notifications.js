@@ -1,6 +1,6 @@
 import axios from "./axios.js";
 
-const PUBLICWpKey = import.meta.env.PUBLICWpKey;
+const PUBLICWpKey = import.meta.env.VITE_PUBLICWpKey;
 
 export const suscribeRequest = async () => {
  // Check for service worker
