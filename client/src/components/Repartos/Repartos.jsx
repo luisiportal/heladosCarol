@@ -12,10 +12,6 @@ const Repartos = () => {
   const [filtroRepartos, setFiltroRepartos] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    //setFiltroRepartos(repartos);
-  }, []);
-
   return (
     <LayoutPrincipal titulo={"Repartos"}>
       <BTNRedondo ruta={"/repartos/new"} />
