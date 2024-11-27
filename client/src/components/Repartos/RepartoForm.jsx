@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LayoutPrincipal from "../../Layouts/LayoutPrincipal";
 import { useNavigate, useParams } from "react-router-dom";
-import { useRequest } from "../../hooks/useFetch";
 import {
   createRepartoRequest,
   getRepartosRequest,
@@ -71,7 +70,7 @@ const RepartoForm = () => {
             className="bg-neutral-200 max-w-md rounded-md p-4 mx-auto"
           >
             <label htmlFor="nombre" className="block">
-              Reparto:{values.reparto}
+              Reparto:
             </label>
             <input
               type="text"

@@ -6,8 +6,7 @@ import { useAuth } from "../context/AuthContext";
 // Hook personalizado useRequest
 export const useRequest = (recursoRequest, limit) => {
   const [recurso, setRecurso] = useState([]);
-  const { loader, setLoader} = useAuth();
-
+  const { loader, setLoader } = useAuth();
 
   useEffect(() => {
     const cargarRecurso = async () => {
@@ -18,11 +17,11 @@ export const useRequest = (recursoRequest, limit) => {
       } catch (error) {
         console.error("Error al cargar el recurso:", error);
       } finally {
-        setTimeout(() => setLoader(false), 700 );
+        setTimeout(() => setLoader(false), 700);
       }
     };
     cargarRecurso();
   }, [recursoRequest]);
 
-  return recurso;
+  return { recurso, setRecurso };
 };
