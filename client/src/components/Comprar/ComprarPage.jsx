@@ -54,7 +54,7 @@ const ComprarPage = () => {
   });
 
   return (
-    <div className="pt-10">
+    <div>
       Comprar
       {navegacion == 0 && (
         <EscojerMetodoPago

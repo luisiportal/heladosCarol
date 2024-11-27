@@ -38,6 +38,8 @@ const Navbar = ({ hidden, isAuthenticated }) => {
          
           <ElementoNavbar nombre={"Logs"} href={"/logs"}></ElementoNavbar>
           <ElementoNavbar nombre={"Frases"} href={"/frases"}></ElementoNavbar>
+          <ElementoNavbar nombre={"Repartos"} href={"/repartos"}></ElementoNavbar>
+
           <ElementoNavbar
             nombre={"Modo Cerrado"}
             href={"/cerrado"}

@@ -5,25 +5,9 @@ import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useAuth } from "../../context/AuthContext";
 import Loader from "../Utilidades/Loader";
+import { saboresSchema } from "../../schemas/schemas";
 
-const schema = Yup.object().shape({
-  nombre_sabor: Yup.string().required("Nombre producto requerido"),
-  envase: Yup.string().required("Envase requerido"),
-  costo_unitario: Yup.number()
-    .typeError("Debes escribir solo números")
-    .positive("El precio debe ser mayor que cero")
-    .required("Costo Requerido"),
-  precio_venta: Yup.number()
-    .typeError("Debes escribir solo números")
-    .positive("El precio debe ser mayor que cero")
-    .required("Precio Requerido"),
-  precio_venta_cup: Yup.number()
-    .typeError("Debes escribir solo números")
-    .positive("El precio debe ser mayor que cero")
-    .required("Precio Requerido"),
-  color: Yup.string(),
-  stockMinimo: Yup.number().typeError("Debes escribir solo números"),
-});
+
 
 const SaboresForm = () => {
   const { createSabor, getSabor, updateSabor } = useSabores();
@@ -113,7 +97,7 @@ const SaboresForm = () => {
           initialValues={sabor}
           enableReinitialize={true}
           onSubmit={handleSubmit}
-          validationSchema={schema}
+          validationSchema={saboresSchema}
         >
           {({
             handleChange,

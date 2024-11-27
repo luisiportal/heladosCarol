@@ -1,26 +1,28 @@
-import axios from "../api/axios.js";
 import { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext.jsx";
+import { useAuth } from "../context/AuthContext";
 
-export const useFetch = (url) => {
-  const [data, setData] = useState([]);
-  const { loader, setLoader } = useAuth();
+// Define el tipo de la función recursoRequest
+
+// Hook personalizado useRequest
+export const useRequest = (recursoRequest, limit) => {
+  const [recurso, setRecurso] = useState([]);
+  const { loader, setLoader} = useAuth();
+
 
   useEffect(() => {
-    const cargar = async () => {
+    const cargarRecurso = async () => {
       try {
         setLoader(true);
-        const response = await axios.get(url);
-
-        setData(response.data);
+        const { data } = await recursoRequest(limit);
+        setRecurso(data);
       } catch (error) {
-        console.error(error);
+        console.error("Error al cargar el recurso:", error);
       } finally {
-        setLoader(false);
+        setTimeout(() => setLoader(false), 700 );
       }
     };
-    cargar();
-  }, []);
+    cargarRecurso();
+  }, [recursoRequest]);
 
-  return { data };
+  return recurso;
 };

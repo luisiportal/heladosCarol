@@ -38,6 +38,8 @@ import Contacto from "./components/Landing/Contacto";
 import FrasesPage from "./components/Frases/FrasesPage";
 import FrasesForm from "./components/Frases/FrasesForm";
 import EscojerMetodoPago from "./components/MetodosPago/EscojerMetodoPago";
+import Repartos from "./components/Repartos/Repartos";
+import RepartoForm from "./components/Repartos/RepartoForm";
 
 const App = () => {
   return (
@@ -81,6 +83,12 @@ const App = () => {
                 />
                 <Route element={<ProtectedRoutes />}>
                 <Route path="/cambio" element={<TipoCambioPage />} />
+                <Route path="/repartos" element={<Repartos />} />
+                <Route path="/repartos/:id" element={<RepartoForm />} />
+                <Route path="/repartos/new" element={<RepartoForm />} />
+
+
+
                   <Route path="/cerrado" element={<CerradoForm />} />
                   <Route path="/opiniones" element={<ListarReviewsBackend />} />
                   <Route path="/frases" element={<FrasesPage />} />
