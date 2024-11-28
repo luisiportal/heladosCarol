@@ -41,7 +41,7 @@ export const suscribe = async (req, res) => {
   });
 };
 
-export const enviaNotification = async () => {
+export const enviaNotification = async ({total_venta,pasarela}) => {
   const subscriptions = await Suscription.findAll();
 
   const settings = {
@@ -63,8 +63,8 @@ export const enviaNotification = async () => {
   const push = new PushNotifications(settings);
 
   const payload = JSON.stringify({
-    title: "Nueva Factura",
-    body: "Se ha generado una nueva factura.",
+    title: `Nueva Factura por ${pasarela}`,
+    body: `Monto: ${total_venta}`,
   });
 
   subscriptions.forEach((subscription) => {
