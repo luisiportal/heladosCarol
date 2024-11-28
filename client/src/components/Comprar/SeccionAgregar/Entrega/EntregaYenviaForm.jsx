@@ -106,6 +106,9 @@ const EntregaYenviaForm = ({
   const [repartos, setRepartos] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [file, setFile] = useState();
+  const [zelleOk , setZelleok] = useState();
+
+
 
   const [payLink, setPayLink] = useState({
     reference: "",
@@ -166,6 +169,16 @@ const EntregaYenviaForm = ({
               errorColor: true,
             });
           }
+
+          if (metoPago == "Zelle" && !zelleOk) {
+            return setModalActivo({
+              mensaje: "Si usted ya realizó el pago por Zelle marque la casilla de Pago realizado y presione Enviar",
+              activo: true,
+              errorColor: true,
+            });
+          }
+
+
 
           setLoader(true);
           setModalActivo({});
@@ -329,6 +342,8 @@ const EntregaYenviaForm = ({
                   setMetoPago={setMetoPago}
                   setPayLink={setPayLink}
                   payLink={payLink}
+                  setZelleok={setZelleok}
+                  zelleOk={zelleOk}
                 />
               )}
 
