@@ -183,11 +183,11 @@ input[type="number"] {
   opacity: 1;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 700ms;
+  transition-duration: 500ms;
 }
 
 .tina:hover .move_up {
-  --tw-translate-y: 0.25rem /* 4px */;
+  --tw-translate-y: -2.25rem /* 4px */;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y))
     rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
     scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
