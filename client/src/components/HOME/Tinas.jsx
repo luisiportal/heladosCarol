@@ -42,11 +42,7 @@ const Tinas = ({ tinas }) => {
         {sinTina.map(
           (item, index) =>
             item.existencia > 0 && (
-              <div
-                onClick={() => navigate("/comprar")}
-                key={index}
-                className="tina cursor-pointer"
-              >
+              <div key={index} className="tina cursor-pointer">
                 <TinaCardElement tina={item} />
               </div>
             )
