@@ -19,6 +19,7 @@ export const EnviarCorreo = async (to, subject, text) => {
       to: to,
       subject: subject,
       text: text,
+      template: "email",
     };
   
     // Send the email

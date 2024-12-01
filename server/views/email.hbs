@@ -1,0 +1,30 @@
+<!-- views/email.hbs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Factura Pendiente de Aprobación</title>
+</head>
+<body>
+  <h1>Nueva Factura pendiente de aprobación</h1>
+  <p>Datos de la Factura:</p>
+  <p>Factura {{factura.id}}</p>
+  <p>Fecha: {{factura.creado}}</p>
+  <p>Sabores:</p>
+  <ul>
+    {{#each productos}}
+      <li>{{nombre_sabor}} - Cantidad: {{cantidad}}</li>
+    {{/each}}
+  </ul>
+  <hr>
+  <p>Entrega:</p>
+  <p>Entregar a: {{entrega.beneficiario}}</p>
+  <p>Dirección: Calle {{entrega.calle}} #{{entrega.numero}} entre {{entrega.calle1}} Reparto {{entrega.reparto}}</p>
+  <p>Referencia: {{entrega.p_referencia}}</p>
+  <p>Teléfono: {{entrega.tel_beneficiario}}</p>
+  <p>Enviado Por: {{entrega.ordenante}}</p>
+  <p>Contacto: {{entrega.contacto_ordenante}}</p>
+  <p>Observaciones: {{entrega.observaciones}}</p>
+  <p>Total: {{grandTotalCobrar}} {{#if (eq factura.pasarela "CUP")}}CUP{{else}}USD{{/if}}</p>
+  <p><a href="https://www.heladoscarol.com">www.heladoscarol.com</a></p>
+</body>
+</html>

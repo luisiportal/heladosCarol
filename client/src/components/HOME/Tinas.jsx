@@ -1,12 +1,17 @@
 import React from "react";
 import TinaCardElement from "./TinaCardElement";
 import BTN_Comprar from "./Sabores/BTN_Comprar";
+import { useCarritos } from "../../context/CarritosContext";
+import { useNavigate } from "react-router-dom";
 
 const Tinas = ({ tinas }) => {
+  const navigate = useNavigate();
   const sinTina = tinas.map((item) => ({
     nombre_sabor: item.nombre_sabor.replace("Tina", "").trim(),
     color: item.color,
     existencia: item.existencia,
+    precio_venta: item.precio_venta,
+    precio_venta_cup: item.precio_venta_cup,
   }));
   return (
     <div className="bg-neutral-200 my-4 rounded-lg group">
@@ -30,18 +35,18 @@ const Tinas = ({ tinas }) => {
       </div>
 
       <h2 className="font-irish flex justify-center pt-2">
-        {tinas?.[0]?.existencia > 0
-          ? `${tinas?.[0]?.precio_venta ?? ""} USD  o ${
-              tinas?.[0]?.precio_venta_cup ?? ""
-            } cup | 4 litros`
-          : "Agotadas por hoy"}
+        {tinas?.[0]?.existencia > 0 ? `Tinas de 4 litros` : "Agotadas por hoy"}
       </h2>
 
       <div className="flex justify-center gap-2 flex-wrap py-4">
         {sinTina.map(
           (item, index) =>
             item.existencia > 0 && (
-              <div key={index} className="">
+              <div
+                onClick={() => navigate("/comprar")}
+                key={index}
+                className="tina cursor-pointer"
+              >
                 <TinaCardElement tina={item} />
               </div>
             )
