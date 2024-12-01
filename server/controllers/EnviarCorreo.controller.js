@@ -21,11 +21,8 @@ export const NotificarFacturaCliente = (
   productos,
   factura,
   entrega,
-  total_venta
+  grandTotalCobrar
 ) => {
-  let grandTotalCobrar = Number(total_venta) + Number(entrega.envio);
-
-
   EnviarCorreo(
     `${entrega.contacto_ordenante}`,
     "Nueva Factura pendiente de aprobación",
@@ -50,14 +47,19 @@ export const NotificarFacturaCliente = (
         Observaciones: ${entrega.observaciones} \n
   
   
-        Total : ${grandTotalCobrar} ${(factura.pasarela == "CUP") ? "CUP" : "USD"} \n
+        Total : ${grandTotalCobrar} ${
+      factura.pasarela == "CUP" ? "CUP" : "USD"
+    } \n
         https://www.heladoscarol.com`
   );
 };
 
-export const NotificarFactura = (productos, factura, entrega, total_venta) => {
-  let grandTotalCobrar = Number(total_venta) + Number(entrega.envio);
-
+export const NotificarFactura = (
+  productos,
+  factura,
+  entrega,
+  grandTotalCobrar
+) => {
   EnviarCorreo(
     "heladoscarol@gmail.com",
     "Nueva Factura pendiente de aprobación",
@@ -82,7 +84,9 @@ export const NotificarFactura = (productos, factura, entrega, total_venta) => {
         Observaciones: ${entrega.observaciones} \n
   
   
-        Total : ${grandTotalCobrar} ${(factura.pasarela == "CUP") ? "CUP" : "USD"} \n
+        Total : ${grandTotalCobrar} ${
+      factura.pasarela == "CUP" ? "CUP" : "USD"
+    } \n
         https://www.heladoscarol.com`
   );
 };

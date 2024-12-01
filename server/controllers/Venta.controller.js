@@ -88,14 +88,14 @@ export const createVenta = async (req, res) => {
           { transaction: t }
         );
       }
-      NotificarFactura(productos, factura, entrega, total_venta);
+      NotificarFactura(productos, factura, entrega, grandTotalCobrar);
       if (entrega.contacto_ordenante.includes("@")) {
-        NotificarFacturaCliente(productos, factura, entrega, total_venta);
+        NotificarFacturaCliente(productos, factura, entrega, grandTotalCobrar);
       }
     });
 
     saveImage(req.file, "pagos_facturas");
-    enviaNotification({total_venta,pasarela});
+    enviaNotification({grandTotalCobrar,pasarela});
 
     return res.status(200).json({ message: "Ventas creadas correctamente" });
   } catch (error) {
