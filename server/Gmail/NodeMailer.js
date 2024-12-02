@@ -2,8 +2,14 @@ import nodemailer from "nodemailer";
 import { GMAIL_KEY } from "../config.js";
 import hbs from "nodemailer-express-handlebars";
 import path from "path";
+import Handlebars from "handlebars";
 
-export const EnviarCorreo = async (to, subject, text) => {
+// Definir el helper 'eq'
+Handlebars.registerHelper('eq', function (a, b) {
+  return a === b;
+});
+
+export const EnviarCorreo = async (to, subject, text, html) => {
   // Crear un transportador
   let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -19,6 +25,9 @@ export const EnviarCorreo = async (to, subject, text) => {
       extName: ".hbs",
       partialsDir: path.resolve("./views/"), // Ajustar ruta según tu estructura
       defaultLayout: false,
+      helpers: {
+        eq: (a, b) => a === b // Agregar el helper 'eq' aquí también
+      }
     },
     viewPath: path.resolve("./views/"), // Ajustar ruta según tu estructura
     extName: ".hbs",
@@ -33,7 +42,6 @@ export const EnviarCorreo = async (to, subject, text) => {
     text: text,
     template: "email",
     context: {
-      // Aquí puedes agregar tus variables para la plantilla
       factura: {
         id: '12345',
         creado: '2024-11-29',
