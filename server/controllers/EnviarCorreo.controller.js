@@ -23,7 +23,7 @@ export const NotificarFacturaCliente = (
   entrega,
   grandTotalCobrar
 ) => {
-  EnviarCorreo(factura, productos, entrega, grandTotalCobrar);
+  EnviarCorreo(`${entrega.contacto_ordenante}`,factura, productos, entrega, grandTotalCobrar);
 };
 
 export const NotificarFactura = (
