@@ -9,14 +9,14 @@ Handlebars.registerHelper("eq", function (a, b) {
   return a === b;
 });
 
-export const EnviarCorreo = async (
+export const EnviarCorreo = async ({
   to,
   subject,
   factura,
   productos,
   entrega,
-  grandTotalCobrar
-) => {
+  grandTotalCobrar,
+}) => {
   // Crear un transportador
   let transporter = nodemailer.createTransport({
     service: "gmail",

@@ -17,13 +17,20 @@ export const NotificarEntregadoFacturaCliente = (entrega) => {
   );
 };
 
-export const NotificarFacturaCliente = (
+export const NotificarFacturaCliente = ({
   productos,
   factura,
   entrega,
-  grandTotalCobrar
-) => {
-  EnviarCorreo(`${entrega.contacto_ordenante}`,factura, productos, entrega, grandTotalCobrar);
+  grandTotalCobrar,
+}) => {
+  EnviarCorreo({
+    entrega,
+    factura,
+    productos,
+    grandTotalCobrar,
+    subject,
+    to: `${entrega.contacto_ordenante}`,
+  });
 };
 
 export const NotificarFactura = (
