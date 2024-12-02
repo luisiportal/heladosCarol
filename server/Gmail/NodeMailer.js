@@ -17,10 +17,10 @@ export const EnviarCorreo = async (to, subject, text) => {
   const handlebarOptions = {
     viewEngine: {
       extName: ".hbs",
-      partialsDir: path.resolve("../views/"), // Ajustar ruta según tu estructura
+      partialsDir: path.resolve("./views/"), // Ajustar ruta según tu estructura
       defaultLayout: false,
     },
-    viewPath: path.resolve("../views/"), // Ajustar ruta según tu estructura
+    viewPath: path.resolve("./views/"), // Ajustar ruta según tu estructura
     extName: ".hbs",
   };
   transporter.use("compile", hbs(handlebarOptions));
