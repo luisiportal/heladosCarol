@@ -17,6 +17,10 @@ export const EnviarCorreo = async ({
   entrega,
   grandTotalCobrar,
 }) => {
+
+
+  console.log(factura);
+  
   // Crear un transportador
   let transporter = nodemailer.createTransport({
     service: "gmail",

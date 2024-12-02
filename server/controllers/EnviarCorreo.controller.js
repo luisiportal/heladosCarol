@@ -22,22 +22,31 @@ export const NotificarFacturaCliente = ({
   factura,
   entrega,
   grandTotalCobrar,
+  to,
 }) => {
+  console.log(entrega.contacto_ordenante);
+
   EnviarCorreo({
     entrega,
     factura,
     productos,
     grandTotalCobrar,
     subject,
-    to: `${entrega.contacto_ordenante}`,
+    to,
   });
 };
 
-export const NotificarFactura = (
-{  productos,
+export const NotificarFactura = ({
+  productos,
   factura,
   entrega,
-  grandTotalCobrar}
-) => {
-  EnviarCorreo({entrega,factura,productos,grandTotalCobrar,to:'heladoscarol@gmail.com'});
+  grandTotalCobrar,
+}) => {
+  EnviarCorreo({
+    entrega,
+    factura,
+    productos,
+    grandTotalCobrar,
+    to: "heladoscarol@gmail.com",
+  });
 };

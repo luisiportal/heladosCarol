@@ -88,13 +88,14 @@ export const createVenta = async (req, res) => {
           { transaction: t }
         );
       }
-      NotificarFactura({entrega,factura,grandTotalCobrar,productos});
+      NotificarFactura({ entrega, factura, grandTotalCobrar, productos });
       if (entrega.contacto_ordenante.includes("@")) {
         NotificarFacturaCliente({
           entrega,
           factura,
           productos,
           grandTotalCobrar,
+          to: `${entrega.contacto_ordenante}`,
         });
       }
     });
