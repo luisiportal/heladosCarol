@@ -18,13 +18,18 @@ export const NotificarEntregadoFacturaCliente = (entrega) => {
 };
 
 export const NotificarFacturaCliente = ({
-  productos,
-  factura,
   entrega,
+  factura,
+  productos,
   grandTotalCobrar,
+  subject,
   to,
 }) => {
-  console.log(entrega.contacto_ordenante);
+  console.log(to);
+  console.log("factura");
+  
+  console.log(factura);
+  
 
   EnviarCorreo({
     entrega,
@@ -37,10 +42,11 @@ export const NotificarFacturaCliente = ({
 };
 
 export const NotificarFactura = ({
-  productos,
-  factura,
   entrega,
+  factura,
+  productos,
   grandTotalCobrar,
+  subject,
 }) => {
   EnviarCorreo({
     entrega,
