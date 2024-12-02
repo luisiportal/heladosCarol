@@ -23,35 +23,7 @@ export const NotificarFacturaCliente = (
   entrega,
   grandTotalCobrar
 ) => {
-  EnviarCorreo(
-    `${entrega.contacto_ordenante}`,
-    "Nueva Factura pendiente de aprobación",
-    `Datos de la Factura: \n
-        Factura ${factura.id}: \n
-        Fecha: ${factura.creado}\n
-        Sabores: ${productos.map(
-          (producto) =>
-            ` ${producto.nombre_sabor} Cantidad : ${producto.cantidad} \n`
-        )}
-
-        ------------------------------------------------------------------------------------------------------------------\n
-        Entrega: \n
-        Entregar a : ${entrega.beneficiario} \n
-        Dirección : Calle ${entrega.calle} # ${entrega.numero} entre ${
-      entrega.calle1
-    }  Reparto ${entrega.reparto}\n
-        Referencia : ${entrega.p_referencia}\n
-        Teléfono :${entrega.tel_beneficiario} \n
-        Enviado Por: ${entrega.ordenante} \n
-        Contacto: ${entrega.contacto_ordenante}\n
-        Observaciones: ${entrega.observaciones} \n
-  
-  
-        Total : ${grandTotalCobrar} ${
-      factura.pasarela == "CUP" ? "CUP" : "USD"
-    } \n
-        https://www.heladoscarol.com`
-  );
+  EnviarCorreo(factura, productos, entrega, grandTotalCobrar);
 };
 
 export const NotificarFactura = (
@@ -60,33 +32,5 @@ export const NotificarFactura = (
   entrega,
   grandTotalCobrar
 ) => {
-  EnviarCorreo(
-    "heladoscarol@gmail.com",
-    "Nueva Factura pendiente de aprobación",
-    `Datos de la Factura: \n
-        Factura ${factura.id}: \n
-        Fecha: ${factura.creado}\n
-      Sabores: ${productos.map(
-        (producto) =>
-          ` ${producto.nombre_sabor} Cantidad : ${producto.cantidad} \n`
-      )}
-
-        ------------------------------------------------------------------------------------------------------------------\n
-        Entrega: \n
-        Entregar a : ${entrega.beneficiario} \n
-        Dirección : Calle ${entrega.calle} # ${entrega.numero} entre ${
-      entrega.calle1
-    } Reparto ${entrega.reparto}\n
-        Referencia : ${entrega.p_referencia}\n
-        Teléfono :${entrega.tel_beneficiario} \n
-        Enviado Por: ${entrega.ordenante} \n
-        Contacto: ${entrega.contacto_ordenante}\n
-        Observaciones: ${entrega.observaciones} \n
-  
-  
-        Total : ${grandTotalCobrar} ${
-      factura.pasarela == "CUP" ? "CUP" : "USD"
-    } \n
-        https://www.heladoscarol.com`
-  );
+  EnviarCorreo(factura, productos, entrega, grandTotalCobrar);
 };

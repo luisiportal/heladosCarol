@@ -9,7 +9,14 @@ Handlebars.registerHelper("eq", function (a, b) {
   return a === b;
 });
 
-export const EnviarCorreo = async (to, subject, text, html) => {
+export const EnviarCorreo = async (
+  to,
+  subject,
+  factura,
+  productos,
+  entrega,
+  grandTotalCobrar
+) => {
   // Crear un transportador
   let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -41,28 +48,10 @@ export const EnviarCorreo = async (to, subject, text, html) => {
     subject: subject,
     template: "email",
     context: {
-      factura: {
-        id: "12345",
-        creado: "2024-11-29",
-        pasarela: "USD",
-      },
-      productos: [
-        { nombre_sabor: "Chocolate", cantidad: 2 },
-        { nombre_sabor: "Vainilla", cantidad: 1 },
-      ],
-      entrega: {
-        beneficiario: "Juan Pérez",
-        calle: "Primera",
-        numero: "123",
-        calle1: "Segunda",
-        reparto: "Centro",
-        p_referencia: "Frente al parque",
-        tel_beneficiario: "555-123456",
-        ordenante: "Carlos López",
-        contacto_ordenante: "carlos@example.com",
-        observaciones: "Entregar antes de las 5 PM",
-      },
-      grandTotalCobrar: "150.00",
+      factura,
+      productos,
+      entrega,
+      grandTotalCobrar,
     },
   };
 

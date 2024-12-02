@@ -95,7 +95,7 @@ export const createVenta = async (req, res) => {
     });
 
     saveImage(req.file, "pagos_facturas");
-    enviaNotification({grandTotalCobrar,pasarela});
+    enviaNotification({ grandTotalCobrar, pasarela });
 
     return res.status(200).json({ message: "Ventas creadas correctamente" });
   } catch (error) {
