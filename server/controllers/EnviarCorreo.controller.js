@@ -53,6 +53,7 @@ export const NotificarFactura = ({
     factura,
     productos,
     grandTotalCobrar,
+    subject,
     to: "heladoscarol@gmail.com",
   });
 };
