@@ -34,10 +34,10 @@ export const NotificarFacturaCliente = ({
 };
 
 export const NotificarFactura = (
-  productos,
+{  productos,
   factura,
   entrega,
-  grandTotalCobrar
+  grandTotalCobrar}
 ) => {
-  EnviarCorreo(factura, productos, entrega, grandTotalCobrar);
+  EnviarCorreo({entrega,factura,productos,grandTotalCobrar,to:'heladoscarol@gmail.com'});
 };

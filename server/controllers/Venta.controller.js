@@ -88,7 +88,7 @@ export const createVenta = async (req, res) => {
           { transaction: t }
         );
       }
-      NotificarFactura(productos, factura, entrega, grandTotalCobrar);
+      NotificarFactura({entrega,factura,grandTotalCobrar,productos});
       if (entrega.contacto_ordenante.includes("@")) {
         NotificarFacturaCliente({
           entrega,
