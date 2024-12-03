@@ -48,6 +48,8 @@ const Tinas = ({ tinas }) => {
             )
         )}
       </div>
+      <h4 className="text-xs italic text-right p-1">* Toque el sabor para ver precio de las tinas</h4>
+
     </div>
   );
 };

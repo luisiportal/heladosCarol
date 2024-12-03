@@ -57,6 +57,18 @@ export const EnviarCorreo = async ({
       entrega,
       grandTotalCobrar,
     },
+    attachments: [
+      {
+          filename: 'logo.png',
+          path: './public/images/logo.png',
+          cid: 'fb' //same cid value as in the html img src
+      },
+      {
+          filename: 'ig.png',
+          path: './public/images/ig.png',
+          cid: 'ig' //same cid value as in the html img src
+      },
+      ],
   };
 
   // Enviar el correo

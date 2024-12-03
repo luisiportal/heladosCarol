@@ -4,23 +4,34 @@
   <head>
     <title>Factura Pendiente de Aprobación</title>
   </head>
-  <body style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="bg-vai bg-f round">
+  <body
+    style="
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    "
+    class="bg-vai bg-f round"
+  >
     <div>
       <img
         className="w-12 h-12 rounded-full bg-neutral-400"
         src="/public/images/logo.png"
         alt="Logo Helados Carol"
       />
-      <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Nueva Factura pendiente de aprobación</h1>
+      <h1
+        style="
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+            sans-serif;
+        "
+      >
+        Nueva Factura pendiente de aprobación
+      </h1>
       <div
         style="
           display: flex;
           justify-content: center;
-          --tw-bg-opacity: 1;
-          background-color: rgb(163 163 163 / var(--tw-bg-opacity))
-            /* #a3a3a3 */;
-            border-radius: 0.5rem;
-            
+
+          background-color: rgb(163 163 163);
+
+          border-radius: 0.5rem;
         "
       >
         <p>Datos de la Factura:</p>
@@ -36,14 +47,11 @@
           {{/each}}
         </ul>
       </div>
-      <hr />
       <div
         style="
-          --tw-bg-opacity: 1;
-          background-color: rgb(163 163 163 / var(--tw-bg-opacity))
-            /* #a3a3a3 */;
-            border-radius: 0.5rem;
-            padding: 1rem;
+          background-color: rgb(163 163 163) /* #a3a3a3 */;
+          border-radius: 0.5rem;
+          padding: 1rem;
         "
       >
         <p>Entrega:</p>
@@ -58,21 +66,40 @@
         <p>Contacto: {{entrega.contacto_ordenante}}</p>
         <p>Observaciones: {{entrega.observaciones}}</p>
       </div>
-      <div style="background-color: #e188b5; border-radius: 0.5rem; padding: 1rem; margin-top: 1rem;">
+      <div
+        style="
+          background-color: #e188b5;
+          border-radius: 0.5rem;
+          padding: 1rem;
+          margin-top: 1rem;
+        "
+      >
         <p>
           Total: {{grandTotalCobrar}} {{#if (eq factura.dataValues.pasarela
           "CUP")}}CUP{{else}}USD{{/if}}
         </p>
       </div>
-      <p>
-        Puedes seguirnos en nuestras redes sociales para estar al pendiente de
-        los Sabores disponibles, nuevos sabores y todo lo relacionado con el
-        mundo de Helados Carol
-      </p>
-      <p><a href="https://www.heladoscarol.com">Puedes encontrarnos</a></p>
+      <div
+        style="
+          background-color: #e188b5;
+          padding: 5px;
+          margin-top: 1rem;
+          border-radius: 0.5rem;
+        "
+      >
+        <p>
+          Puedes seguirnos en nuestras redes sociales para estar al pendiente de
+          los Sabores disponibles, nuevos sabores y todo lo relacionado con el
+          mundo de Helados Carol
+        </p>
+     <section style="display: flex; gap: 50px; justify-content: center;">   <a href="https://www.heladoscarol.com">Facebook</a>
+      <a href="https://www.heladoscarol.com">WhatsApp</a>
+      <a href="https://www.heladoscarol.com">Instagram</a></section>
 
-      <p><a href="https://www.heladoscarol.com">www.heladoscarol.com</a></p>
-      <p>Derritiendo Corazones desde 2020</p>
+
+        <p><a href="https://www.heladoscarol.com">www.heladoscarol.com</a></p>
+        <p>Derritiendo Corazones desde 2020</p>
+      </div>
     </div>
   </body>
 </html>
