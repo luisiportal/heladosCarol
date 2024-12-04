@@ -10,11 +10,13 @@
     "
   >
     <div>
-      <img
-        className="w-12 h-12 rounded-full bg-neutral-400"
-        src="images/logo.png"
-        alt="Logo Helados Carol"
-      />
+      <div style="background-color: #e188b5; border-radius: 1rem">
+        <img
+          style="border-radius: 1rem"
+          src="images/logoCarol.jpg"
+          alt="Logo Helados Carol"
+        />
+      </div>
       <h1
         style="
           font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
@@ -26,9 +28,7 @@
       <div
         style="
           display: flex;
-          justify-content: center;
-
-          background-color: rgb(122, 118, 118);
+          flex-direction: column;
 
           border-radius: 0.5rem;
         "
@@ -39,7 +39,14 @@
       </div>
 
       <p>Sabores:</p>
-      <div style="padding: 1rem; background-color: #e188b5; border-radius: 0.5rem; margin-bottom: 1rem;">
+      <div
+        style="
+          padding: 1rem;
+          background-color: #e188b5;
+          border-radius: 0.5rem;
+          margin-bottom: 1rem;
+        "
+      >
         <ul>
           {{#each productos}}
           <li>{{nombre_sabor}} - Cantidad: {{cantidad}}</li>
@@ -80,10 +87,15 @@
       </div>
       <div
         style="
-          background-color: #e188b5;
+          background-color: white;
+          border-color: black;
+          border: 2px;
           padding: 5px;
           margin-top: 1rem;
           border-radius: 0.5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         "
       >
         <p>
@@ -92,9 +104,25 @@
           mundo de Helados Carol
         </p>
         <section style="display: flex; gap: 50px; justify-content: center">
-          <a href="https://www.heladoscarol.com">Facebook</a>
-          <a href="https://www.heladoscarol.com">WhatsApp</a>
-          <a href="https://www.heladoscarol.com">Instagram</a>
+          <a href="https://www.facebook.com/heladoscarolhlg"
+            ><img
+              style="width: 40px; height: 40px"
+              src="images/fb.png"
+              alt="Logo Facebook"
+            />
+          </a>
+          <a href="https://wa.me/5355081161"
+            ><img
+              style="width: 40px; height: 40px"
+              src="images/whatsapp.png"
+              alt="Logo Whatsapp"
+          /></a>
+          <a href="https://www.instagram.com/heladoscarol"
+            ><img
+              style="width: 40px; height: 40px"
+              src="images/instagram.png"
+              alt="Logo Instagram"
+          /></a>
         </section>
 
         <p><a href="https://www.heladoscarol.com">www.heladoscarol.com</a></p>
