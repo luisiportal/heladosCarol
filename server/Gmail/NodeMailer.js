@@ -58,22 +58,24 @@ export const EnviarCorreo = async ({
     attachments: [
       {
         filename: "logoCarol.jpg",
-        path: `${BACKEND_URL}/images/logoCarol.jpg`,
+        path: `${BACKEND_URL}/logoCarol.jpg`,
         cid: "logoCarol.jpg", //same cid value as in the html img src
       },
       {
         filename: "fb.png",
-        path: "../public/images/fb.png",
+        path: `${BACKEND_URL}/fb.png`,
         cid: "ig", //same cid value as in the html img src
       },
       {
         filename: "whatsapp.png",
-        path: "../public/images/whatsapp.png",
+        path: `${BACKEND_URL}/whatsapp.png`,
+
         cid: "ig", //same cid value as in the html img src
       },
       {
         filename: "instagram.png",
-        path: "../public/images/instagram.png",
+        path: `${BACKEND_URL}/instagram.png`,
+
         cid: "ig", //same cid value as in the html img src
       },
     ],
