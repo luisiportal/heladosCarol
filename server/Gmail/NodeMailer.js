@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { BACKEND_URL, GMAIL_KEY } from "../config.js";
+import { BACKEND_URL, FRONTEND_URL, GMAIL_KEY } from "../config.js";
 import hbs from "nodemailer-express-handlebars";
 import path from "path";
 import Handlebars from "handlebars";
@@ -58,23 +58,23 @@ export const EnviarCorreo = async ({
     attachments: [
       {
         filename: "logoCarol.jpg",
-        path: `${BACKEND_URL}/logoCarol.jpg`,
+        path: `${FRONTEND_URL}/logoCarol.jpg`,
         cid: "logoCarol.jpg", //same cid value as in the html img src
       },
       {
         filename: "fb.png",
-        path: `${BACKEND_URL}/fb.png`,
+        path: `${FRONTEND_URL}/fb.png`,
         cid: "ig", //same cid value as in the html img src
       },
       {
         filename: "whatsapp.png",
-        path: `${BACKEND_URL}/whatsapp.png`,
+        path: `${FRONTEND_URL}/whatsapp.png`,
 
         cid: "ig", //same cid value as in the html img src
       },
       {
         filename: "instagram.png",
-        path: `${BACKEND_URL}/instagram.png`,
+        path: `${FRONTEND_URL}/instagram.png`,
 
         cid: "ig", //same cid value as in the html img src
       },
