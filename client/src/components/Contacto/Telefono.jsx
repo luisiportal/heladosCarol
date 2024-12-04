@@ -7,7 +7,7 @@ const Telefono = ({ numero }) => {
   return (
     <a
       className="flex font-semibold"
-      href={`https://wa.me/5355081161?text=${sabor} ${precio}`}
+      href={`https://wa.me/${numero}`}
     >
       <img className="w-8 h-8" src="/images/was100.png" alt="WhatsAPP" />
       {numero}
