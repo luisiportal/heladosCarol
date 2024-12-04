@@ -15,8 +15,8 @@ const Contacto = () => {
         <section className="flex flex-col items-center mt-4">
           {" "}
           <h2 className="text-lg font-semibold">Teléfonos</h2>
-          <Telefono numero={"+53 55081161"} />
-          <Telefono numero={"+53 55079490"} />
+          <Telefono numero={"5355081161"} />
+          <Telefono numero={"5355079490"} />
         </section>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { GMAIL_KEY } from "../config.js";
+import { BACKEND_URL, GMAIL_KEY } from "../config.js";
 import hbs from "nodemailer-express-handlebars";
 import path from "path";
 import Handlebars from "handlebars";
@@ -17,10 +17,8 @@ export const EnviarCorreo = async ({
   entrega,
   grandTotalCobrar,
 }) => {
-
-
   console.log(factura);
-  
+
   // Crear un transportador
   let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -59,26 +57,26 @@ export const EnviarCorreo = async ({
     },
     attachments: [
       {
-          filename: 'logoCarol.jpg',
-          path: '../public/images/logoCarol.jpg',
-          cid: 'logoCarol.jpg' //same cid value as in the html img src
+        filename: "logoCarol.jpg",
+        path: `${BACKEND_URL}/images/logoCarol.jpg`,
+        cid: "logoCarol.jpg", //same cid value as in the html img src
       },
       {
-          filename: 'fb.png',
-          path: '../public/images/fb.png',
-          cid: 'ig' //same cid value as in the html img src
+        filename: "fb.png",
+        path: "../public/images/fb.png",
+        cid: "ig", //same cid value as in the html img src
       },
       {
-        filename: 'whatsapp.png',
-        path: '../public/images/whatsapp.png',
-        cid: 'ig' //same cid value as in the html img src
-    },
-    {
-      filename: 'instagram.png',
-      path: '../public/images/instagram.png',
-      cid: 'ig' //same cid value as in the html img src
-  },
-      ],
+        filename: "whatsapp.png",
+        path: "../public/images/whatsapp.png",
+        cid: "ig", //same cid value as in the html img src
+      },
+      {
+        filename: "instagram.png",
+        path: "../public/images/instagram.png",
+        cid: "ig", //same cid value as in the html img src
+      },
+    ],
   };
 
   // Enviar el correo
