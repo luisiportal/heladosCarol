@@ -10,11 +10,11 @@ Handlebars.registerHelper("eq", function (a, b) {
 });
 
 export const EnviarCorreo = async ({
+  entrega,
   to,
   subject,
   factura,
   productos,
-  entrega,
   grandTotalCobrar,
   plantilla,
 }) => {
