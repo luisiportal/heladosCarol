@@ -1,11 +1,6 @@
 import { EnviarCorreo } from "../Gmail/NodeMailer.js";
 
 export const NotificarConfirmadoFacturaCliente = (entrega) => {
-  EnviarCorreo(
-    `${entrega.contacto_ordenante}`,
-    "Su factura ha sido confirmada",
-    `Hola ${entrega.ordenante} , hemos confimado su pago y su orden ya esta en proceso de entrega. \n Atentamente https://www.heladoscarol.com`
-  );
   EnviarCorreo({
     entrega,
     subject: "Su factura ha sido confirmada",

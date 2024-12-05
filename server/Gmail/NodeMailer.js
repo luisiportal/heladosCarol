@@ -49,7 +49,7 @@ export const EnviarCorreo = async ({
     from: '"Helados Carol" <heladoscarol@gmail.com>',
     to: to,
     subject: subject,
-    template: `${plantilla}`,
+    template: plantilla,
     context: {
       factura,
       productos,
