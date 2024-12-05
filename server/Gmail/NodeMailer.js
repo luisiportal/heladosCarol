@@ -51,9 +51,9 @@ export const EnviarCorreo = async ({
     subject: subject,
     template: plantilla,
     context: {
+      entrega,
       factura,
       productos,
-      entrega,
       grandTotalCobrar,
     },
     attachments: [
