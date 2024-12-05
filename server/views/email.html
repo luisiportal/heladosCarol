@@ -1,123 +1,76 @@
-<!-- views/email.hbs -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Factura Pendiente de Aprobación</title>
-  </head>
-  <body
-    style="
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    "
-  >
+<head>
+  <title>Factura Pendiente de Aprobación</title>
+  <style>
+    .center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+  <div>
+    <div style="background-color: #e188b5; border-radius: 1rem;">
+      <img style="border-radius: 1rem;" src="cid:logoCarol" alt="Logo Helados Carol" />
+    </div>
+    <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+      Nueva Factura pendiente de aprobación
+    </h1>
+    <div style="display: flex; flex-direction: column; border-radius: 0.5rem;">
+      <p>Datos de la Factura:</p>
+      <p>Factura {{factura.dataValues.id}}</p>
+      <p>Fecha: {{factura.dataValues.creado}}</p>
+    </div>
+    <p>Sabores:</p>
+    <div style="padding: 1rem; background-color: #e188b5; border-radius: 0.5rem; margin-bottom: 1rem;">
+      <ul>
+        {{#each productos}}
+        <li>{{nombre_sabor}} - Cantidad: {{cantidad}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    <div style="background-color: rgb(163, 163, 163); border-radius: 0.5rem; padding: 1rem;">
+      <p>Entrega:</p>
+      <p>Entregar a: {{entrega.beneficiario}}</p>
+      <p>
+        Dirección: Calle {{entrega.calle}} #{{entrega.numero}} entre {{entrega.calle1}} Reparto {{entrega.reparto}}
+      </p>
+      <p>Referencia: {{entrega.p_referencia}}</p>
+      <p>Teléfono: {{entrega.tel_beneficiario}}</p>
+      <p>Enviado Por: {{entrega.ordenante}}</p>
+      <p>Contacto: {{entrega.contacto_ordenante}}</p>
+      <p>Observaciones: {{entrega.observaciones}}</p>
+    </div>
+    <div style="background-color: #e188b5; border-radius: 0.5rem; padding: 1rem; margin-top: 1rem;">
+      <p>
+        Total: {{grandTotalCobrar}} {{#if (eq factura.dataValues.pasarela "CUP")}}CUP{{else}}USD{{/if}}
+      </p>
+    </div>
     <div>
-      <div style="background-color: #e188b5; border-radius: 1rem">
-        <img
-          style="border-radius: 1rem"
-          src="cid:logoCarol"
-          alt="Logo Helados Carol"
-        />
-      </div>
-      <h1
-        style="
-          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
-            sans-serif;
-        "
-      >
-        Nueva Factura pendiente de aprobación
-      </h1>
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-
-          border-radius: 0.5rem;
-        "
-      >
-        <p>Datos de la Factura:</p>
-        <p>Factura {{factura.dataValues.id}}</p>
-        <p>Fecha: {{factura.dataValues.creado}}</p>
-      </div>
-
-      <p>Sabores:</p>
-      <div
-        style="
-          padding: 1rem;
-          background-color: #e188b5;
-          border-radius: 0.5rem;
-          margin-bottom: 1rem;
-        "
-      >
-        <ul>
-          {{#each productos}}
-          <li>{{nombre_sabor}} - Cantidad: {{cantidad}}</li>
-          {{/each}}
-        </ul>
-      </div>
-      <div
-        style="
-          background-color: rgb(163 163 163);
-          border-radius: 0.5rem;
-          padding: 1rem;
-        "
-      >
-        <p>Entrega:</p>
-        <p>Entregar a: {{entrega.beneficiario}}</p>
-        <p>
-          Dirección: Calle {{entrega.calle}} #{{entrega.numero}} entre
-          {{entrega.calle1}} Reparto {{entrega.reparto}}
-        </p>
-        <p>Referencia: {{entrega.p_referencia}}</p>
-        <p>Teléfono: {{entrega.tel_beneficiario}}</p>
-        <p>Enviado Por: {{entrega.ordenante}}</p>
-        <p>Contacto: {{entrega.contacto_ordenante}}</p>
-        <p>Observaciones: {{entrega.observaciones}}</p>
-      </div>
-      <div
-        style="
-          background-color: #e188b5;
-          border-radius: 0.5rem;
-          padding: 1rem;
-          margin-top: 1rem;
-        "
-      >
-        <p>
-          Total: {{grandTotalCobrar}} {{#if (eq factura.dataValues.pasarela
-          "CUP")}}CUP{{else}}USD{{/if}}
-        </p>
-      </div>
-      <div>
-        <p>
-          Puedes seguirnos en nuestras redes sociales para estar al pendiente de
-          los Sabores disponibles, nuevos sabores y todo lo relacionado con el
-          mundo de Helados Carol
-        </p>
-        <section style="display: flex; align-items: center; justify-content: center;">
-          <div>
-            <a href="https://www.facebook.com/heladoscarolhlg"
-              ><img
-                style="width: 40px; height: 40px"
-                src="cid:fb"
-                alt="Logo Facebook"
-              />
-            </a>
-            <a href="https://wa.me/5355081161"
-              ><img
-                style="width: 40px; height: 40px"
-                src="cid:whatsapp"
-                alt="Logo Whatsapp"
-            /></a>
-            <a href="https://www.instagram.com/heladoscarol"
-              ><img
-                style="width: 40px; height: 40px"
-                src="cid:instagram"
-                alt="Logo Instagram"
-            /></a>
-          </div>
-        </section>
-
-        <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;"><p><a href="https://www.heladoscarol.com">www.heladoscarol.com</a></p>
-          <p>Derritiendo Corazones desde 2020</p></div>
+      <p>
+        Puedes seguirnos en nuestras redes sociales para estar al pendiente de los Sabores disponibles, nuevos sabores y todo lo relacionado con el mundo de Helados Carol.
+      </p>
+      <section class="center">
+        <div>
+          <a href="https://www.facebook.com/heladoscarolhlg">
+            <img style="width: 40px; height: 40px;" src="cid:fb" alt="Logo Facebook" />
+          </a>
+          <a href="https://wa.me/5355081161">
+            <img style="width: 40px; height: 40px;" src="cid:whatsapp" alt="Logo Whatsapp" />
+          </a>
+          <a href="https://www.instagram.com/heladoscarol">
+            <img style="width: 40px; height: 40px;" src="cid:instagram" alt="Logo Instagram" />
+          </a>
+        </div>
+      </section>
+      <div class="center">
+        <p><a href="https://www.heladoscarol.com">www.heladoscarol.com</a></p>
+        <p>Derritiendo Corazones desde 2020</p>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>
