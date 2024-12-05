@@ -18,7 +18,7 @@ export const EnviarCorreo = async ({
   grandTotalCobrar,
   plantilla,
 }) => {
-  console.log(factura);
+  console.log(entrega);
 
   // Crear un transportador
   let transporter = nodemailer.createTransport({
@@ -51,10 +51,10 @@ export const EnviarCorreo = async ({
     subject: subject,
     template: plantilla,
     context: {
-      entrega,
-      factura,
-      productos,
-      grandTotalCobrar,
+      entrega:entrega,
+      factura:factura,
+      productos:productos,
+      grandTotalCobrar:grandTotalCobrar,
     },
     attachments: [
       {
