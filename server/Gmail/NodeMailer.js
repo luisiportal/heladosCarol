@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import { BACKEND_URL, FRONTEND_URL, GMAIL_KEY } from "../config.js";
 import hbs from "nodemailer-express-handlebars";
 import path from "path";
-import Handlebars from "handlebars";
+import Handlebars, { template } from "handlebars";
 
 // Definir el helper 'eq'
 Handlebars.registerHelper("eq", function (a, b) {
@@ -16,6 +16,7 @@ export const EnviarCorreo = async ({
   productos,
   entrega,
   grandTotalCobrar,
+  plantilla,
 }) => {
   console.log(factura);
 
@@ -48,7 +49,7 @@ export const EnviarCorreo = async ({
     from: '"Helados Carol" <heladoscarol@gmail.com>',
     to: to,
     subject: subject,
-    template: "email",
+    template: `${plantilla}`,
     context: {
       factura,
       productos,

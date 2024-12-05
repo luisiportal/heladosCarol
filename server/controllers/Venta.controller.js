@@ -94,6 +94,7 @@ export const createVenta = async (req, res) => {
         grandTotalCobrar,
         productos,
         subject: "Nueva Factura pendiente de aprobación",
+        plantilla: "nueva",
       });
       if (entrega.contacto_ordenante.includes("@")) {
         NotificarFacturaCliente({
@@ -103,6 +104,7 @@ export const createVenta = async (req, res) => {
           grandTotalCobrar,
           subject: "Nueva Factura pendiente de aprobación",
           to: `${entrega.contacto_ordenante}`,
+          plantilla: "nueva",
         });
       }
     });
