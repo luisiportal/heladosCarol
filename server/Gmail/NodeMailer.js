@@ -1,7 +1,9 @@
+import { FRONTEND_URL, GMAIL_KEY } from "../config.js";
+
 import nodemailer from "nodemailer";
-import { BACKEND_URL, FRONTEND_URL, GMAIL_KEY } from "../config.js";
 import hbs from "nodemailer-express-handlebars";
 import path from "path";
+import Handlebars from "handlebars";
 // Definir el helper 'eq'
 Handlebars.registerHelper("eq", function (a, b) {
   return a === b;
