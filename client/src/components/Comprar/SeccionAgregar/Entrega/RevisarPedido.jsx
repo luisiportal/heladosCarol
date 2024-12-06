@@ -51,7 +51,7 @@ const RevisarPedido = ({
 
   return (
     <div>
-      <FacturaCard factura={factura} total={total.toFixed(2)} file={file} />
+      <FacturaCard factura={factura} total={total} file={file} />
 
       {params.id == 3 ? (
         "Pago por TropiPay Correcto"
@@ -73,7 +73,7 @@ const RevisarPedido = ({
                 <div className="bg-fresa rounded-lg p-5 m-2 mt-5 text-white font-semibold ">
                   <h2>
                     Marque la casilla si ya realizó el pago de{" "}
-                    <span className="font-bold">{total.toFixed(2)} USD</span>{" "}
+                    <span className="font-bold">{total} USD</span>{" "}
                     por Zelle a
                     <span className="m-1 font-semibold text-slate-800">
                       heladoscarol@gmail.com

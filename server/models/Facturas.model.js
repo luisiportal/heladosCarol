@@ -27,6 +27,10 @@ export const Factura = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    moneda: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
 
     total_venta: {
       type: DataTypes.DECIMAL,

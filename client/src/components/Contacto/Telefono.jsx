@@ -7,6 +7,7 @@ const Telefono = ({ numero }) => {
   return (
     <a
       className="flex font-semibold"
+      target="_blank"
       href={`https://wa.me/${numero}`}
     >
       <img className="w-8 h-8" src="/images/was100.png" alt="WhatsAPP" />

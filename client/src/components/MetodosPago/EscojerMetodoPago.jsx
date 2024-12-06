@@ -1,7 +1,7 @@
 import LayoutPrincipal from "../../Layouts/LayoutPrincipal";
 import BTN_MePago from "./BTN_MePago";
 
-const EscojerMetodoPago = ({ setNavegacion, setMetoPago }) => {
+const EscojerMetodoPago = ({ setNavegacion, setMetoPago, setMoneda }) => {
   const handleMetoPago = async (metodo) => {
     setMetoPago(metodo);
     setNavegacion(1);

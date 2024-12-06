@@ -10,6 +10,7 @@ import { useAuth } from "../../context/AuthContext";
 import ShareButtonFB from "../Social/ShareButtonFB";
 import { useNavigate } from "react-router-dom";
 import Tinas from "./Tinas";
+import Social from "../Social/Social";
 
 const Sabores = () => {
   const { loadSabores, sabores } = useSabores();
@@ -24,7 +25,11 @@ const Sabores = () => {
     cargarSabores();
   }, []);
   const navigate = useNavigate();
-  const nombreSabores = sabores.map((sabor) => ` ${sabor.nombre_sabor}`);
+  const nombreSaboresMap = sabores
+    .filter((sabor) => sabor.existencia > 0)
+    .map((sabor) => sabor.nombre_sabor);
+
+  const nombreSabores = nombreSaboresMap.filter((sabor) => sabor !== false);
 
   const potes = sabores.filter((item) => !item.nombre_sabor.includes("Tina"));
 
@@ -61,9 +66,8 @@ const Sabores = () => {
           </div>
         </section>
         <h2 className="flex justify-center font-irish text-2xl py-2">
-          <ShareButtonFB
-            sabores={`Exelente Calidad disponibles ${nombreSabores}`}
-          />
+          <Social sabores={nombreSabores}></Social>
+          
         </h2>
 
         {loader && (

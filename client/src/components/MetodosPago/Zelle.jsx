@@ -16,7 +16,7 @@ const Zelle = ({ total }) => {
         Pasos para realizar Pago mediante Zelle
       </h2>
       <h4>
-        1- Enviar <span className="font-bold">{total.toFixed(2)} USD</span> por{" "}
+        1- Enviar <span className="font-bold">{total} USD</span> por{" "}
         <span className="font-bold">Zelle</span> al correo
       </h4>
       <span onClick={handleCopy} className=" cursor-pointer font-semibold text-slate-800  flex justify-center">

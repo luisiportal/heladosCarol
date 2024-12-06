@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import {
   confirmarFacturaRequest,
   estadoEntregadaFacturaRequest,
@@ -7,15 +6,14 @@ import { deleteFacturaRequest } from "../../api/venta.api";
 import { useAuth } from "../../context/AuthContext";
 import { grandTotalFactura } from "../../utils/grandTotalFactura";
 import EvidenciaPagoZelle from "../Comprar/SeccionAgregar/EvidenciaPagoZelle";
-
 import CheckedSVG from "../SVG/CheckedSVG";
-
 import ElimiarFacturaBTN from "./CardFacturaItems/ElimiarFacturaBTN";
 import SaboresFactura from "./CardFacturaItems/SaboresFactura";
 import TotalFactura from "./CardFacturaItems/TotalFactura";
 import TruckEntregaSVG from "../SVG/TruckEntregaSVG";
 import IconoPasarela from "./CardFacturaItems/IconoPasarela";
 import { useMetoPago } from "../../Stores/Pago.store";
+import TelefonoNotificarFactura from "./CardFacturaItems/TelefonoNotificarFactura";
 
 function FacturaCard({
   factura,
@@ -28,7 +26,13 @@ function FacturaCard({
   const { ventas } = factura;
   const { setModalActivo, perfil, setLoader } = useAuth();
   const { metoPago, setMetoPago } = useMetoPago();
-
+  const handleCopy = async (numero) => {
+    try {
+      await navigator.clipboard.writeText(numero);
+    } catch (error) {
+      console.error("Error al copiar el texto:", error);
+    }
+  };
   const handleEliminar = async (id) => {
     if (confirm("¿Estás a punto de eliminar una Venta ?")) {
       try {
@@ -66,7 +70,8 @@ function FacturaCard({
   );
 
   const monedaPago = factura.pasarela || metoPago;
-  const moneda = (monedaPago == "TropiPay" || monedaPago == "Zelle" ) ? " USD" : " CUP";
+  const moneda =
+    monedaPago == "TropiPay" || monedaPago == "Zelle" ? " USD" : " CUP";
   return (
     <div
       className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
@@ -75,11 +80,11 @@ function FacturaCard({
         <div className="flex justify-between items-center font-extralight  text-sm m-2">
           {" "}
           {factura.id && (
-            <p className="flex items-center">
+            <div className="flex items-center">
               {<IconoPasarela pasarela={factura.pasarela} />}
               Factura : {factura.id}
               {factura.pasarela == "TropiPay" && `-- ${factura.pagado}`}
-            </p>
+            </div>
           )}
           {factura.creado && (
             <p>{new Date(factura.creado).toLocaleString("es-ES")}</p>
@@ -92,10 +97,7 @@ function FacturaCard({
             metoPago={metoPago}
             moneda={moneda}
           />
-          <TotalFactura
-            total={total ?? grandTotal.toFixed(2)}
-            moneda={moneda}
-          />
+          <TotalFactura total={total ?? grandTotal} moneda={moneda} />
         </div>
 
         <div className="flex-grow flex flex-col  p-2 text-xs">
@@ -110,7 +112,12 @@ function FacturaCard({
               </p>
 
               <h2>Referencia : {factura.entrega.p_referencia} </h2>
-              <h2>Teléfono : {factura.entrega.tel_beneficiario} </h2>
+              <h2
+                className="cursor-pointer"
+                onClick={() => handleCopy(factura.entrega.tel_beneficiario)}
+              >
+                Teléfono : {factura.entrega.tel_beneficiario}{" "}
+              </h2>
             </div>
 
             <div className="bg-fresa text-neutral-100 font-semibold rounded-xl text-xs flex gap-2 p-2">
@@ -149,13 +156,15 @@ function FacturaCard({
                   {perfil.privilegio == "Administrador" ? (
                     <div className="flex  p-2 justify-between">
                       <button
-                        className="w-8 h-8"
+                        className="w-8"
                         onClick={() => handleEstadoEntregada(factura.id)}
                       >
                         {factura.estado == "Entregada" ? (
                           ""
                         ) : (
-                          <TruckEntregaSVG />
+                          <>
+                            <TruckEntregaSVG />
+                          </>
                         )}
                       </button>
                       <ElimiarFacturaBTN
@@ -172,6 +181,13 @@ function FacturaCard({
                   <h2 className="bg-red-400 flex justify-center text-neutral-100 mb-2 rounded-lg m-2">
                     Pendiente a confirmar
                   </h2>
+                  <TelefonoNotificarFactura
+                    numero={`${factura.entrega.tel_beneficiario}`}
+                    ventas={ventas}
+                    grandTotal={grandTotal}
+                    moneda={factura.moneda}
+                    persona = {factura.entrega.beneficiario}
+                  />
                   {perfil.privilegio == "Administrador" ? (
                     <div className="flex justify-between">
                       <button

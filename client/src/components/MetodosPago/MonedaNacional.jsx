@@ -9,7 +9,7 @@ const MonedaNacional = ({total}) => {
     <h2 className="font-semibold text-slate-700 flex justify-center">  Efectivo Moneda Nacional (CUP)</h2>
     <h4>
     
-      1-Tener listo  <span className="font-bold">{total.toFixed(2)} CUP en efectivo</span>{" "}
+      1-Tener listo  <span className="font-bold">{total} CUP en efectivo</span>{" "}
        <span className="font-bold">al momento de la entrega </span> para agilizar el proceso.
     </h4>
     <span className="font-semibold text-slate-800  flex justify-center">

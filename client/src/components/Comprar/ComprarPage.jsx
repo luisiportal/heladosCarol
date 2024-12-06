@@ -18,7 +18,6 @@ const ComprarPage = () => {
   const params = useParams();
 
   useEffect(() => {
-  
     if (params.id == 3) {
       setNavegacion(3);
       setModalActivo({
@@ -35,7 +34,6 @@ const ComprarPage = () => {
         navegarA: "/",
       });
     }
-
   }, []);
 
   const [entrega, setEntrega] = useState({
