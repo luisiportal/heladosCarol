@@ -24,7 +24,7 @@ export const createVenta = async (req, res) => {
   const entrega = JSON.parse(req.body.entrega);
   const pasarela = JSON.parse(req.body.pasarela);
   const reference = JSON.parse(req.body.reference);
-  const moneda = (pasarela == "CUP" ? "CUP" : "USD")
+  const moneda = pasarela == "CUP" ? "CUP" : "USD";
   const total_venta = productos.reduce(
     (sum, producto) => sum + producto.precio_venta * producto.cantidad,
     0
@@ -111,7 +111,11 @@ export const createVenta = async (req, res) => {
     });
 
     saveImage(req.file, "pagos_facturas");
-    enviaNotification({ grandTotalCobrar, pasarela });
+    enviaNotification({
+      grandTotalCobrar,
+      pasarela,
+      ordenante: entrega.ordenante,
+    });
 
     return res.status(200).json({ message: "Ventas creadas correctamente" });
   } catch (error) {
