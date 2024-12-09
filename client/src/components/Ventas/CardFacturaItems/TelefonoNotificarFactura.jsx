@@ -15,7 +15,7 @@ const TelefonoNotificarFactura = ({
 
   const texto = `Hola ${persona}, hemos recibido su factura de ${items} ${
     moneda === "CUP" ? `con un total de ${grandTotal} CUP` : ""
-  } . La cual ya está siendo procesada. Helados Carol | www.heladoscarol.com`;
+  } . La cual ya está siendo procesada.Díganos si se le puede enviar en estos momentos.  Helados Carol | www.heladoscarol.com`;
 
   function agregarPrefijo(numero) {
     if (!numero.startsWith("53") && !numero.startsWith("+53")) {
