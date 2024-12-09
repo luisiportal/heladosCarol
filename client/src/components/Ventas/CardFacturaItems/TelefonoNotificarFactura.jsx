@@ -10,10 +10,10 @@ const TelefonoNotificarFactura = ({
   persona,
 }) => {
   const items = ventas.map(
-    (item) => `${item.cantidad} ${item.sabore.nombre_sabor} `
+    (item) => `${item.cantidad} ${item.sabore.nombre_sabor} >>> `
   );
 
-  const texto = `Hola ${persona}, hemos recibido su factura de ${items} ${
+  const texto = `Hola ${persona}, hemos recibido su factura de >>> ${items} ${
     moneda === "CUP" ? `con un total de ${grandTotal} CUP` : ""
   } . La cual ya está siendo procesada.Díganos si se le puede enviar en estos momentos.  Helados Carol | www.heladoscarol.com`;
 
