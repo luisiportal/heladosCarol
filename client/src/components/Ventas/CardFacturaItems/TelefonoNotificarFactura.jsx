@@ -1,4 +1,6 @@
 import React from "react";
+import CallSVG from "../../SVG/CallSVG";
+import TextSVG from "../../SVG/TextSVG";
 
 const TelefonoNotificarFactura = ({
   numero,
@@ -16,25 +18,30 @@ const TelefonoNotificarFactura = ({
   } . La cual ya está siendo procesada. Helados Carol | www.heladoscarol.com`;
 
   function agregarPrefijo(numero) {
-   
     if (!numero.startsWith("53") && !numero.startsWith("+53")) {
-       numero = "53" + numero;
+      numero = "53" + numero;
     }
     return numero;
   }
 
   const resultado = agregarPrefijo(numero);
- 
 
   return (
-    <a
-      className="flex font-semibold"
-      target="_blank"
-      href={`https://wa.me/${resultado}?text=${texto}`}
-    >
-      <img className="w-8 h-8" src="/images/was100.png" alt="WhatsAPP" />
-      {numero}
-    </a>
+    <>
+      {" "}
+      <div className="flex p-2 justify-between items-center">
+        <a href={`sms:${resultado}?body=${texto}`} className="flex gap-1"> <TextSVG/> Enviar SMS</a>
+        <a href={`tel:${resultado}`} className="flex gap-1"><CallSVG/> LLamar</a>
+        <a
+          className="flex font-semibold"
+          target="_blank"
+          href={`https://wa.me/${resultado}?text=${texto}`}
+        >
+          <img className="w-8 h-8" src="/images/was100.png" alt="WhatsAPP" />
+          {numero}
+        </a>
+      </div>
+    </>
   );
 };
 
