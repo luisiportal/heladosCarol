@@ -23,10 +23,7 @@ export const saboresSchema = Yup.object().shape({
     .typeError("Debes escribir solo números")
     .positive("El precio debe ser mayor que cero")
     .required("Precio Requerido"),
-  precio_venta_cup: Yup.number()
-    .typeError("Debes escribir solo números")
-    .positive("El precio debe ser mayor que cero")
-    .required("Precio Requerido"),
+
   color: Yup.string(),
   stockMinimo: Yup.number().typeError("Debes escribir solo números"),
 });
