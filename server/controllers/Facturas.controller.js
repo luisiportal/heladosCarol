@@ -23,7 +23,10 @@ export const confirmarFactura = async (req, res) => {
     await response.save();
     res.json(response);
     await registrarLog("Confirmo", "Factura", `${response.id}`, req, "");
-    NotificarConfirmadoFacturaCliente(entrega);
+    if (entrega.contacto_ordenante.includes("@")) {
+      NotificarConfirmadoFacturaCliente(entrega);
+
+    }
   } catch (error) {
     console.error(error);
   }
@@ -43,7 +46,9 @@ export const estadoFacturaEntregada = async (req, res) => {
     await response.save();
     res.json(response);
     await registrarLog("Confirmo", "Factura", `${response.id}`, req, "");
-    NotificarEntregadoFacturaCliente(entrega);
+    if (entrega.contacto_ordenante.includes("@")) {
+      NotificarEntregadoFacturaCliente(entrega);
+    }
   } catch (error) {
     console.error(error);
   }
