@@ -2,16 +2,17 @@ import React from "react";
 
 const TinaCardElement = ({ tina }) => {
   const fondoTina =
-    tina.home_img === "si"
-      ? {
-          backgroundImage: `url(${
-            import.meta.env.VITE_BACKEND_URL
-          }/images/productos/${tina.ruta_image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgrounRepeat: "no - repeat",
-        }
-      : { backgroundColor: `#${tina.color}` };
+  tina.home_img === "si"
+    ? {
+        backgroundImage: `url(${
+          import.meta.env.VITE_BACKEND_URL
+        }/images/productos/${tina.ruta_image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }
+    : { backgroundColor: `#${tina.color}` };
+
 
   return (
     <div
