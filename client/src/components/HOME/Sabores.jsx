@@ -34,6 +34,8 @@ const Sabores = () => {
   const potes = sabores.filter((item) => !item.nombre_sabor.includes("Tina"));
 
   const tinas = sabores.filter((item) => item.nombre_sabor.includes("Tina"));
+
+  
   const sinPote = potes.map((item) => ({
     nombre_sabor: item.nombre_sabor.replace("Pote", "").trim(),
     color: item.color,

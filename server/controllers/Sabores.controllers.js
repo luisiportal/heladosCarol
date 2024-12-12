@@ -48,6 +48,7 @@ export const createSabor = async (req, res) => {
       stockMinimo,
       precio_venta,
       costo_unitario,
+      home_img,
     } = req.body;
 
     // Iniciar una transacción
@@ -64,6 +65,7 @@ export const createSabor = async (req, res) => {
             stockMinimo,
             envase,
             ruta_image,
+            home_img,
           },
           { transaction: t }
         );
@@ -115,7 +117,9 @@ export const updateSabor = async (req, res) => {
         stockMinimo,
         precio_venta,
         costo_unitario,
+        home_img,
       } = req.body;
+console.log(home_img);
 
       const response = await Sabor.findByPk(id_sabor);
       response.nombre_sabor = nombre_sabor;
@@ -123,6 +127,7 @@ export const updateSabor = async (req, res) => {
       response.costo_unitario = costo_unitario;
       response.color = color;
       response.envase = envase;
+      response.home_img = home_img;
       response.precio_venta_cup = Math.round(precio_venta * usd);
       ruta_image && (response.ruta_image = ruta_image);
       response.stockMinimo = stockMinimo;

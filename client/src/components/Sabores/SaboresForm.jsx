@@ -7,8 +7,6 @@ import { useAuth } from "../../context/AuthContext";
 import Loader from "../Utilidades/Loader";
 import { saboresSchema } from "../../schemas/schemas";
 
-
-
 const SaboresForm = () => {
   const { createSabor, getSabor, updateSabor } = useSabores();
 
@@ -17,11 +15,11 @@ const SaboresForm = () => {
   const [sabor, setSabor] = useState({
     nombre_sabor: "",
     envase: "",
-    description_producto: "",
+    color: "",
     costo_unitario: 0,
     precio_venta: 0,
-    precio_venta_cup: 0,
-    categoria: "Sin categoria",
+    stockMinimo: 0,
+    home_img: "no",
   });
 
   useEffect(() => {
@@ -50,6 +48,7 @@ const SaboresForm = () => {
     formData.append("precio_venta", values.precio_venta);
     formData.append("stockMinimo", values.stockMinimo || 0);
     formData.append("existencia", values.existencia || 0);
+    formData.append("home_img", values.home_img);
 
     if (file !== null) {
       formData.append("ruta_image", file);
@@ -195,7 +194,7 @@ const SaboresForm = () => {
                   {errors.precio_venta}
                 </span>
               )}
-             
+
               <label htmlFor="stockMinimo" className="block">
                 Cant mínima:
               </label>
@@ -211,6 +210,33 @@ const SaboresForm = () => {
                 <span className="bg-red-500 p-1 m-1">{errors.stockMinimo}</span>
               )}
 
+              <label htmlFor="mos" className="block">
+                Mostrar imagen en Precio
+              </label>
+              <div className="flex gap-3">
+                <label>
+                  <input
+                    id="home_img_true"
+                    type="radio"
+                    name="home_img"
+                    value="si"
+                    checked={values.home_img ==="si"}
+                    onChange={handleChange}
+                  />
+                  Mostrar
+                </label>
+                <label>
+                  <input
+                    id="home_img_false"
+                    type="radio"
+                    name="home_img"
+                    value="no"
+                    checked={values.home_img ==="no"}
+                    onChange={handleChange}
+                  />
+                  Ocultar
+                </label>
+              </div>
               <label htmlFor="ruta_image" className="block"></label>
               <input
                 name="ruta_image"

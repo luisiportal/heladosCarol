@@ -1,10 +1,22 @@
 import React from "react";
 
 const TinaCardElement = ({ tina }) => {
+  const fondoTina =
+    tina.home_img === "si"
+      ? {
+          backgroundImage: `url(${
+            import.meta.env.VITE_BACKEND_URL
+          }/images/productos/${tina.ruta_image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgrounRepeat: "no - repeat",
+        }
+      : { backgroundColor: `#${tina.color}` };
+
   return (
     <div
-      style={{ backgroundColor: "#" + tina.color }}
-      className="flex flex-col justify-center items-center font-irish text-md text-center rounded-lg p-2 w-24 h-16 overflow-hidden relative"
+      style={fondoTina}
+      className="object-center flex flex-col justify-center items-center font-irish text-md text-center rounded-lg p-2 w-24 h-16 overflow-hidden relative"
     >
       <div className="">
         {" "}

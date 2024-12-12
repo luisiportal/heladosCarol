@@ -1,10 +1,10 @@
 import React from "react";
 import TinaCardElement from "./TinaCardElement";
 import BTN_Comprar from "./Sabores/BTN_Comprar";
-import { useCarritos } from "../../context/CarritosContext";
 import { useNavigate } from "react-router-dom";
 
 const Tinas = ({ tinas }) => {
+  
   const navigate = useNavigate();
   const sinTina = tinas.map((item) => ({
     nombre_sabor: item.nombre_sabor.replace("Tina", "").trim(),
@@ -12,7 +12,11 @@ const Tinas = ({ tinas }) => {
     existencia: item.existencia,
     precio_venta: item.precio_venta,
     precio_venta_cup: item.precio_venta_cup,
+    ruta_image: item.ruta_image,
+    home_img: item.home_img,
   }));
+
+
   return (
     <div className="bg-neutral-200 my-4 rounded-lg group">
       <div className="p-2 overflow-hidden">
@@ -48,8 +52,9 @@ const Tinas = ({ tinas }) => {
             )
         )}
       </div>
-      <h4 className="text-xs italic text-right p-1">* Toque el sabor para ver precio de las tinas</h4>
-
+      <h4 className="text-xs italic text-right p-1">
+        * Toque el sabor para ver precio de las tinas
+      </h4>
     </div>
   );
 };
