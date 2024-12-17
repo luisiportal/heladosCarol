@@ -3,13 +3,12 @@ import { createPagoRequest } from "../../api/venta.api";
 import Loader from "../Utilidades/Loader";
 import { tropiPayFeeGet } from "../Ventas/tropiPayFeeGet";
 
-const Tropipay = ({
-  total,
-  setPayLink,
-  payLink,
-  description,
-}) => {
-  const totalfee = tropiPayFeeGet(total);
+const Tropipay = ({ total, setPayLink, payLink, description }) => {
+  const tropiFee = tropiPayFeeGet(total);
+  const totalfee = tropiFee + total;
+
+  console.log(totalfee);
+
   useEffect(() => {
     const loadPaymentLink = async () => {
       const { data } = await createPagoRequest({
