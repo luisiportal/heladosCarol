@@ -6,6 +6,7 @@ import Zelle from "../../../MetodosPago/Zelle";
 import Tropipay from "../../../MetodosPago/Tropipay";
 import { useParams } from "react-router-dom";
 import MonedaNacional from "../../../MetodosPago/MonedaNacional";
+import { tropiPayFeeGet } from "../../../Ventas/tropiPayFeeGet";
 
 const RevisarPedido = ({
   carrito,
@@ -34,6 +35,8 @@ const RevisarPedido = ({
   };
 
   const total = grandTotalFactura(factura.total_venta, factura.entrega.envio);
+  const tropiPayFee = tropiPayFeeGet(total);
+  const totalTropipay = (Number(total) + tropiPayFee);
   const envio = entrega.envio;
   const sabores = carrito.map(
     (item) => item.cantidad + "x " + item.nombre_sabor
@@ -61,7 +64,7 @@ const RevisarPedido = ({
             {metoPago == "CUP" && <MonedaNacional total={total} />}
             {metoPago == "TropiPay" && (
               <Tropipay
-                total={total}
+                total={totalTropipay}
                 description={description.toString()}
                 setPayLink={setPayLink}
                 payLink={payLink}
