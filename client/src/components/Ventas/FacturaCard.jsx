@@ -15,7 +15,7 @@ import IconoPasarela from "./CardFacturaItems/IconoPasarela";
 import { useMetoPago } from "../../Stores/Pago.store";
 import TelefonoNotificarFactura from "./CardFacturaItems/TelefonoNotificarFactura";
 import { precioMoneda } from "../Comprar/SeccionAgregar/Entrega/precioMoneda";
-import { tropiPayFee } from "./tropipayfee";
+import {  tropiPayFeeGet } from "./tropipayfee";
 
 function FacturaCard({
   factura,
@@ -36,7 +36,7 @@ function FacturaCard({
     }
   };
 
-  const tropiPayFee = tropiPayFee(total);
+  const tropiPayFee = tropiPayFeeGet(total);
   const handleEliminar = async (id) => {
     if (confirm("¿Estás a punto de eliminar una Venta ?")) {
       try {
