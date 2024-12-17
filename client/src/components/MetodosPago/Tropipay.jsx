@@ -7,7 +7,6 @@ const Tropipay = ({
   total,
   setPayLink,
   payLink,
-
   description,
 }) => {
   const totalfee = tropiPayFeeGet(total);
@@ -16,7 +15,7 @@ const Tropipay = ({
       const { data } = await createPagoRequest({
         reference: new Date().getTime().toString(),
         description: description,
-        totalCobrar: parseInt(totalfee * 100),
+        totalCobrar: total * 100,
         fechaFactura: new Date(),
       });
       setPayLink({
