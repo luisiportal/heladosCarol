@@ -72,7 +72,7 @@ function FacturaCard({
     factura.entrega.envio
   );
 
-  const totalTropipay = grandTotal + tropiPayFee
+  const totalTropipay = (Number(grandTotal) + tropiPayFee).toFixed(2)
 
   const monedaPago = factura.pasarela || metoPago;
   const moneda = precioMoneda(monedaPago);
