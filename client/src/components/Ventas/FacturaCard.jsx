@@ -107,7 +107,7 @@ function FacturaCard({
             tropiPayFee={tropiPayFee}
           />
           <TotalFactura
-            total={moneda == "EUR" ? totalTropipay : total ?? grandTotal}
+            total={moneda == "EUR" ? Number(totalTropipay).toFixed(2) : total ?? grandTotal}
             moneda={moneda}
           />
         </div>
