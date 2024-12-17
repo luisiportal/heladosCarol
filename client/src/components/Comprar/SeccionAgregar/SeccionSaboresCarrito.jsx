@@ -8,6 +8,7 @@ import {
   readLocalStorage,
   writeLocalStorage,
 } from "../../../hooks/useLocalStorage";
+import { precioMoneda } from "./Entrega/precioMoneda";
 
 const SeccionSaboresCarrito = ({
   carritoLocal,
@@ -36,6 +37,7 @@ const SeccionSaboresCarrito = ({
     }
   }, []);
 
+
   return (
     <div>
       {loader && <Loader />}
@@ -63,7 +65,7 @@ const SeccionSaboresCarrito = ({
       <div className="flex  justify-end">
         <h2 className="p-2 font-semibold text-slate-800">
           Total a pagar : {totalLocal.toFixed(2)}{" "}
-          {metoPago == "CUP" ? "CUP" : "USD"}
+          {precioMoneda(metoPago)}
         </h2>
         {carrito.length > 0 && (
           <div className="flex  items-center  bg-fresa rounded w-28">

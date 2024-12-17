@@ -14,6 +14,7 @@ import TruckEntregaSVG from "../SVG/TruckEntregaSVG";
 import IconoPasarela from "./CardFacturaItems/IconoPasarela";
 import { useMetoPago } from "../../Stores/Pago.store";
 import TelefonoNotificarFactura from "./CardFacturaItems/TelefonoNotificarFactura";
+import { precioMoneda } from "../Comprar/SeccionAgregar/Entrega/precioMoneda";
 
 function FacturaCard({
   factura,
@@ -33,6 +34,8 @@ function FacturaCard({
       console.error("Error al copiar el texto:", error);
     }
   };
+
+  const tropiPayFee = (total * 3.45) / 100 + 0.5;
   const handleEliminar = async (id) => {
     if (confirm("¿Estás a punto de eliminar una Venta ?")) {
       try {
@@ -69,9 +72,11 @@ function FacturaCard({
     factura.entrega.envio
   );
 
+  const totalTropipay = grandTotal + tropiPayFee
+
   const monedaPago = factura.pasarela || metoPago;
-  const moneda =
-    monedaPago == "TropiPay" || monedaPago == "Zelle" ? " USD" : " CUP";
+  const moneda = precioMoneda(monedaPago);
+
   return (
     <div
       className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
@@ -96,8 +101,9 @@ function FacturaCard({
             envio={factura.entrega.envio}
             metoPago={metoPago}
             moneda={moneda}
+            tropiPayFee={tropiPayFee}
           />
-          <TotalFactura total={total ?? grandTotal} moneda={moneda} />
+          <TotalFactura total={(moneda =="EUR")? totalTropipay : total ?? grandTotal } moneda={moneda} />
         </div>
 
         <div className="flex-grow flex flex-col  p-2 text-xs">
@@ -186,7 +192,7 @@ function FacturaCard({
                     ventas={ventas}
                     grandTotal={grandTotal}
                     moneda={factura.moneda}
-                    persona = {factura.entrega.beneficiario}
+                    persona={factura.entrega.beneficiario}
                   />
                   {perfil.privilegio == "Administrador" ? (
                     <div className="flex justify-between">

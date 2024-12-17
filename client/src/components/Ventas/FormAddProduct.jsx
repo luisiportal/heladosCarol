@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Select from "react-select";
 import { useSabores } from "../../context/SaboresProvider";
+import { precioMoneda } from "../Comprar/SeccionAgregar/Entrega/precioMoneda";
 const FormAddProduct = ({
   setMovimiento,
   handleChange,
@@ -22,25 +23,24 @@ const FormAddProduct = ({
     (sabor) => Number(sabor.existencia) > 0
   );
 
+
   const options = (
     productosElegir.length > 0 ? productosElegir : productosConExistencia
   ).map((sabor) => {
     const precio =
       metoPago == "CUP"
         ? sabor.precio_venta_cup + " CUP"
-        : sabor.precio_venta + " USD";
+        : sabor.precio_venta + " "+precioMoneda(metoPago);
     return {
       value: sabor.id_sabor,
       label: sabor.nombre_sabor + " " + precio,
       nombre_sabor: sabor.nombre_sabor,
       existencia: sabor.existencia,
       precio_venta:
-        metoPago == "CUP"
-          ? sabor.precio_venta_cup
-          : sabor.precio_venta,
+        metoPago == "CUP" ? sabor.precio_venta_cup : sabor.precio_venta,
       ruta_image: sabor.ruta_image,
       color: sabor.color,
-      };
+    };
   });
 
   const handleSelectChange = (p) => {

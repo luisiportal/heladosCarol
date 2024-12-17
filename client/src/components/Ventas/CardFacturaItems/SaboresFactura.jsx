@@ -1,6 +1,6 @@
 import React from "react";
 
-const SaboresFactura = ({ ventas, envio,moneda }) => {
+const SaboresFactura = ({ ventas, envio,moneda,tropiPayFee }) => {
   return (
     <div className="bg-neutral-100 rounded-xl flex flex-col justify-center p-3 w-full">
       {ventas.map((sabor, index) => (
@@ -22,6 +22,8 @@ const SaboresFactura = ({ ventas, envio,moneda }) => {
         </div>
       ))}
       <div className="flex justify-end">Envio : {envio} {moneda}</div>
+      {(moneda == "EUR") && <div className="flex justify-end text-xs">Comisión TropiPay : {tropiPayFee} {moneda}</div>}
+
     </div>
   );
 };

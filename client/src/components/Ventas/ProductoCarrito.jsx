@@ -2,6 +2,7 @@ import React from "react";
 import Bton_eliminar_producto from "./Bton_eliminar_producto";
 import DerretidoVainilla2 from "../apariencia/DerretidoVainilla2";
 import { writeLocalStorage } from "../../hooks/useLocalStorage";
+import { precioMoneda } from "../Comprar/SeccionAgregar/Entrega/precioMoneda";
 
 const ProductoCarrito = ({
   sabor,
@@ -39,8 +40,8 @@ const ProductoCarrito = ({
           <div className="flex gap-4">
             {" "}
             <h3 className="text-sm font-semibold">
-              Precio: {sabor.precio_venta}
-              {metoPago == "CUP" ? " CUP" : " USD"}
+              Precio: {sabor.precio_venta} {precioMoneda(metoPago)}
+              
             </h3>
             <h3 className="text-sm font-semibold">Total: {total_sabor}</h3>
           </div>
