@@ -15,6 +15,7 @@ import IconoPasarela from "./CardFacturaItems/IconoPasarela";
 import { useMetoPago } from "../../Stores/Pago.store";
 import TelefonoNotificarFactura from "./CardFacturaItems/TelefonoNotificarFactura";
 import { precioMoneda } from "../Comprar/SeccionAgregar/Entrega/precioMoneda";
+import { tropiPayFee } from "./tropipayfee";
 
 function FacturaCard({
   factura,
@@ -35,7 +36,7 @@ function FacturaCard({
     }
   };
 
-  const tropiPayFee = (total * 3.45) / 100 + 0.5;
+  const tropiPayFee = tropiPayFee(total);
   const handleEliminar = async (id) => {
     if (confirm("¿Estás a punto de eliminar una Venta ?")) {
       try {
@@ -72,7 +73,7 @@ function FacturaCard({
     factura.entrega.envio
   );
 
-  const totalTropipay = (Number(grandTotal) + tropiPayFee).toFixed(2)
+  const totalTropipay = (Number(grandTotal) + tropiPayFee).toFixed(2);
 
   const monedaPago = factura.pasarela || metoPago;
   const moneda = precioMoneda(monedaPago);
@@ -103,7 +104,10 @@ function FacturaCard({
             moneda={moneda}
             tropiPayFee={tropiPayFee}
           />
-          <TotalFactura total={(moneda =="EUR")? totalTropipay : total ?? grandTotal } moneda={moneda} />
+          <TotalFactura
+            total={moneda == "EUR" ? totalTropipay : total ?? grandTotal}
+            moneda={moneda}
+          />
         </div>
 
         <div className="flex-grow flex flex-col  p-2 text-xs">

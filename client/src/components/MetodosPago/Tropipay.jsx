@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createPagoRequest } from "../../api/venta.api";
 import Loader from "../Utilidades/Loader";
+import { tropiPayFee } from "../Ventas/tropipayfee";
 
 const Tropipay = ({
   total,
@@ -9,12 +10,13 @@ const Tropipay = ({
 
   description,
 }) => {
+  const totalfee = tropiPayFee(total);
   useEffect(() => {
     const loadPaymentLink = async () => {
       const { data } = await createPagoRequest({
         reference: new Date().getTime().toString(),
         description: description,
-        totalCobrar: parseInt((total * 100)),
+        totalCobrar: parseInt(totalfee * 100),
         fechaFactura: new Date(),
       });
       setPayLink({
