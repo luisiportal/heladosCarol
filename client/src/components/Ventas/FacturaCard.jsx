@@ -15,7 +15,7 @@ import IconoPasarela from "./CardFacturaItems/IconoPasarela";
 import { useMetoPago } from "../../Stores/Pago.store";
 import TelefonoNotificarFactura from "./CardFacturaItems/TelefonoNotificarFactura";
 import { precioMoneda } from "../Comprar/SeccionAgregar/Entrega/precioMoneda";
-import {  tropiPayFeeGet } from "./tropipayfee";
+import { tropiPayFeeGet } from "./tropiPayFeeGet";
 
 function FacturaCard({
   factura,

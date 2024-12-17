@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createPagoRequest } from "../../api/venta.api";
 import Loader from "../Utilidades/Loader";
-import { tropiPayFee } from "../Ventas/tropipayfee";
+import { tropiPayFeeGet } from "../Ventas/tropiPayFeeGet";
 
 const Tropipay = ({
   total,
@@ -10,7 +10,7 @@ const Tropipay = ({
 
   description,
 }) => {
-  const totalfee = tropiPayFee(total);
+  const totalfee = tropiPayFeeGet(total);
   useEffect(() => {
     const loadPaymentLink = async () => {
       const { data } = await createPagoRequest({
