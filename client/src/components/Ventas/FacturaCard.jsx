@@ -37,6 +37,8 @@ function FacturaCard({
   };
 
   const tropiPayFee = tropiPayFeeGet(total);
+  console.log(tropiPayFee);
+  
   const handleEliminar = async (id) => {
     if (confirm("¿Estás a punto de eliminar una Venta ?")) {
       try {
