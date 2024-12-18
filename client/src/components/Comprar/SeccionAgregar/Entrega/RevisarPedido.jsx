@@ -37,7 +37,7 @@ const RevisarPedido = ({
 
   const total = grandTotalFactura(factura.total_venta, factura.entrega.envio); //total ZELLE y CUP
   const tropiPayFee = tropiPayFeeGet(total);
-  const totalTropipay = Number(total) + tropiPayFee;  //totoal TRopipay
+  const totalTropipay = Number(total) + tropiPayFee; //totoal TRopipay
   const envio = entrega.envio;
   const sabores = carrito.map(
     (item) => item.cantidad + "x " + item.nombre_sabor
@@ -55,7 +55,6 @@ const RevisarPedido = ({
 
   return (
     <div>
-      console.log(tropiPayFee);
       <FacturaCard
         factura={factura}
         total={metoPago == "TropiPay" ? totalTropipay : total}
