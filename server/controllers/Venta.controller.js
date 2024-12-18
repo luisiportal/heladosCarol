@@ -25,8 +25,22 @@ export const createVenta = async (req, res) => {
   const pasarela = JSON.parse(req.body.pasarela);
   const reference = JSON.parse(req.body.reference);
 
-  const moneda = pasarela == "CUP" ? "CUP" : "USD";
-  const {total_venta,tropiPayFee} = JSON.parse(req.body.granTotalFactura);
+  const tipomoneda = (pasarela) => {
+    let moneda = "";
+    if (pasarela == "CUP") {
+      moneda = "CUP";
+    }
+    if (pasarela == "Zelle") {
+      moneda = "USD";
+    }
+    if (pasarela == "TropiPay") {
+      moneda = "EUR";
+    }
+    return moneda;
+  };
+
+  const moneda = tipomoneda(pasarela);
+  const { total_venta, tropiPayFee } = JSON.parse(req.body.granTotalFactura);
 
   let fechaActual = new Date();
   let creado = fechaActual.toISOString();
