@@ -16,6 +16,7 @@ import { useMetoPago } from "../../Stores/Pago.store";
 import TelefonoNotificarFactura from "./CardFacturaItems/TelefonoNotificarFactura";
 import { precioMoneda } from "../Comprar/SeccionAgregar/Entrega/precioMoneda";
 import { tropiPayFeeGet } from "./tropiPayFeeGet";
+import { useEffect } from "react";
 
 function FacturaCard({
   factura,
@@ -81,16 +82,18 @@ function FacturaCard({
   const monedaPago = factura.pasarela || metoPago;
   const moneda = precioMoneda(monedaPago);
 
-  if (!factura.id) {
-    if (moneda == "EUR") {
-      setGrandTotalFactura({
-        total_venta: totalTropipay,
-        tropiPayFee: tropiPayFee,
-      });
-    } else {
-      setGrandTotalFactura(grandTotal);
+  useEffect(() => {
+    if (!factura.id) {
+      if (moneda == "EUR") {
+        setGrandTotalFactura({
+          total_venta: totalTropipay,
+          tropiPayFee: tropiPayFee,
+        });
+      } else {
+        setGrandTotalFactura(grandTotal);
+      }
     }
-  }
+  }, []);
 
   return (
     <div
