@@ -15,7 +15,7 @@ export const EnviarCorreo = async ({
   subject,
   factura,
   productos,
-  grandTotalCobrar,
+  total_venta,
   plantilla,
 }) => {
   console.log(entrega);
@@ -54,7 +54,7 @@ export const EnviarCorreo = async ({
       entrega:entrega,
       factura:factura,
       productos:productos,
-      grandTotalCobrar:grandTotalCobrar,
+      total_venta:total_venta,
     },
     attachments: [
       {
