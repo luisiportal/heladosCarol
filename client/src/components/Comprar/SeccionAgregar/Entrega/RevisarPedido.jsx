@@ -35,9 +35,9 @@ const RevisarPedido = ({
     total_venta: totalLocal,
   };
 
-  const total = grandTotalFactura(factura.total_venta, factura.entrega.envio);
+  const total = grandTotalFactura(factura.total_venta, factura.entrega.envio); //total ZELLE y CUP
   const tropiPayFee = tropiPayFeeGet(total);
-  const totalTropipay = (Number(total) + tropiPayFee);
+  const totalTropipay = Number(total) + tropiPayFee;  //totoal TRopipay
   const envio = entrega.envio;
   const sabores = carrito.map(
     (item) => item.cantidad + "x " + item.nombre_sabor
@@ -55,8 +55,14 @@ const RevisarPedido = ({
 
   return (
     <div>
-      <FacturaCard factura={factura} total={total} file={file} setGrandTotalFactura={setGrandTotalFactura}/>
-
+      console.log(tropiPayFee);
+      <FacturaCard
+        factura={factura}
+        total={metoPago == "TropiPay" ? totalTropipay : total}
+        file={file}
+        setGrandTotalFactura={setGrandTotalFactura}
+        tropiPayFee={tropiPayFee}
+      />
       {params.id == 3 ? (
         "Pago por TropiPay Correcto"
       ) : (
@@ -77,8 +83,7 @@ const RevisarPedido = ({
                 <div className="bg-fresa rounded-lg p-5 m-2 mt-5 text-white font-semibold ">
                   <h2>
                     Marque la casilla si ya realizó el pago de{" "}
-                    <span className="font-bold">{total} USD</span>{" "}
-                    por Zelle a
+                    <span className="font-bold">{total} USD</span> por Zelle a
                     <span className="m-1 font-semibold text-slate-800">
                       heladoscarol@gmail.com
                     </span>
@@ -98,7 +103,6 @@ const RevisarPedido = ({
           </section>
         </>
       )}
-
       <MostrarErrorMessage campo={"ruta_image"} errors={errors} />
     </div>
   );

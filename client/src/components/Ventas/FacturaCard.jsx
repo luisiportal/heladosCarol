@@ -15,7 +15,6 @@ import IconoPasarela from "./CardFacturaItems/IconoPasarela";
 import { useMetoPago } from "../../Stores/Pago.store";
 import TelefonoNotificarFactura from "./CardFacturaItems/TelefonoNotificarFactura";
 import { precioMoneda } from "../Comprar/SeccionAgregar/Entrega/precioMoneda";
-import { tropiPayFeeGet } from "./tropiPayFeeGet";
 import { useEffect } from "react";
 
 function FacturaCard({
@@ -26,6 +25,7 @@ function FacturaCard({
   total,
   file,
   setGrandTotalFactura,
+  tropiPayFee,
 }) {
   const { ventas } = factura;
   const { setModalActivo, perfil, setLoader } = useAuth();
@@ -38,8 +38,7 @@ function FacturaCard({
     }
   };
 
-  const tropiPayFee = tropiPayFeeGet(total) || factura.tropiPayFee;
-  console.log(tropiPayFee);
+  const tropiPayFeeCard = tropiPayFee || factura.tropiPayFee;
 
   const handleEliminar = async (id) => {
     if (confirm("¿Estás a punto de eliminar una Venta ?")) {
@@ -72,13 +71,6 @@ function FacturaCard({
     setLoader(false);
   };
 
-  const grandTotal = grandTotalFactura(
-    factura.total_venta,
-    factura.entrega.envio
-  );
-
-  const totalTropipay = Number(grandTotal) + Number(tropiPayFee);
-
   const monedaPago = factura.pasarela || metoPago;
   const moneda = precioMoneda(monedaPago);
 
@@ -87,10 +79,12 @@ function FacturaCard({
       if (moneda == "EUR") {
         setGrandTotalFactura({
           total_venta: totalTropipay,
-          tropiPayFee: tropiPayFee,
+          tropiPayFee: tropiPayFeeCard,
         });
       } else {
-        setGrandTotalFactura(grandTotal);
+        setGrandTotalFactura({
+          total_venta: total,
+        });
       }
     }
   }, []);
@@ -119,9 +113,9 @@ function FacturaCard({
             envio={factura.entrega.envio}
             metoPago={metoPago}
             moneda={moneda}
-            tropiPayFee={tropiPayFee}
+            tropiPayFee={tropiPayFeeCard}
           />
-          <TotalFactura total={total ?? grandTotal} moneda={moneda} />
+          <TotalFactura total={total ?? factura.total_venta} moneda={moneda} />
         </div>
 
         <div className="flex-grow flex flex-col  p-2 text-xs">
@@ -208,7 +202,7 @@ function FacturaCard({
                   <TelefonoNotificarFactura
                     numero={`${factura.entrega.tel_beneficiario}`}
                     ventas={ventas}
-                    grandTotal={grandTotal}
+                    grandTotal={total}
                     moneda={factura.moneda}
                     persona={factura.entrega.beneficiario}
                   />
