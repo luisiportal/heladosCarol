@@ -24,6 +24,7 @@ function FacturaCard({
   recargar,
   total,
   file,
+  setGrandTotalFactura,
 }) {
   const { ventas } = factura;
   const { setModalActivo, perfil, setLoader } = useAuth();
@@ -38,7 +39,7 @@ function FacturaCard({
 
   const tropiPayFee = tropiPayFeeGet(total);
   console.log(tropiPayFee);
-  
+
   const handleEliminar = async (id) => {
     if (confirm("¿Estás a punto de eliminar una Venta ?")) {
       try {
@@ -80,6 +81,14 @@ function FacturaCard({
   const monedaPago = factura.pasarela || metoPago;
   const moneda = precioMoneda(monedaPago);
 
+  if (moneda == "EUR") {
+    setGrandTotalFactura(totalTropipay);
+  }
+  else{
+    setGrandTotalFactura(grandTotal);
+
+  }
+
   return (
     <div
       className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
@@ -107,7 +116,11 @@ function FacturaCard({
             tropiPayFee={tropiPayFee}
           />
           <TotalFactura
-            total={moneda == "EUR" ? Number(totalTropipay).toFixed(2) : total ?? grandTotal}
+            total={
+              moneda == "EUR"
+                ? Number(totalTropipay).toFixed(2)
+                : total ?? grandTotal
+            }
             moneda={moneda}
           />
         </div>

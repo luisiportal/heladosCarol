@@ -24,21 +24,10 @@ export const createVenta = async (req, res) => {
   const entrega = JSON.parse(req.body.entrega);
   const pasarela = JSON.parse(req.body.pasarela);
   const reference = JSON.parse(req.body.reference);
+
   const moneda = pasarela == "CUP" ? "CUP" : "USD";
-  const total_venta = productos.reduce(
-    (sum, producto) => sum + producto.precio_venta * producto.cantidad,
-    0
-  );
+  const total_venta = JSON.parse(req.body.granTotalFactura);
 
-  const VentaYenvio = Number(total_venta) + Number(entrega.envio);
-
-  const getTropiPayTotal = (VentaYenvio) => {
-    const fee = VentaYenvio * 0.0345 + 0.5;
-    return fee + VentaYenvio;
-  };
-
-  let grandTotalCobrar =
-    pasarela == "TropiPay" ? getTropiPayTotal(VentaYenvio) : VentaYenvio;
   let fechaActual = new Date();
   let creado = fechaActual.toISOString();
 
@@ -99,7 +88,7 @@ export const createVenta = async (req, res) => {
       NotificarFactura({
         entrega,
         factura,
-        grandTotalCobrar,
+        total_venta,
         productos,
         subject: "Nueva Factura pendiente de aprobación",
         plantilla: "nueva",
@@ -109,7 +98,7 @@ export const createVenta = async (req, res) => {
           entrega,
           factura,
           productos,
-          grandTotalCobrar,
+          total_venta,
           subject: "Nueva Factura pendiente de aprobación",
           to: `${entrega.contacto_ordenante}`,
           plantilla: "nueva",
@@ -119,7 +108,7 @@ export const createVenta = async (req, res) => {
 
     saveImage(req.file, "pagos_facturas");
     enviaNotification({
-      grandTotalCobrar,
+      total_venta,
       pasarela,
       ordenante: entrega.ordenante,
     });

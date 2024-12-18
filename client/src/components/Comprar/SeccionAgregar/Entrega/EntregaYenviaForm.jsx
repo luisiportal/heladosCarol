@@ -107,6 +107,8 @@ const EntregaYenviaForm = ({
   const [selectedOption, setSelectedOption] = useState(null);
   const [file, setFile] = useState();
   const [zelleOk , setZelleok] = useState();
+  const [grandTotalFactura , setGrandTotalFactura] = useState(0);
+
 
 
 
@@ -188,6 +190,8 @@ const EntregaYenviaForm = ({
           formData.append("entrega", JSON.stringify(values));
           formData.append("pasarela", JSON.stringify(metoPago));
           formData.append("reference", JSON.stringify(payLink.reference));
+          formData.append("granTotalFactura", JSON.stringify(grandTotalFactura));
+
 
           if (file !== null) {
             formData.append("factura_image", file);
@@ -344,6 +348,7 @@ const EntregaYenviaForm = ({
                   payLink={payLink}
                   setZelleok={setZelleok}
                   zelleOk={zelleOk}
+                  setGrandTotalFactura={setGrandTotalFactura}
                 />
               )}
 

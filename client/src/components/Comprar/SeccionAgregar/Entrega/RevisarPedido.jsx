@@ -18,6 +18,7 @@ const RevisarPedido = ({
   metoPago,
   setPayLink,
   payLink,
+  setGrandTotalFactura,
 }) => {
   const params = useParams();
   let totalLocal = 0;
@@ -54,7 +55,7 @@ const RevisarPedido = ({
 
   return (
     <div>
-      <FacturaCard factura={factura} total={total} file={file} />
+      <FacturaCard factura={factura} total={total} file={file} setGrandTotalFactura={setGrandTotalFactura}/>
 
       {params.id == 3 ? (
         "Pago por TropiPay Correcto"
