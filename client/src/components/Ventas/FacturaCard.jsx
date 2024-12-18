@@ -114,7 +114,7 @@ function FacturaCard({
             moneda={moneda}
             tropiPayFee={tropiPayFeeCard}
           />
-          <TotalFactura total={total ?? factura.total_venta} moneda={moneda} />
+          <TotalFactura total={Number(total ?? factura.total_venta).toFixed(2)} moneda={moneda} />
         </div>
 
         <div className="flex-grow flex flex-col  p-2 text-xs">
