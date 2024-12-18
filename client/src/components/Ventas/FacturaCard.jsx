@@ -4,7 +4,6 @@ import {
 } from "../../api/factura.api";
 import { deleteFacturaRequest } from "../../api/venta.api";
 import { useAuth } from "../../context/AuthContext";
-import { grandTotalFactura } from "../../utils/grandTotalFactura";
 import EvidenciaPagoZelle from "../Comprar/SeccionAgregar/EvidenciaPagoZelle";
 import CheckedSVG from "../SVG/CheckedSVG";
 import ElimiarFacturaBTN from "./CardFacturaItems/ElimiarFacturaBTN";
@@ -78,7 +77,7 @@ function FacturaCard({
     if (!factura.id) {
       if (moneda == "EUR") {
         setGrandTotalFactura({
-          total_venta: totalTropipay,
+          total_venta: total,
           tropiPayFee: tropiPayFeeCard,
         });
       } else {
