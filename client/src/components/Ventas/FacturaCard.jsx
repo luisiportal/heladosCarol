@@ -81,12 +81,12 @@ function FacturaCard({
   const monedaPago = factura.pasarela || metoPago;
   const moneda = precioMoneda(monedaPago);
 
-  if (moneda == "EUR") {
-    setGrandTotalFactura(totalTropipay);
-  }
-  else{
-    setGrandTotalFactura(grandTotal);
-
+  if (!factura.id) {
+    if (moneda == "EUR") {
+      setGrandTotalFactura(totalTropipay);
+    } else {
+      setGrandTotalFactura(grandTotal);
+    }
   }
 
   return (
