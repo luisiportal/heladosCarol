@@ -27,7 +27,7 @@ function FacturaCard({
 }) {
   const { ventas } = factura;
   const { setModalActivo, perfil, setLoader } = useAuth();
-  const { metoPago, setMetoPago } = useMetoPago();
+  const { metoPago } = useMetoPago();
   const handleCopy = async (numero) => {
     try {
       await navigator.clipboard.writeText(numero);

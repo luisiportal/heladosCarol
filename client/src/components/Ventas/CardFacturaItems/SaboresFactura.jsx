@@ -22,7 +22,7 @@ const SaboresFactura = ({ ventas, envio,moneda,tropiPayFee }) => {
         </div>
       ))}
       <div className="flex justify-end">Envio : {envio} {moneda}</div>
-      {(moneda == "EUR") && <div className="flex justify-end text-xs">Comisión TropiPay : {Number(tropiPayFee).toFixed(2)} {moneda}</div>}
+      {(moneda == "EUR") && <div className="flex justify-end text-xs">Comisión TropiPay : {Number(tropiPayFee).toFixed(2)}  {moneda}</div>}
 
     </div>
   );

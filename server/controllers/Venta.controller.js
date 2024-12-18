@@ -30,18 +30,17 @@ export const createVenta = async (req, res) => {
     0
   );
 
-const VentaYenvio = Number(total_venta) + Number(entrega.envio)
+  const VentaYenvio = Number(total_venta) + Number(entrega.envio);
 
+  const getTropiPayTotal = (VentaYenvio) => {
+    const fee = VentaYenvio * 0.0345 + 0.5;
+    return fee + VentaYenvio;
+  };
 
-  let grandTotalCobrar = (pasarela =="TropiPay") ? getTropiPayTotal(VentaYenvio) : VentaYenvio;
+  let grandTotalCobrar =
+    pasarela == "TropiPay" ? getTropiPayTotal(VentaYenvio) : VentaYenvio;
   let fechaActual = new Date();
   let creado = fechaActual.toISOString();
-
-
-  const getTropiPayTotal = (VentaYenvio)=>{
-    const fee = (VentaYenvio * 0.0345) + 0.5;
-    return fee + VentaYenvio
-  }
 
   try {
     await sequelize.transaction(async (t) => {

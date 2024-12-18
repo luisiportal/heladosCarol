@@ -62,6 +62,9 @@ export const createPago = async (req, res) => {
       "https://www.tropipay.com/api/v2/paymentcards",
       options
     );
+
+    //  "https://tropipay-dev.herokuapp.com/api/"
+   // "https://www.tropipay.com/api/v2/paymentcards"
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     }
@@ -95,6 +98,8 @@ export const getAccessToken = async () => {
       "https://www.tropipay.com/api/v2/access/token",
       options
     );
+//"https://www.tropipay.com/api/v2/access/token"
+    //"https://tropipay-dev.herokuapp.com/api/access/login"
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     }
