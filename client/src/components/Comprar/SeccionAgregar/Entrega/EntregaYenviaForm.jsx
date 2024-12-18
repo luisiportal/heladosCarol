@@ -106,11 +106,11 @@ const EntregaYenviaForm = ({
   const [repartos, setRepartos] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [file, setFile] = useState();
-  const [zelleOk , setZelleok] = useState();
-  const [grandTotalFactura , setGrandTotalFactura] = useState(0);
-
-
-
+  const [zelleOk, setZelleok] = useState();
+  const [grandTotalFactura, setGrandTotalFactura] = useState({
+    total_venta: 0,
+    tropiPayFee: 0,
+  });
 
   const [payLink, setPayLink] = useState({
     reference: "",
@@ -174,13 +174,12 @@ const EntregaYenviaForm = ({
 
           if (metoPago == "Zelle" && !zelleOk) {
             return setModalActivo({
-              mensaje: "Si usted ya realizó el pago por Zelle marque la casilla de Pago realizado y presione Enviar",
+              mensaje:
+                "Si usted ya realizó el pago por Zelle marque la casilla de Pago realizado y presione Enviar",
               activo: true,
               errorColor: true,
             });
           }
-
-
 
           setLoader(true);
           setModalActivo({});
@@ -190,8 +189,10 @@ const EntregaYenviaForm = ({
           formData.append("entrega", JSON.stringify(values));
           formData.append("pasarela", JSON.stringify(metoPago));
           formData.append("reference", JSON.stringify(payLink.reference));
-          formData.append("granTotalFactura", JSON.stringify(grandTotalFactura));
-
+          formData.append(
+            "granTotalFactura",
+            JSON.stringify(grandTotalFactura)
+          );
 
           if (file !== null) {
             formData.append("factura_image", file);

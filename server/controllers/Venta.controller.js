@@ -26,7 +26,7 @@ export const createVenta = async (req, res) => {
   const reference = JSON.parse(req.body.reference);
 
   const moneda = pasarela == "CUP" ? "CUP" : "USD";
-  const total_venta = JSON.parse(req.body.granTotalFactura);
+  const {total_venta,tropiPayFee} = JSON.parse(req.body.granTotalFactura);
 
   let fechaActual = new Date();
   let creado = fechaActual.toISOString();
@@ -37,6 +37,7 @@ export const createVenta = async (req, res) => {
       const factura = await Factura.create(
         {
           total_venta,
+          tropiPayFee,
           pasarela,
           reference,
           creado,

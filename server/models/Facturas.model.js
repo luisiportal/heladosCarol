@@ -36,6 +36,10 @@ export const Factura = sequelize.define(
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
+    tropiPayFee: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+    },
 
     creado: {
       type: DataTypes.DATE,

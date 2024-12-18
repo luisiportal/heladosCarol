@@ -37,7 +37,7 @@ function FacturaCard({
     }
   };
 
-  const tropiPayFee = tropiPayFeeGet(total);
+  const tropiPayFee = tropiPayFeeGet(total) || factura.tropiPayFee;
   console.log(tropiPayFee);
 
   const handleEliminar = async (id) => {
@@ -83,7 +83,10 @@ function FacturaCard({
 
   if (!factura.id) {
     if (moneda == "EUR") {
-      setGrandTotalFactura(totalTropipay);
+      setGrandTotalFactura({
+        total_venta: totalTropipay,
+        tropiPayFee: tropiPayFee,
+      });
     } else {
       setGrandTotalFactura(grandTotal);
     }
