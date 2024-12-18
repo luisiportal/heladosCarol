@@ -93,6 +93,7 @@ export const createVenta = async (req, res) => {
         productos,
         subject: "Nueva Factura pendiente de aprobación",
         plantilla: "nueva",
+        moneda,
       });
       if (entrega.contacto_ordenante.includes("@")) {
         NotificarFacturaCliente({
@@ -103,6 +104,7 @@ export const createVenta = async (req, res) => {
           subject: "Nueva Factura pendiente de aprobación",
           to: `${entrega.contacto_ordenante}`,
           plantilla: "nueva",
+          moneda,
         });
       }
     });

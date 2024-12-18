@@ -26,6 +26,7 @@ export const NotificarFacturaCliente = ({
   subject,
   to,
   plantilla,
+  moneda,
 }) => {
   console.log(to);
   console.log("factura");
@@ -40,6 +41,7 @@ export const NotificarFacturaCliente = ({
     subject,
     to,
     plantilla,
+    moneda,
   });
 };
 
@@ -50,6 +52,7 @@ export const NotificarFactura = ({
   total_venta,
   subject,
   plantilla,
+  moneda,
 }) => {
   EnviarCorreo({
     entrega,
@@ -59,5 +62,6 @@ export const NotificarFactura = ({
     subject,
     to: "heladoscarol@gmail.com",
     plantilla,
+    moneda,
   });
 };
