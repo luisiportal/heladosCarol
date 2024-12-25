@@ -6,44 +6,46 @@ const Navidad = () => {
     snowflakesContainer.className = 'snowflakes-container';
     document.body.appendChild(snowflakesContainer);
 
-    function createSnowflake() {
+    const createSnowflake = () => {
       const snowflake = Object.assign(document.createElement('div'), {
         className: 'snowflake',
         style: `
-              left: ${Math.random() * innerWidth}px;
-              top: -5px;
-              opacity: ${Math.random()};
-              transform: scale(${Math.random() * 1.5 + 0.5});`,
+          left: ${Math.random() * innerWidth}px;
+          top: -5px;
+          opacity: ${Math.random() * 0.5 + 0.5}; 
+          transform: scale(${Math.random() * 0.75 + 0.25});`,
       });
 
       snowflakesContainer.appendChild(snowflake);
 
       let posY = -5;
-      let speed = Math.random() * 2 + 1;
-      let wobble = 0;
+      const speed = Math.random() * 2 + 1;
+      let wobble = Math.random() * 1000; // Start with a random wobble
 
-      function fall() {
+      const fall = () => {
         posY += speed;
-        wobble += 0.02;
-        snowflake.style.top = posY + "px";
-        snowflake.style.left =
-          parseFloat(snowflake.style.left) + Math.sin(wobble) * 2 + "px";
+        wobble += 0.01;
+        snowflake.style.top = posY + 'px';
+        snowflake.style.left = parseFloat(snowflake.style.left) + Math.sin(wobble) * 2 + 'px';
 
         if (posY < innerHeight) {
           requestAnimationFrame(fall);
         } else {
           snowflake.remove();
         }
-      }
+      };
 
-      fall();
-    }
+      requestAnimationFrame(fall);
+    };
 
-    let snowflakeInterval = setInterval(() => {
-      if (snowflakesContainer.childElementCount < 100) {
+    let snowflakeCount = 0;
+    const maxSnowflakes = 50;
+    const snowflakeInterval = setInterval(() => {
+      if (snowflakeCount < maxSnowflakes) {
         createSnowflake();
+        snowflakeCount++;
       }
-    }, 100);
+    }, 200);
 
     return () => {
       clearInterval(snowflakeInterval);
@@ -51,7 +53,7 @@ const Navidad = () => {
     };
   }, []);
 
-  return <div></div>;
+  return null;
 };
 
 export default Navidad;
