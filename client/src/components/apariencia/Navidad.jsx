@@ -1,44 +1,57 @@
-import React from "react";
+import React, { useEffect } from 'react';
 
 const Navidad = () => {
-  function createSnowflake() {
-    const snowflake = Object.assign(document.createElement("div"), {
-      className: "snowflake",
-      style: `
-            left: ${Math.random() * innerWidth}px;
-            top: -5px;
-            opacity: ${Math.random()};
-            transform: scale(${Math.random() * 1.5 + 0.5});`,
-    });
+  useEffect(() => {
+    const snowflakesContainer = document.createElement('div');
+    snowflakesContainer.className = 'snowflakes-container';
+    document.body.appendChild(snowflakesContainer);
 
-    document.body.appendChild(snowflake);
+    function createSnowflake() {
+      const snowflake = Object.assign(document.createElement('div'), {
+        className: 'snowflake',
+        style: `
+              left: ${Math.random() * innerWidth}px;
+              top: -5px;
+              opacity: ${Math.random()};
+              transform: scale(${Math.random() * 1.5 + 0.5});`,
+      });
 
-    let posY = -5;
-    let speed = Math.random() * 2 + 1;
-    let wobble = 0;
+      snowflakesContainer.appendChild(snowflake);
 
-    function fall() {
-      posY += speed;
-      wobble += 0.02;
-      snowflake.style.top = posY + "px";
-      snowflake.style.left =
-        parseFloat(snowflake.style.left) + Math.sin(wobble) * 2 + "px";
+      let posY = -5;
+      let speed = Math.random() * 2 + 1;
+      let wobble = 0;
 
-      posY < innerHeight ? requestAnimationFrame(fall) : snowflake.remove();
+      function fall() {
+        posY += speed;
+        wobble += 0.02;
+        snowflake.style.top = posY + "px";
+        snowflake.style.left =
+          parseFloat(snowflake.style.left) + Math.sin(wobble) * 2 + "px";
+
+        if (posY < innerHeight) {
+          requestAnimationFrame(fall);
+        } else {
+          snowflake.remove();
+        }
+      }
+
+      fall();
     }
 
-    fall();
-  }
+    let snowflakeInterval = setInterval(() => {
+      if (snowflakesContainer.childElementCount < 100) {
+        createSnowflake();
+      }
+    }, 100);
 
-  function generateSnow() {
-    setInterval(createSnowflake, 100);
-  }
+    return () => {
+      clearInterval(snowflakeInterval);
+      snowflakesContainer.remove();
+    };
+  }, []);
 
-
-
-  return <div>
-    {  generateSnow()}
-  </div>;
+  return <div></div>;
 };
 
 export default Navidad;
