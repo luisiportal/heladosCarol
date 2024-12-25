@@ -10,6 +10,7 @@ import DerretidoFresa2 from "./apariencia/DerretidoFresa2";
 import DerretidoChocolate2 from "./apariencia/DerretidoChocolate2";
 import ComponenteModal from "./Utilidades/ComponenteModal";
 import LogoHeladosCarol from "./Utilidades/LogoHeladosCarol";
+import Navidad from "./apariencia/Navidad";
 
 const NavbarComponent = () => {
   const [abrirHamburguesa, setabrirHamburguesa] = useState(false);
@@ -195,6 +196,7 @@ const NavbarComponent = () => {
             )}
           </div>
         </div>
+        <Navidad/>
       </header>
     </div>
   );
