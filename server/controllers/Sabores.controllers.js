@@ -38,6 +38,7 @@ export const createSabor = async (req, res) => {
   if (req.file !== undefined) {
     ruta_image = req.file.originalname;
   }
+  const { precio: usd } = await Moneda.findByPk(2);
 
   try {
     const {
@@ -66,6 +67,7 @@ export const createSabor = async (req, res) => {
             envase,
             ruta_image,
             home_img,
+            precio_venta_cup: Math.round(precio_venta * usd),
           },
           { transaction: t }
         );
@@ -119,7 +121,7 @@ export const updateSabor = async (req, res) => {
         costo_unitario,
         home_img,
       } = req.body;
-console.log(home_img);
+      console.log(home_img);
 
       const response = await Sabor.findByPk(id_sabor);
       response.nombre_sabor = nombre_sabor;
