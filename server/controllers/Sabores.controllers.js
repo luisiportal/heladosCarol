@@ -154,14 +154,18 @@ export const updateSabor = async (req, res) => {
 // borrar
 
 export const deleteSabor = async (req, res) => {
+  const { id_sabor } = req.params;
+  console.log(id_sabor);
+  
   try {
     sequelize.transaction(async (t) => {
-      const saborTraidoDB = await Sabor.findByPk(req.params.id_sabor);
+      const saborTraidoDB = await Sabor.findByPk(id_sabor);
+console.log(saborTraidoDB);
 
       const response = await Sabor.destroy(
         {
           where: {
-            id_sabor: req.params.id_sabor,
+            id_sabor: id_sabor,
           },
         },
         { transaction: t }
