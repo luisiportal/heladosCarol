@@ -15,7 +15,7 @@ interface ImportMeta {
 const CombosHome = ({ combos }: { combos: Sabor[] }) => {
   const [current, setCurrent] = useState(0);
   const [item, setItem] = useState("");
- 
+
   const launchEvent = (id_sabor: string) => {
     setItem(id_sabor);
     // onHover(combo.id_sabor);
@@ -42,13 +42,16 @@ const CombosHome = ({ combos }: { combos: Sabor[] }) => {
                   setCurrent={setCurrent}
                 />
               ) : (
-                <img
-                  className="w-full h-full transition-all rounded-lg"
-                  src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${
-                    combo.imagenes[0].ruta_image
-                  }`}
-                  alt={combo.nombre_sabor}
-                />
+                combo.imagenes &&
+                combo.imagenes.length > 0 && (
+                  <img
+                    className="w-full h-full transition-all rounded-lg"
+                    src={`${
+                      import.meta.env.VITE_BACKEND_URL
+                    }/images/productos/${combo.imagenes[0].ruta_image}`}
+                    alt={combo.nombre_sabor}
+                  />
+                )
               )}
             </picture>
             <h2
