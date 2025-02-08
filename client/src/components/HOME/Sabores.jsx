@@ -81,7 +81,7 @@ const Sabores = () => {
           </div>
         )}
       </div>
-      {perfil.privilegio !== "Administrador" && (
+      {perfil.privilegio == "Administrador" && (
         <section>
           <CombosHome combos={combos} />
           <TinasHome tinas={tinas} />
