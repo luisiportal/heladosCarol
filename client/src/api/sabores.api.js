@@ -5,6 +5,8 @@ import axios from "./axios.js";
 export const getSaboresRequest = async () => await axios.get(`/sabores`);
 
 export const createSaborRequest = async (formData) => {
+  console.log(formData);
+  
  return await axios.post("/sabores", formData);
 };
 

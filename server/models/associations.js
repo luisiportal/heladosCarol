@@ -6,6 +6,7 @@ import { Trabajador } from "./Trabajador.model.js";
 import { AuditLog } from "./AuditLog.model.js";
 import { Sabor } from "./Sabor.model.js";
 import { Entrega } from "./Entrega.model.js";
+import { Imagen } from "./Imagenes.model.js";
 
 export const associations = () => {
   Sabor.hasMany(Movimiento, {
@@ -57,3 +58,16 @@ Venta.hasOne(Movimiento, {
   onDelete: "CASCADE",
   hooks: true,
 });
+
+
+Sabor.hasMany(Imagen, {
+  foreignKey: 'id_recurso',
+  onDelete: "CASCADE",
+});
+
+Imagen.belongsTo(Sabor, {
+  foreignKey: 'id_sabor',
+  onDelete: "CASCADE",
+
+});
+

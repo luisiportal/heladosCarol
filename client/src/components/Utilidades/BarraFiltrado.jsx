@@ -3,6 +3,7 @@ import BTNFiltrado from "./BTNFiltrado";
 
 const BarraFiltrado = ({ setFiltroSabores, sabores, order, setOrder }) => {
   const [activeBTN, setActiveBTN] = useState(null);
+console.log(sabores);
 
   const ordenarFecha = () => {
     if (order === "DSC") {

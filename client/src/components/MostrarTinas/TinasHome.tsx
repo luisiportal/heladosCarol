@@ -40,9 +40,9 @@ const TinasHome = ({ tinas }: { tinas: Sabor[] }) => {
               />
             </picture>
             <h2
-              className={`absolute top-0 left-0 font-bold text-xs text-white p-1 rounded-br-lg rounded-tl-lg bg-[#F9A217]`}
+              className={`absolute top-0 left-0 font-bold text-sm text-white p-1 rounded-br-lg rounded-tl-lg bg-fresa`}
             >
-              Tina 4 litros
+              Tinas 4L
             </h2>
           </div>
           <div className="flex justify-between py-2 px-2 font-bold first-letter:bold text-neutral-950 text-xs">
@@ -60,7 +60,7 @@ const TinasHome = ({ tinas }: { tinas: Sabor[] }) => {
           </h2>
 
           <div className="flex justify-center p-2">
-            <BTN_Comprar />
+            <BTN_Comprar color="#e188b5" />
           </div>
         </section>
       ))}

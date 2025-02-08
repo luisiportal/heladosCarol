@@ -88,7 +88,7 @@ const ProductoForm = () => {
       setLoader(true);
       if (params.id_producto) {
         if (isOnline) {
-          await updateProducto(params.id_producto, formData); // onlinne
+          const updateProducto =await updateProducto(params.id_producto, formData); // onlinne
         } else {
           writeLocalStorageActualizarProductos("productos", {
             id_producto: params.id_producto,
@@ -103,13 +103,18 @@ const ProductoForm = () => {
         }
 
         setModalActivo({
-          mensaje: "Producto Actualizado",
+          mensaje: updateProducto,
           activo: true,
           navegarA: "/productos",
         });
       } else {
         if (isOnline) {
-          await createProducto(formData);
+         const createProducto= await createProducto(formData);
+          setModalActivo({
+            mensaje: createProducto,
+            activo: true,
+            navegarA: "/productos",
+          });
         } else {
           setLoader(false);
           return setModalActivo({
@@ -132,11 +137,7 @@ const ProductoForm = () => {
           });*/
         }
 
-        setModalActivo({
-          mensaje: "Se ha creado el producto correctamente",
-          activo: true,
-          navegarA: "/productos",
-        });
+      
       }
     } catch (error) {
       console.log(error);

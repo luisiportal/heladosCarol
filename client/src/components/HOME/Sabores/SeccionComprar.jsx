@@ -16,7 +16,7 @@ const SeccionComprar = ({ sabor }) => {
       </h2>
       <h2 className="flex justify-center text-xs text-slate-700"></h2>
       <div className="flex justify-center">
-      <BTN_Comprar/>
+      <BTN_Comprar color={"#e188b5"}/>
       </div>
     </section>
   );

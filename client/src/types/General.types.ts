@@ -1,3 +1,9 @@
+type Imagen = {
+  id_imagen: number;
+  id_recurso: number;
+  ruta_image: string;
+};
+
 export type Sabor = {
   id_sabor: string;
   nombre_sabor: string;
@@ -10,4 +16,5 @@ export type Sabor = {
   home_img: string;
   envase: string;
   description: string;
+  imagenes: Imagen[];
 };

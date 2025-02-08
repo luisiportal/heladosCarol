@@ -1,6 +1,8 @@
 import express from "express";
 import multer from "multer";
 import fs from "fs";
+import path from 'path';
+
 
 const app = express();
 
@@ -33,12 +35,9 @@ export const uploadPerfilReview = multer({
   },
 });
 export const uploadProducto = multer({
-  dest: `public/images/productos/`,
-  fileFilter: fileFilter,
-  limits: {
-    fileSize: 2000000, // 300 KB en bytes
-  },
+  dest: `public/images/productos3/`,
 });
+
 export const uploadTrabajador = multer({
   dest: `public/images/trabajadores/perfil/`,
   fileFilter: fileFilter,
@@ -57,5 +56,20 @@ export function saveImage(file, tipoFoto) {
     fs.renameSync(file.path, newPath);
 
     return newPath;
-  } catch (error) {}
+  } catch (error) {console.log(error);
+  }
 }
+
+
+
+// Configuración de almacenamiento para multer
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/images/productos');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+export const upload = multer({ storage: storage });

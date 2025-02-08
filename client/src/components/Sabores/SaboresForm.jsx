@@ -2,16 +2,19 @@ import { Form, Formik, useFormik } from "formik";
 import { useSabores } from "../../context/SaboresProvider";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import * as Yup from "yup";
 import { useAuth } from "../../context/AuthContext";
 import Loader from "../Utilidades/Loader";
 import { saboresSchema } from "../../schemas/schemas";
+import Unchecked from "../SVG/Unchecked";
 
 const SaboresForm = () => {
   const { createSabor, getSabor, updateSabor } = useSabores();
 
   const { loader, setLoader, setModalActivo } = useAuth();
-  const [file, setFile] = useState();
+  const [files, setFiles] = useState([]);
+  const [imagenes, setImagenes] = useState([]);
+  const [imgToDelete, setImgToDelete] = useState([]);
+
   const [sabor, setSabor] = useState({
     nombre_sabor: "",
     envase: "",
@@ -27,12 +30,9 @@ const SaboresForm = () => {
   useEffect(() => {
     const loadSabor = async () => {
       if (params.id_sabor) {
-        setLoader(true);
         const sabor = await getSabor(params.id_sabor);
         setSabor(sabor);
-        (e) => {
-          setFile(e.target.files[0]);
-        };
+        setImagenes(sabor.imagenes);
         setLoader(false);
       }
     };
@@ -53,9 +53,15 @@ const SaboresForm = () => {
     formData.append("stockMinimo", values.stockMinimo || 0);
     formData.append("existencia", values.existencia || 0);
     formData.append("home_img", values.home_img);
+    if (imgToDelete.length > 0) {
+      formData.append("imgToDelete", imgToDelete);
+    }
 
-    if (file !== null) {
-      formData.append("ruta_image", file);
+    if (files.length > 0) {
+
+      for (let i = 0; i < files.length; i++) {
+        formData.append("ruta_image", files[i]);
+      }
     }
 
     try {
@@ -88,6 +94,21 @@ const SaboresForm = () => {
     }
     setLoader(false);
   };
+  const deleteOnline = (id_imagen) => {
+    console.log(id_imagen);
+    
+    setImgToDelete([...imgToDelete, id_imagen]);
+    const delonline = imagenes.filter(
+      (imgdel) => imgdel.id_imagen !== id_imagen
+    );
+    setImagenes(delonline);
+  };
+
+  const deleteIMG = (index) => {
+
+    const deleteItem = files.filter((file, i) => i !== index);
+    setFiles(deleteItem);
+  };
 
   return (
     <div className="mx-2 bg-neutral-200 rounded-md p-4">
@@ -112,15 +133,47 @@ const SaboresForm = () => {
           }) => (
             // FORMULARIO PARA RELLENAR CAMPOS
             <Form className="bg-neutral-200 max-w-md rounded-md p-4 mx-auto">
-              {
-                /*muestra la imagen preview */ file && (
-                  <img
-                    className="w-40 h-40 shadow-xl border-slate-50 border-spacing-2 rounded-md"
-                    src={URL.createObjectURL(file)}
-                    alt=""
-                  />
-                )
-              }
+              <section className="flex flex-wrap gap-2">
+                {imagenes.length > 0 &&
+                  imagenes.map((imagen) => (
+                    <div className="relative">
+                      {" "}
+                      <img
+                        key={imagen.id_imagen} // Asegúrate de que cada imagen tenga una clave única para React
+                        className="w-20 h-20 shadow-xl border-slate-50 border-spacing-2 rounded-md"
+                        src={`${
+                          import.meta.env.VITE_BACKEND_URL
+                        }/images/productos/${imagen.ruta_image}`}
+                        alt={imagen.descripcion || "Imagen de sabor"} // Proporciona una descripción alternativa
+                      />
+                      <button type="button"
+                        className="absolute top-0 z-50"
+                        onClick={() => deleteOnline(imagen.id_imagen)}
+                      >
+                        <Unchecked />
+                      </button>
+                    </div>
+                  ))}
+
+                {
+                  /*muestra la imagen preview */ files.length > 0 &&
+                    files.map((file, index) => (
+                      <div className="relative" key={index}>
+                        <img
+                          className="w-20 h-20 shadow-xl border-slate-50 border-spacing-2 rounded-md"
+                          src={URL.createObjectURL(file)}
+                          alt=""
+                        />
+                        <button
+                          className="absolute top-0 z-50"
+                          onClick={() => deleteIMG(index)}
+                        >
+                          <Unchecked />
+                        </button>
+                      </div>
+                    ))
+                }
+              </section>
               <label htmlFor="nombre" className="block">
                 * Sabor:
               </label>
@@ -269,8 +322,9 @@ const SaboresForm = () => {
               <input
                 name="ruta_image"
                 type="file"
+                multiple
                 onChange={(e) => {
-                  setFile(e.target.files[0]);
+                  setFiles([...files, ...e.target.files]);
                 }}
               />
 
