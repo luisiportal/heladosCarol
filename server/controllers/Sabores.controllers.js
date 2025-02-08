@@ -43,6 +43,8 @@ export const createSabor = async (req, res) => {
   try {
     const {
       nombre_sabor,
+      categoria,
+      description,
       color,
       envase,
       existencia,
@@ -59,6 +61,8 @@ export const createSabor = async (req, res) => {
         const response = await Sabor.create(
           {
             nombre_sabor,
+            categoria,
+            description,
             precio_venta,
             costo_unitario,
             color,
@@ -76,17 +80,7 @@ export const createSabor = async (req, res) => {
 
         // Si todo salió bien, hacemos commit de la transacción
 
-        res.json({
-          id_sabor: response.insertId,
-          nombre_sabor,
-          precio_venta,
-          costo_unitario,
-          color,
-          existencia,
-          stockMinimo,
-          envase,
-          ruta_image,
-        });
+        res.status(201).send("Producto Creado");
       });
     } catch (error) {
       // Si algo salió mal, revertimos la transacción
@@ -113,6 +107,8 @@ export const updateSabor = async (req, res) => {
       }
       const {
         nombre_sabor,
+        categoria,
+        description,
         color,
         envase,
         existencia,
@@ -125,6 +121,8 @@ export const updateSabor = async (req, res) => {
 
       const response = await Sabor.findByPk(id_sabor);
       response.nombre_sabor = nombre_sabor;
+      response.categoria = categoria;
+      response.description = description;
       response.precio_venta = precio_venta;
       response.costo_unitario = costo_unitario;
       response.color = color;
@@ -144,7 +142,7 @@ export const updateSabor = async (req, res) => {
         t
       ); // Asegúrate de que registrarLog acepta la transacción como argumento
       saveImage(req.file, "productos");
-      res.json(response);
+      res.status(201).send("Producto Actualizado");
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -156,11 +154,11 @@ export const updateSabor = async (req, res) => {
 export const deleteSabor = async (req, res) => {
   const { id_sabor } = req.params;
   console.log(id_sabor);
-  
+
   try {
     sequelize.transaction(async (t) => {
       const saborTraidoDB = await Sabor.findByPk(id_sabor);
-console.log(saborTraidoDB);
+      console.log(saborTraidoDB);
 
       const response = await Sabor.destroy(
         {

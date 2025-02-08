@@ -5,7 +5,7 @@ import axios from "./axios.js";
 export const getSaboresRequest = async () => await axios.get(`/sabores`);
 
 export const createSaborRequest = async (formData) => {
-  await axios.post("/sabores", formData);
+ return await axios.post("/sabores", formData);
 };
 
 export const deleteSaborRequest = async (id_sabor) =>

@@ -16,10 +16,12 @@ const SaboresForm = () => {
     nombre_sabor: "",
     envase: "",
     color: "",
+    categoria: "",
     costo_unitario: 0,
     precio_venta: 0,
     stockMinimo: 0,
     home_img: "no",
+    description: "",
   });
 
   useEffect(() => {
@@ -42,6 +44,8 @@ const SaboresForm = () => {
   const handleSubmit = async (values) => {
     const formData = new FormData();
     formData.append("nombre_sabor", values.nombre_sabor);
+    formData.append("categoria", values.categoria);
+    formData.append("description", values.description);
     formData.append("envase", values.envase);
     formData.append("color", values.color);
     formData.append("costo_unitario", values.costo_unitario);
@@ -57,18 +61,18 @@ const SaboresForm = () => {
     try {
       setLoader(true);
       if (params.id_sabor) {
-        await updateSabor(params.id_sabor, formData); // onlinne
+        const updateResponse = await updateSabor(params.id_sabor, formData); // onlinne
 
         setModalActivo({
-          mensaje: "Sabor Actualizado",
+          mensaje: updateResponse,
           activo: true,
           navegarA: "/sabores",
         });
       } else {
-        await createSabor(formData);
+        const createResponse = await createSabor(formData);
 
         setModalActivo({
-          mensaje: "Se ha creado el producto correctamente",
+          mensaje: createResponse,
           activo: true,
           navegarA: "/sabores",
         });
@@ -133,6 +137,30 @@ const SaboresForm = () => {
                   {errors.nombre_sabor}
                 </span>
               )}
+              <label htmlFor="categoria" className="block">
+                * Categoría:
+              </label>
+              <select
+                name="categoria"
+                value={values.categoria}
+                onChange={handleChange}
+              >
+                <option value="Ninguna">Ninguna</option>
+                <option value="Potes">Potes</option>
+                <option value="Tinas">Tinas</option>
+                <option value="Combos">Combos</option>
+              </select>
+              <label htmlFor="description" className="block">
+                {" "}
+                Descripción
+              </label>
+              <textarea
+                name="description"
+                className="w-full"
+                rows={4}
+                onChange={handleChange}
+                value={values.description}
+              ></textarea>
               <label htmlFor="envase" className="block">
                 * Envase:
               </label>
@@ -220,7 +248,7 @@ const SaboresForm = () => {
                     type="radio"
                     name="home_img"
                     value="si"
-                    checked={values.home_img ==="si"}
+                    checked={values.home_img === "si"}
                     onChange={handleChange}
                   />
                   Mostrar
@@ -231,7 +259,7 @@ const SaboresForm = () => {
                     type="radio"
                     name="home_img"
                     value="no"
-                    checked={values.home_img ==="no"}
+                    checked={values.home_img === "no"}
                     onChange={handleChange}
                   />
                   Ocultar

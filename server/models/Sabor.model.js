@@ -11,6 +11,14 @@ export const Sabor = sequelize.define("sabores", {
   nombre_sabor: {
     type: DataTypes.STRING,
   },
+  description: {
+    type: DataTypes.TEXT,
+    allowNull:true
+  },
+  categoria: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   color: {
     type: DataTypes.STRING,
   },
@@ -31,27 +39,21 @@ export const Sabor = sequelize.define("sabores", {
 
   precio_venta: {
     type: DataTypes.DECIMAL(10, 2),
-
   },
   precio_venta_cup: {
     type: DataTypes.DECIMAL(10, 2),
-
   },
   costo_usd: {
     type: DataTypes.DECIMAL(10, 2),
-
   },
   costo_euro: {
     type: DataTypes.DECIMAL(10, 2),
-
   },
   costo_zelle: {
     type: DataTypes.DECIMAL(10, 2),
-
   },
   costo_mlc: {
     type: DataTypes.DECIMAL(10, 2),
-
   },
   stockMinimo: {
     type: DataTypes.INTEGER,
@@ -66,9 +68,4 @@ export const Sabor = sequelize.define("sabores", {
     type: DataTypes.STRING,
     allowNull: true,
   },
-
-
-
 });
-
-

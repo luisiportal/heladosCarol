@@ -50,6 +50,9 @@ function SaborCard({ sabor }) {
             <h2 className="text-slate-900 font-bold text-sm line-clamp-1">
               {sabor.nombre_sabor}
             </h2>
+            <h2 className="text-slate-900 font-light text-sm line-clamp-1">
+              {sabor.categoria}
+            </h2>
             <span className="text-xs text-white bg-red-400 rounded p-0.5">
               {sabor.color}
             </span>

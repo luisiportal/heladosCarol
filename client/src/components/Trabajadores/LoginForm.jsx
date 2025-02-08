@@ -26,7 +26,9 @@ const Login = () => {
   const [credencial_invalida, setCredencial_invalida] = useState(null);
   const { setModalActivo, modalActivo } = useAuth();
 
-  useEffect(() => {}, [isAuthenticated]);
+  useEffect(() => {
+    setLoader(false);
+  }, [isAuthenticated]);
   return (
     <div>
       <Formik
@@ -42,7 +44,6 @@ const Login = () => {
         })}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            setLoader(true);
             const response = await loginRequest(values);
 
             if (response.status != 200) {

@@ -62,7 +62,8 @@ export const SaboresContextProvider = ({ children }) => {
   };
   const createSabor = async (formData) => {
     try {
-      await createSaborRequest(formData);
+      const response = await createSaborRequest(formData);
+      return response.data;
       // setTasks([...tasks, response.data]);
     } catch (error) {
       console.error(error);

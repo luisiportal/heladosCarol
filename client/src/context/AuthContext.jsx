@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
   const [isOnline, setIsOnline] = useState(true);
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
   const [perfil, setPerfil] = useState({
     username: "",
     nombre: "",
