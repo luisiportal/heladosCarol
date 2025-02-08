@@ -1,9 +1,8 @@
-import {  useSabores } from "../../context/SaboresProvider.jsx";
+import { useSabores } from "../../context/SaboresProvider.jsx";
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 
 function SaborCard({ sabor }) {
-  
   const [showMore, setShowMore] = useState(false);
   const [showBotones, setShowBotones] = useState(false);
 
@@ -22,8 +21,7 @@ function SaborCard({ sabor }) {
   };
 
   const colorExistencia = () => {
-    return sabor.existencia <= sabor.stockMinimo &&
-      sabor.existencia !== "0"
+    return sabor.existencia <= sabor.stockMinimo && sabor.existencia !== "0"
       ? "border-r-8 border-yellow-400"
       : sabor.existencia === "0"
         ? "border-r-8 border-red-400 "
@@ -41,7 +39,9 @@ function SaborCard({ sabor }) {
         <div /* imagen del prodcuto */>
           <img
             className="w-12 h-12 object-cover object-center shadow-xl border-slate-50 border-spacing-2 rounded-md"
-            src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${sabor.ruta_image}`}
+            src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${
+              sabor.ruta_image
+            } `}
             alt="Imagen de Producto"
           />
         </div>
@@ -62,9 +62,7 @@ function SaborCard({ sabor }) {
             <p>{sabor.precio_venta} USD</p>
             <p>{sabor.precio_venta_cup} CUP</p>
 
-            <p className="text-sm">
-              {sabor.existencia}
-            </p>
+            <p className="text-sm">{sabor.existencia}</p>
           </div>
         </div>
       </header>
@@ -80,9 +78,7 @@ function SaborCard({ sabor }) {
         {showMore && (
           <div className="">
             <ul>
-              <h3 className="text-sm italic">
-                {sabor.description_producto}
-              </h3>
+              <h3 className="text-sm italic">{sabor.description_producto}</h3>
               <p>USD: {sabor.costo_usd}</p>
               <p>MLC: {sabor.costo_mlc}</p>
               <p>ZELLE: {sabor.costo_zelle}</p>

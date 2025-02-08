@@ -8,7 +8,7 @@ const SlideIMG = ({ images, combo, item, current, setCurrent }) => {
     }, 3000); // Cambiar cada 3 segundos
 
     return () => clearInterval(interval);
-  }, []);
+  }, [item]);
   return (
     <div>
       {images.map((imagen, index) => (

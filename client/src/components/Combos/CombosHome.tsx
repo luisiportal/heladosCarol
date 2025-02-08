@@ -32,7 +32,7 @@ const CombosHome = ({ combos }: { combos: Sabor[] }) => {
           className="w-full flex flex-col text-neutral-950 border-2 bg-white rounded-lg hover:border-fresa transition-colors duration-500"
         >
           <div title="imagen contendor" className="relative h-56">
-            <picture className="z-10 transition-all duration-500">
+            <picture className="z-10">
               {item == combo.id_sabor ? (
                 <SlideIMG
                   combo={combo}
@@ -45,7 +45,7 @@ const CombosHome = ({ combos }: { combos: Sabor[] }) => {
                 combo.imagenes &&
                 combo.imagenes.length > 0 && (
                   <img
-                    className="w-full h-full transition-all rounded-lg"
+                    className="w-full h-full transition-all duration-500 rounded-lg"
                     src={`${
                       import.meta.env.VITE_BACKEND_URL
                     }/images/productos/${combo.imagenes[0].ruta_image}`}
