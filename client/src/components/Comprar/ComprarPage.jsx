@@ -52,7 +52,7 @@ const ComprarPage = () => {
   });
 
   return (
-    <div className="h-screen">
+    <div className="mb-40">
       Comprar
       {navegacion == 0 && (
         <EscojerMetodoPago

@@ -157,7 +157,7 @@ const EntregaYenviaForm = ({
   });
 
   return (
-    <div className="mt-8">
+    <div className="mt-14">
       {loader && <Loader />}
       <Formik
         initialValues={entrega}

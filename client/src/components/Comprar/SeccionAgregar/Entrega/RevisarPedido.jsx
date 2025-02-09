@@ -54,7 +54,7 @@ const RevisarPedido = ({
   };
 
   return (
-    <div>
+    <div className="mb-40">
       <FacturaCard
         factura={factura}
         total={metoPago == "TropiPay" ? totalTropipay : total}
