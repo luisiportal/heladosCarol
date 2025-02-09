@@ -9,8 +9,9 @@ const MenuAbajo = () => {
 
   return (
     <div className="z-50 flex justify-center items-center gap-14 text-white  bg-fresa h-24 fixed bottom-0 mx-auto menuAbajo shadow-md">
-      <button onClick={() => navigate("/")} title="home" className="mt-8">
+      <button onClick={() => navigate("/")} title="home" className="mt-6 flex flex-col items-center">
         <HomeSVG />
+        <h3 className="text-sm font-semibold">Inicio</h3>
       </button>
 
       <button
@@ -23,9 +24,10 @@ const MenuAbajo = () => {
       <button
         onClick={() => navigate("/contacto")}
         title="call"
-        className="mt-8"
+        className="mt-6 flex flex-col items-center"
       >
         <CallSVG css={"w-10 h-10"} />
+        <h3 className="text-sm font-semibold">Contacto</h3>
       </button>
     </div>
   );
