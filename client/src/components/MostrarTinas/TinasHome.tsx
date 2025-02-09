@@ -13,7 +13,7 @@ interface ImportMeta {
 
 const TinasHome = ({ tinas }: { tinas: Sabor[] }) => {
   const sinTina = tinas.map((item) => ({
-    nombre_sabor: item.nombre_sabor.replace("Tina", "").trim(),
+    nombre_sabor: item.nombre_sabor,
     color: item.color,
     existencia: item.existencia,
     precio_venta: item.precio_venta,
@@ -58,7 +58,7 @@ const TinasHome = ({ tinas }: { tinas: Sabor[] }) => {
           ></div>
 
           <h2 className="font-irish flex justify-center text-md px-2 py-1 pb-2">
-            {tina.nombre_sabor}
+            {tina.nombre_sabor.replace("Tina", "").trim()}
           </h2>
 
           <div className="flex justify-center p-2">
