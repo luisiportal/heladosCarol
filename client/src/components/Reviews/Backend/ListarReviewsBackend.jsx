@@ -14,7 +14,7 @@ const ListarReviewsBackend = () => {
   }, [recargarReviews]);
 
   return (
-    <div className="pt-16">
+    <div className="pt-16 mb-32">
       {reviews.map((review) => (
         <CardReviewBackend review={review} key={review.id_review} />
       ))}

@@ -20,7 +20,7 @@ const LogsPage = () => {
   }, []);
 
   return (
-    <div className="pt-12">
+    <div className="pt-12 mb-60">
       {logs.map((log) => (
         <div
           className="bg-neutral-200 text-slate-700  shadow-lg p-2 m-2 rounded-md"

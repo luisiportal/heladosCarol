@@ -42,7 +42,7 @@ const MovimientosPage = () => {
     loadMovimientos(30);
   }, [recargar]);
   return (
-    <div>
+    <div className="mb-40">
       <h1 className="px-2 pb-2 text-3xl text-heladosCarol_color font-bold">
         Movimientos
       </h1>

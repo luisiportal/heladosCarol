@@ -3,7 +3,7 @@ import LogoHeladosCarol from "../Utilidades/LogoHeladosCarol";
 
 const Footer = () => {
   return (
-    <div className=" bg-fresa flex flex-col justify-center items-center p-10 my-5 rounded-lg gap-2 mb-14 ">
+    <div className=" bg-fresa flex flex-col justify-center items-center p-10 my-5 rounded-lg gap-2 mb-12 ">
       <LogoHeladosCarol />
       <div className=" flex justify-center text-md text-slate-100 flex-col">
         <a href="mailto:heladoscarol@gmail.com">heladoscarol@gmail.com</a>

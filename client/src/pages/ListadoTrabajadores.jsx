@@ -15,7 +15,7 @@ const ListadoTrabajadores = () => {
     <>
  
       <BTNRedondo ruta={"/trabajador/new"} />
-      <div className="grid sm:grid-cols-1 gap-2 xl:grid-cols-4 pt-10">
+      <div className="grid sm:grid-cols-1 gap-2 xl:grid-cols-4 pt-10 mb-60">
         {trabajadores.map((trabajador) => (
           <TrabajadorCard
             trabajador={trabajador}

@@ -10,7 +10,7 @@ const SaboresPage = () => {
   const { loader, setLoader, isOnline } = useAuth();
 
   return (
-    <div>
+    <div className="mb-60">
       <BTNRedondo ruta={"/new"} />
       <h1 className="px-2 pb-2 text-3xl text-slate-700 font-bold">Sabores</h1>
       <div>

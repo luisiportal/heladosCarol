@@ -132,7 +132,7 @@ const SaboresForm = () => {
             resetForm,
           }) => (
             // FORMULARIO PARA RELLENAR CAMPOS
-            <Form className="bg-neutral-200 max-w-md rounded-md p-4 mx-auto">
+            <Form className="bg-neutral-200 max-w-md rounded-md p-4 mx-auto mb-40">
               <section className="flex flex-wrap gap-2">
                 {imagenes.length > 0 &&
                   imagenes.map((imagen) => (

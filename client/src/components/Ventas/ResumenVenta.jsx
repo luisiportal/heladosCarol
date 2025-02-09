@@ -94,7 +94,7 @@ const ResumenVenta = () => {
   }
 
   return (
-    <div>
+    <div className="mb-20">
       <h1 className=" px-2 pb-2 text-3xl text-slate-700 font-bold">Ventas</h1>
       {mostrarCuadrarDialog && (
         <BTNHOME
