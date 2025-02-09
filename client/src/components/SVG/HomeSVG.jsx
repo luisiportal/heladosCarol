@@ -1,6 +1,6 @@
 import React from "react";
 
-const HomeSVG = () => {
+const HomeSVG = ({css}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,7 +8,7 @@ const HomeSVG = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-10 h-10"
+      className={css}
     >
       <path
         strokeLinecap="round"
