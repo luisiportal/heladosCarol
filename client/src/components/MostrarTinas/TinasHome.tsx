@@ -60,7 +60,7 @@ const TinasHome = ({ tinas }: { tinas: Sabor[] }) => {
           </h2>
 
           <div className="flex justify-center p-2">
-            <BTN_Comprar color="#e188b5" />
+            <BTN_Comprar color="#f9a217" />
           </div>
         </section>
       ))}

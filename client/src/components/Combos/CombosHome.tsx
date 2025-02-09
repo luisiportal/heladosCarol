@@ -72,7 +72,7 @@ const CombosHome = ({ combos }: { combos: Sabor[] }) => {
           <p className="px-4 italic text-justify">{combo.description}</p>
 
           <div  className="flex justify-center p-2">
-            <BTN_Comprar color={"#e188b5"} producto={combo} />
+            <BTN_Comprar color={"#f9a217"} producto={combo} />
           </div>
         </section>
       ))}

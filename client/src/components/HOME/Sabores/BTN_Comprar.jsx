@@ -25,6 +25,7 @@ const BTN_Comprar = ({ color, producto }) => {
               precio_venta_cup: producto.precio_venta_cup,
             },
           ]);
+          
         }
 
         navigate("/comprar");
