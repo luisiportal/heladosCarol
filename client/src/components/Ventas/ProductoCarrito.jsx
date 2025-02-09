@@ -17,6 +17,7 @@ const ProductoCarrito = ({
     setCarrito(deleteSabor);
     writeLocalStorage("sabores", deleteSabor);
   };
+  console.log(carrito);
 
   return (
     <>
@@ -40,8 +41,9 @@ const ProductoCarrito = ({
           <div className="flex gap-4">
             {" "}
             <h3 className="text-sm font-semibold">
-              Precio: {sabor.precio_venta} {precioMoneda(metoPago)}
-              
+              Precio:{" "}
+              {metoPago == "CUP" ? sabor.precio_venta_cup : sabor.precio_venta}{" "}
+              {precioMoneda(metoPago)}
             </h3>
             <h3 className="text-sm font-semibold">Total: {total_sabor}</h3>
           </div>

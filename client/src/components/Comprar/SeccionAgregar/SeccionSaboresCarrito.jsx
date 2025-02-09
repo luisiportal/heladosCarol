@@ -27,16 +27,7 @@ const SeccionSaboresCarrito = ({
     );
   }
 
-  useEffect(() => {
-    const carritoLocal = readLocalStorage("sabores");
-  
-    if (carritoLocal && carritoLocal[0]?.metoPago == metoPago) {
-      setCarrito(carritoLocal);
-    } else {
-      setCarrito([]);
-    }
-  }, []);
-
+  console.log(carrito);
 
   return (
     <div>
@@ -64,8 +55,7 @@ const SeccionSaboresCarrito = ({
         })}
       <div className="flex  justify-end">
         <h2 className="p-2 font-semibold text-slate-800">
-          Total a pagar : {totalLocal.toFixed(2)}{" "}
-          {precioMoneda(metoPago)}
+          Total a pagar : {totalLocal.toFixed(2)} {precioMoneda(metoPago)}
         </h2>
         {carrito.length > 0 && (
           <div className="flex  items-center  bg-fresa rounded w-28">

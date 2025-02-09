@@ -23,14 +23,13 @@ const FormAddProduct = ({
     (sabor) => Number(sabor.existencia) > 0
   );
 
-
   const options = (
     productosElegir.length > 0 ? productosElegir : productosConExistencia
   ).map((sabor) => {
     const precio =
       metoPago == "CUP"
         ? sabor.precio_venta_cup + " CUP"
-        : sabor.precio_venta + " "+precioMoneda(metoPago);
+        : sabor.precio_venta + " " + precioMoneda(metoPago);
     return {
       value: sabor.id_sabor,
       label: sabor.nombre_sabor + " " + precio,
