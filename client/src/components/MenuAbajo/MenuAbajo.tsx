@@ -8,7 +8,7 @@ const MenuAbajo = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="z-50 flex justify-center items-center gap-14 text-white  bg-fresa h-24 fixed bottom-0 mx-auto menuAbajo ">
+    <div className="z-50 flex justify-center items-center gap-14 text-white  bg-fresa h-24 fixed bottom-0 mx-auto menuAbajo shadow-md">
       <button onClick={() => navigate("/")} title="home" className="mt-8">
         <HomeSVG />
       </button>
@@ -16,7 +16,7 @@ const MenuAbajo = () => {
       <button
         onClick={() => navigate("/comprar")}
         title="cart"
-        className="bg-[#f9a217] rounded-full w-14 h-16 flex justify-center items-center"
+        className="bg-[#f9a217] rounded-full w-14 h-16 flex justify-center items-center shadow-md"
       >
         <CartSVG />
       </button>
