@@ -1,6 +1,6 @@
 import React from "react";
 
-const CallSVG = () => {
+const CallSVG = ({css}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,7 +8,7 @@ const CallSVG = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6"
+      className={css}
     >
       <path
         strokeLinecap="round"

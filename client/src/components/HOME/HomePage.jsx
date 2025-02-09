@@ -8,7 +8,7 @@ import Sabores from "./Sabores";
 import MensajeCerrado from "../Modos/MensajeCerrado";
 import { useModocerrado } from "../Modos/useModoCerrado";
 import Horario from "../Horario/Horario";
-import { suscribeRequest } from "../../api/notifications";
+
 
 const HomePage = () => {
   const { modo } = useModocerrado();

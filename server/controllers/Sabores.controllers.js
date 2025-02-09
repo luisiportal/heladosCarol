@@ -1,5 +1,3 @@
-import { saveImage } from "./upload.multer.js";
-
 import sequelize from "../db.js";
 
 import { registrarLog } from "./AuditLog.controllers.js";
@@ -7,6 +5,7 @@ import { Sabor } from "../models/Sabor.model.js";
 import { Moneda } from "../models/Monedas.model.js";
 import { Imagen } from "../models/Imagenes.model.js";
 import { deleteImagenesSabores } from "./utilidadades/deleteImagenesSabores.js";
+import { resizeSharp } from "./utilidadades/sharpResize.js";
 
 // listar todas los sabores
 
@@ -56,6 +55,7 @@ export const createSabor = async (req, res) => {
     files = req.files;
     //ruta_image = req.files[0].originalname;
   }
+
   const { precio: usd } = await Moneda.findByPk(2);
 
   try {
@@ -94,14 +94,22 @@ export const createSabor = async (req, res) => {
           { transaction: t }
         );
 
-        for (const file of files) {
-          await Imagen.create(
-            {
-              ruta_image: file.filename,
-              id_recurso: responseSabor.id_sabor,
-            },
-            { transaction: t }
-          );
+       
+
+        try {
+          for (const file of files) {
+            await resizeSharp(file);
+
+            await Imagen.create(
+              {
+                ruta_image: `producto_${file.originalname}`,
+                id_recurso: responseSabor.id_sabor,
+              },
+              { transaction: t }
+            );
+          }
+        } catch (error) {
+          console.log("Error al eliminar imágenes:", error);
         }
 
         await registrarLog("Creó", ` Sabor`, `  ${nombre_sabor}`, req, t);
@@ -164,9 +172,12 @@ export const updateSabor = async (req, res) => {
 
       await response.save({ transaction: t });
       for (const file of files) {
+        await resizeSharp(file);
+
         await Imagen.create(
           {
-            ruta_image: file.filename,
+            ruta_image: `producto_${file.filename}`,
+
             id_recurso: id_sabor,
           },
           { transaction: t }

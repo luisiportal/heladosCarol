@@ -11,6 +11,17 @@
   src: url("./fonts/IrishGrover-Regular.ttf");
 }
 
+.menuAbajo {
+  border-radius: 50px 50px 0 0; /* Radio del borde para la parte superior curva */
+
+  width: 102%; /* 3/4 */
+
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .image-gallery {
   width: 100%;
   height: auto;
@@ -192,7 +203,6 @@ input[type="number"] {
     rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
     scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-
 
 .snowflake {
   position: absolute;

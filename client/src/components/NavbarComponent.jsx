@@ -10,6 +10,7 @@ import DerretidoFresa2 from "./apariencia/DerretidoFresa2";
 import DerretidoChocolate2 from "./apariencia/DerretidoChocolate2";
 import ComponenteModal from "./Utilidades/ComponenteModal";
 import LogoHeladosCarol from "./Utilidades/LogoHeladosCarol";
+import MenuAbajo from "./MenuAbajo/MenuAbajo";
 
 const NavbarComponent = () => {
   const [abrirHamburguesa, setabrirHamburguesa] = useState(false);
@@ -57,6 +58,8 @@ const NavbarComponent = () => {
         setModalActivo={setModalActivo}
         modalActivo={modalActivo}
       />
+      <MenuAbajo/>
+
       {/*barra escritorio*/}
       <header className="fixed w-screen bg-heladosCarol_color px-6 z-50 rounded shadow-xl">
         <div className="flex justify-between h-16 items-center max-w-7xl mx-auto">

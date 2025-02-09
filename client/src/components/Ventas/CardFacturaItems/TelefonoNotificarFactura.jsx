@@ -31,7 +31,7 @@ const TelefonoNotificarFactura = ({
       {" "}
       <div className="flex p-2 justify-between items-center">
         <a href={`sms:${resultado}?body=${texto}`} className="flex gap-1"> <TextSVG/> Enviar SMS</a>
-        <a href={`tel:${resultado}`} className="flex gap-1"><CallSVG/> LLamar</a>
+        <a href={`tel:${resultado}`} className="flex gap-1"><CallSVG css={"w-6 h-6"}/> LLamar</a>
         <a
           className="flex font-semibold"
           target="_blank"

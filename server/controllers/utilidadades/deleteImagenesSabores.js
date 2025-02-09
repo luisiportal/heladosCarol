@@ -3,6 +3,9 @@ import fs from "fs";
 import path from "path";
 
 export const deleteImagenesSabores = async (imgToDelete) => {
+  if (!imgToDelete) {
+    return 0;
+  }
   try {
     // Eliminar archivos del sistema de archivos
     for (const item of imgToDelete) {
