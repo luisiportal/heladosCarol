@@ -1,10 +1,11 @@
 import React from "react";
 import TituloPagina from "./TituloPagina";
+import LayoutPrincipal from "../../Layouts/LayoutPrincipal";
 
 const DescripcionProducto = () => {
   return (
-    <div className=" pt-16">
-  <div className="px-6 m-4 pb-6 pt-2  text-slate-600 text-justify bg-white shadow-md rounded-xl flex flex-col leading-relaxed">
+   <LayoutPrincipal>
+    <div className="rounded-xl flex flex-col leading-relaxed">
   <TituloPagina titulo={"Descripción Producto"} />
  
       <p>
@@ -21,7 +22,7 @@ const DescripcionProducto = () => {
         siempre en la satisfacción del cliente principalmente de nuestros niños
         y ancianos.</p>
    </div>
-    </div>
+   </LayoutPrincipal>
   );
 };
 

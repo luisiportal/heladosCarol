@@ -1,3 +1,5 @@
+import Footer from "../components/HOME/Footer";
+
 const LayoutPrincipal = ({ titulo, children }) => {
   return (
     <div className="pt-16">
@@ -7,6 +9,7 @@ const LayoutPrincipal = ({ titulo, children }) => {
         </h1>
         {children}
       </div>
+      <Footer/>
     </div>
   );
 };

@@ -8,7 +8,7 @@ const MenuAbajo = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="z-50 flex justify-center items-center gap-14 text-white  bg-fresa h-24 fixed bottom-0 mx-auto menuAbajo shadow-md">
+    <div className="z-50 flex justify-center items-center gap-14 text-white  bg-fresa h-24 fixed bottom-0 mx-auto menuAbajo shadow-md border-slate-800">
       <button onClick={() => navigate("/")} title="home" className="mt-6 flex flex-col items-center">
         <HomeSVG />
         <h3 className="text-sm font-semibold">Inicio</h3>

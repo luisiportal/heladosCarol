@@ -1,11 +1,13 @@
 import React from "react";
 import TituloPagina from "./TituloPagina";
 import Telefono from "../Contacto/Telefono";
+import LayoutPrincipal from "../../Layouts/LayoutPrincipal";
 
 const Contacto = () => {
   return (
-    <div className="pt-16">
-      <div className="px-6 m-4 pb-6 pt-2  text-slate-600 text-justify bg-white shadow-md rounded-xl ">
+    <LayoutPrincipal>
+      {" "}
+      <div>
         <TituloPagina titulo={"Contactos"} />
 
         <a href="mailto:heladoscarol@gmail.com">
@@ -19,7 +21,7 @@ const Contacto = () => {
           <Telefono numero={"5355079490"} />
         </section>
       </div>
-    </div>
+    </LayoutPrincipal>
   );
 };
 

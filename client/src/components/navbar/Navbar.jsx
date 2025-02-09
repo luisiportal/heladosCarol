@@ -1,6 +1,5 @@
 import React from "react";
 import ElementoNavbar from "./ElementoNavbar.jsx";
-import { Route } from "react-router-dom";
 
 const Navbar = ({ hidden, isAuthenticated }) => {
   return (
