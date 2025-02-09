@@ -1,5 +1,5 @@
 export const PUERTO = process.env.PORT || 4000;
-export const FRONTEND_URL = process.env.FRONTEND_URL || "http://10.20.5.227:5173";
+export const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 export const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:4000";
 export const DB_HOST = process.env.DB_HOST || "localhost";
 export const DB_PORT = process.env.DB_PORT || "5444";

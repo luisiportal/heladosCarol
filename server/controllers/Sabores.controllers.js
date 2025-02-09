@@ -94,8 +94,6 @@ export const createSabor = async (req, res) => {
           { transaction: t }
         );
 
-       
-
         try {
           for (const file of files) {
             await resizeSharp(file);
@@ -132,6 +130,11 @@ export const createSabor = async (req, res) => {
 
 export const updateSabor = async (req, res) => {
   const { precio: usd } = await Moneda.findByPk(2);
+
+  const imgToDelete = req.body.imgToDelete
+    ? JSON.parse(req.body.imgToDelete)
+    : "";
+
   let files = [];
   if (req.files.length > 0) {
     files = req.files;
@@ -153,8 +156,9 @@ export const updateSabor = async (req, res) => {
         precio_venta,
         costo_unitario,
         home_img,
-        imgToDelete,
       } = req.body;
+      console.log(imgToDelete);
+
       await deleteImagenesSabores(imgToDelete);
 
       const response = await Sabor.findByPk(id_sabor);

@@ -54,11 +54,12 @@ const SaboresForm = () => {
     formData.append("existencia", values.existencia || 0);
     formData.append("home_img", values.home_img);
     if (imgToDelete.length > 0) {
-      formData.append("imgToDelete", imgToDelete);
+      console.log(imgToDelete);
+
+      formData.append("imgToDelete", JSON.stringify(imgToDelete));
     }
 
     if (files.length > 0) {
-
       for (let i = 0; i < files.length; i++) {
         formData.append("ruta_image", files[i]);
       }
@@ -96,8 +97,8 @@ const SaboresForm = () => {
   };
   const deleteOnline = (id_imagen) => {
     console.log(id_imagen);
-    
-    setImgToDelete([...imgToDelete, id_imagen]);
+
+    setImgToDelete([...imgToDelete, { id_imagen }]);
     const delonline = imagenes.filter(
       (imgdel) => imgdel.id_imagen !== id_imagen
     );
@@ -105,7 +106,6 @@ const SaboresForm = () => {
   };
 
   const deleteIMG = (index) => {
-
     const deleteItem = files.filter((file, i) => i !== index);
     setFiles(deleteItem);
   };
@@ -146,7 +146,8 @@ const SaboresForm = () => {
                         }/images/productos/${imagen.ruta_image}`}
                         alt={imagen.descripcion || "Imagen de sabor"} // Proporciona una descripción alternativa
                       />
-                      <button type="button"
+                      <button
+                        type="button"
                         className="absolute top-0 z-50"
                         onClick={() => deleteOnline(imagen.id_imagen)}
                       >

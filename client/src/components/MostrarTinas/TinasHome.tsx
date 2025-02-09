@@ -18,8 +18,8 @@ const TinasHome = ({ tinas }: { tinas: Sabor[] }) => {
     existencia: item.existencia,
     precio_venta: item.precio_venta,
     precio_venta_cup: item.precio_venta_cup,
-    ruta_image: item.ruta_image,
     home_img: item.home_img,
+    imagenes: item.imagenes,
   }));
 
   return (
@@ -31,13 +31,15 @@ const TinasHome = ({ tinas }: { tinas: Sabor[] }) => {
         >
           <div title="imagen contendor" className="relative h-32">
             <picture className="z-10">
-              <img
-                className="w-full h-32 object-center object-cover  rounded-t-lg z-10 shadow-lg"
-                src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${
-                  tina.ruta_image
-                }`}
-                alt={tina.nombre_sabor}
-              />
+              {tina.imagenes && tina.imagenes.length > 0 && (
+                <img
+                  className="w-full h-32 object-center object-cover  rounded-t-lg z-10 shadow-lg"
+                  src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${
+                    tina.imagenes[0].ruta_image
+                  }`}
+                  alt={tina.nombre_sabor}
+                />
+              )}
             </picture>
             <h2
               className={`absolute top-0 left-0 font-bold text-sm text-white p-1 rounded-br-lg rounded-tl-lg bg-fresa`}
@@ -60,7 +62,7 @@ const TinasHome = ({ tinas }: { tinas: Sabor[] }) => {
           </h2>
 
           <div className="flex justify-center p-2">
-            <BTN_Comprar color="#f9a217" />
+            <BTN_Comprar color="#f9a217" producto={tina} />
           </div>
         </section>
       ))}
