@@ -30,7 +30,7 @@ const Login = () => {
     setLoader(false);
   }, [isAuthenticated]);
   return (
-    <div>
+    <div className="h-screen">
       <Formik
         initialValues={{ username: "", password: "" }}
         validationSchema={Yup.object({

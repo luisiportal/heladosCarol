@@ -11,31 +11,32 @@ const ItemsAdministrador = ({ navigate }) => {
       <button
         onClick={() => navigate("/")}
         title="home"
-        className="mt-6 flex flex-col items-center"
+        className="mt-2 flex flex-col items-center"
       >
         <HomeSVG css={"w-6 h-6"} />
         <h3 className="text-sm font-semibold">Inicio</h3>
       </button>
+     
       <button
+        onClick={() => navigate("/movimientos")}
+        title="home"
+        className="mt-2 flex flex-col items-center"
+      >
+        <MovimientosSVG />
+        <h3 className="text-sm font-semibold">Movimientos</h3>
+      </button>
+       <button
         onClick={() => navigate("/transacciones")}
         title="home"
-        className="mt-6 flex flex-col items-center"
+        className="mt-2 flex flex-col items-center"
       >
         <FacturasSVG />
         <h3 className="text-sm font-semibold">Facturas</h3>
       </button>
       <button
-        onClick={() => navigate("/movimientos")}
-        title="home"
-        className="mt-6 flex flex-col items-center"
-      >
-        <MovimientosSVG />
-        <h3 className="text-sm font-semibold">Movimientos</h3>
-      </button>
-      <button
         onClick={() => navigate("/sabores")}
         title="home"
-        className="mt-6 flex flex-col items-center"
+        className="mt-2 flex flex-col items-center"
       >
         <SaboresSVG />
         <h3 className="text-sm font-semibold">Sabores</h3>
@@ -43,7 +44,7 @@ const ItemsAdministrador = ({ navigate }) => {
       <button
         onClick={() => navigate("/opiniones")}
         title="home"
-        className="mt-6 flex flex-col items-center"
+        className="mt-2 flex flex-col items-center"
       >
         <OpinionesSVG />
         <h3 className="text-sm font-semibold">Opiniones</h3>
