@@ -7,7 +7,7 @@ const Contacto = () => {
   return (
     <LayoutPrincipal>
       {" "}
-      <div>
+      <div className="h-screen">
         <TituloPagina titulo={"Contactos"} />
 
         <a href="mailto:heladoscarol@gmail.com">
