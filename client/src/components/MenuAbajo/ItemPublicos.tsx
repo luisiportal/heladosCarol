@@ -4,14 +4,12 @@ import CartSVG from "../SVG/CartSVG";
 import CallSVG from "../SVG/CallSVG";
 
 const ItemPublicos = ({ navigate, carrito }) => {
-  const [cantCarrito, setCantCarrito] = useState(20);
+  const [cantCarrito, setCantCarrito] = useState(0);
 
   useEffect(() => {
-    console.log("render" + carrito.length);
-
     setCantCarrito(carrito.length);
   }, [carrito]);
-console.log(carrito.length);
+console.log(carrito);
 
   return (
     <>

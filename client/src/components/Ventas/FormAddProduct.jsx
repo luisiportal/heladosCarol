@@ -35,8 +35,8 @@ const FormAddProduct = ({
       label: sabor.nombre_sabor + " " + precio,
       nombre_sabor: sabor.nombre_sabor,
       existencia: sabor.existencia,
-      precio_venta:
-        metoPago == "CUP" ? sabor.precio_venta_cup : sabor.precio_venta,
+      precio_venta: sabor.precio_venta,
+      precio_venta_cup: sabor.precio_venta_cup,
       ruta_image: sabor.ruta_image,
       color: sabor.color,
     };
@@ -51,6 +51,7 @@ const FormAddProduct = ({
       nombre_sabor: p.nombre_sabor,
       existencia: p.existencia,
       precio_venta: p.precio_venta,
+      precio_venta_cup: p.precio_venta_cup,
       ruta_image: p.ruta_image,
       color: p.color,
     });

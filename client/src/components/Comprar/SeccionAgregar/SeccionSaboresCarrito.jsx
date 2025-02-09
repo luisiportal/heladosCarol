@@ -19,10 +19,19 @@ const SeccionSaboresCarrito = ({
   metoPago,
 }) => {
   const navigate = useNavigate();
+  const precio = (producto) => {
+    const precio =
+      metoPago === "CUP"
+        ? Number(producto.precio_venta_cup)
+        : Number(producto.precio_venta);
+
+    return precio;
+  };
+
   let totalLocal = 0;
   if (carrito) {
     totalLocal = carrito.reduce(
-      (sum, producto) => sum + producto.precio_venta * producto.cantidad,
+      (sum, producto) => sum + producto.cantidad * precio(producto),
       0
     );
   }
@@ -32,7 +41,11 @@ const SeccionSaboresCarrito = ({
       {loader && <Loader />}
       {carrito &&
         carrito.map((sabor) => {
-          let totalSabor = Number(sabor.cantidad) * Number(sabor.precio_venta);
+          const precio =
+            metoPago === "CUP"
+              ? Number(sabor.precio_venta_cup)
+              : Number(sabor.precio_venta);
+          let totalSabor = Number(sabor.cantidad) * precio;
 
           const miArray = [16, 32, 40];
           const indiceAleatorio = Math.floor(Math.random() * miArray.length);
@@ -51,7 +64,7 @@ const SeccionSaboresCarrito = ({
             />
           );
         })}
-      <div className="flex  justify-end">
+      <div className="flex justify-end">
         <h2 className="p-2 font-semibold text-slate-800">
           Total a pagar : {totalLocal.toFixed(2)} {precioMoneda(metoPago)}
         </h2>

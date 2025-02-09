@@ -52,7 +52,7 @@ const ProductoCarrito = ({
           <Bton_eliminar_producto />
         </button>
       </section>
-      <div className={`relative bottom-4 left-${right}`}>
+      <div className={`relative bottom-4 left-${right} w-fit`}>
         <DerretidoVainilla2 color={"#" + sabor.color} />
       </div>
     </>
