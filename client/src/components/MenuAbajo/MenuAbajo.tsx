@@ -1,13 +1,10 @@
 import React from "react";
-import CartSVG from "../SVG/CartSVG";
-import HomeSVG from "../SVG/HomeSVG";
-import CallSVG from "../SVG/CallSVG";
 import { useNavigate } from "react-router-dom";
 import ItemPublicos from "./ItemPublicos";
 import ItemsAdministrador from "./ItemsAdministrador";
 import { useAuth } from "../../context/AuthContext";
 
-const MenuAbajo = () => {
+const MenuAbajo = ({ carrito }) => {
   const navigate = useNavigate();
   const { perfil } = useAuth();
 
@@ -16,7 +13,7 @@ const MenuAbajo = () => {
       {perfil.privilegio === "Administrador" ? (
         <ItemsAdministrador navigate={navigate} />
       ) : (
-        <ItemPublicos navigate={navigate} />
+        <ItemPublicos navigate={navigate} carrito={carrito} />
       )}
     </div>
   );

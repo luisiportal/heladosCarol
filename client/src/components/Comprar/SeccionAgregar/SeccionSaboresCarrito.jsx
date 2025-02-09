@@ -27,8 +27,6 @@ const SeccionSaboresCarrito = ({
     );
   }
 
-  console.log(carrito);
-
   return (
     <div>
       {loader && <Loader />}

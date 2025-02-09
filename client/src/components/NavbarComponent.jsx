@@ -12,7 +12,7 @@ import ComponenteModal from "./Utilidades/ComponenteModal";
 import LogoHeladosCarol from "./Utilidades/LogoHeladosCarol";
 import MenuAbajo from "./MenuAbajo/MenuAbajo";
 
-const NavbarComponent = () => {
+const NavbarComponent = ({ carrito }) => {
   const [abrirHamburguesa, setabrirHamburguesa] = useState(false);
   const {
     isAuthenticated,
@@ -58,7 +58,7 @@ const NavbarComponent = () => {
         setModalActivo={setModalActivo}
         modalActivo={modalActivo}
       />
-      <MenuAbajo/>
+      <MenuAbajo carrito={carrito} />
 
       {/*barra escritorio*/}
       <header className="fixed w-screen bg-heladosCarol_color px-6 z-50 rounded shadow-xl">

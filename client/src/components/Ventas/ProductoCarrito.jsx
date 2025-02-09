@@ -17,7 +17,6 @@ const ProductoCarrito = ({
     setCarrito(deleteSabor);
     writeLocalStorage("sabores", deleteSabor);
   };
-  console.log(carrito);
 
   return (
     <>
