@@ -1,6 +1,17 @@
 import React from "react";
 
 const SaboresFactura = ({ ventas, envio, moneda, tropiPayFee }) => {
+  const precioSabor = (producto) => {
+    console.log(producto);
+    
+    const precio =
+      moneda === "CUP"
+        ? Number(producto.precio_venta_cup)
+        : Number(producto.precio_venta);
+
+    return precio;
+  };
+
   return (
     <div className="bg-neutral-100 rounded-xl flex flex-col justify-center p-3 w-full">
       {ventas.map((sabor, index) => (
@@ -15,10 +26,7 @@ const SaboresFactura = ({ ventas, envio, moneda, tropiPayFee }) => {
               </div>
             </div>
           </div>
-          <div>
-            {moneda == "CUP" ? sabor.precio_venta_cup : sabor.precio_venta}{" "}
-            {moneda}
-          </div>
+          <div>{precioSabor(sabor) * sabor.cantidad} {moneda}</div>
         </div>
       ))}
       <div className="flex justify-end">
