@@ -2,8 +2,6 @@ import React from "react";
 
 const SaboresFactura = ({ ventas, envio, moneda, tropiPayFee }) => {
   const precioSabor = (producto) => {
-    console.log(producto);
-    
     const precio =
       moneda === "CUP"
         ? Number(producto.precio_venta_cup)
@@ -11,6 +9,8 @@ const SaboresFactura = ({ ventas, envio, moneda, tropiPayFee }) => {
 
     return precio;
   };
+
+ 
 
   return (
     <div className="bg-neutral-100 rounded-xl flex flex-col justify-center p-3 w-full">
@@ -26,7 +26,9 @@ const SaboresFactura = ({ ventas, envio, moneda, tropiPayFee }) => {
               </div>
             </div>
           </div>
-          <div>{precioSabor(sabor) * sabor.cantidad} {moneda}</div>
+          <div>
+           {sabor.precio_total_sabor} {precioSabor(sabor) * Number(sabor.cantidad)} {moneda}
+          </div>
         </div>
       ))}
       <div className="flex justify-end">

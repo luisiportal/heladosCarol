@@ -1,9 +1,11 @@
 import LayoutPrincipal from "../../Layouts/LayoutPrincipal";
+import { precioMoneda } from "../Comprar/SeccionAgregar/Entrega/precioMoneda";
 import BTN_MePago from "./BTN_MePago";
 
 const EscojerMetodoPago = ({ setNavegacion, setMetoPago, setMoneda }) => {
   const handleMetoPago = async (metodo) => {
     setMetoPago(metodo);
+    setMoneda(precioMoneda(metodo));
     setNavegacion(1);
   };
 

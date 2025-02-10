@@ -7,6 +7,7 @@ const BTN_Comprar = ({ color, producto }) => {
   const { carrito, setCarrito } = useCarritos();
 
   const navigate = useNavigate();
+  
   return (
     <button
       onClick={() => {

@@ -19,6 +19,7 @@ const RevisarPedido = ({
   setPayLink,
   payLink,
   setGrandTotalFactura,
+  moneda,
 }) => {
   const params = useParams();
   const precio = (producto) => {
@@ -37,7 +38,6 @@ const RevisarPedido = ({
       0
     );
   }
-  console.log(totalLocal);
 
   const factura = {
     ventas: carrito,
@@ -71,6 +71,7 @@ const RevisarPedido = ({
         file={file}
         setGrandTotalFactura={setGrandTotalFactura}
         tropiPayFee={tropiPayFee}
+        moneda={moneda}
       />
       {params.id == 3 ? (
         "Pago por TropiPay Correcto"

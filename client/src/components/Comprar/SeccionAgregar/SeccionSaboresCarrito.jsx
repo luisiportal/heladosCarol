@@ -17,6 +17,7 @@ const SeccionSaboresCarrito = ({
   setCarrito,
   setNavegacion,
   metoPago,
+  moneda,
 }) => {
   const navigate = useNavigate();
   const precio = (producto) => {
@@ -66,7 +67,7 @@ const SeccionSaboresCarrito = ({
         })}
       <div className="flex justify-end">
         <h2 className="p-2 font-semibold text-slate-800">
-          Total a pagar : {totalLocal.toFixed(2)} {precioMoneda(metoPago)}
+          Total a pagar : {totalLocal.toFixed(2)} {moneda}
         </h2>
         {carrito.length > 0 && (
           <div className="flex  items-center  bg-fresa rounded w-28">

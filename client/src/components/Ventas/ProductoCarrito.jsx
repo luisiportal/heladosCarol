@@ -17,9 +17,11 @@ const ProductoCarrito = ({
     setCarrito(deleteSabor);
     writeLocalStorage("sabores", deleteSabor);
   };
-
-  
-  
+  const calcularPrecioUnitario = (sabor) => {
+    const precioUnitario =
+      metoPago == "CUP" ? sabor.precio_venta_cup : sabor.precio_venta;
+    return precioUnitario;
+  };
 
   return (
     <>
@@ -43,9 +45,7 @@ const ProductoCarrito = ({
           <div className="flex gap-4">
             {" "}
             <h3 className="text-sm font-semibold">
-              Precio:{" "}
-              {metoPago == "CUP" ? sabor.precio_venta_cup : sabor.precio_venta}{" "}
-              {precioMoneda(metoPago)}
+              Precio: {calcularPrecioUnitario(sabor)}
             </h3>
             <h3 className="text-sm font-semibold">Total: {total_sabor}</h3>
           </div>

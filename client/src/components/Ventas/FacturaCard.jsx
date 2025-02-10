@@ -13,7 +13,6 @@ import TruckEntregaSVG from "../SVG/TruckEntregaSVG";
 import IconoPasarela from "./CardFacturaItems/IconoPasarela";
 import { useMetoPago } from "../../Stores/Pago.store";
 import TelefonoNotificarFactura from "./CardFacturaItems/TelefonoNotificarFactura";
-import { precioMoneda } from "../Comprar/SeccionAgregar/Entrega/precioMoneda";
 import { useEffect } from "react";
 
 function FacturaCard({
@@ -25,6 +24,7 @@ function FacturaCard({
   file,
   setGrandTotalFactura,
   tropiPayFee,
+  moneda
 }) {
   const { ventas } = factura;
   const { setModalActivo, perfil, setLoader } = useAuth();
@@ -69,9 +69,6 @@ function FacturaCard({
     setRecargar(!recargar);
     setLoader(false);
   };
-
-  const monedaPago = factura.pasarela || metoPago;
-  const moneda = precioMoneda(monedaPago);
 
   useEffect(() => {
     if (!factura.id) {

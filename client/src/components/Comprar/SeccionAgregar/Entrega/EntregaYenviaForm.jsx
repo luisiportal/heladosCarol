@@ -95,13 +95,13 @@ const EntregaYenviaForm = ({
   setEntrega,
   setLoader,
   carrito,
-  total_venta,
   setModalActivo,
   setCarrito,
   loader,
   navegacion,
   metoPago,
   setMetoPago,
+  moneda,
 }) => {
   const [repartos, setRepartos] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -116,6 +116,8 @@ const EntregaYenviaForm = ({
     reference: "",
     shortUrl: "",
   });
+
+  
   useEffect(() => {
     const cargarRepartos = async () => {
       try {
@@ -186,6 +188,8 @@ const EntregaYenviaForm = ({
 
           const formData = new FormData();
           formData.append("productos", JSON.stringify(carrito));
+          console.log(carrito);
+          
           formData.append("entrega", JSON.stringify(values));
           formData.append("pasarela", JSON.stringify(metoPago));
           formData.append("reference", JSON.stringify(payLink.reference));
@@ -350,6 +354,7 @@ const EntregaYenviaForm = ({
                   setZelleok={setZelleok}
                   zelleOk={zelleOk}
                   setGrandTotalFactura={setGrandTotalFactura}
+                  moneda={moneda}
                 />
               )}
 

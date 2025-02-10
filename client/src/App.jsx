@@ -3,7 +3,6 @@ import { SaboresContextProvider } from "./context/SaboresProvider";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import Trabajador from "./components/Trabajadores/TrabajadorPage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-import ProductoForm from "./components/Sabores/SaboresForm";
 import Navbar from "./components/Navbar";
 import AgregarTrabajador from "./components/Trabajadores/AgregarTrabajador";
 

@@ -12,7 +12,9 @@ interface ImportMeta {
 }
 
 const TinasHome = ({ tinas }: { tinas: Sabor[] }) => {
+  
   const sinTina = tinas.map((item) => ({
+    id_sabor: item.id_sabor,
     nombre_sabor: item.nombre_sabor,
     color: item.color,
     existencia: item.existencia,

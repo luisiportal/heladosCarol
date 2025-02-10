@@ -15,9 +15,13 @@ const ComprarPage = () => {
   const { loader, setLoader, setModalActivo } = useAuth();
   const [navegacion, setNavegacion] = useState(0);
   const { metoPago, setMetoPago } = useMetoPago();
+  const [moneda, setMoneda] = useState("");
+
   const params = useParams();
 
   useEffect(() => {
+    console.log(carrito);
+    
     if (params.id == 3) {
       setNavegacion(3);
       setModalActivo({
@@ -34,7 +38,7 @@ const ComprarPage = () => {
         navegarA: "/",
       });
     }
-  }, []);
+  }, [metoPago]);
 
   const [entrega, setEntrega] = useState({
     ordenante: "",
@@ -58,6 +62,7 @@ const ComprarPage = () => {
         <EscojerMetodoPago
           setNavegacion={setNavegacion}
           setMetoPago={setMetoPago}
+          setMoneda={setMoneda}
         />
       )}
       {navegacion == 1 && (
@@ -70,6 +75,7 @@ const ComprarPage = () => {
             setCarrito={setCarrito}
             setModalActivo={setModalActivo}
             metoPago={metoPago}
+            moneda={moneda}
           />
           <SeccionSaboresCarrito
             carrito={carrito}
@@ -77,6 +83,7 @@ const ComprarPage = () => {
             setCarrito={setCarrito}
             setNavegacion={setNavegacion}
             metoPago={metoPago}
+            moneda={moneda}
           />
         </>
       )}
@@ -93,6 +100,7 @@ const ComprarPage = () => {
           loader={loader}
           metoPago={metoPago}
           setMetoPago={setMetoPago}
+          moneda={moneda}
         />
       )}
     </div>

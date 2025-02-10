@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { Form, Formik, isInteger } from "formik";
 import FormAddProduct from "../../Ventas/FormAddProduct";
 import { writeLocalStorage } from "../../../hooks/useLocalStorage";
+import { precioMoneda } from "./Entrega/precioMoneda";
 
 const SeccionAgregarSabores = ({
   recargar,
@@ -11,6 +12,7 @@ const SeccionAgregarSabores = ({
   setCarrito,
   setModalActivo,
   metoPago,
+  moneda,
 }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [movimiento, setMovimiento] = useState({
@@ -44,7 +46,7 @@ const SeccionAgregarSabores = ({
                 (sabor) => sabor.nombre_sabor === values.nombre_sabor
               )
             ) {
-              const valuesConPago = { ...values, metoPago };
+              const valuesConPago = { ...values, metoPago, moneda };
 
               setCarrito([...carrito, valuesConPago]);
               // Agregar la nueva propiedad 'metoPago' al objeto 'values'
