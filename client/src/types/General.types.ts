@@ -1,4 +1,4 @@
-type Imagen = {
+export type Imagen = {
   id_imagen: number;
   id_recurso: number;
   ruta_image: string;
@@ -18,3 +18,5 @@ export type Sabor = {
   description: string;
   imagenes: Imagen[];
 };
+
+

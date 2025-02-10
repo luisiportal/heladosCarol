@@ -23,10 +23,7 @@ export const CarritosProvaider = ({ children }) => {
   const [recargar, setRecargar] = useState(false);
   const { setModalActivo, modalActivo } = useAuth();
   const { setMetoPago } = useMetoPago();
-  useEffect(() => {
-    console.log(carrito.length);
-    
-  }, [recargar]);
+  useEffect(() => {}, [recargar]);
 
   const cargarCarritosGuardados = () => {
     setCarrito1(readLocalStorage("carrito1"));

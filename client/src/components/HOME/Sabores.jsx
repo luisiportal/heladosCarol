@@ -71,7 +71,6 @@ const Sabores = () => {
           </div>
         </section>
         <h2 className="flex justify-center font-irish text-2xl py-2">
-          <Social sabores={nombreSabores}></Social>
         </h2>
 
         {loader && (

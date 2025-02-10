@@ -9,7 +9,6 @@ const ItemPublicos = ({ navigate, carrito }) => {
   useEffect(() => {
     setCantCarrito(carrito.length);
   }, [carrito]);
-console.log(carrito);
 
   return (
     <>

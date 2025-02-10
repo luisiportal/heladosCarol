@@ -24,10 +24,12 @@ const RevisarPedido = ({
   let totalLocal = 0;
   if (carrito) {
     totalLocal = carrito.reduce(
-      (sum, producto) => sum + producto.precio_venta * producto.cantidad,
+      (sum, producto) => sum + producto.precio_venta_cup * producto.cantidad,
       0
     );
   }
+  console.log(totalLocal);
+  
 
   const factura = {
     ventas: carrito,

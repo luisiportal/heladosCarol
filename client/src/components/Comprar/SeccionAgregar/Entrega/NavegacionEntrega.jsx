@@ -42,7 +42,19 @@ const NavegacionEntrega = ({
                 .validate(entrega)
                 .then(() => {
                   ///guardar local storage
-                  writeLocalStorage("entrega", entrega);
+                  writeLocalStorage("entrega", {
+                    ordenante: entrega.ordenante,
+                    contacto_ordenante: entrega.contacto_ordenante,
+                    beneficiario: entrega.beneficiario,
+                    tel_beneficiario: entrega.tel_beneficiario,
+                    direccion: entrega.direccion,
+                    calle: entrega.calle,
+                    numero: entrega.numero,
+                    calle1: entrega.calle1,
+                    calle2: entrega.calle2,
+                    p_referencia: entrega.p_referencia,
+                    observaciones: entrega.observaciones,
+                  });
                   setNavegacion(3);
                 })
                 .catch((err) => {

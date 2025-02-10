@@ -1,5 +1,6 @@
 import React from "react";
 import LogoHeladosCarol from "../Utilidades/LogoHeladosCarol";
+import Social from "../Social/Social";
 
 const Footer = () => {
   return (
@@ -10,6 +11,7 @@ const Footer = () => {
         <h2>+ 53 55079490</h2>
         <h2>Holguín, Cuba</h2>
         <h2 className="text-xs">Desde 2020</h2>
+        <Social></Social>
       </div>
     </div>
   );

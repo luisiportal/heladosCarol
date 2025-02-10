@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Bton_eliminar_producto from "./Bton_eliminar_producto";
 import DerretidoVainilla2 from "../apariencia/DerretidoVainilla2";
 import { writeLocalStorage } from "../../hooks/useLocalStorage";
@@ -17,6 +17,9 @@ const ProductoCarrito = ({
     setCarrito(deleteSabor);
     writeLocalStorage("sabores", deleteSabor);
   };
+
+  
+  
 
   return (
     <>
