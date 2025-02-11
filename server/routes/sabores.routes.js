@@ -13,7 +13,7 @@ const sabores = Router();
 
 sabores.get("/Sabores", getTodosSabores); // ruta publica
 
-sabores.get("/Sabores/:id_sabor", authRequired, getSabor);
+sabores.get("/Sabores/:id_sabor",  getSabor);
 
 sabores.post(
   "/Sabores",

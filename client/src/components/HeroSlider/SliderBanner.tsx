@@ -8,7 +8,7 @@ const SliderBanner = () => {
 
   useEffect(() => {
     const loadProducto = async () => {
-      const { data } = await getSaborRequest(43);
+      const { data } = await getSaborRequest(14);
       setImages(data.imagenes);
     };
     loadProducto();
@@ -24,18 +24,22 @@ const SliderBanner = () => {
   }, [images]);
 
   return (
-   <section className="px-3">
-     <div className="relative w-full h-48 rounded-xl mt-2">
-      {images.map((image, index) => (
-        <img
-          src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${image.ruta_image}`}
-          className={`rounded-lg h-80 slide ${index === current ? "active" : ""}`}
-          alt={`Slide ${index + 1}`}
-          key={index}
-        />
-      ))}
-    </div>
-   </section>
+    <section className="px-3">
+      <div className="relative w-full h-48 rounded-xl mt-2">
+        {images.map((image, index) => (
+          <img
+            src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${
+              image.ruta_image
+            }`}
+            className={`rounded-lg h-80 slide ${
+              index === current ? "active" : ""
+            }`}
+            alt={`Slide ${index + 1}`}
+            key={index}
+          />
+        ))}
+      </div>
+    </section>
   );
 };
 
