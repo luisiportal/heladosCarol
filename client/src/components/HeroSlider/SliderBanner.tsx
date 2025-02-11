@@ -8,7 +8,7 @@ const SliderBanner = () => {
 
   useEffect(() => {
     const loadProducto = async () => {
-      const { data } = await getSaborRequest(46);
+      const { data } = await getSaborRequest(43);
       setImages(data.imagenes);
     };
     loadProducto();
