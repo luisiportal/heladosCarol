@@ -24,8 +24,8 @@ export const resizeSharp = async (file) => {
     fs.mkdirSync(dir, { recursive: true });
   }
 
-  if (metadata.width > 500) {
-    await sharp(file.path).resize({ width: 500 }).toFile(outputPath);
+  if (metadata.width > 800) {
+    await sharp(file.path).resize({ width: 800 }).toFile(outputPath);
 
     console.log(`Imagen redimensionada guardada en: ${outputPath}`);
 
