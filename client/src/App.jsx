@@ -39,10 +39,12 @@ import FrasesForm from "./components/Frases/FrasesForm";
 import EscojerMetodoPago from "./components/MetodosPago/EscojerMetodoPago";
 import Repartos from "./components/Repartos/Repartos";
 import RepartoForm from "./components/Repartos/RepartoForm";
+import ScrollToTop from "./components/Utilidades/ScrollToTop";
 
 const App = () => {
   return (
     <div className="bg-neutral-100">
+      <ScrollToTop />
       <SaboresContextProvider>
         <AuthProvider>
           <ReviewContextProvider>
