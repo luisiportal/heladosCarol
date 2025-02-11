@@ -188,7 +188,6 @@ const EntregaYenviaForm = ({
 
           const formData = new FormData();
           formData.append("productos", JSON.stringify(carrito));
-          console.log(carrito);
           
           formData.append("entrega", JSON.stringify(values));
           formData.append("pasarela", JSON.stringify(metoPago));

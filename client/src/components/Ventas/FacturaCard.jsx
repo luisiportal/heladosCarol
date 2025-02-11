@@ -85,6 +85,8 @@ function FacturaCard({
     }
   }, []);
 
+  console.log(factura.entrega);
+  
   return (
     <div
       className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}

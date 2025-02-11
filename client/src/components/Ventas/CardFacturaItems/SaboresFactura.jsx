@@ -9,8 +9,7 @@ const SaboresFactura = ({ ventas, envio, moneda, tropiPayFee }) => {
 
     return precio;
   };
-
- 
+console.log(ventas);
 
   return (
     <div className="bg-neutral-100 rounded-xl flex flex-col justify-center p-3 w-full">
@@ -27,7 +26,11 @@ const SaboresFactura = ({ ventas, envio, moneda, tropiPayFee }) => {
             </div>
           </div>
           <div>
-           {sabor.precio_total_sabor} {precioSabor(sabor) * Number(sabor.cantidad)} {moneda}
+            {sabor.id_factura
+              ? sabor.precio_total_sabor
+              : precioSabor(sabor) * Number(sabor.cantidad)}
+
+            {" " +moneda}
           </div>
         </div>
       ))}

@@ -20,7 +20,6 @@ const ComprarPage = () => {
   const params = useParams();
 
   useEffect(() => {
-    console.log(carrito);
     
     if (params.id == 3) {
       setNavegacion(3);

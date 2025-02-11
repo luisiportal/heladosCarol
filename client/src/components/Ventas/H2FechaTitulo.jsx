@@ -36,6 +36,7 @@ const H2FechaTitulo = ({
       {facturasMismafecha.map((factura) => {
         return (
           <FacturaCard
+            moneda={factura.moneda}
             factura={factura}
             setFacturas={setFacturas}
             key={factura.id}

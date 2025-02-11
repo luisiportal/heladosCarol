@@ -46,13 +46,11 @@ const SeccionAgregarSabores = ({
                 (sabor) => sabor.nombre_sabor === values.nombre_sabor
               )
             ) {
-              const valuesConPago = { ...values, metoPago, moneda };
-
-              setCarrito([...carrito, valuesConPago]);
+              setCarrito([...carrito, values]);
               // Agregar la nueva propiedad 'metoPago' al objeto 'values'
 
               // Escribir en el almacenamiento local
-              writeLocalStorage("sabores", [...carrito, valuesConPago]);
+              writeLocalStorage("sabores", [...carrito, values]);
             } else {
               setModalActivo({
                 mensaje: `Ya este producto ha sido agregado`,

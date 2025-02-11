@@ -79,13 +79,19 @@ export const createVenta = async (req, res) => {
         { transaction: t }
       );
 
+      const calcularPrecioUnitario = (producto) => {
+        const precioUnitario =
+          moneda == "CUP" ? producto.precio_venta_cup : producto.precio_venta;
+        return precioUnitario;
+      };
+
       for (const producto of productos) {
         // Crear la venta
         const ventaNueva = await Venta.create(
           {
             id_sabor: producto.id_sabor,
             cantidad: producto.cantidad,
-            precio_total_sabor: producto.cantidad * producto.precio_venta,
+            precio_total_sabor: producto.cantidad * calcularPrecioUnitario(producto),
             id_factura: factura.id,
           },
           { transaction: t }

@@ -69,7 +69,7 @@ const FormAddProduct = ({
             className="p-1 pb-4 mt-1  text-lg font-bold text-slate-900"
             htmlFor="sabores"
           >
-            Sabores :
+            Seleccionar Productos :
           </label>
           <Select
             className="w-44"
