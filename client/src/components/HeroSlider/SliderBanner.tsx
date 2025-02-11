@@ -5,10 +5,10 @@ import { Imagen } from "../../types/General.types";
 const SliderBanner = () => {
   const [current, setCurrent] = useState(0);
   const [images, setImages] = useState<Imagen[]>([]);
-
+//id ariculo 43 
   useEffect(() => {
     const loadProducto = async () => {
-      const { data } = await getSaborRequest(14);
+      const { data } = await getSaborRequest(43);
       setImages(data.imagenes);
     };
     loadProducto();
