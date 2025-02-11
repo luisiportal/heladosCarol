@@ -29,7 +29,7 @@ const SliderBanner = () => {
       {images.map((image, index) => (
         <img
           src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${image.ruta_image}`}
-          className={`rounded-lg h-80 slide ${index === current ? "active" : ""}`}
+          className={`object-cover object-center rounded-lg h-80 slide ${index === current ? "active" : ""}`}
           alt={`Slide ${index + 1}`}
           key={index}
         />
