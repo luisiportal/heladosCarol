@@ -22,6 +22,7 @@ const TinasHome = ({ tinas }: { tinas: Sabor[] }) => {
     precio_venta_cup: item.precio_venta_cup,
     home_img: item.home_img,
     imagenes: item.imagenes,
+    envase:item.envase
   }));
 
   return (
@@ -46,7 +47,7 @@ const TinasHome = ({ tinas }: { tinas: Sabor[] }) => {
             <h2
               className={`absolute top-0 left-0 font-bold text-sm text-white p-1 rounded-br-lg rounded-tl-lg bg-fresa`}
             >
-              Tinas 4L
+              {tina.envase}
             </h2>
           </div>
           <div className="flex justify-between py-2 px-2 font-bold first-letter:bold text-neutral-950 text-xs">
@@ -60,7 +61,7 @@ const TinasHome = ({ tinas }: { tinas: Sabor[] }) => {
           ></div>
 
           <h2 className="font-irish flex justify-center text-md px-2 py-1 pb-2">
-            {tina.nombre_sabor.replace("Tina", "").trim()}
+            {tina.nombre_sabor.replace("Tanqueta", "").trim()}
           </h2>
 
           <div className="flex justify-center p-2">

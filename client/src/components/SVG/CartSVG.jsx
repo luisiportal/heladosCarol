@@ -8,7 +8,7 @@ const CartSVG = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-10 h-10"
+      className="w-8 h-8"
     >
       <path
         strokeLinecap="round"
