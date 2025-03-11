@@ -40,7 +40,7 @@ const Tropipay = ({ total, setPayLink, payLink, description }) => {
         <button
           className="flex justify-center opacity-100 transition-all duration-500"
           type="submit"
-          onClick={() => (location.href = payLink.shortUrl)}
+          //onClick={() => (location.href = payLink.shortUrl)}
         >
           <img
             className="w-48 h-12 rounded-lg"

@@ -117,7 +117,6 @@ const EntregaYenviaForm = ({
     shortUrl: "",
   });
 
-  
   useEffect(() => {
     const cargarRepartos = async () => {
       try {
@@ -188,7 +187,7 @@ const EntregaYenviaForm = ({
 
           const formData = new FormData();
           formData.append("productos", JSON.stringify(carrito));
-          
+
           formData.append("entrega", JSON.stringify(values));
           formData.append("pasarela", JSON.stringify(metoPago));
           formData.append("reference", JSON.stringify(payLink.reference));
@@ -203,24 +202,25 @@ const EntregaYenviaForm = ({
 
           try {
             const venta = await createVentaRequest(formData);
+            if (venta.data.status == 200) {
+              if (metoPago != "TropiPay") {
+                setModalActivo({
+                  mensaje: venta.data.message,
+                  activo: true,
+                  navegarA: "/",
+                });
+              } else {
+                location.href = payLink.shortUrl;
+                setLoader(true);
+              }
 
-            if (metoPago != "TropiPay") {
-              setModalActivo({
-                mensaje: "Su Orden ha sido creada",
-                activo: true,
-                navegarA: "/",
-              });
-            } else {
-              location.href = payLink.shortUrl;
-              setLoader(true);
-            }
+              setCarrito([]);
+              localStorage.removeItem("entrega");
+              localStorage.removeItem("sabores");
 
-            setCarrito([]);
-            localStorage.removeItem("entrega");
-            localStorage.removeItem("sabores");
-
-            if (metoPago != "TropiPay") {
-              setLoader(false);
+              if (metoPago != "TropiPay") {
+                setLoader(false);
+              }
             }
           } catch (error) {
             console.log(error);
