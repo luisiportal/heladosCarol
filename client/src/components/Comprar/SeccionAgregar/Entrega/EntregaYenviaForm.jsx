@@ -202,7 +202,8 @@ const EntregaYenviaForm = ({
 
           try {
             const venta = await createVentaRequest(formData);
-            if (venta.data.status == 200) {
+
+            if (venta.status == 200) {
               if (metoPago != "TropiPay") {
                 setModalActivo({
                   mensaje: venta.data.message,
