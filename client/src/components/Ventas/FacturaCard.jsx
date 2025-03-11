@@ -200,7 +200,7 @@ function FacturaCard({
                   <TelefonoNotificarFactura
                     numero={`${factura.entrega.tel_beneficiario}`}
                     ventas={ventas}
-                    grandTotal={total}
+                    grandTotal={factura.total_venta}
                     moneda={factura.moneda}
                     persona={factura.entrega.beneficiario}
                   />
