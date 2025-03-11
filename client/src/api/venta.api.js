@@ -1,7 +1,7 @@
 import axios from "./axios.js";
 
 export const createVentaRequest = async (ordenCompleta) => {
-  await axios.post(`/ventas`, ordenCompleta);
+  return await axios.post(`/ventas`, ordenCompleta);
 };
 
 export const createPagoRequest = async (data) => {
