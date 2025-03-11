@@ -225,6 +225,8 @@ const EntregaYenviaForm = ({
             }
           } catch (error) {
             console.log(error);
+          } finally {
+            setLoader(false);
           }
         }}
       >
