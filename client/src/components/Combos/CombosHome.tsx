@@ -19,7 +19,6 @@ const CombosHome = ({ combos }: { combos: Sabor[] }) => {
   const launchEvent = (id_sabor: string) => {
     setItem(id_sabor);
     // onHover(combo.id_sabor);
-    console.log("maouse enter" + id_sabor);
   };
 
   return (

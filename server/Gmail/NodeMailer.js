@@ -19,7 +19,6 @@ export const EnviarCorreo = async ({
   plantilla,
   moneda,
 }) => {
-  console.log(entrega);
 
   // Crear un transportador
   let transporter = nodemailer.createTransport({

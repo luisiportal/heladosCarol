@@ -6,16 +6,14 @@ import NavegacionEntrega from "./NavegacionEntrega";
 import DerretidoBeneficiario from "../../../SVG/DerretidoBeneficiario";
 import DerretidoDireccion from "../../../SVG/DerretidoDireccion";
 
-import {
-  createPagoRequest,
-  createVentaRequest,
-} from "../../../../api/venta.api";
+import { createVentaRequest } from "../../../../api/venta.api";
 import Loader from "../../../Utilidades/Loader";
 import InputEntrega from "./InputEntrega";
 import RevisarPedido from "./RevisarPedido";
 import { getRepartosRequest } from "../../../../api/repartos.api";
 import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
 import { readLocalStorage } from "../../../../hooks/useLocalStorage";
+import { useModocerrado } from "../../../Modos/useModoCerrado";
 
 const schema = Yup.object({
   ordenante: Yup.string()
@@ -111,6 +109,7 @@ const EntregaYenviaForm = ({
     total_venta: 0,
     tropiPayFee: 0,
   });
+  const { modo } = useModocerrado();
 
   const [payLink, setPayLink] = useState({
     reference: "",
@@ -165,6 +164,12 @@ const EntregaYenviaForm = ({
         enableReinitialize={true}
         validationSchema={schema}
         onSubmit={async (values) => {
+          if (modo.activado == true)
+            return setModalActivo({
+              mensaje: modo.mensaje,
+              activo: true,
+              errorColor: true,
+            });
           if (metoPago == "") {
             return setModalActivo({
               mensaje: "Debe Escojer una forma de pago",
@@ -225,6 +230,11 @@ const EntregaYenviaForm = ({
             }
           } catch (error) {
             console.log(error);
+            return setModalActivo({
+              mensaje: error.response.data.message,
+              activo: true,
+              errorColor: true,
+            });
           } finally {
             setLoader(false);
           }

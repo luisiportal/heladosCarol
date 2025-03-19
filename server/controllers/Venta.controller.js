@@ -13,6 +13,7 @@ import {
   NotificarFacturaCliente,
 } from "./EnviarCorreo.controller.js";
 import { enviaNotification } from "./suscriptions.controller.js";
+import { checkExistencia } from "./utilidadades/checkExistencia.js";
 
 export const createVenta = async (req, res) => {
   let ruta_image = "defaultPerfil.jpg";
@@ -24,6 +25,16 @@ export const createVenta = async (req, res) => {
   const entrega = JSON.parse(req.body.entrega);
   const pasarela = JSON.parse(req.body.pasarela);
   const reference = JSON.parse(req.body.reference);
+
+  try {
+    const check = await checkExistencia({ productos });
+
+    if (check) {
+      return res.status(500).json({ message: `${check} Producto agotado` });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 
   const tipomoneda = (pasarela) => {
     let moneda = "";
@@ -91,7 +102,8 @@ export const createVenta = async (req, res) => {
           {
             id_sabor: producto.id_sabor,
             cantidad: producto.cantidad,
-            precio_total_sabor: producto.cantidad * calcularPrecioUnitario(producto),
+            precio_total_sabor:
+              producto.cantidad * calcularPrecioUnitario(producto),
             id_factura: factura.id,
           },
           { transaction: t }
