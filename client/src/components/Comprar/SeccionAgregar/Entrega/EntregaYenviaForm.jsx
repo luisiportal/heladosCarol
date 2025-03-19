@@ -109,7 +109,6 @@ const EntregaYenviaForm = ({
     total_venta: 0,
     tropiPayFee: 0,
   });
-  const { modo } = useModocerrado();
 
   const [payLink, setPayLink] = useState({
     reference: "",
@@ -164,12 +163,7 @@ const EntregaYenviaForm = ({
         enableReinitialize={true}
         validationSchema={schema}
         onSubmit={async (values) => {
-          if (modo.activado == true)
-            return setModalActivo({
-              mensaje: modo.mensaje,
-              activo: true,
-              errorColor: true,
-            });
+         
           if (metoPago == "") {
             return setModalActivo({
               mensaje: "Debe Escojer una forma de pago",

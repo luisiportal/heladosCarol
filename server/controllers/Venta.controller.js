@@ -14,6 +14,7 @@ import {
 } from "./EnviarCorreo.controller.js";
 import { enviaNotification } from "./suscriptions.controller.js";
 import { checkExistencia } from "./utilidadades/checkExistencia.js";
+import { Modos } from "../models/Modos.model.js";
 
 export const createVenta = async (req, res) => {
   let ruta_image = "defaultPerfil.jpg";
@@ -27,6 +28,16 @@ export const createVenta = async (req, res) => {
   const reference = JSON.parse(req.body.reference);
 
   try {
+    const checkCerrado = async () => {
+      const cerrado = await Modos.findByPk(1);
+  
+      if (cerrado.activado == true)
+        return res.status(500).json({ message: `Lo sentimos ${cerrado.mensaje}`});
+    };
+  
+    checkCerrado();
+
+
     const check = await checkExistencia({ productos });
 
     if (check) {
