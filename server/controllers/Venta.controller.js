@@ -28,24 +28,28 @@ export const createVenta = async (req, res) => {
   const reference = JSON.parse(req.body.reference);
 
   try {
-    const checkCerrado = async () => {
-      const cerrado = await Modos.findByPk(1);
+    const cerrado = await Modos.findByPk(1);
+    
+    if (cerrado && cerrado.activado === true) { // Validación segura
+      return res
+        .status(500)
+        .json({ message: `Lo sentimos ${cerrado.mensaje}` });
+    }
   
-      if (cerrado.activado == true)
-        return res.status(500).json({ message: `Lo sentimos ${cerrado.mensaje}`});
-    };
-  
-    checkCerrado();
-
-
     const check = await checkExistencia({ productos });
-
+  
     if (check) {
-      return res.status(500).json({ message: `${check} Producto agotado` });
+      return res
+        .status(500)
+        .json({ message: `${check} Producto agotado` });
     }
   } catch (error) {
-    console.log(error);
+    console.error('Error al procesar la solicitud:', error); // Mensaje más informativo
+    return res
+      .status(500)
+      .json({ message: 'Se produjo un error al procesar la solicitud. Por favor, inténtalo de nuevo más tarde.' });
   }
+  
 
   const tipomoneda = (pasarela) => {
     let moneda = "";
