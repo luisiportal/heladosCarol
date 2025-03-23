@@ -52,7 +52,7 @@ function SaborCard({ sabor }) {
         </div>
         <div className="px-3 text-left text-slate-700 font-semibold flex justify-between w-full gap-7 align-middle">
           <div className="w-3/5">
-            <h2 className="text-slate-900 font-bold text-sm line-clamp-1">
+            <h2 className="text-slate-900 font-bold text-sm">
               {sabor.nombre_sabor}
             </h2>
             <h2 className="text-slate-900 font-light text-sm line-clamp-1">
@@ -63,7 +63,7 @@ function SaborCard({ sabor }) {
             </span>
           </div>
 
-          <div className="w-2/5 text-right">
+          <div className="w-2/5 text-right text-xs">
             <p>{sabor.precio_venta} USD</p>
             <p>{sabor.precio_venta_cup} CUP</p>
 

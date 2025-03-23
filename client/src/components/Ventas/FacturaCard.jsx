@@ -24,7 +24,7 @@ function FacturaCard({
   file,
   setGrandTotalFactura,
   tropiPayFee,
-  moneda
+  moneda,
 }) {
   const { ventas } = factura;
   const { setModalActivo, perfil, setLoader } = useAuth();
@@ -85,8 +85,7 @@ function FacturaCard({
     }
   }, []);
 
-  console.log(factura.entrega);
-  
+
   return (
     <div
       className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
@@ -113,7 +112,10 @@ function FacturaCard({
             moneda={moneda}
             tropiPayFee={tropiPayFeeCard}
           />
-          <TotalFactura total={Number(total ?? factura.total_venta).toFixed(2)} moneda={moneda} />
+          <TotalFactura
+            total={Number(total ?? factura.total_venta).toFixed(2)}
+            moneda={moneda}
+          />
         </div>
 
         <div className="flex-grow flex flex-col  p-2 text-xs">

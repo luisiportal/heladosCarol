@@ -14,7 +14,7 @@ console.log(ventas);
   return (
     <div className="bg-neutral-100 rounded-xl flex flex-col justify-center p-3 w-full">
       {ventas.map((sabor, index) => (
-        <div key={index} className="flex gap-6 justify-between">
+        <div key={index} className="flex justify-between">
           <div>
             <div className="flex justify-between">
               <div>
@@ -25,7 +25,7 @@ console.log(ventas);
               </div>
             </div>
           </div>
-          <div>
+          <div className="w-20 text-right">
             {sabor.id_factura
               ? sabor.precio_total_sabor
               : precioSabor(sabor) * Number(sabor.cantidad)}
