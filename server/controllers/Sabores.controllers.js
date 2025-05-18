@@ -68,6 +68,7 @@ export const createSabor = async (req, res) => {
       existencia,
       stockMinimo,
       precio_venta,
+      precio_venta_cup,
       costo_unitario,
       home_img,
     } = req.body;
@@ -89,7 +90,7 @@ export const createSabor = async (req, res) => {
             envase,
             ruta_image,
             home_img,
-            precio_venta_cup: Math.round(precio_venta * usd),
+            precio_venta_cup,
           },
           { transaction: t }
         );
@@ -129,7 +130,6 @@ export const createSabor = async (req, res) => {
 // actualizar
 
 export const updateSabor = async (req, res) => {
-  const { precio: usd } = await Moneda.findByPk(2);
 
   const imgToDelete = req.body.imgToDelete
     ? JSON.parse(req.body.imgToDelete)
@@ -151,13 +151,13 @@ export const updateSabor = async (req, res) => {
         description,
         color,
         envase,
-        existencia,
         stockMinimo,
         precio_venta,
+        precio_venta_cup,
         costo_unitario,
         home_img,
       } = req.body;
-      console.log(imgToDelete);
+      console.log(precio_venta_cup);
 
       await deleteImagenesSabores(imgToDelete);
 
@@ -170,7 +170,7 @@ export const updateSabor = async (req, res) => {
       response.color = color;
       response.envase = envase;
       response.home_img = home_img;
-      response.precio_venta_cup = Math.round(precio_venta * usd);
+      response.precio_venta_cup = precio_venta_cup;
       ruta_image && (response.ruta_image = ruta_image);
       response.stockMinimo = stockMinimo;
 
