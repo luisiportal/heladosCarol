@@ -24,13 +24,13 @@ const Login = () => {
     setIsAuthenticated,
   } = useAuth();
   const [credencial_invalida, setCredencial_invalida] = useState(null);
-  const { setModalActivo, modalActivo } = useAuth();
+  const { setModalActivo } = useAuth();
 
   useEffect(() => {
     setLoader(false);
   }, [isAuthenticated]);
   return (
-    <div className="h-screen">
+    <div >
       <Formik
         initialValues={{ username: "", password: "" }}
         validationSchema={Yup.object({
@@ -103,7 +103,7 @@ const Login = () => {
       >
         {({ isSubmitting, errors, handleChange }) => (
           <Form>
-            <div className="h-screen ">
+            <div className="">
               <section className="w-full">
                 <ImagenPrincipal />
                 <div>
@@ -133,7 +133,7 @@ const Login = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="bg-fresa rounded-md p-2 text-white font-semibold"
+                      className="bg-fresa rounded-md p-2 text-white font-semibold mb-20"
                     >
                       Iniciar sesión
                     </button>

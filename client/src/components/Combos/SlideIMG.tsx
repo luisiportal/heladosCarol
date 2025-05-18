@@ -14,7 +14,7 @@ const SlideIMG = ({ images, combo, item, current, setCurrent }) => {
       {images.map((imagen, index) => (
         <img
           key={index}
-          className={`rounded-lg h-80 slide ${
+          className={`rounded-lg h-80 slide${
             index === current ? "active" : ""
           }`}
           src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${

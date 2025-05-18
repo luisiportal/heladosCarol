@@ -24,7 +24,6 @@ import CuadrePage from "./components/CuadreCaja/CuadrePage";
 import Edit from "./components/Movimientos/Edit";
 import ResumenVenta from "./components/Ventas/ResumenVenta";
 import SaboresPage from "./components/Sabores/SaboresPage";
-import SaboresForm from "./components/Sabores/SaboresForm";
 
 import ComprarPage from "./components/Comprar/ComprarPage";
 import ListarReviewsBackend from "./components/Reviews/Backend/ListarReviewsBackend";
@@ -36,10 +35,10 @@ import Historia from "./components/Landing/Historia";
 import Contacto from "./components/Landing/Contacto";
 import FrasesPage from "./components/Frases/FrasesPage";
 import FrasesForm from "./components/Frases/FrasesForm";
-import EscojerMetodoPago from "./components/MetodosPago/EscojerMetodoPago";
 import Repartos from "./components/Repartos/Repartos";
 import RepartoForm from "./components/Repartos/RepartoForm";
 import ScrollToTop from "./components/Utilidades/ScrollToTop";
+import SaboresForm from "./components/Sabores/SaboresForm";
 
 const App = () => {
   return (

@@ -30,7 +30,7 @@ const CombosHome = ({ combos }: { combos: Sabor[] }) => {
           key={combo.id_sabor}
           className="w-full flex flex-col text-neutral-950 border-2 bg-white rounded-lg hover:border-fresa transition-colors duration-500"
         >
-          <div title="imagen contendor" className="relative h-56">
+          <div title={combo.nombre_sabor} className="relative h-56">
             <picture className="z-10">
               {item == combo.id_sabor ? (
                 <SlideIMG
