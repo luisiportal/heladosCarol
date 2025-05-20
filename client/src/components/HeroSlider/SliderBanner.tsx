@@ -31,7 +31,7 @@ const SliderBanner = () => {
             src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${
               image.ruta_image
             }`}
-            className={`rounded-lg h-80 slide ${
+            className={`rounded-lg w-full h-full object-cover slide ${
               index === current ? "active" : ""
             }`}
             alt={`Slide ${index + 1}`}

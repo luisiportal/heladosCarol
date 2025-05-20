@@ -10,11 +10,11 @@ const SlideIMG = ({ images, combo, item, current, setCurrent }) => {
     return () => clearInterval(interval);
   }, [item]);
   return (
-    <div>
+    <div className="w-full h-56">
       {images.map((imagen, index) => (
         <img
           key={index}
-          className={`rounded-lg h-80 slide${
+          className={`w-full h-full object-cover rounded-lg  slide${
             index === current ? "active" : ""
           }`}
           src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${
