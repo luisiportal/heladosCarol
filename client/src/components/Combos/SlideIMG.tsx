@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 const SlideIMG = ({ images, combo, item, current, setCurrent }) => {
-  console.log(item + "ff" + current);
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
@@ -14,7 +13,7 @@ const SlideIMG = ({ images, combo, item, current, setCurrent }) => {
       {images.map((imagen, index) => (
         <img
           key={index}
-          className={`w-full h-full object-cover rounded-lg  slide${
+          className={`w-full h-full object-cover rounded-lg slide ${
             index === current ? "active" : ""
           }`}
           src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${
