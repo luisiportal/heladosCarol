@@ -220,3 +220,15 @@ input[type="number"] {
 .slide.active {
   opacity: 1;
 }
+
+.image-gallery-thumbnail img {
+  width: 500px;
+  height: 100px;
+  object-fit: cover; /* Ajusta la imagen sin distorsionar */
+}
+
+.image-gallery-slide img {
+  width: 500px;
+  height: 400px;
+  object-fit: cover; /* Ajusta la imagen sin distorsionar */
+}
