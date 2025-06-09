@@ -47,7 +47,7 @@ export const getTodosSabores = async (req, res) => {
 export const getSaboresReservar = async (req, res) => {
   try {
     const response = await Sabor.findAll({
-      where: { reservar: true },
+      where: { reservar: true, existencia: { [Op.gte]: 1 } },
       order: [["existencia", "DESC"]],
       include: [
         {
