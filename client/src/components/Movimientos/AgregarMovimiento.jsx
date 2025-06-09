@@ -12,13 +12,15 @@ import { useSabores } from "../../context/SaboresProvider";
 import { writeLocalStorageCrearMovimiento } from "../../hooks/useLocalStorage";
 import SelectorProductos from "./SelectorProductos";
 import { useNavigate } from "react-router-dom";
+import { getSaboresBackendRequest } from "../../api/sabores.api";
 
 const AgregarMovimiento = (tipo) => {
+  const [sabores, setSabores] = useState([]);
+
   const [estadoEnviar, setEstadoEnviar] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const { loader, setLoader, isOnline, modalActivo, setModalActivo } =
     useAuth();
-  const { sabores, loadSabores } = useSabores();
   const [movimiento, setMovimiento] = useState({
     cantidad: "",
     sabor: "",
@@ -27,7 +29,17 @@ const AgregarMovimiento = (tipo) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    loadSabores();
+    try {
+      const cargar = async () => {
+        setLoader(true);
+        const response = await getSaboresBackendRequest();
+        setSabores(response.data);
+        setLoader(false);
+      };
+      cargar();
+    } catch (error) {
+      console.log(error);
+    }
   }, [estadoEnviar]);
 
   let fechaActual = new Date();

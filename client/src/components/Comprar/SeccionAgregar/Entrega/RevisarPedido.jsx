@@ -66,7 +66,7 @@ const RevisarPedido = ({
   };
 
   return (
-    <div className="mb-40">
+    <div className="mb-4">
       <FacturaCard
         reservando={reservando}
         factura={factura}
