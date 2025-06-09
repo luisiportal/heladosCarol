@@ -6,7 +6,7 @@ import { Moneda } from "../models/Monedas.model.js";
 import { Imagen } from "../models/Imagenes.model.js";
 import { deleteImagenesSabores } from "./utilidadades/deleteImagenesSabores.js";
 import { resizeSharp } from "./utilidadades/sharpResize.js";
-
+import { Op } from "sequelize";
 // listar todas los sabores
 export const getSaboresBackend = async (req, res) => {
   try {
@@ -29,7 +29,9 @@ export const getTodosSabores = async (req, res) => {
   try {
     const response = await Sabor.findAll({
       order: [["existencia", "DESC"]],
-      where: { reservar: null },
+      where: {
+    reservar: { [Op.is]: null }
+  },
 
       include: [
         {
