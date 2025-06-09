@@ -25,7 +25,8 @@ function FacturaCard({
   setGrandTotalFactura,
   tropiPayFee,
   moneda,
-  reservando
+  reservando,
+  fechaReserva,
 }) {
   const { ventas } = factura;
   const { setModalActivo, perfil, setLoader } = useAuth();
@@ -86,12 +87,18 @@ function FacturaCard({
     }
   }, []);
 
-
   return (
     <div
       className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
     >
-        {reservando && <h2 className="p-2 bg-yellow-400 font-bold rounded-xl text-xs flex gap-2 mx-2">Reserva</h2>}
+      {reservando && (
+        <div className="bg-yellow-400 p-4 font-bold rounded-xl text-xs flex flex-col gap-2">
+          <h2 className="text-sm">
+            Reserva
+          </h2>
+          <h2>Esta orden sera entregada el {fechaReserva}</h2>
+        </div>
+      )}
 
       <div className="text-left text-slate-700 font-semibold w-full h-full align-middle flex flex-col">
         <div className="flex justify-between items-center font-extralight  text-sm m-2">
@@ -150,8 +157,11 @@ function FacturaCard({
             )}
           </div>
         </div>
-        {factura.fechaEntrega && <h2 className="p-2 bg-yellow-400 font-bold rounded-xl text-xs flex gap-2 mx-2">Reserva para el {factura.fechaEntrega}</h2>}
-
+        {factura.fechaEntrega && (
+          <h2 className="p-2 bg-yellow-400 font-bold rounded-xl text-xs flex gap-2 mx-2">
+            Reserva para el {factura.fechaEntrega}
+          </h2>
+        )}
 
         <>
           {file || factura.ruta_image ? (

@@ -75,6 +75,7 @@ const RevisarPedido = ({
         setGrandTotalFactura={setGrandTotalFactura}
         tropiPayFee={tropiPayFee}
         moneda={moneda}
+        fechaReserva={fechaReserva}
       />
       {params.id == 3 ? (
         "Pago por TropiPay Correcto"
