@@ -2,24 +2,27 @@ import React, { useEffect, useState } from "react";
 import BuscarSVG from "../SVG/BuscarSVG";
 import Loader from "../Utilidades/Loader";
 import BarraFiltrado from "../Utilidades/BarraFiltrado";
-import { useSabores } from "../../context/SaboresProvider";
 import SaborCard from "./SaborCard";
-import { getSaboresRequest } from "../../api/sabores.api";
+import { getSaboresBackendRequest } from "../../api/sabores.api";
 
-const BuscadorSabores = ({ loader, setLoader, isOnline }) => {
-  const { loadSabores, sabores } = useSabores();
-
+const BuscadorSabores = ({ loader, setLoader }) => {
+  const [sabores, setSabores] = useState([]);
   const [filtroSabores, setFiltroSabores] = useState([]);
   const [order, setOrder] = useState("DSC");
   useEffect(() => {
     try {
-      loadSabores();
+      const cargar = async () => {
+        setLoader(true);
+        const response = await getSaboresBackendRequest();
+        setSabores(response.data);
+        setLoader(false);
+      };
+      cargar();
     } catch (error) {
       console.log(error);
     }
   }, [filtroSabores]);
 
- 
   const handleChange = (e) => {
     e.preventDefault();
     try {

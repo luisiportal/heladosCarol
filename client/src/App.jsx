@@ -39,112 +39,127 @@ import Repartos from "./components/Repartos/Repartos";
 import RepartoForm from "./components/Repartos/RepartoForm";
 import ScrollToTop from "./components/Utilidades/ScrollToTop";
 import SaboresForm from "./components/Sabores/SaboresForm";
-
+import ReservarProductos from "./components/Reservas/ReservarProductos";
+import { QueryClient,QueryClientProvider } from "@tanstack/react-query";
+import ReservaPage from "./components/Reservas/ReservaPage";
 const App = () => {
+  const queryClient = new QueryClient();
   return (
-    <div className="bg-neutral-100">
-      <ScrollToTop />
-      <SaboresContextProvider>
-        <AuthProvider>
-          <ReviewContextProvider>
-            <CarritosProvaider>
-              {" "}
-              <Navbar />
-              <div className="container max-w-md mx-auto">
-                <Routes>
-                  <Route path="/pote" element={<Trabajador />} />
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="prueba" element={<Prueba />} />
-                  <Route
-                    path="/descripcion"
-                    element={<DescripcionProducto />}
-                  />
-                  <Route path="/historia" element={<Historia />} />
-                  <Route path="/contacto" element={<Contacto />} />
-
-                  <Route path="/ordenes" element={<RastrearOrden />} />
-                  <Route path="/comprar" element={<ComprarPage />} />
-                  <Route path="/comprar/:id" element={<ComprarPage />} />
-                  <Route element={<ProtectedRoutes />}>
-                    <Route path="/cambio" element={<TipoCambioPage />} />
-                    <Route path="/repartos" element={<Repartos />} />
-                    <Route path="/repartos/:id" element={<RepartoForm />} />
-                    <Route path="/repartos/new" element={<RepartoForm />} />
-
-                    <Route path="/cerrado" element={<CerradoForm />} />
-                    <Route
-                      path="/opiniones"
-                      element={<ListarReviewsBackend />}
-                    />
-                    <Route path="/frases" element={<FrasesPage />} />
-                    <Route path="/frases/edit/:id" element={<FrasesForm />} />
-                    <Route path="/logs/" element={<LogsPage />} />
-                    <Route path="/new" element={<SaboresForm />} />
-                    <Route
-                      path="/trabajador/new"
-                      element={<AgregarTrabajador />}
-                    />
-                    <Route
-                      path="/trabajador/profile/edit/:id"
-                      element={<AgregarTrabajador />}
-                    />
-
-                    <Route
-                      path="/trabajador/plantilla"
-                      element={<ListadoTrabajadores />}
-                    />
-                    <Route path="/movimientos" element={<Movimientos />} />
-                    <Route
-                      path="/movimientos/edit/:id_movimiento"
-                      element={<Edit />}
-                    />
-
-                    <Route path="/cuadre/" element={<CuadrePage />} />
-                    <Route path="/cuadre/:fecha" element={<ResumenVenta />} />
-
-                    <Route
-                      path="/sabores/edit/:id_sabor"
-                      element={<SaboresForm />}
-                    />
-
-                    <Route path="/sabores" element={<SaboresPage />} />
-                    <Route path="*" element={<NotFound />} />
+    <QueryClientProvider client={queryClient}>
+      <div className="bg-neutral-100">
+        <ScrollToTop />
+        <SaboresContextProvider>
+          <AuthProvider>
+            <ReviewContextProvider>
+              <CarritosProvaider>
+                {" "}
+                <Navbar />
+                <div className="container max-w-md mx-auto">
+                  <Routes>
+                    <Route path="/pote" element={<Trabajador />} />
+                    <Route path="/" element={<HomePage />} />
                     <Route path="prueba" element={<Prueba />} />
+                    <Route path="/reservar" element={<ReservarProductos />} />
+                    <Route
+                      path="/descripcion"
+                      element={<DescripcionProducto />}
+                    />
+                    <Route path="/historia" element={<Historia />} />
+                    <Route path="/contacto" element={<Contacto />} />
 
-                    <Route
-                      path="/movimientos/entrada"
-                      element={
-                        <AgregarMovimiento tipo={"Entrada"} key={"entrada"} />
-                      }
-                    />
-                    <Route
-                      path="/movimientos/salida"
-                      element={
-                        <AgregarMovimiento tipo={"Salida"} key={"salida"} />
-                      }
-                    />
-                    <Route
-                      path="/movimientos/edit/:id_movimiento"
-                      element={<Edit />}
-                    />
-                    <Route path="cambio" element={<TipoCambioPage />} />
-                    <Route path="cambio/new" element={<TipoCambioPage />} />
-                    <Route
-                      path="cambio/edit/:id"
-                      element={<TipoCambioForm />}
-                    />
+                    <Route path="/ordenes" element={<RastrearOrden />} />
+                    <Route path="/comprar" element={<ComprarPage />} />
+                    <Route path="/reservar/:metodo" element={<ComprarPage />} />
+
+                    <Route path="/comprar/:id" element={<ComprarPage />} />
+                    <Route element={<ProtectedRoutes />}>
+                      <Route path="/cambio" element={<TipoCambioPage />} />
+                      <Route path="/repartos" element={<Repartos />} />
+                      <Route path="/repartos/:id" element={<RepartoForm />} />
+                      <Route path="/repartos/new" element={<RepartoForm />} />
+
+                      <Route path="/cerrado" element={<CerradoForm />} />
+                      <Route
+                        path="/opiniones"
+                        element={<ListarReviewsBackend />}
+                      />
+                      <Route path="/frases" element={<FrasesPage />} />
+                      <Route path="/frases/edit/:id" element={<FrasesForm />} />
+                      <Route path="/logs/" element={<LogsPage />} />
+                      <Route path="/new" element={<SaboresForm />} />
+                      <Route
+                        path="/trabajador/new"
+                        element={<AgregarTrabajador />}
+                      />
+                      <Route
+                        path="/trabajador/profile/edit/:id"
+                        element={<AgregarTrabajador />}
+                      />
+
+                      <Route
+                        path="/trabajador/plantilla"
+                        element={<ListadoTrabajadores />}
+                      />
+                      <Route path="/movimientos" element={<Movimientos />} />
+                      <Route
+                        path="/movimientos/edit/:id_movimiento"
+                        element={<Edit />}
+                      />
+
+                      <Route path="/cuadre/" element={<CuadrePage />} />
+                      <Route path="/cuadre/:fecha" element={<ResumenVenta />} />
+
+                      <Route
+                        path="/sabores/edit/:id_sabor"
+                        element={<SaboresForm />}
+                      />
+
+                      <Route path="/sabores" element={<SaboresPage />} />
+                      <Route path="*" element={<NotFound />} />
+                      <Route path="prueba" element={<Prueba />} />
+
+                      <Route
+                        path="/movimientos/entrada"
+                        element={
+                          <AgregarMovimiento tipo={"Entrada"} key={"entrada"} />
+                        }
+                      />
+                      <Route
+                        path="/movimientos/salida"
+                        element={
+                          <AgregarMovimiento tipo={"Salida"} key={"salida"} />
+                        }
+                      />
+                      <Route
+                        path="/movimientos/edit/:id_movimiento"
+                        element={<Edit />}
+                      />
+                      <Route path="cambio" element={<TipoCambioPage />} />
+                      <Route path="cambio/new" element={<TipoCambioPage />} />
+                      <Route
+                        path="cambio/edit/:id"
+                        element={<TipoCambioForm />}
+                      />
+
+                      <Route
+                        path="/transacciones/*"
+                        element={<VentasRoutes />}
+                      />
+                       <Route
+                        path="/reservas/"
+                        element={< ReservaPage/>}
+                      />
+                    </Route>
 
                     <Route path="/transacciones/*" element={<VentasRoutes />} />
-                  </Route>
-
-                  <Route path="/transacciones/*" element={<VentasRoutes />} />
-                </Routes>
-              </div>
-            </CarritosProvaider>
-          </ReviewContextProvider>
-        </AuthProvider>
-      </SaboresContextProvider>
-    </div>
+                  </Routes>
+                </div>
+              </CarritosProvaider>
+            </ReviewContextProvider>
+          </AuthProvider>
+        </SaboresContextProvider>
+      </div>
+    </QueryClientProvider>
   );
 };
 

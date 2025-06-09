@@ -13,7 +13,8 @@ import RevisarPedido from "./RevisarPedido";
 import { getRepartosRequest } from "../../../../api/repartos.api";
 import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
 import { readLocalStorage } from "../../../../hooks/useLocalStorage";
-import { useModocerrado } from "../../../Modos/useModoCerrado";
+import { useReserva } from "../../../../Stores/ReservarStore";
+import { useParams } from "react-router-dom";
 
 const schema = Yup.object({
   ordenante: Yup.string()
@@ -110,6 +111,12 @@ const EntregaYenviaForm = ({
     tropiPayFee: 0,
   });
 
+  const { reserva } = useReserva();
+
+  const params = useParams();
+  const reservando = params.metodo === "metodo";
+  console.log(reservando);
+
   const [payLink, setPayLink] = useState({
     reference: "",
     shortUrl: "",
@@ -163,7 +170,6 @@ const EntregaYenviaForm = ({
         enableReinitialize={true}
         validationSchema={schema}
         onSubmit={async (values) => {
-         
           if (metoPago == "") {
             return setModalActivo({
               mensaje: "Debe Escojer una forma de pago",
@@ -185,11 +191,23 @@ const EntregaYenviaForm = ({
           setModalActivo({});
 
           const formData = new FormData();
-          formData.append("productos", JSON.stringify(carrito));
+          formData.append(
+            "productos",
+            JSON.stringify(!reservando ? carrito : reserva.productos)
+          );
 
           formData.append("entrega", JSON.stringify(values));
           formData.append("pasarela", JSON.stringify(metoPago));
           formData.append("reference", JSON.stringify(payLink.reference));
+
+          if (reservando) {
+            formData.append("fechaEntrega", JSON.stringify(reserva.fecha));
+            formData.append("reservando", JSON.stringify(reservando || ""));
+          } else{
+           formData.append("fechaEntrega", JSON.stringify(""));
+            formData.append("reservando", JSON.stringify("")); 
+          }
+
           formData.append(
             "granTotalFactura",
             JSON.stringify(grandTotalFactura)
@@ -346,7 +364,7 @@ const EntregaYenviaForm = ({
               )}
               {navegacion == 3 && (
                 <RevisarPedido
-                  carrito={carrito}
+                  carrito={!reservando ? carrito : reserva.productos}
                   entrega={entrega}
                   setNavegacion={setNavegacion}
                   errors={errors}
@@ -361,6 +379,8 @@ const EntregaYenviaForm = ({
                   zelleOk={zelleOk}
                   setGrandTotalFactura={setGrandTotalFactura}
                   moneda={moneda}
+                  fechaReserva={reserva?.fecha}
+                  reservando={reservando}
                 />
               )}
 

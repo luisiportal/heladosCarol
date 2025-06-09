@@ -1,8 +1,8 @@
 import { sequelize } from "../db.js";
 import { DataTypes } from "sequelize";
 
-export const Factura = sequelize.define(
-  "facturas",
+export const Reserva = sequelize.define(
+  "reservas",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -56,11 +56,10 @@ export const Factura = sequelize.define(
     pagado: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue:"Sin pago"
+      defaultValue: "Sin pago",
     },
     fechaEntrega: {
       type: DataTypes.STRING,
-      allowNull: true,
     },
   },
   {

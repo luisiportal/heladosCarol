@@ -22,6 +22,7 @@ import modos from "./routes/Modos.routes.js";
 import tropipay from "./routes/tropipay.routes.js";
 import suscription from "./routes/notifications.routes.js";
 import enzona from "./routes/enzona.routes.js";
+import reservas from "./routes/reservas.routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -61,6 +62,7 @@ app.use(modos);
 app.use(frases);
 app.use(tropipay);
 app.use(enzona);
+app.use(reservas);
 
 app.use(suscription);
 

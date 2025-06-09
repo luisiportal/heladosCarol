@@ -14,7 +14,7 @@ import CuadreSVG from "../SVG/CuadreSVG";
 import BTNCargarMas from "../Utilidades/BTNCargarMas";
 import Loader from "../Utilidades/Loader";
 
-const ResumenVenta = () => {
+const ResumenVenta = ({getFacturas}) => {
   const [recargarFactura, setRecargarFactura] = useState(null);
   const [mostrarCuadrarDialog, setMostrarCuadrarDialog] = useState(null);
   const [facturas, setFacturas] = useState([]);
@@ -37,7 +37,7 @@ const ResumenVenta = () => {
           setFacturas(data);
           loadFechas(data);
         } else {
-          const { data } = await getTodosFacturasRequest(limit);
+          const { data } = await getFacturas(limit);
           writeLocalStorage("facturas", data);
 
           setFacturas(data);

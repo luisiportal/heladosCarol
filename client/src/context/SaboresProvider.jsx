@@ -47,9 +47,15 @@ export const SaboresContextProvider = ({ children }) => {
   };
 
   const loadSabores = async () => {
+    
+   try {
     const response = await getSaboresRequest();
-
+    
     setSabores(response.data);
+   } catch (error) {
+    console.log(error);
+    
+   }
   };
 
   const deleteSabor = async (id_sabor) => {

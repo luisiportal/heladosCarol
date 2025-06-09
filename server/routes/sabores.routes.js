@@ -5,6 +5,8 @@ import {
   createSabor,
   deleteSabor,
   getSabor,
+  getSaboresBackend,
+  getSaboresReservar,
   getTodosSabores,
   updateSabor,
 } from "../controllers/Sabores.controllers.js";
@@ -12,8 +14,10 @@ import { upload, uploadProducto } from "../controllers/upload.multer.js";
 const sabores = Router();
 
 sabores.get("/Sabores", getTodosSabores); // ruta publica
+sabores.get("/sabores/areservar", getSaboresReservar);
 
 sabores.get("/Sabores/:id_sabor",  getSabor);
+sabores.get("/saborestodos/", getSaboresBackend); // ruta publica
 
 sabores.post(
   "/Sabores",

@@ -21,6 +21,7 @@ const SaboresForm = () => {
     id_sabor: "",
     nombre_sabor: "",
     envase: "",
+    reservar:false,
     color: "",
     categoria: "",
     costo_unitario: 0,
@@ -54,6 +55,7 @@ const SaboresForm = () => {
     formData.append("description", values.description);
     formData.append("envase", values.envase);
     formData.append("color", values.color);
+    formData.append("reservar", String(values.reservar));
     formData.append("costo_unitario", String(values.costo_unitario));
     formData.append("precio_venta", String(values.precio_venta));
     formData.append("precio_venta_cup", String(values.precio_venta_cup));
@@ -73,6 +75,8 @@ const SaboresForm = () => {
     }
 
     try {
+      console.log(values.reservar);
+      
       setLoader(true);
       if (params.id_sabor) {
         const updateResponse = await updateSabor(params.id_sabor, formData); // onlinne
@@ -231,6 +235,17 @@ const SaboresForm = () => {
               {errors.nombre_sabor && (
                 <span className="bg-red-500 p-1 m-1">{errors.envase}</span>
               )}
+               <label htmlFor="reservar" className="block">
+                Producto para reservar:
+              </label>
+              <input
+                type="checkbox"
+                name="reservar"
+                placeholder="reservar"
+                className="my-2 px-2 py-1 rounded-sm w-full"
+                checked={values.reservar}
+                onChange={handleChange}
+              />
               <label htmlFor="color" className="block">
                 *Color:
               </label>

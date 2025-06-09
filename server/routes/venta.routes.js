@@ -12,6 +12,8 @@ import { confirmarFactura, estadoFacturaEntregada, updateFechaFactura } from "..
 const ventas = Router();
 
 ventas.post("/ventas",uploadFactura.single("factura_image"),  createVenta);
+ventas.post("/reservas",uploadFactura.single("factura_image"),  createVenta);
+
 ventas.get("/ventas", authRequired, getTodosFacturas);
 ventas.delete("/facturas/:id", deleteFactura);
 ventas.put("/facturas/", authRequired, updateFechaFactura);

@@ -7,6 +7,7 @@ import { Movimiento } from "../models/Movimientos.model.js";
 import { Entrega } from "../models/Entrega.model.js";
 import { Sabor } from "../models/Sabor.model.js";
 import { saveImage } from "./upload.multer.js";
+import { Op } from "sequelize";
 
 import {
   NotificarFactura,
@@ -26,30 +27,32 @@ export const createVenta = async (req, res) => {
   const entrega = JSON.parse(req.body.entrega);
   const pasarela = JSON.parse(req.body.pasarela);
   const reference = JSON.parse(req.body.reference);
+  const fechaEntrega = JSON.parse(req.body.fechaEntrega);
+  const reservando = JSON.parse(req.body.reservando);
+  console.log(fechaEntrega);
 
   try {
     const cerrado = await Modos.findByPk(1);
-    
-    if (cerrado && cerrado.activado === true) { // Validación segura
+
+    if (cerrado && cerrado.activado === true) {
+      // Validación segura
       return res
         .status(500)
         .json({ message: `Lo sentimos ${cerrado.mensaje}` });
     }
-  
+
     const check = await checkExistencia({ productos });
-  
+
     if (check) {
-      return res
-        .status(500)
-        .json({ message: `${check} Producto agotado` });
+      return res.status(500).json({ message: `${check} Producto agotado` });
     }
   } catch (error) {
-    console.error('Error al procesar la solicitud:', error); // Mensaje más informativo
-    return res
-      .status(500)
-      .json({ message: 'Se produjo un error al procesar la solicitud. Por favor, inténtalo de nuevo más tarde.' });
+    console.error("Error al procesar la solicitud:", error); // Mensaje más informativo
+    return res.status(500).json({
+      message:
+        "Se produjo un error al procesar la solicitud. Por favor, inténtalo de nuevo más tarde.",
+    });
   }
-  
 
   const tipomoneda = (pasarela) => {
     let moneda = "";
@@ -82,6 +85,7 @@ export const createVenta = async (req, res) => {
           reference,
           creado,
           moneda,
+          fechaEntrega,
         },
         { transaction: t }
       );
@@ -110,6 +114,9 @@ export const createVenta = async (req, res) => {
           moneda == "CUP" ? producto.precio_venta_cup : producto.precio_venta;
         return precioUnitario;
       };
+
+      console.log(productos);
+      
 
       for (const producto of productos) {
         // Crear la venta
@@ -163,7 +170,11 @@ export const createVenta = async (req, res) => {
       ordenante: entrega.ordenante,
     });
 
-    return res.status(200).json({ message: "Ventas creadas correctamente" });
+    return res.status(200).json({
+      message: reservando
+        ? "Se ha realizado su reserva"
+        : "Venta creada correctamente",
+    });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -184,6 +195,12 @@ export const getTodosFacturas = async (req, res) => {
 
   try {
     const response = await Factura.findAll({
+      where: {
+        fechaEntrega: {
+          [Op.or]: [null, ""],
+        },
+      },
+
       include: [
         {
           model: Venta,

@@ -1,12 +1,16 @@
+import { useParams } from "react-router-dom";
 import LayoutPrincipal from "../../Layouts/LayoutPrincipal";
 import { precioMoneda } from "../Comprar/SeccionAgregar/Entrega/precioMoneda";
 import BTN_MePago from "./BTN_MePago";
 
 const EscojerMetodoPago = ({ setNavegacion, setMetoPago, setMoneda }) => {
+    const params = useParams();
+  const reservando = params.metodo
   const handleMetoPago = async (metodo) => {
     setMetoPago(metodo);
     setMoneda(precioMoneda(metodo));
-    setNavegacion(1);
+   setNavegacion(!reservando ? 1 : 2);
+
   };
 
   return (

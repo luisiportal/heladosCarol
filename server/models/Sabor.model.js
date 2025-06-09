@@ -13,7 +13,7 @@ export const Sabor = sequelize.define("sabores", {
   },
   description: {
     type: DataTypes.TEXT,
-    allowNull:true
+    allowNull: true
   },
   categoria: {
     type: DataTypes.STRING,
@@ -58,6 +58,10 @@ export const Sabor = sequelize.define("sabores", {
   stockMinimo: {
     type: DataTypes.INTEGER,
     defaultValue: 0,
+  },
+  reservar: {
+    type: DataTypes.BOOLEAN,
+    defaultValue:false,
   },
 
   ruta_image: {

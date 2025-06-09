@@ -18,6 +18,10 @@ const Navbar = ({ hidden, isAuthenticated }) => {
             href={"/transacciones"}
           ></ElementoNavbar>
            <ElementoNavbar
+            nombre={"Reservas"}
+            href={"/reservas"}
+          ></ElementoNavbar>
+           <ElementoNavbar
             nombre={"Opiniones"}
             href={"/opiniones"}
           ></ElementoNavbar>

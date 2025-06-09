@@ -20,6 +20,8 @@ const RevisarPedido = ({
   payLink,
   setGrandTotalFactura,
   moneda,
+  fechaReserva,
+  reservando,
 }) => {
   const params = useParams();
   const precio = (producto) => {
@@ -66,6 +68,7 @@ const RevisarPedido = ({
   return (
     <div className="mb-40">
       <FacturaCard
+        reservando={reservando}
         factura={factura}
         total={metoPago == "TropiPay" ? totalTropipay : total}
         file={file}

@@ -16,11 +16,15 @@ const ComprarPage = () => {
   const [navegacion, setNavegacion] = useState(0);
   const { metoPago, setMetoPago } = useMetoPago();
   const [moneda, setMoneda] = useState("");
-
   const params = useParams();
 
+  const reservando = params.metodo;
+
+  console.log(reservando);
+  
+
+
   useEffect(() => {
-    
     if (params.id == 3) {
       setNavegacion(3);
       setModalActivo({

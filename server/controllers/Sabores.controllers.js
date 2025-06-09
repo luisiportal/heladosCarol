@@ -8,10 +8,46 @@ import { deleteImagenesSabores } from "./utilidadades/deleteImagenesSabores.js";
 import { resizeSharp } from "./utilidadades/sharpResize.js";
 
 // listar todas los sabores
+export const getSaboresBackend = async (req, res) => {
+  try {
+    const response = await Sabor.findAll({
+      order: [["existencia", "DESC"]],
 
+      include: [
+        {
+          model: Imagen,
+          required: false,
+        },
+      ],
+    });
+    res.json(response);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 export const getTodosSabores = async (req, res) => {
   try {
     const response = await Sabor.findAll({
+      order: [["existencia", "DESC"]],
+      where: { reservar: true },
+      where: { reservar: null },
+
+      include: [
+        {
+          model: Imagen,
+          required: false,
+        },
+      ],
+    });
+    res.json(response);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+export const getSaboresReservar = async (req, res) => {
+  try {
+    const response = await Sabor.findAll({
+      where: { reservar: true },
       order: [["existencia", "DESC"]],
       include: [
         {
@@ -20,6 +56,7 @@ export const getTodosSabores = async (req, res) => {
         },
       ],
     });
+
     res.json(response);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -71,6 +108,7 @@ export const createSabor = async (req, res) => {
       precio_venta_cup,
       costo_unitario,
       home_img,
+      reservar,
     } = req.body;
 
     // Iniciar una transacción
@@ -91,6 +129,7 @@ export const createSabor = async (req, res) => {
             ruta_image,
             home_img,
             precio_venta_cup,
+            reservar,
           },
           { transaction: t }
         );
@@ -130,7 +169,6 @@ export const createSabor = async (req, res) => {
 // actualizar
 
 export const updateSabor = async (req, res) => {
-
   const imgToDelete = req.body.imgToDelete
     ? JSON.parse(req.body.imgToDelete)
     : "";
@@ -156,8 +194,8 @@ export const updateSabor = async (req, res) => {
         precio_venta_cup,
         costo_unitario,
         home_img,
+        reservar,
       } = req.body;
-      console.log(precio_venta_cup);
 
       await deleteImagenesSabores(imgToDelete);
 
@@ -173,6 +211,7 @@ export const updateSabor = async (req, res) => {
       response.precio_venta_cup = precio_venta_cup;
       ruta_image && (response.ruta_image = ruta_image);
       response.stockMinimo = stockMinimo;
+      response.reservar = reservar;
 
       await response.save({ transaction: t });
       for (const file of files) {

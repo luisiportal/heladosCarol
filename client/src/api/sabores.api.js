@@ -4,10 +4,16 @@ import axios from "./axios.js";
 
 export const getSaboresRequest = async () => await axios.get(`/sabores`);
 
+export const getSaboresBackendRequest = async () =>
+  await axios.get("/saborestodos/");
+
+export const getSaboresReservarRequest = async () => {
+  const { data } = await axios.get(`/sabores/areservar`);
+  return data;
+};
+
 export const createSaborRequest = async (formData) => {
-  console.log(formData);
-  
- return await axios.post("/sabores", formData);
+  return await axios.post("/sabores", formData);
 };
 
 export const deleteSaborRequest = async (id_sabor) =>

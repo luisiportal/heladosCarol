@@ -12,6 +12,7 @@
   "dependencies": {
     "@stripe/react-stripe-js": "^2.7.3",
     "@stripe/stripe-js": "^4.1.0",
+    "@tanstack/react-query": "^5.80.6",
     "axios": "^1.6.2",
     "formik": "^2.4.5",
     "js-cookie": "^3.0.5",
@@ -22,9 +23,10 @@
     "react-select": "^5.8.0",
     "react-share": "^5.1.0",
     "yup": "^1.3.3",
-    "zustand": "^5.0.0-rc.2"
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.78.0",
     "@types/node": "^22.15.18",
     "@types/react": "^18.3.21",
     "@types/react-dom": "^18.3.7",
