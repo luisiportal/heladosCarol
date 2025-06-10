@@ -58,6 +58,30 @@ const ReservarProductos = () => {
     !existe &&
       setCarritoReserva([...carritoReserva, { ...sabor, cantidad: 1 }]);
   };
+  const incrementar = (sabor: Sabor) => {
+    setCarritoReserva((prevState) =>
+      prevState.map((item) =>
+        Number(item.id_sabor) === Number(sabor.id_sabor)
+          ? { ...item, cantidad: Number(item.cantidad) + 1 } // Initializes `sabor`
+          : item
+      )
+    );
+  };
+  const decrementar = (sabor: Sabor) => {
+    setCarritoReserva((prevState) =>
+      prevState.map((item) =>
+        Number(item.id_sabor) === Number(sabor.id_sabor)
+          ? {
+              ...item,
+              cantidad:
+                Number(item.cantidad) > 1
+                  ? Number(item.cantidad) - 1
+                  : item.cantidad,
+            } // Initializes `sabor`
+          : item
+      )
+    );
+  };
 
   const quitar = (sabor: Sabor) => {
     const restantes = carritoReserva.filter(
@@ -119,23 +143,21 @@ const ReservarProductos = () => {
               </div>
             </section>
           )}
-          <div className="flex flex-col items-center w-52 text-center font-bold font-irish">
+          <div className="flex flex-col items-center w-52 text-center font-bold">
             <h2 className="font-bold text-white bg-[#1654be] rounded-xl text-center w-28 p-0.5 font-sans">
               {sabor.nombre_sabor}
             </h2>
-            <p className="text-center font-bold font-irish">
-              {sabor.description}
-            </p>
+            <p className="text-center font-bold">{sabor.description}</p>
             <h2>Precio: </h2>
             <h2>
-              {sabor.precio_venta} USD || {sabor.precio_venta_cup} CUP{" "}
+              {sabor.precio_venta} USD | {sabor.precio_venta_cup} CUP{" "}
             </h2>
             <h2></h2>
           </div>
         </section>
       ))}
       <section className="flex flex-col items-center justify-center bg-blue-200 p-5">
-        <h2 className="font-bold text-white bg-[#1654be] rounded-xl text-center w-60  p-0.5">
+        <h2 className="font-bold  rounded-xl text-center w-60  p-5 pt-0">
           Productos Seleccionados
         </h2>
         <section className="flex flex-col justify-center">
@@ -146,6 +168,20 @@ const ReservarProductos = () => {
               <section className="bg-white p-2 rounded-lg font-semibold my-2">
                 {item.cantidad} x {item.nombre_sabor}
               </section>
+              <button
+                title="Incrementar"
+                className="bg-white hover:bg-[#1654be] transition-colors duration-700 w-10 h-10 p-2 rounded-full aspect-square font-black text-2xl flex items-center justify-center"
+                onClick={() => incrementar(item)}
+              >
+                +
+              </button>
+              <button
+                title="Quitar"
+                className="bg-white hover:bg-red-500 transition-colors duration-700 w-10 h-10 p-2 rounded-full aspect-square font-black text-2xl flex items-center justify-center"
+                onClick={() => decrementar(item)}
+              >
+                -
+              </button>
               <button
                 title="Borrar"
                 className="bg-red-500 w-10 h-10 p-2 rounded-full aspect-square"
@@ -158,7 +194,7 @@ const ReservarProductos = () => {
         </section>
       </section>
       <div className="flex flex-col items-center justify-center p-2">
-        <h2 className="flex justify-center font-semibold">
+        <h2 className="font-bold  rounded-xl text-center p-5">
           Seleccione el día de la entrega
         </h2>
         <select
@@ -182,7 +218,7 @@ const ReservarProductos = () => {
       <button
         title="Continuar"
         onClick={onclickContinuar}
-        className="w-full flex flex-col items-center justify-center"
+        className="w-full flex flex-col items-center justify-center p-5"
       >
         <BTN color={"#f9a217"} texto="Continuar" />
       </button>
