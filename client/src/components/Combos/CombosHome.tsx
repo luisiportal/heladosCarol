@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from "react";
+import {  useState } from "react";
 import { Sabor } from "../../types/General.types";
 import BTN_Comprar from "../HOME/Sabores/BTN_Comprar";
 import SlideIMG from "./SlideIMG";
 
-interface ImportMetaEnv {
-  readonly VITE_BACKEND_URL: string;
-  // Otras variables de entorno que quieras definir
-}
 
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
-}
 
 const CombosHome = ({ combos }: { combos: Sabor[] }) => {
   const [current, setCurrent] = useState(0);

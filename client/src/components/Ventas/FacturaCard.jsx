@@ -15,6 +15,7 @@ import { useMetoPago } from "../../Stores/Pago.store";
 import TelefonoNotificarFactura from "./CardFacturaItems/TelefonoNotificarFactura";
 import { useEffect, useState } from "react";
 import { useShowDialogStore } from "../../Stores/ShowDialogStore";
+import Dialog from "../Modal/Dialog";
 
 function FacturaCard({
   factura,
@@ -32,7 +33,7 @@ function FacturaCard({
   const { ventas } = factura;
   const { setModalActivo, perfil, setLoader } = useAuth();
   const { metoPago } = useMetoPago();
-  const { setShowDialog } = useShowDialogStore();
+  const { setShowDialog, showDialog } = useShowDialogStore();
 
   const [dialogProps, setDialogProps] = useState({
     titulo: "",
@@ -100,6 +101,11 @@ function FacturaCard({
     <div
       className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
     >
+      <Dialog
+        dialogProps={dialogProps}
+        setShowDialog={setShowDialog}
+        showDialog={showDialog}
+      />
       {reservando && (
         <div className="bg-yellow-400 p-4 font-bold rounded-xl text-xs flex flex-col gap-2">
           <h2 className="text-sm">Reserva</h2>
@@ -196,7 +202,18 @@ function FacturaCard({
                     <div className="flex  p-2 justify-between">
                       <button
                         className="w-8"
-                        onClick={() => handleEstadoEntregada(factura.id)}
+                        onClick={() => {
+                          setShowDialog(true);
+
+                          setDialogProps({
+                            titulo: "Entregar Factura",
+                            pregunta:
+                              "¿Desea maracar la factura como entregada?",
+                            textoAceptar: "Si, especial",
+                            handleClick: () =>
+                              handleEstadoEntregada(factura.id),
+                          });
+                        }}
                       >
                         {factura.estado == "Entregada" ? (
                           ""
@@ -231,7 +248,17 @@ function FacturaCard({
                     <div className="flex justify-between">
                       <button
                         className="flex bg-fresa rounded-full p-2 text-neutral-100 hover:bg-vainilla hover:text-slate-600  transition-all duration-500"
-                        onClick={() => handleConfirmar(factura.id)}
+                        onClick={() => {
+                          setShowDialog(true);
+
+                          setDialogProps({
+                            titulo: "Confirmar Factura",
+                            pregunta:
+                              "¿Desea confirmar la factura ?",
+                            textoAceptar: "Si, esta bien",
+                            handleClick: () => handleConfirmar(factura.id),
+                          });
+                        }}
                       >
                         <CheckedSVG /> Confirmar Factura
                       </button>

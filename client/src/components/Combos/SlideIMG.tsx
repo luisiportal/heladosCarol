@@ -14,7 +14,7 @@ const SlideIMG = ({ images, combo, item, current, setCurrent }) => {
       {images.map((imagen, index) => (
         <img
           key={index}
-          className={`w-full h-full object-contain rounded-lg slide ${
+          className={`w-full h-full object-fill object-center rounded-lg slide ${
             index === current ? "active" : ""
           }`}
           src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${
