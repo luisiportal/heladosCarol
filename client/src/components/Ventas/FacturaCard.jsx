@@ -13,7 +13,8 @@ import TruckEntregaSVG from "../SVG/TruckEntregaSVG";
 import IconoPasarela from "./CardFacturaItems/IconoPasarela";
 import { useMetoPago } from "../../Stores/Pago.store";
 import TelefonoNotificarFactura from "./CardFacturaItems/TelefonoNotificarFactura";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useShowDialogStore } from "../../Stores/ShowDialogStore";
 
 function FacturaCard({
   factura,
@@ -31,6 +32,14 @@ function FacturaCard({
   const { ventas } = factura;
   const { setModalActivo, perfil, setLoader } = useAuth();
   const { metoPago } = useMetoPago();
+  const { setShowDialog } = useShowDialogStore();
+
+  const [dialogProps, setDialogProps] = useState({
+    titulo: "",
+    pregunta: "",
+    handleClick: {},
+  });
+
   const handleCopy = async (numero) => {
     try {
       await navigator.clipboard.writeText(numero);
@@ -93,9 +102,7 @@ function FacturaCard({
     >
       {reservando && (
         <div className="bg-yellow-400 p-4 font-bold rounded-xl text-xs flex flex-col gap-2">
-          <h2 className="text-sm">
-            Reserva
-          </h2>
+          <h2 className="text-sm">Reserva</h2>
           <h2>Esta orden sera entregada el {fechaReserva}</h2>
         </div>
       )}
@@ -118,7 +125,6 @@ function FacturaCard({
           <SaboresFactura
             ventas={ventas}
             envio={factura.entrega.envio}
-            metoPago={metoPago}
             moneda={moneda}
             tropiPayFee={tropiPayFeeCard}
           />

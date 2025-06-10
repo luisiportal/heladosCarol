@@ -8,7 +8,6 @@ const SlideIMG = ({ images, combo, item, current, setCurrent }) => {
 
     return () => clearInterval(interval);
   }, [current]);
-  console.log(current);
   
   return (
     <div className="w-full h-56">

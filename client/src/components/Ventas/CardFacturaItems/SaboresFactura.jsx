@@ -9,7 +9,6 @@ const SaboresFactura = ({ ventas, envio, moneda, tropiPayFee }) => {
 
     return precio;
   };
-console.log(ventas);
 
   return (
     <div className="bg-neutral-100 rounded-xl flex flex-col justify-center p-3 w-full">

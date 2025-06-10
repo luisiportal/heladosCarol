@@ -1,5 +1,3 @@
-import React from "react";
-import FacturaCard from "../../../Ventas/FacturaCard";
 import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
 import { grandTotalFactura } from "../../../../utils/grandTotalFactura";
 import Zelle from "../../../MetodosPago/Zelle";
@@ -7,6 +5,7 @@ import Tropipay from "../../../MetodosPago/Tropipay";
 import { useParams } from "react-router-dom";
 import MonedaNacional from "../../../MetodosPago/MonedaNacional";
 import { tropiPayFeeGet } from "../../../Ventas/tropiPayFeeGet";
+import FacturaCard from "../../../Ventas/FacturaCard";
 
 const RevisarPedido = ({
   carrito,

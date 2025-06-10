@@ -4,10 +4,17 @@ export type Imagen = {
   ruta_image: string;
   descripcion: string;
 };
+export type DialogProps = {
+  titulo: string;
+  pregunta: string;
+  handleClick: any;
+  textoAceptar?: string;
+  textoCancelar?: string;
+};
 
 export type Sabor = {
   id_sabor: string;
-  cantidad?:number;
+  cantidad?: number;
   nombre_sabor: string;
   categoria: string;
   color: string;
@@ -24,8 +31,9 @@ export type Sabor = {
   imagenes?: Imagen[];
 };
 
-
 export type Reserva = {
   productos: Sabor[];
   fecha: string;
 };
+
+
