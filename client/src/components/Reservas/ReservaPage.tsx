@@ -1,11 +1,10 @@
 import { getTodosReservasRequest } from "../../api/reservas.api";
 import ResumenVenta from "../Ventas/ResumenVenta";
-import EstadisticaReserva from "./EstadisticaReserva";
 
 const ReservaPage = () => {
   return (
     <div>
-      <ResumenVenta getFacturas={getTodosReservasRequest} />
+      <ResumenVenta getFacturas={getTodosReservasRequest} estadistica={true} />
     </div>
   );
 };

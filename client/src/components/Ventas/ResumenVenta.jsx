@@ -15,7 +15,7 @@ import BTNCargarMas from "../Utilidades/BTNCargarMas";
 import Loader from "../Utilidades/Loader";
 import EstadisticaReserva from "../Reservas/EstadisticaReserva";
 
-const ResumenVenta = ({getFacturas}) => {
+const ResumenVenta = ({ getFacturas, estadistica = false }) => {
   const [recargarFactura, setRecargarFactura] = useState(null);
   const [mostrarCuadrarDialog, setMostrarCuadrarDialog] = useState(null);
   const [facturas, setFacturas] = useState([]);
@@ -52,7 +52,6 @@ const ResumenVenta = ({getFacturas}) => {
 
   ///////////////trbajar aqui las fechas
   const loadFechas = async (facturas) => {
-    
     // aquuiiii
     setFechas([
       ...new Set(
@@ -78,7 +77,7 @@ const ResumenVenta = ({getFacturas}) => {
   function renderMain() {
     if (fechas.length === 0) return <h1>No hay ventas</h1>;
     //if (facturas.length === 0) return <h1>No hay ventas</h1>;
-    
+
     return fechas.map((fecha, index) => (
       <H2FechaTitulo
         key={index}
@@ -109,7 +108,7 @@ const ResumenVenta = ({getFacturas}) => {
         />
       )}
 
-      <EstadisticaReserva facturas={facturas}/>
+      {estadistica && <EstadisticaReserva facturas={facturas} />}
 
       {!mostrarCuadrarDialog ? (
         <div className="gap-2 mt-8 ">
