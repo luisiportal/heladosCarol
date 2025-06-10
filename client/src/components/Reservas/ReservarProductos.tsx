@@ -160,6 +160,9 @@ const ReservarProductos = () => {
         <h2 className="font-bold  rounded-xl text-center w-60  p-5 pt-0">
           Productos Seleccionados
         </h2>
+        {carritoReserva.length ==0 && <h2 className="font-light text-sm  rounded-xl text-center w-60  p-5 pt-0">
+          Todavía no ha seleccionado nada
+        </h2>}
         <section className="flex flex-col justify-center">
           {" "}
           {carritoReserva.map((item) => (

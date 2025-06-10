@@ -44,7 +44,7 @@ const CombosHome = ({ combos }: { combos: Sabor[] }) => {
                 combo.imagenes &&
                 combo.imagenes.length > 0 && (
                   <img
-                    className="w-full h-full object-cover transition-all duration-500 rounded-lg"
+                    className="w-full h-full object-cover object-center transition-all duration-500 rounded-lg"
                     src={`${
                       import.meta.env.VITE_BACKEND_URL
                     }/images/productos/${combo.imagenes[0].ruta_image}`}
