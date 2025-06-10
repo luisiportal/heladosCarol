@@ -41,7 +41,7 @@ const ReservarProductos = () => {
   };
 
   const onclickContinuar = () => {
-    if (reserva.fecha.length> 1 && carritoReserva.length > 0) {
+    if (reserva.fecha.length > 1 && carritoReserva.length > 0) {
       setReserva({
         productos: carritoReserva,
         fecha: reserva.fecha,
@@ -76,13 +76,13 @@ const ReservarProductos = () => {
           {sabor.imagenes && sabor.imagenes.length > 0 && (
             <section>
               <div
-                className={`ml-5 flex flex-col items-center justify-center bg-white shadow-md w-36 h-40 rotate-${
+                className={`ml-5 flex flex-col items-center justify-center bg-white shadow-md w-36 h-48 rotate-${
                   index + 1
                 }`}
               >
                 {" "}
                 <img
-                  className="w-32 h-32 object-center object-cover pt-2"
+                  className="w-32 h-32 object-center object-cover pt-2 bg-[#aeccfe]"
                   src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${
                     sabor.imagenes[0].ruta_image
                   }`}
