@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import FacturaCard from "./FacturaCard";
-import CuadreSVG from "../SVG/CuadreSVG";
-import BTNHOME from "../HOME/elementos/BTNHOME";
 import { useNavigate } from "react-router-dom";
+import EstadisticaReserva from "../Reservas/EstadisticaReserva";
 
 const H2FechaTitulo = ({
   fecha,
@@ -12,8 +11,6 @@ const H2FechaTitulo = ({
   setRecargarFactura,
   setRecargar,
   recargar,
-  mostrarCuadrarDialog,
-  setMostrarCuadrarDialog,
 }) => {
   const navigate = useNavigate();
   const [fechaCuadre, setFechacuadre] = useState();

@@ -13,6 +13,7 @@ import BTNHOME from "../HOME/elementos/BTNHOME";
 import CuadreSVG from "../SVG/CuadreSVG";
 import BTNCargarMas from "../Utilidades/BTNCargarMas";
 import Loader from "../Utilidades/Loader";
+import EstadisticaReserva from "../Reservas/EstadisticaReserva";
 
 const ResumenVenta = ({getFacturas}) => {
   const [recargarFactura, setRecargarFactura] = useState(null);
@@ -46,7 +47,7 @@ const ResumenVenta = ({getFacturas}) => {
       } catch (error) {}
     };
 
-    loadFacturas(30);
+    loadFacturas(50);
   }, [recargarFactura, recargar]);
 
   ///////////////trbajar aqui las fechas
@@ -77,6 +78,7 @@ const ResumenVenta = ({getFacturas}) => {
   function renderMain() {
     if (fechas.length === 0) return <h1>No hay ventas</h1>;
     //if (facturas.length === 0) return <h1>No hay ventas</h1>;
+    
     return fechas.map((fecha, index) => (
       <H2FechaTitulo
         key={index}
@@ -106,6 +108,8 @@ const ResumenVenta = ({getFacturas}) => {
           handleClick={() => setMostrarCuadrarDialog(!mostrarCuadrarDialog)}
         />
       )}
+
+      <EstadisticaReserva facturas={facturas}/>
 
       {!mostrarCuadrarDialog ? (
         <div className="gap-2 mt-8 ">
