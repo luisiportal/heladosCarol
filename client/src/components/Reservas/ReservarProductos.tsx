@@ -214,7 +214,6 @@ const ReservarProductos = () => {
           <option value="">Seleccionar</option>
 
           <option value="domingo">Domingo, 15 junio</option>
-          <option value="sabado">Sábado, 14 junio</option>
         </select>
       </div>
 
