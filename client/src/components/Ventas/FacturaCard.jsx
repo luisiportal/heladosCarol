@@ -208,7 +208,7 @@ function FacturaCard({
                           setDialogProps({
                             titulo: "Entregar Factura",
                             pregunta:
-                              "¿Desea maracar la factura como entregada?",
+                              "¿Desea marcar la factura como entregada?",
                             textoAceptar: "Si, especial",
                             handleClick: () =>
                               handleEstadoEntregada(factura.id),
