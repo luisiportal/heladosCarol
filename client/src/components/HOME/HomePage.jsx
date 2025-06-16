@@ -16,7 +16,6 @@ const HomePage = () => {
   return (
     <div className="pt-10  mx-auto max-w-sm">
       <Horario />
-      <ReservasHome/>
       <SliderBanner/>
 
       {modo.activado == true ? <MensajeCerrado modo={modo} /> : <Sabores />}

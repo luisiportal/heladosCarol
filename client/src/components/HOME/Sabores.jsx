@@ -29,7 +29,6 @@ const Sabores = () => {
     .filter((sabor) => sabor.existencia > 0)
     .map((sabor) => sabor.nombre_sabor);
 
-  const nombreSabores = nombreSaboresMap.filter((sabor) => sabor !== false);
 
   const potes = sabores.filter(
     (item) => item.categoria === "Potes" && item.existencia >= 1
@@ -49,7 +48,7 @@ const Sabores = () => {
   }));
   return (
     <>
-      <div className="bg-neutral-200 rounded-lg mt-4 pt-4">
+      {sabores.length > 0 && <div className="bg-neutral-200 rounded-lg mt-4 pt-4">
         <section className="flex items-center justify-between">
           <div className="w-44">
             {sinPote.map((sabor, index) => (
@@ -79,7 +78,7 @@ const Sabores = () => {
             <Loader />
           </div>
         )}
-      </div>
+      </div>}
       <section>
         <CombosHome combos={combos} />
         <TinasHome tinas={tinas} />
