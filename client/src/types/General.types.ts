@@ -29,6 +29,7 @@ export type Sabor = {
   stockMinimo: number;
   description: string;
   imagenes?: Imagen[];
+  nuevo:boolean;
 };
 
 export type Reserva = {

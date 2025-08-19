@@ -21,7 +21,7 @@ const SaboresForm = () => {
     id_sabor: "",
     nombre_sabor: "",
     envase: "",
-    reservar:false,
+    reservar: false,
     color: "",
     categoria: "",
     costo_unitario: 0,
@@ -32,6 +32,7 @@ const SaboresForm = () => {
     stockMinimo: 0,
     home_img: "no",
     description: "",
+    nuevo: false,
   });
 
   useEffect(() => {
@@ -62,6 +63,7 @@ const SaboresForm = () => {
     formData.append("stockMinimo", String(values.stockMinimo || 0));
     formData.append("existencia", String(values.existencia || 0));
     formData.append("home_img", values.home_img);
+    formData.append("nuevo", String(values.nuevo));
     if (imgToDelete.length > 0) {
       console.log(imgToDelete);
 
@@ -76,7 +78,7 @@ const SaboresForm = () => {
 
     try {
       console.log(values.reservar);
-      
+
       setLoader(true);
       if (params.id_sabor) {
         const updateResponse = await updateSabor(params.id_sabor, formData); // onlinne
@@ -235,7 +237,7 @@ const SaboresForm = () => {
               {errors.nombre_sabor && (
                 <span className="bg-red-500 p-1 m-1">{errors.envase}</span>
               )}
-               <label htmlFor="reservar" className="block">
+              <label htmlFor="reservar" className="block">
                 Producto para reservar:
               </label>
               <input
@@ -244,6 +246,17 @@ const SaboresForm = () => {
                 placeholder="reservar"
                 className="my-2 px-2 py-1 rounded-sm w-full"
                 checked={values.reservar}
+                onChange={handleChange}
+              />
+              <label htmlFor="reservar" className="block">
+                Nuevo Producto:
+              </label>
+              <input
+                type="checkbox"
+                name="nuevo"
+                placeholder="nuevo"
+                className="my-2 px-2 py-1 rounded-sm w-full"
+                checked={values.nuevo}
                 onChange={handleChange}
               />
               <label htmlFor="color" className="block">

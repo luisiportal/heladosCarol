@@ -1,9 +1,7 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { Sabor } from "../../types/General.types";
 import BTN_Comprar from "../HOME/Sabores/BTN_Comprar";
 import SlideIMG from "./SlideIMG";
-
-
 
 const CombosHome = ({ combos }: { combos: Sabor[] }) => {
   const [current, setCurrent] = useState(0);
@@ -51,6 +49,12 @@ const CombosHome = ({ combos }: { combos: Sabor[] }) => {
             >
               Combos
             </h2>
+            {combo.nuevo && (
+              <div className="bg-fresa/80 w-32 h-36 absolute top-0 right-5 rounded-b-lg text-white font-bold p-2 pl-3 pb-4 flex flex-col justify-end">
+                <h2 className="text-2xl tracking-tight">Nuevo</h2>
+                <h2 className="text-2xl tracking-tight -mt-3">Producto</h2>
+              </div>
+            )}
           </div>
           <div className="flex justify-between py-2 px-2 font-bold first-letter:bold text-neutral-950 text-md">
             <h2 className="">{combo.precio_venta} USD</h2>
@@ -63,7 +67,7 @@ const CombosHome = ({ combos }: { combos: Sabor[] }) => {
           </h2>
           <p className="px-4 italic text-justify">{combo.description}</p>
 
-          <div  className="flex justify-center p-2">
+          <div className="flex justify-center p-2">
             <BTN_Comprar color={"#f9a217"} producto={combo} />
           </div>
         </section>

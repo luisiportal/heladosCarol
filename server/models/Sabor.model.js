@@ -72,4 +72,8 @@ export const Sabor = sequelize.define("sabores", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  nuevo: {
+    type: DataTypes.BOOLEAN,
+    allowNull: true,
+  },
 });

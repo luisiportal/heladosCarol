@@ -29,8 +29,7 @@ export const getTodosSabores = async (req, res) => {
   try {
     const response = await Sabor.findAll({
       order: [["existencia", "DESC"]],
-          where: { reservar: false },
-
+      where: { reservar: false },
 
       include: [
         {
@@ -195,6 +194,7 @@ export const updateSabor = async (req, res) => {
         costo_unitario,
         home_img,
         reservar,
+        nuevo,
       } = req.body;
 
       await deleteImagenesSabores(imgToDelete);
@@ -212,6 +212,7 @@ export const updateSabor = async (req, res) => {
       ruta_image && (response.ruta_image = ruta_image);
       response.stockMinimo = stockMinimo;
       response.reservar = reservar;
+      response.nuevo = nuevo;
 
       await response.save({ transaction: t });
       for (const file of files) {
