@@ -108,6 +108,7 @@ export const createSabor = async (req, res) => {
       costo_unitario,
       home_img,
       reservar,
+      nuevo,
     } = req.body;
 
     // Iniciar una transacción
@@ -129,6 +130,7 @@ export const createSabor = async (req, res) => {
             home_img,
             precio_venta_cup,
             reservar,
+            nuevo,
           },
           { transaction: t }
         );
