@@ -40,8 +40,10 @@ import RepartoForm from "./components/Repartos/RepartoForm";
 import ScrollToTop from "./components/Utilidades/ScrollToTop";
 import SaboresForm from "./components/Sabores/SaboresForm";
 import ReservarProductos from "./components/Reservas/ReservarProductos";
-import { QueryClient,QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ReservaPage from "./components/Reservas/ReservaPage";
+import HomeNew from "./components/HOME/HomeNew";
+import CategoriasPAge from "./components/HOME/CategoriasPAge";
 const App = () => {
   const queryClient = new QueryClient();
   return (
@@ -58,6 +60,8 @@ const App = () => {
                   <Routes>
                     <Route path="/pote" element={<Trabajador />} />
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/categorias/:categoria" element={<CategoriasPAge />} />
+                    <Route path="/new" element={<HomeNew />} />
                     <Route path="prueba" element={<Prueba />} />
                     <Route path="/reservar" element={<ReservarProductos />} />
                     <Route
@@ -145,10 +149,7 @@ const App = () => {
                         path="/transacciones/*"
                         element={<VentasRoutes />}
                       />
-                       <Route
-                        path="/reservas/"
-                        element={< ReservaPage/>}
-                      />
+                      <Route path="/reservas/" element={<ReservaPage />} />
                     </Route>
 
                     <Route path="/transacciones/*" element={<VentasRoutes />} />

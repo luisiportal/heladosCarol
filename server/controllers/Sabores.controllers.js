@@ -29,7 +29,7 @@ export const getTodosSabores = async (req, res) => {
   try {
     const response = await Sabor.findAll({
       order: [["existencia", "DESC"]],
-      where: { reservar: false },
+      where: { reservar: false, existencia: { [Op.gte]: 1 } },
 
       include: [
         {

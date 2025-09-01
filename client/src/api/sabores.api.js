@@ -1,8 +1,10 @@
 import axios from "./axios.js";
-
 //Sabores
 
-export const getSaboresRequest = async () => await axios.get(`/sabores`);
+export const getSaboresRequest = async () => {
+  const response =await axios.get(`/sabores`)
+  return response
+};
 
 export const getSaboresBackendRequest = async () =>
   await axios.get("/saborestodos/");

@@ -12,6 +12,7 @@ export type DialogProps = {
   textoCancelar?: string;
 };
 
+
 export type Sabor = {
   id_sabor: string;
   cantidad?: number;
@@ -29,12 +30,10 @@ export type Sabor = {
   stockMinimo: number;
   description: string;
   imagenes?: Imagen[];
-  nuevo:boolean;
+  nuevo: boolean;
 };
 
 export type Reserva = {
   productos: Sabor[];
   fecha: string;
 };
-
-

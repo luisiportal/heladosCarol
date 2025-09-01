@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         inspiration: ["Inspiration", "sans-serif"],
         irish: ["Irish", "sans-serif"],
+        tahoma: ["tahoma"],
         // Add more custom font families as needed
       },
       colors: {

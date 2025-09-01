@@ -63,7 +63,7 @@ const SaboresForm = () => {
     formData.append("stockMinimo", String(values.stockMinimo || 0));
     formData.append("existencia", String(values.existencia || 0));
     formData.append("home_img", values.home_img);
-    formData.append("nuevo", String(values.nuevo));
+    formData.append("nuevo", String(values.nuevo ?? false));
     if (imgToDelete.length > 0) {
       console.log(imgToDelete);
 
