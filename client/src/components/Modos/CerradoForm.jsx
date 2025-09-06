@@ -6,8 +6,10 @@ import MostrarErrorMessage from "../ValidacionForm/MostrarErrorMessage";
 import { updateModoCerradoRequest } from "../../api/modos.api.js";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { useModocerrado } from "./useModoCerrado.js";
+import { useModal } from "../../Stores/modalStore.ts";
 const CerradoForm = () => {
-  const { setLoader, setModalActivo } = useAuth();
+  const { setLoader } = useAuth();
+  const { setModal } = useModal();
 
   const { modo, setModo } = useModocerrado();
 
@@ -19,18 +21,17 @@ const CerradoForm = () => {
   });
 
   const handleSubmit = async (values) => {
-
-if(!values.activado){
-  return setModalActivo({
-    mensaje: "Debe seleccionar Abierto o Cerrado",
-    activo: true,
-    errorColor : true,
-  });
-}
+    if (!values.activado) {
+      return setModal({
+        mensaje: "Debe seleccionar Abierto o Cerrado",
+        activo: true,
+        errorColor: true,
+      });
+    }
     try {
       setLoader(true);
       const response = await updateModoCerradoRequest(values);
-      setModalActivo({
+      setModal({
         mensaje: `Modo Cerrado ${
           values.activado == "true" ? "Activado" : "Desactivado"
         }`,
@@ -76,22 +77,24 @@ if(!values.activado){
                 </label>
               </div>
 
-             <div> 
-             <label className="block" htmlFor="mensajeActual">Esta puesto : {modo.mensaje} </label>
-              
-              <label>
-                Mensaje nuevo:
-                
-                <input
-                  type="text"
-                  name="mensaje"
-                  placeholder={modo.mensaje}
-                  className="block border-2 border-gray-300 rounded-xl p-1 mb-2 w-full"
-                  onChange={handleChange}
-                  value={values.mensaje}
-                />
-                <MostrarErrorMessage campo={"mensaje"} errors={errors} />
-              </label></div>
+              <div>
+                <label className="block" htmlFor="mensajeActual">
+                  Esta puesto : {modo.mensaje}{" "}
+                </label>
+
+                <label>
+                  Mensaje nuevo:
+                  <input
+                    type="text"
+                    name="mensaje"
+                    placeholder={modo.mensaje}
+                    className="block border-2 border-gray-300 rounded-xl p-1 mb-2 w-full"
+                    onChange={handleChange}
+                    value={values.mensaje}
+                  />
+                  <MostrarErrorMessage campo={"mensaje"} errors={errors} />
+                </label>
+              </div>
 
               <button
                 type="submit"

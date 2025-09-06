@@ -10,19 +10,13 @@ import DerretidoChocolate2 from "./apariencia/DerretidoChocolate2";
 import ComponenteModal from "./Utilidades/ComponenteModal";
 import LogoHeladosCarol from "./Utilidades/LogoHeladosCarol";
 import MenuAbajo from "./MenuAbajo/MenuAbajo";
-import Horario from "./Horario/Horario";
-import SelecMoneda from "./SelecMoneda";
 const NavbarComponent = ({ carrito }) => {
   const [abrirHamburguesa, setabrirHamburguesa] = useState(false);
   const {
     isAuthenticated,
     logout,
-    user,
+
     perfil,
-    isOnline,
-    setIsOnline,
-    modalActivo,
-    setModalActivo,
   } = useAuth();
 
   const sidebarRef = useRef(null);
@@ -54,10 +48,7 @@ const NavbarComponent = ({ carrito }) => {
   };
   return (
     <div className="bg-slate-100">
-      <ComponenteModal
-        setModalActivo={setModalActivo}
-        modalActivo={modalActivo}
-      />
+      <ComponenteModal />
       <MenuAbajo carrito={carrito} />
 
       {/*barra escritorio*/}
@@ -199,7 +190,6 @@ const NavbarComponent = ({ carrito }) => {
           </div>
         </div>
       </header>
-    
     </div>
   );
 };

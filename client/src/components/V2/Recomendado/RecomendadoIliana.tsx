@@ -9,11 +9,11 @@ import { useCarritoStore } from "../../../Stores/CarritoStore";
 import { agregarProductoAlCarrito } from "../../../hooks/AgregarProductosCarrito";
 import { useMonedaStore } from "../../../Stores/MonedaStore";
 import PrecioCambioMoneda from "./PrecioCambioMoneda";
+import SlideImagenes from "./SlideImagenes";
 
 const RecomendadoIliana = ({ producto }: { producto: Sabor }) => {
   const [showButtons, setShowButtons] = useState(false);
   const { setProductosCarrito, productosCarrito } = useCarritoStore();
-  const { moneda } = useMonedaStore();
 
   const cantidad = getCantidad(productosCarrito, producto);
 
@@ -27,12 +27,12 @@ const RecomendadoIliana = ({ producto }: { producto: Sabor }) => {
       >
         <section className="w-full relative">
              {cantidad > 0 && (
-              <div className="absolute top-3 left-0 bg-slate-700 text-2xl font-bold text-white rounded-r-xl w-12 h-8 aspect-square flex justify-center items-center">
+              <div className="z-50 absolute top-3 left-0 bg-slate-700 text-2xl font-bold text-white rounded-r-xl w-12 h-8 aspect-square flex justify-center items-center">
                 <h2>{cantidad}</h2>
               </div>
             )}
                <div
-              className={`absolute right-2 top-2 transition-all duration-500 ${
+              className={`absolute right-2 top-2 transition-all duration-500 z-50 ${
                 showButtons ? "opacity-100" : "opacity-0 invisible"
               }`}
             >
@@ -56,10 +56,7 @@ const RecomendadoIliana = ({ producto }: { producto: Sabor }) => {
               />
             </div>
           <div className="rounded-t-xl overflow-hidden h-60 ">
-            <Imagen
-              imagen_url={producto?.imagenes?.[0].ruta_image || ""}
-              nombre={producto?.nombre_sabor}
-            />
+          <SlideImagenes producto={producto}/>
           </div>
           <div className="bg-neutral-300 p-5 rounded-b-xl">
             <p className="font-semibold text-xs text-slate-700 mb-2 leading-4">

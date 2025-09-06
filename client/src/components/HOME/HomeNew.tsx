@@ -15,9 +15,12 @@ import Footer from "./Footer";
 import Horario from "../Horario/Horario";
 import SelecMoneda from "../SelecMoneda";
 import RecomendadoIliana from "../V2/Recomendado/RecomendadoIliana";
+import { useModocerrado } from "../Modos/useModoCerrado";
+import MensajeCerrado from "../Modos/MensajeCerrado";
 
 const HomeNew = () => {
   const { setProductos } = useProductosZustand();
+  const { modo } = useModocerrado();
 
   const { data } = useQuery({
     queryKey: ["prodcutos"],
@@ -44,13 +47,28 @@ const HomeNew = () => {
 
           <SelecMoneda />
         </div>
-        {recomendado && <RecomendadoIliana producto={recomendado} />}
-        <CategoriasSelectorHome />
-        <PotesModulo sabores={potes} />
-        {combos.length > 0 && <LoQueBuscan producto={combos[0]} />}
+
+        {modo.activado === true ? (
+          <MensajeCerrado modo={modo} />
+        ) : (
+          <>
+            {" "}
+            {recomendado && <RecomendadoIliana producto={recomendado} />}
+            <CategoriasSelectorHome />
+            <PotesModulo sabores={potes} />
+            {combos.length > 0 && <LoQueBuscan producto={combos[0]} />}
+          </>
+        )}
+
         <BannerDisfrute />
-        {tinas.length > 0 && <TinasModulo tinas={tinas} />}
-        {combos.length > 0 && <CombosHeladosCarol combos={combos} />}
+
+        {modo.activado != true && (
+          <>
+            {tinas.length > 0 && <TinasModulo tinas={tinas} />}
+            {combos.length > 0 && <CombosHeladosCarol combos={combos} />}
+          </>
+        )}
+
         <Reviews sabores={sabores} />
         <Footer />
       </div>

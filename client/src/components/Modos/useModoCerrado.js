@@ -3,7 +3,7 @@ import { getModoCerradoRequest } from "../../api/modos.api";
 
 export const useModocerrado = () => {
   const [modo, setModo] = useState({
-    activado: "",
+    activado: false,
     mensaje: "",
   });
 

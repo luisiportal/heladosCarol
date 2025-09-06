@@ -10,11 +10,11 @@ import {
 import { repartosSchema } from "../../schemas/schemas";
 import { Form, Formik } from "formik";
 import { useAuth } from "../../context/AuthContext";
+import { useModal } from "../../Stores/modalStore";
 
 const RepartoForm = () => {
   const [reparto, setReparto] = useState({});
-  const { setModalActivo } = useAuth();
-
+  const { setModal } = useModal();
   const navigate = useNavigate();
 
   const params = useParams();
@@ -39,7 +39,7 @@ const RepartoForm = () => {
         if (params.id) {
           await updateUnRepartoRequest(params.id, values);
 
-          setModalActivo({
+          setModal({
             mensaje: `Se ha actualizado el reparto ${values.reparto}`,
             activo: true,
             navegarA: "/repartos",

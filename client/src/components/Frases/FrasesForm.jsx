@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import  {  useState } from "react";
+import { Formik, Form,  } from "formik";
 import * as Yup from "yup";
 
 import MostrarErrorMessage from "../ValidacionForm/MostrarErrorMessage";
@@ -7,8 +7,10 @@ import { useAuth } from "../../context/AuthContext.jsx";
 import { useFrase } from "./useFrasehook.js";
 import { updateFrase } from "../../api/frases.api.js";
 import { useParams } from "react-router-dom";
+import { useModal } from "../../Stores/modalStore.ts";
 const FrasesForm = () => {
-  const { setLoader, setModalActivo } = useAuth();
+  const { setLoader } = useAuth();
+  const {setModal}= useModal()
   const params = useParams();
   const { frase } = useFrase(params.id);
   const [first, setfirst] = useState({
@@ -26,7 +28,7 @@ const FrasesForm = () => {
     try {
       setLoader(true);
       const response = await updateFrase(params.id,values);
-      setModalActivo({
+      setModal({
         mensaje: `Frase actualizada`,
         activo: true,
       });
