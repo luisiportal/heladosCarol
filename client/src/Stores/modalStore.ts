@@ -14,5 +14,8 @@ export const useModal = create<ModalStore>((set) => ({
     navegarA: "",
   },
 
-  setModal: (estado: Modal) => set({ modal: estado }),
+  setModal: (estado: Modal) => {
+    console.log(estado);
+    
+    set({ modal: estado })},
 }));

@@ -7,11 +7,13 @@ import Loader from "../Utilidades/Loader";
 import { saboresSchema } from "../../schemas/schemas";
 import Unchecked from "../SVG/Unchecked";
 import { Imagen, Sabor } from "../../types/General.types";
+import { useModal } from "../../Stores/modalStore";
 
 const SaboresForm = () => {
   const { createSabor, getSabor, updateSabor } = useSabores();
 
-  const { loader, setLoader, setModalActivo } = useAuth();
+  const { loader, setLoader } = useAuth();
+  const {setModal}=useModal()
   const [files, setFiles] = useState<File[]>([]);
 
   const [imagenes, setImagenes] = useState<Imagen[]>([]);
@@ -83,7 +85,7 @@ const SaboresForm = () => {
       if (params.id_sabor) {
         const updateResponse = await updateSabor(params.id_sabor, formData); // onlinne
 
-        setModalActivo({
+        setModal({
           mensaje: updateResponse,
           activo: true,
           navegarA: "/sabores",
@@ -91,7 +93,7 @@ const SaboresForm = () => {
       } else {
         const createResponse = await createSabor(formData);
 
-        setModalActivo({
+        setModal({
           mensaje: createResponse,
           activo: true,
           navegarA: "/sabores",
@@ -100,7 +102,7 @@ const SaboresForm = () => {
     } catch (error) {
       console.log(error);
 
-      setModalActivo({
+      setModal({
         mensaje: "Error al actualizar producto  " + error,
         activo: true,
         errorColor: true,

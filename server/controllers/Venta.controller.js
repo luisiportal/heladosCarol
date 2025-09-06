@@ -88,7 +88,7 @@ export const createVenta = async (req, res) => {
           numero: entrega.numero,
           calle1: entrega.calle1,
           calle2: entrega.calle2,
-          reparto: entrega.reparto.reparto,
+          reparto: entrega.reparto.value,
           envio: envio,
           p_referencia: entrega.p_referencia,
           observaciones: entrega.observaciones,

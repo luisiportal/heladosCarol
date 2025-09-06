@@ -9,6 +9,7 @@ import {
   readLocalStorage,
   writeLocalStorageActualizarProductos,
 } from "../../hooks/useLocalStorage";
+import { useModal } from "../../Stores/modalStore";
 
 const schema = Yup.object().shape({
   nombre_producto: Yup.string().required("Nombre producto requerido"),
@@ -27,8 +28,9 @@ const schema = Yup.object().shape({
 const ProductoForm = () => {
   const { createProducto, getProducto, updateProducto } = useProductos();
 
-  const { loader, setLoader, isOnline, modalActivo, setModalActivo } =
-    useAuth();
+  const { loader, setLoader, isOnline } = useAuth();
+  const { modal, setModal } = useModal();
+
   const [file, setFile] = useState();
   const [producto, setProducto] = useState({
     nombre_producto: "",
@@ -38,6 +40,9 @@ const ProductoForm = () => {
     categoria: "Sin categoria",
     stockMinimo: 0,
   });
+
+  console.log(modal);
+  
 
   useEffect(() => {
     const loadProducto = async () => {
@@ -66,7 +71,6 @@ const ProductoForm = () => {
   }, []);
 
   const params = useParams();
-  const navigate = useNavigate();
 
   const handleSubmit = async (values) => {
     const formData = new FormData();
@@ -87,37 +91,27 @@ const ProductoForm = () => {
     try {
       setLoader(true);
       if (params.id_producto) {
-        if (isOnline) {
-          const updateProducto =await updateProducto(params.id_producto, formData); // onlinne
-        } else {
-          writeLocalStorageActualizarProductos("productos", {
-            id_producto: params.id_producto,
-            nombre_producto: formData.get("nombre_producto"),
-            description_producto: formData.get("description_producto"),
-            costo_unitario: formData.get("costo_unitario"),
-            precio_venta: formData.get("precio_venta"),
-            categoria: formData.get("categoria"),
-            stockMinimo: formData.get("stockMinimo"),
-            unidadMedida: formData.get("unidadMedida"),
-          });
-        }
+        const updateProducto = await updateProducto(
+          params.id_producto,
+          formData
+        ); // onlinne
 
-        setModalActivo({
+        setModal({
           mensaje: updateProducto,
           activo: true,
           navegarA: "/productos",
         });
       } else {
         if (isOnline) {
-         const createProducto= await createProducto(formData);
-          setModalActivo({
+          const createProducto = await createProducto(formData);
+          setModal({
             mensaje: createProducto,
             activo: true,
             navegarA: "/productos",
           });
         } else {
           setLoader(false);
-          return setModalActivo({
+          return setModal({
             mensaje: "Lo siento no puedo agregar productos fuera de linea",
             activo: true,
             navegarA: "/productos",
@@ -136,13 +130,11 @@ const ProductoForm = () => {
             existencia_inicial: formData.get("existencia_inicial"),
           });*/
         }
-
-      
       }
     } catch (error) {
       console.log(error);
 
-      setModalActivo({
+      setModal({
         mensaje: "Error al actualizar producto  " + error,
         activo: true,
         errorColor: true,
