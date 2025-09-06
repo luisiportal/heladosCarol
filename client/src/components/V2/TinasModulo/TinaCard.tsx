@@ -73,7 +73,7 @@ const TinaCard = ({ sabor, css }: { sabor: Sabor; css: string }) => {
           <Cart2SVG />
         </button>
 
-        <div className="rounded-xl object-cover w-full h-32 p-0.5">
+        <div className="rounded-xl object-cover w-full h-32 p-0.5 overflow-hidden">
           <Imagen
             nombre={sabor.nombre_sabor}
             imagen_url={`${sabor?.imagenes?.[0]?.ruta_image}`}
