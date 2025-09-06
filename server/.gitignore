@@ -1,1 +1,3 @@
-.vercel
+# .gitignore
+.vercel/
+public/

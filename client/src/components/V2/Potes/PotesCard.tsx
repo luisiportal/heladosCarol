@@ -78,7 +78,7 @@ const PotesCard = ({ sabor, css }: { sabor: Sabor; css: string }) => {
           alt={sabor.nombre_sabor}
         />
       </div>
-      <h2 className="font-bold flex justify-center">{sabor.nombre_sabor}</h2>
+      <h2 className="font-bold flex justify-center">{sabor.nombre_sabor.replace("Pote", "")}</h2>
 
       <PrecioChiquito producto={sabor} />
       <div

@@ -21,7 +21,7 @@ const SlideImagenes = ({ producto }: { producto: Sabor }) => {
       {producto.imagenes?.map((item, index) => (
         <div
           className={`w-full h-full opacity-0 transition-all duration-700 absolute top-0 left-0 ${
-            imgActiva === index ? "opacity-100" : "opacity-0"
+            imgActiva === index ? "opacity-100" : "opacity-0 invisible"
           }`}
           key={item.id_imagen}
         >
