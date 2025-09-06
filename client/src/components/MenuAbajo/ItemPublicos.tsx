@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import HomeSVG from "../SVG/HomeSVG";
-import CartSVG from "../SVG/CartSVG";
 import CallSVG from "../SVG/CallSVG";
 import CarritoCantidadBoton from "./CarritoCantidadBoton";
+import { Link } from "react-router-dom";
 
 const ItemPublicos = ({ navigate, carrito }) => {
-  
-
-
   return (
     <>
       {" "}
@@ -19,7 +16,10 @@ const ItemPublicos = ({ navigate, carrito }) => {
         <HomeSVG css={"w-8 h-8"} />
         <h3 className="text-sm font-semibold">Inicio</h3>
       </button>
-   <CarritoCantidadBoton cantCarrito={carrito.length}/>
+      <Link className="flex flex-col items-center justify-center" to={""}>
+        <CarritoCantidadBoton cantCarrito={carrito.length} />
+        <h2 className="text-sm font-semibold">Pagar</h2>
+      </Link>
       <button
         onClick={() => navigate("/contacto")}
         title="call"
