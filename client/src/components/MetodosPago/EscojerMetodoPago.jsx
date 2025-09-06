@@ -1,16 +1,22 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LayoutPrincipal from "../../Layouts/LayoutPrincipal";
 import { precioMoneda } from "../Comprar/SeccionAgregar/Entrega/precioMoneda";
 import BTN_MePago from "./BTN_MePago";
+import { useMonedaStore } from "../../Stores/MonedaStore";
 
-const EscojerMetodoPago = ({ setNavegacion, setMetoPago, setMoneda }) => {
-    const params = useParams();
-  const reservando = params.metodo
-  const handleMetoPago = async (metodo) => {
-    setMetoPago(metodo);
-    setMoneda(precioMoneda(metodo));
-   setNavegacion(!reservando ? 1 : 2);
-
+const EscojerMetodoPago = () => {
+  const {moneda, setMoneda} = useMonedaStore()
+  const params = useParams();
+  const navigate = useNavigate();
+  const reservando = params.metodo;
+  const handleMetoPago = (metodo) => {
+    // setMetoPago(metodo);
+    //setMoneda(precioMoneda(metodo));
+    // setNavegacion(2);
+    console.log(metodo);
+    
+    setMoneda(metodo)
+    navigate('/revisar')
   };
 
   return (
@@ -22,13 +28,13 @@ const EscojerMetodoPago = ({ setNavegacion, setMetoPago, setMoneda }) => {
         <BTN_MePago
           name={"Zelle"}
           imagen={"zelle.png"}
-          onclick={() => handleMetoPago("Zelle")}
+          onclick={() => handleMetoPago("USD")}
         />
 
         <BTN_MePago
           name={"TropiPay"}
           imagen={"tropipay.jpg"}
-          onclick={() => handleMetoPago("TropiPay")}
+          onclick={() => handleMetoPago("EUR")}
         />
         <BTN_MePago
           name={"Moneda Nacional CUP"}

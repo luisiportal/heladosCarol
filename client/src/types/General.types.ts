@@ -12,6 +12,34 @@ export type DialogProps = {
   textoCancelar?: string;
 };
 
+export type Reparto = {
+  reparto: string;
+  costo: number;
+  costo_cup: number;
+  envio: number;
+};
+
+export type Modal = {
+  mensaje: string;
+  errorColor?: boolean;
+  activo: boolean;
+  navegarA?: string;
+};
+
+export type Entrega = {
+  ordenante: string;
+  contacto_ordenante: string;
+  beneficiario: string;
+  tel_beneficiario: string;
+  direccion: string;
+  calle: string;
+  numero: string;
+  calle1: string;
+  calle2: string;
+  reparto: Reparto;
+  p_referencia: string;
+  observaciones: string;
+};
 
 export type Sabor = {
   id_sabor: string;

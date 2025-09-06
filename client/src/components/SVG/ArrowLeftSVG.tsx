@@ -1,5 +1,3 @@
-import React from "react";
-
 const ArrowLeftSVG = () => {
   return (
     <svg
@@ -8,7 +6,7 @@ const ArrowLeftSVG = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-   className="w-8 h-8"
+      className="w-8 h-8"
     >
       <path
         strokeLinecap="round"

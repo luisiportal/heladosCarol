@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SeccionAgregarSabores from "./SeccionAgregar/SeccionAgregarSabores";
 import SeccionSaboresCarrito from "./SeccionAgregar/SeccionSaboresCarrito";
 import { useCarritos } from "../../context/CarritosContext";
@@ -19,9 +19,6 @@ const ComprarPage = () => {
   const params = useParams();
 
   const reservando = params.metodo;
-
-  console.log(reservando);
-  
 
 
   useEffect(() => {

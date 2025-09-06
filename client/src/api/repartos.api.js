@@ -1,7 +1,8 @@
 import axios from "./axios.js";
 
 export const getRepartosRequest = async () => {
-  return await axios.get(`/repartos`);
+  const response = await axios.get(`/repartos`);
+  return response;
 };
 
 export const getUnRepartoRequest = async (id) =>

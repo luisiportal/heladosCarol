@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./navbar/Navbar";
 import { useAuth } from "../context/AuthContext";
-
 import { DerretidoChocolate } from "./apariencia/DerretidoChocolate";
 import DerretidoVainilla from "./apariencia/DerretidoVainilla";
 import DerretidoVainilla2 from "./apariencia/DerretidoVainilla2";
@@ -11,7 +10,8 @@ import DerretidoChocolate2 from "./apariencia/DerretidoChocolate2";
 import ComponenteModal from "./Utilidades/ComponenteModal";
 import LogoHeladosCarol from "./Utilidades/LogoHeladosCarol";
 import MenuAbajo from "./MenuAbajo/MenuAbajo";
-
+import Horario from "./Horario/Horario";
+import SelecMoneda from "./SelecMoneda";
 const NavbarComponent = ({ carrito }) => {
   const [abrirHamburguesa, setabrirHamburguesa] = useState(false);
   const {
@@ -63,7 +63,26 @@ const NavbarComponent = ({ carrito }) => {
       {/*barra escritorio*/}
       <header className="fixed w-screen bg-heladosCarol_color px-6 z-50 rounded shadow-xl">
         <div className="flex justify-between h-16 items-center max-w-7xl mx-auto">
-          <div className="flex -mr-4">
+          <button
+            onClick={hamburguerClick}
+            className="mt-1 pr-5 text-white border-black hover:bg-heladosCarol_color hover:text-slate-100 rounded p-1 -m-1 transition-colors focus:ring-2 focus:ring-slate-200 lg:hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-8 h-8"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </button>
+          <div className="w-full flex justify-between -mr-4">
             {/*Logo  */}
             <LogoHeladosCarol />
 
@@ -119,25 +138,6 @@ const NavbarComponent = ({ carrito }) => {
             {/* Boton hamburguesa*/}
             <div ref={openButtonRef}>
               {" "}
-              <button
-                onClick={hamburguerClick}
-                className="mt-1 text-white border-black hover:bg-heladosCarol_color hover:text-slate-100 rounded p-1 -m-1 transition-colors focus:ring-2 focus:ring-slate-200 lg:hidden"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-8 h-8"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  />
-                </svg>
-              </button>
               <div className="absolute -bottom-2 sm: left-10 ">
                 <DerretidoVainilla2 />
               </div>
@@ -199,6 +199,7 @@ const NavbarComponent = ({ carrito }) => {
           </div>
         </div>
       </header>
+    
     </div>
   );
 };

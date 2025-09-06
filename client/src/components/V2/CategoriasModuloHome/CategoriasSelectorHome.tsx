@@ -5,7 +5,7 @@ import CardCategoriasSelectorHome from "./CardCategoriasSelectorHome";
 const CategoriasSelectorHome = () => {
   return (
     <section>
-      <TituloModulo titulo="Categorias" />
+      <TituloModulo titulo="Nuestros Productos" />
 
       <div className="flex gap-3">
         <Link to={"/categorias/Potes"}>

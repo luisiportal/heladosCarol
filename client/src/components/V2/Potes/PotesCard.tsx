@@ -2,11 +2,16 @@ import { useState } from "react";
 import { Sabor } from "../../../types/General.types";
 import Cart2SVG from "../../SVG/Cart2SVG";
 import BotonesMasMenos from "./BotonesMasMenos";
+import { useCarritoStore } from "../../../Stores/CarritoStore";
+import { getCantidad } from "../../../utils/util";
+import { agregarProductoAlCarrito } from "../../../hooks/AgregarProductosCarrito";
+import PrecioChiquito from "./PrecioChiquito";
 
 const PotesCard = ({ sabor, css }: { sabor: Sabor; css: string }) => {
   const [showButtons, setShowButtons] = useState(false);
-  const [cantidad, setCantidad] = useState(0);
+  const { setProductosCarrito, productosCarrito } = useCarritoStore();
 
+  const cantidad = getCantidad(productosCarrito, sabor);
   const color = `#${sabor.color}`;
 
   return (
@@ -24,24 +29,43 @@ const PotesCard = ({ sabor, css }: { sabor: Sabor; css: string }) => {
 
           <div
             className={`absolute right-2 top-2 transition-all duration-500 ${
-              showButtons ? "opacity-100" : "opacity-0"
+              showButtons ? "opacity-100" : "opacity-0 invisible"
             }`}
           >
             <BotonesMasMenos
-              mas={() => setCantidad(cantidad + 1)}
-              menos={() => setCantidad(cantidad > 0 ? cantidad - 1 : cantidad)}
+              mas={() => {
+                agregarProductoAlCarrito({
+                  producto: sabor,
+                  cantidad: cantidad + 1,
+                  productosCarrito,
+                  setProductosCarrito,
+                });
+              }}
+              menos={() =>
+                agregarProductoAlCarrito({
+                  producto: sabor,
+                  cantidad: cantidad > 0 ? cantidad - 1 : cantidad,
+                  productosCarrito,
+                  setProductosCarrito,
+                })
+              }
             />
           </div>
         </>
 
         <button
           onClick={() => {
-            setCantidad(cantidad + 1);
+            agregarProductoAlCarrito({
+              producto: sabor,
+              cantidad: cantidad + 1,
+              productosCarrito,
+              setProductosCarrito,
+            });
             setShowButtons(true);
           }}
           title="Comprar"
           className={`transition-all duration-500 absolute top-[60%] left-1/2 transform -translate-x-1/2  -translate-y-1/2 bg-slate-700 text-white rounded-xl w-14 h-8 flex justify-center items-center ${
-            showButtons ? "opacity-0" : "opacity-100"
+            showButtons ? "opacity-0 invisible" : "opacity-100"
           }`}
         >
           {" "}
@@ -56,12 +80,7 @@ const PotesCard = ({ sabor, css }: { sabor: Sabor; css: string }) => {
       </div>
       <h2 className="font-bold flex justify-center">{sabor.nombre_sabor}</h2>
 
-      <h2 className="font-bold text-lg flex ml-2">
-        {parseInt(sabor.precio_venta_cup.toString())}
-        <span className="font-semibold text-neutral-500 text-xs uppercase mt-1 ml-1">
-          cup
-        </span>
-      </h2>
+      <PrecioChiquito producto={sabor} />
       <div
         className={`w-full h-3 absolute bottom-0 rounded-b-xl border border-neutral-300`}
         style={{ backgroundColor: color }}

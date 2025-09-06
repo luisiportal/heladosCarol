@@ -253,8 +253,7 @@ function FacturaCard({
 
                           setDialogProps({
                             titulo: "Confirmar Factura",
-                            pregunta:
-                              "¿Desea confirmar la factura ?",
+                            pregunta: "¿Desea confirmar la factura ?",
                             textoAceptar: "Si, esta bien",
                             handleClick: () => handleConfirmar(factura.id),
                           });

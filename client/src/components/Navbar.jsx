@@ -1,14 +1,12 @@
-import { useAuth } from "../context/AuthContext";
-import { useCarritos } from "../context/CarritosContext";
+import { useCarritoStore } from "../Stores/CarritoStore";
 import NavbarComponent from "./NavbarComponent";
 
 function Navbar() {
-  const { isAuthenticated } = useAuth();
-  const {carrito }= useCarritos()
+  const { productosCarrito } = useCarritoStore();
 
   return (
     <div className="z-50">
-      <NavbarComponent carrito={carrito}></NavbarComponent>
+      <NavbarComponent carrito={productosCarrito}></NavbarComponent>
     </div>
   );
 }

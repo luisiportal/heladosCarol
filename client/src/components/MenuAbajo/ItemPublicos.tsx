@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import HomeSVG from "../SVG/HomeSVG";
 import CartSVG from "../SVG/CartSVG";
 import CallSVG from "../SVG/CallSVG";
+import CarritoCantidadBoton from "./CarritoCantidadBoton";
 
 const ItemPublicos = ({ navigate, carrito }) => {
-  const [cantCarrito, setCantCarrito] = useState(0);
+  
 
-  useEffect(() => {
-    setCantCarrito(carrito.length);
-  }, [carrito]);
 
   return (
     <>
@@ -21,16 +19,7 @@ const ItemPublicos = ({ navigate, carrito }) => {
         <HomeSVG css={"w-8 h-8"} />
         <h3 className="text-sm font-semibold">Inicio</h3>
       </button>
-      <button
-        onClick={() => navigate("/comprar")}
-        title="cart"
-        className="relative bg-[#f9a217] rounded-full w-14 h-14 flex justify-center items-center shadow-md"
-      >
-        <CartSVG />
-        <h3 className="absolute right-2 top-8 bg-slate-700 rounded-full p-2 w-6 h-6 flex justify-center items-center font-bold">
-          {cantCarrito}
-        </h3>
-      </button>
+   <CarritoCantidadBoton cantCarrito={carrito.length}/>
       <button
         onClick={() => navigate("/contacto")}
         title="call"

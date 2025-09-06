@@ -1,4 +1,3 @@
-import React from "react";
 import CallSVG from "../../SVG/CallSVG";
 import TextSVG from "../../SVG/TextSVG";
 
@@ -10,6 +9,7 @@ const TelefonoNotificarFactura = ({
   persona,
 }) => {
 
+  console.log(ventas);
   
   const items = ventas.map(
     (item) => `<<${item.cantidad} ${item.sabore.nombre_sabor} >> `
@@ -17,7 +17,7 @@ const TelefonoNotificarFactura = ({
 
   const texto = `Hola ${persona}, hemos recibido su factura de ${items} ${
     moneda === "CUP" ? `con un total de ${grandTotal} CUP` : ""
-  } . La cual ya está siendo procesada.Díganos si se le puede enviar en estos momentos.  Helados Carol | www.heladoscarol.com`;
+  } . Por favor díganos si esta en su casa para recibirlo en aproximadamente 1 hora. Saludos Helados Carol`;
 
   function agregarPrefijo(numero) {
     if (!numero.startsWith("53") && !numero.startsWith("+53")) {
@@ -32,8 +32,13 @@ const TelefonoNotificarFactura = ({
     <>
       {" "}
       <div className="flex p-2 justify-between items-center">
-        <a href={`sms:${resultado}?body=${texto}`} className="flex gap-1"> <TextSVG/> Enviar SMS</a>
-        <a href={`tel:${resultado}`} className="flex gap-1"><CallSVG css={"w-6 h-6"}/> LLamar</a>
+        <a href={`sms:${resultado}?body=${texto}`} className="flex gap-1">
+          {" "}
+          <TextSVG /> Enviar SMS
+        </a>
+        <a href={`tel:${resultado}`} className="flex gap-1">
+          <CallSVG css={"w-6 h-6"} /> LLamar
+        </a>
         <a
           className="flex font-semibold"
           target="_blank"

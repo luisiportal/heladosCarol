@@ -1,6 +1,5 @@
 import MostrarErrorMessage from "../../../ValidacionForm/MostrarErrorMessage";
 import { grandTotalFactura } from "../../../../utils/grandTotalFactura";
-import Zelle from "../../../MetodosPago/Zelle";
 import Tropipay from "../../../MetodosPago/Tropipay";
 import { useParams } from "react-router-dom";
 import MonedaNacional from "../../../MetodosPago/MonedaNacional";

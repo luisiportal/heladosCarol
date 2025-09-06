@@ -3,22 +3,20 @@ import { createPagoRequest } from "../../api/venta.api";
 import Loader from "../Utilidades/Loader";
 
 const Tropipay = ({ total, setPayLink, payLink, description }) => {
-  console.log(total);
+  const loadPaymentLink = async () => {
+    const { data } = await createPagoRequest({
+      reference: new Date().getTime().toString(),
+      description: description,
+      totalCobrar: Number(total) * 100,
+      fechaFactura: new Date(),
+    });
+    setPayLink({
+      reference: data.reference,
+      shortUrl: data.shortUrl,
+    });
+  };
 
   useEffect(() => {
-    const loadPaymentLink = async () => {
-      const { data } = await createPagoRequest({
-        reference: new Date().getTime().toString(),
-        description: description,
-        totalCobrar: Number(total) * 100,
-        fechaFactura: new Date(),
-      });
-      setPayLink({
-        reference: data.reference,
-        shortUrl: data.shortUrl,
-      });
-    };
-
     loadPaymentLink();
   }, []);
 
@@ -28,7 +26,8 @@ const Tropipay = ({ total, setPayLink, payLink, description }) => {
         Pasos para realizar Pago mediante TropiPay
       </h2>
       <h4>
-        1- Enviar <span className="font-bold">{Number(total).toFixed(2)} EUR</span> por{" "}
+        1- Enviar{" "}
+        <span className="font-bold">{Number(total).toFixed(2)} EUR</span> por{" "}
         <span className="font-bold">TropiPay </span>
       </h4>
 

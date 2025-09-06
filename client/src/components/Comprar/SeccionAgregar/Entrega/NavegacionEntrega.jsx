@@ -1,8 +1,5 @@
-import React from "react";
 import Btn_Huellas from "../../../Btn_Huellas";
-import ArrowRight from "../../../SVG/ArrowRight";
 
-import ArrowLeftSVG from "../../../SVG/ArrowLeftSVG";
 import { Formik, validateYupSchema } from "formik";
 import { writeLocalStorage } from "../../../../hooks/useLocalStorage";
 
@@ -19,7 +16,6 @@ const NavegacionEntrega = ({
   return (
     <div className="flex  justify-between">
       <div className="flex  items-center justify-center  bg-fresa  w-28 rounded-xl">
-        <ArrowLeftSVG />
         <Btn_Huellas text={`Sabores`} onclick={() => setNavegacion(1)} />
       </div>
       <div>
@@ -76,7 +72,6 @@ const NavegacionEntrega = ({
                 validateYupSchema(entrega, schema);
               }}
             />
-            <ArrowRight />
           </>
         )}
       </div>

@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
 import ProductoCarrito from "../../Ventas/ProductoCarrito";
 import Loader from "../../Utilidades/Loader";
 import Btn_Huellas from "../../Btn_Huellas";
-import ArrowRight from "../../SVG/ArrowRight";
 import { useNavigate } from "react-router-dom";
 import {
   readLocalStorage,
@@ -81,7 +79,6 @@ const SeccionSaboresCarrito = ({
                 setNavegacion(2);
               }}
             />
-            <ArrowRight />
           </div>
         )}
       </div>

@@ -23,14 +23,14 @@ export const createVenta = async (req, res) => {
     ruta_image = req.file.originalname;
   }
 
-  const productos = JSON.parse(req.body.productos);
-  const entrega = JSON.parse(req.body.entrega);
-  const pasarela = JSON.parse(req.body.pasarela);
-  const reference = JSON.parse(req.body.reference);
-  const fechaEntrega = JSON.parse(req.body.fechaEntrega);
-  const reservando = JSON.parse(req.body.reservando);
-  console.log(fechaEntrega);
-
+  const productos = req.body.productos;
+  const entrega = req.body.entrega;
+  const pasarela = req.body.pasarela;
+  const reference = req.body.reference;
+  const fechaEntrega = req.body.fechaEntrega;
+  const reservando = req.body.reservando;
+  const granTotalFactura = req.body.granTotalFactura;
+  const tropiPayFee = req.body.tropiPayFee;
   try {
     const cerrado = await Modos.findByPk(1);
 
@@ -41,7 +41,7 @@ export const createVenta = async (req, res) => {
         .json({ message: `Lo sentimos ${cerrado.mensaje}` });
     }
 
-    const check = await checkExistencia({ productos });
+    const check = await checkExistencia({ productos: productos });
 
     if (check) {
       return res.status(500).json({ message: `${check} Producto agotado` });
@@ -54,32 +54,18 @@ export const createVenta = async (req, res) => {
     });
   }
 
-  const tipomoneda = (pasarela) => {
-    let moneda = "";
-    if (pasarela == "CUP") {
-      moneda = "CUP";
-    }
-    if (pasarela == "Zelle") {
-      moneda = "USD";
-    }
-    if (pasarela == "TropiPay") {
-      moneda = "EUR";
-    }
-    return moneda;
-  };
-
-  const moneda = tipomoneda(pasarela);
-  const { total_venta, tropiPayFee } = JSON.parse(req.body.granTotalFactura);
+  const moneda = req.body.moneda;
+  //v1  const { total_venta, tropiPayFee } = JSON.parse(req.body.granTotalFactura);
 
   let fechaActual = new Date();
   let creado = fechaActual.toISOString();
-
+  const total_venta = granTotalFactura;
   try {
     await sequelize.transaction(async (t) => {
       // Crear la factura
       const factura = await Factura.create(
         {
-          total_venta,
+          total_venta: granTotalFactura,
           tropiPayFee,
           pasarela,
           reference,
@@ -101,8 +87,8 @@ export const createVenta = async (req, res) => {
           numero: entrega.numero,
           calle1: entrega.calle1,
           calle2: entrega.calle2,
-          reparto: entrega.reparto,
-          envio: entrega.envio,
+          reparto: entrega.reparto.reparto,
+          envio: entrega.reparto.envio,
           p_referencia: entrega.p_referencia,
           observaciones: entrega.observaciones,
         },
@@ -115,17 +101,14 @@ export const createVenta = async (req, res) => {
         return precioUnitario;
       };
 
-      console.log(productos);
-      
-
       for (const producto of productos) {
         // Crear la venta
         const ventaNueva = await Venta.create(
           {
-            id_sabor: producto.id_sabor,
+            id_sabor: producto.producto.id_sabor,
             cantidad: producto.cantidad,
             precio_total_sabor:
-              producto.cantidad * calcularPrecioUnitario(producto),
+              producto.cantidad * calcularPrecioUnitario(producto.producto),
             id_factura: factura.id,
           },
           { transaction: t }

@@ -1,8 +1,7 @@
-import React from "react";
 
 const MonedaNacional = ({ total }) => {
   return (
-    <div className="flex flex-col  justify-center text-slate-600 gap-2">
+    <div className=" gap-2  m-1 p-5 mb-4 text-slate-600 text-justify bg-white shadow-md rounded-xl flex flex-col leading-relaxed">
       <h2 className="font-semibold text-slate-700 flex justify-center">
         Pasos para realizar Pago
       </h2>

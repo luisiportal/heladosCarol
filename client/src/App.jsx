@@ -44,6 +44,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ReservaPage from "./components/Reservas/ReservaPage";
 import HomeNew from "./components/HOME/HomeNew";
 import CategoriasPAge from "./components/HOME/CategoriasPAge";
+import CarritoPage from "./components/V2/Carrito/CarritoPage";
+import EntregaYenviaForm from "./components/Comprar/SeccionAgregar/Entrega/EntregaYenviaForm";
+import EntregaPage from "./components/V2/EntregaV2/EntregaPage";
+import RevisarPedidoPage from "./components/V2/RevisarPedido/RevisarPedidoPage";
+import Modal from "./components/Utilidades/Modal";
+import EscojerMetodoPago from "./components/MetodosPago/EscojerMetodoPago";
 const App = () => {
   const queryClient = new QueryClient();
   return (
@@ -59,9 +65,15 @@ const App = () => {
                 <div className="container max-w-md mx-auto">
                   <Routes>
                     <Route path="/pote" element={<Trabajador />} />
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/categorias/:categoria" element={<CategoriasPAge />} />
-                    <Route path="/new" element={<HomeNew />} />
+                    <Route path="/" element={<HomeNew />} />
+                    <Route
+                      path="/categorias/:categoria"
+                      element={<CategoriasPAge />}
+                    />
+                    <Route path="/carrito" element={<CarritoPage />} />
+                    <Route path="/entrega" element={<EntregaPage />} />
+                    <Route path="/pasarela" element={<EscojerMetodoPago />} />
+                    <Route path="/revisar" element={<RevisarPedidoPage />} />
                     <Route path="prueba" element={<Prueba />} />
                     <Route path="/reservar" element={<ReservarProductos />} />
                     <Route

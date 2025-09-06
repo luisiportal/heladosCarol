@@ -29,7 +29,7 @@ const SaboresFactura = ({ ventas, envio, moneda, tropiPayFee }) => {
               ? sabor.precio_total_sabor
               : precioSabor(sabor) * Number(sabor.cantidad)}
 
-            {" " +moneda}
+            {" " + moneda}
           </div>
         </div>
       ))}

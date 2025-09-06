@@ -192,7 +192,6 @@ export function writeLocalStorageCrearMovimiento(value, venta) {
         }
 
         let obje = { ...producto, existencia: existenciaActu };
-   
 
         return obje;
       } else {

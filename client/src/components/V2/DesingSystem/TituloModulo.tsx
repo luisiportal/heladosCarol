@@ -3,7 +3,7 @@ interface Props {
 }
 const TituloModulo = ({ titulo }: Props) => {
   return (
-    <h2 className="font-bold text-slate-700 text-2xl p-5 pl-2 min-h-20">
+    <h2 className="font-bold text-slate-700 text-3xl p-5 pl-2 mt-5 min-h-10 font-irish">
       {titulo}
     </h2>
   );

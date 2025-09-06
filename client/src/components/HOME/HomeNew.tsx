@@ -11,10 +11,13 @@ import { useProductosZustand } from "../../Stores/ProductoStore";
 import { useQuery } from "@tanstack/react-query";
 import { getSaboresRequest } from "../../api/sabores.api";
 import { filtrar } from "../../utils/util";
+import Reviews from "./Reviews";
+import Footer from "./Footer";
+import Horario from "../Horario/Horario";
+import SelecMoneda from "../SelecMoneda";
 
 const HomeNew = () => {
   const { setProductos } = useProductosZustand();
-
 
   const { data } = useQuery({
     queryKey: ["prodcutos"],
@@ -27,26 +30,29 @@ const HomeNew = () => {
     setProductos(sabores);
   }, []);
 
-  
-
   const potes = filtrar(sabores, "Potes");
   const combos = filtrar(sabores, "Combos");
   const tinas = filtrar(sabores, "Tinas");
   const recomendado = combos[Math.floor(Math.random() * combos.length)];
 
- 
-
   return (
     <div className="bg-neutral-100 overflow-hidden relative">
       <div className="  bg-vainilla absolute top-40 w-[879px] h-[337px] rounded-[55%/35%] -rotate-[35deg] translate-y-52 -translate-x-40"></div>
-      <div className="pt-16 p-2 pb-24 relative z-10">
-        <Recomendado producto={recomendado} />
-        <CategoriasSelectorHome/>
+      <div className="p-2 pb-24 relative z-10">
+        <div className="pt-20 pb-2 flex justify-between p-2">
+          <Horario />
+
+          <SelecMoneda />
+        </div>
+        {recomendado && <Recomendado producto={recomendado} />}
+        <CategoriasSelectorHome />
         <PotesModulo sabores={potes} />
-        <LoQueBuscan producto={combos[0]} />
+        {combos.length > 0 && <LoQueBuscan producto={combos[0]} />}
         <BannerDisfrute />
         <TinasModulo tinas={tinas} />
-        <CombosHeladosCarol combos={combos} />
+        {combos.length > 0 && <CombosHeladosCarol combos={combos} />}
+        <Reviews sabores={sabores} />
+        <Footer />
       </div>
       <div className="bg-fresa/80 absolute top-[750px] w-[879px] h-[337px] rounded-[55%/35%] -rotate-[35deg] translate-y-52 -translate-x-40"></div>
       <div className="bg-vainilla absolute top-[1400px] w-[879px] h-[337px] rounded-[55%/35%] -rotate-[25deg] translate-y-52 -translate-x-40"></div>

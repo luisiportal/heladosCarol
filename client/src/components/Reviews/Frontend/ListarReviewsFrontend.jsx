@@ -9,10 +9,9 @@ import { useAuth } from "../../../context/AuthContext";
 
 import { getReviewsPublicadosRequest } from "../../../api/reviews.api";
 
-const ListarReviewsFrontend = () => {
+const ListarReviewsFrontend = ({sabores}) => {
   const { reviews, setReviews, loadReviewsPublicados, recargarReviews } =
     useReviews();
-  const { sabores } = useSabores();
   const { loader, setLoader, setModalActivo } = useAuth();
   useEffect(() => {
     const cargarReviews = async (limit) => {
