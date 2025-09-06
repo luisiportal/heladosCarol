@@ -17,7 +17,7 @@ import { useLoader } from "../../../Stores/loaderStore";
 const RevisarPedidoPage = () => {
   const { setLoader } = useLoader();
   const { entrega } = useEntregaStore();
-  const { productosCarrito,setProductosCarrito } = useCarritoStore();
+  const { productosCarrito, setProductosCarrito } = useCarritoStore();
   const { moneda } = useMonedaStore();
   const [zelleOk, setZelleok] = useState(false);
   const { setModal } = useModal();
@@ -44,6 +44,9 @@ const RevisarPedidoPage = () => {
 
   const pasarela = getPasarela();
 
+  const tropiPayFee =
+    pasarela === "TropiPay" ? tropiPayFeeGet(granTotalFactura) : 0;
+
   const enviarFactura = async () => {
     if (moneda === "USD" && !zelleOk) {
       return setModal({
@@ -61,8 +64,7 @@ const RevisarPedidoPage = () => {
       pasarela: pasarela,
       reference: payLink.reference,
       granTotalFactura: granTotalFactura,
-      tropiPayFee:
-        pasarela === "TropiPay" ? tropiPayFeeGet(granTotalFactura) : 0,
+      tropiPayFee: tropiPayFee,
     };
 
     try {
@@ -73,7 +75,7 @@ const RevisarPedidoPage = () => {
         activo: true,
         navegarA: "/",
       });
-      setProductosCarrito([])
+      setProductosCarrito([]);
       localStorage.removeItem("entrega");
       localStorage.removeItem("carrito");
     } catch (error) {
@@ -95,6 +97,7 @@ const RevisarPedidoPage = () => {
           granTotalFactura={granTotalFactura}
           productosCarrito={productosCarrito}
           envio={envio}
+          tropiPayFee={tropiPayFee}
         />
         <EntregaREviusarSection entrega={entrega} />
       </div>

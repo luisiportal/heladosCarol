@@ -5,10 +5,12 @@ const PRoductosRevisarSection = ({
   productosCarrito,
   envio,
   granTotalFactura,
+  tropiPayFee
 }: {
   productosCarrito: ProductoCarrito[];
   envio: number;
   granTotalFactura: string;
+  tropiPayFee:number
 }) => {
   const { moneda } = useMonedaStore();
 
@@ -37,7 +39,16 @@ const PRoductosRevisarSection = ({
             </h2>
           </div>
         ))}
-        <div className="flex justify-end text-xs"><h2>Envio : {envio} {moneda}</h2></div>
+        <div className="flex justify-end text-xs">
+          <h2>
+            Envio : {envio} {moneda}
+          </h2>
+        </div>
+        {moneda == "EUR" && (
+          <div className="flex justify-end text-xs">
+            Comisión TropiPay : {Number(tropiPayFee).toFixed(2)} {moneda}
+          </div>
+        )}
       </div>
       <div className="bg-neutral-100 w-32 rounded-xl p-2 flex flex-col  justify-center items-center">
         <h2>Total:</h2>
