@@ -18,7 +18,6 @@ const ComboCard = ({ sabor }: { sabor: Sabor }) => {
       key={sabor.id_sabor}
       className="bg-neutral-300 shadow-md flex rounded-xl w-full h-fit min-h-[148px] relative"
     >
-     
       <div className="pl-4 pt-4 w-60 flex flex-col justify-between">
         <p className="font-bold text-xs  text-slate-700 mb-4 leading-4 h-fit">
           {sabor.description}
@@ -51,38 +50,38 @@ const ComboCard = ({ sabor }: { sabor: Sabor }) => {
           </h2>
         </div>
       </div>
-      <div className="relative">
- {cantidad > 0 && (
-        <div className="absolute top-3 left-1 bg-slate-700 text-2xl font-bold text-white rounded-r-xl w-12 h-8 aspect-square flex justify-center items-center">
-          <h2>{cantidad}</h2>
-        </div>
-      )}
+      <div className="relative w-full">
+        {cantidad > 0 && (
+          <div className="absolute top-3 left-1 bg-slate-700 text-2xl font-bold text-white rounded-r-xl w-12 h-8 aspect-square flex justify-center items-center">
+            <h2>{cantidad}</h2>
+          </div>
+        )}
 
-      <div
-        className={`absolute right-2 top-2 transition-all duration-500 ${
-          showButtons ? "opacity-100" : "opacity-0 invisible"
-        }`}
-      >
-        <BotonesMasMenos
-          mas={() => {
-            agregarProductoAlCarrito({
-              producto: sabor,
-              cantidad: cantidad + 1,
-              productosCarrito,
-              setProductosCarrito,
-            });
-          }}
-          menos={() =>
-            agregarProductoAlCarrito({
-              producto: sabor,
-              cantidad: cantidad > 0 ? cantidad - 1 : cantidad,
-              productosCarrito,
-              setProductosCarrito,
-            })
-          }
-        />
-      </div>
-        
+        <div
+          className={`absolute right-2 top-2 transition-all duration-500 ${
+            showButtons ? "opacity-100" : "opacity-0 invisible"
+          }`}
+        >
+          <BotonesMasMenos
+            mas={() => {
+              agregarProductoAlCarrito({
+                producto: sabor,
+                cantidad: cantidad + 1,
+                productosCarrito,
+                setProductosCarrito,
+              });
+            }}
+            menos={() =>
+              agregarProductoAlCarrito({
+                producto: sabor,
+                cantidad: cantidad > 0 ? cantidad - 1 : cantidad,
+                productosCarrito,
+                setProductosCarrito,
+              })
+            }
+          />
+        </div>
+
         <div className="rounded-xl w-full ml-1 h-40 overflow-hidden">
           <Imagen imagen_url={sabor?.ruta_image} nombre={sabor?.nombre_sabor} />
         </div>
