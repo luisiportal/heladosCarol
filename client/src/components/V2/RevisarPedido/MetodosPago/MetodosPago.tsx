@@ -10,7 +10,9 @@ const MetodosPago = ({
   total,
   payLink,
   setPayLink,
+  fnTropipay
 }: {
+  fnTropipay:any;
   total: string;
   setZelleok: React.Dispatch<React.SetStateAction<boolean>>;
   payLink: {
@@ -42,6 +44,7 @@ const MetodosPago = ({
       {moneda === "CUP" && <MonedaNacional total={total} />}
       {moneda === "EUR" && (
         <Tropipay
+        onClick={fnTropipay}
           description={description.toString()}
           payLink={payLink}
           setPayLink={setPayLink}

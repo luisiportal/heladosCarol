@@ -6,7 +6,7 @@ import MetodosPago from "./MetodosPago/MetodosPago";
 import PRoductosRevisarSection from "./PRoductosRevisarSection";
 import { useMonedaStore } from "../../../Stores/MonedaStore";
 import { useModal } from "../../../Stores/modalStore";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ArrowLeftSVG from "../../SVG/ArrowLeftSVG";
 import ArrowRight from "../../SVG/ArrowRight";
 import { createVentaRequest } from "../../../api/venta.api";
@@ -15,6 +15,7 @@ import { tropiPayFeeGet } from "../../Ventas/tropiPayFeeGet";
 import { useLoader } from "../../../Stores/loaderStore";
 
 const RevisarPedidoPage = () => {
+  const navigate = useNavigate();
   const { setLoader } = useLoader();
   const { entrega } = useEntregaStore();
   const { productosCarrito, setProductosCarrito } = useCarritoStore();
@@ -50,8 +51,9 @@ const RevisarPedidoPage = () => {
   const grandTotalFacturaConTropipay =
     Number(totalFactura) + Number(tropiPayFee);
 
-  const granTotalFactura =
-    (moneda === "EUR" ? grandTotalFacturaConTropipay : totalFactura).toFixed(2);
+  const granTotalFactura = (
+    moneda === "EUR" ? grandTotalFacturaConTropipay : totalFactura
+  ).toFixed(2);
 
   const enviarFactura = async () => {
     setLoader(true);
@@ -73,6 +75,10 @@ const RevisarPedidoPage = () => {
       granTotalFactura: granTotalFactura,
       tropiPayFee: tropiPayFee,
     };
+
+    if (moneda === "EUR") {
+      navigate(payLink.shortUrl);
+    }
 
     try {
       const venta = await createVentaRequest(ventaCompleta);
@@ -109,6 +115,7 @@ const RevisarPedidoPage = () => {
         <EntregaREviusarSection entrega={entrega} />
       </div>
       <MetodosPago
+        fnTropipay={enviarFactura}
         setZelleok={setZelleok}
         total={granTotalFactura}
         payLink={payLink}

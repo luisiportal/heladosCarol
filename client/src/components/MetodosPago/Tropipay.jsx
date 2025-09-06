@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { createPagoRequest } from "../../api/venta.api";
 import Loader from "../Utilidades/Loader";
-import { Form } from "formik";
 
-const Tropipay = ({ total, setPayLink, payLink, description }) => {
+const Tropipay = ({ total, setPayLink, payLink, description,onClick }) => {
   const loadPaymentLink = async () => {
     const { data } = await createPagoRequest({
       reference: new Date().getTime().toString(),
@@ -37,20 +36,18 @@ const Tropipay = ({ total, setPayLink, payLink, description }) => {
         y procesada.
       </p>
       {payLink.shortUrl > "" ? (
-        <Form>
-          {" "}
-          <button
-            className="flex justify-center opacity-100 transition-all duration-500"
-            type="submit"
-            //onClick={() => (location.href = payLink.shortUrl)}
-          >
-            <img
-              className="w-48 h-12 rounded-lg"
-              src="../images/pagarTropiPay.png"
-              alt="Pagar con TropiPay"
-            />
-          </button>
-        </Form>
+        <button
+          className="flex justify-center opacity-100 transition-all duration-500"
+          type="submit"
+         // onClick={() => (location.href = payLink.shortUrl)}
+         onClick={()=> onClick()}
+        >
+          <img
+            className="w-48 h-12 rounded-lg"
+            src="../images/pagarTropiPay.png"
+            alt="Pagar con TropiPay"
+          />
+        </button>
       ) : (
         <div className="flex justify-center font-light bg-slate-800 text-white ">
           "Cargando enlace de pago..."{" "}
