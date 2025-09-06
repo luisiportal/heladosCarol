@@ -7,7 +7,7 @@ const CategoriasSelectorHome = () => {
     <section>
       <TituloModulo titulo="Nuestros Productos" />
 
-      <div className="flex gap-3">
+      <div className="flex justify-center gap-3">
         <Link to={"/categorias/Potes"}>
           {" "}
           <CardCategoriasSelectorHome titulo="Potes" image="poteCat.jpg" />
