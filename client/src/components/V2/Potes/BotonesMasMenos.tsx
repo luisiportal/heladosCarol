@@ -16,7 +16,7 @@ const BotonesMasMenos = ({ mas, menos }: { mas: any; menos: any }) => {
           presionadoMas ? 'scale-90' : 'scale-100'
         }`}
       >
-        <h2 className="mb-1">+</h2>
+        <h2>+</h2>
       </button>
       <button
         onClick={() =>{ 
