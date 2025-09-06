@@ -115,7 +115,7 @@ export const createVenta = async (req, res) => {
         );
         await Movimiento.create(
           {
-            id_sabor: producto.id_sabor,
+            id_sabor: producto.producto.id_sabor,
             tipo: "Venta",
             cantidad: producto.cantidad,
             id_venta: ventaNueva.id_venta,
