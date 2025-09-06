@@ -12,7 +12,7 @@ const BotonesMasMenos = ({ mas, menos }: { mas: any; menos: any }) => {
           setTimeout(() => setPresionadoMas(false), 150);
           mas();
         }}
-        className={`mb-3 transition-all duration-100 bg-slate-700 text-3xl font-bold text-white rounded-full w-8 h-8 aspect-square flex justify-center items-center ${
+        className={`mb-3 transition-all duration-100 bg-slate-700 text-3xl font-bold text-white rounded-full w-12 h-12 aspect-square flex justify-center items-center ${
           presionadoMas ? 'scale-90' : 'scale-100'
         }`}
       >
@@ -23,7 +23,7 @@ const BotonesMasMenos = ({ mas, menos }: { mas: any; menos: any }) => {
            setPresionadoMenos(true);
           setTimeout(() => setPresionadoMenos(false), 150);
           menos()}}
-         className={` transition-all duration-100 bg-slate-700 text-3xl font-bold text-white rounded-full w-8 h-8 aspect-square flex justify-center items-center ${
+         className={` transition-all duration-100 bg-slate-700 text-3xl font-bold text-white rounded-full w-12 h-12 aspect-square flex justify-center items-center ${
           presionadoMenos ? 'scale-90' : 'scale-100'
         }`}
       >

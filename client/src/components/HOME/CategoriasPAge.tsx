@@ -6,6 +6,8 @@ import { useProductosRequest } from "../../hooks/useProductosRequest";
 import CategoriaProductoCard from "../V2/CategoriasModuloHome/CategoriaProductoCard";
 import Footer from "./Footer";
 import Reviews from "./Reviews";
+import Horario from "../Horario/Horario";
+import SelecMoneda from "../SelecMoneda";
 
 const CategoriasPAge = () => {
   const { categoria } = useParams();
@@ -15,8 +17,12 @@ const CategoriasPAge = () => {
 
   return (
     <div>
-      {" "}
-      <section className="flex flex-col gap-5 items-center justify-center pt-10 mb-10 mx-10">
+       <div className="pt-20 pb-2 flex justify-between p-2">
+          <Horario />
+
+          <SelecMoneda />
+        </div>
+      <section className="flex flex-col gap-5 items-center justify-center -mt-8 mb-10 mx-10">
         <CategoriasSelectorHome />
 
         <div className="flex flex-col gap-5">

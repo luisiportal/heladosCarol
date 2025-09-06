@@ -49,7 +49,7 @@ const HomeNew = () => {
         <PotesModulo sabores={potes} />
         {combos.length > 0 && <LoQueBuscan producto={combos[0]} />}
         <BannerDisfrute />
-        <TinasModulo tinas={tinas} />
+       {tinas.length > 0 &&  <TinasModulo tinas={tinas} />}
         {combos.length > 0 && <CombosHeladosCarol combos={combos} />}
         <Reviews sabores={sabores} />
         <Footer />
