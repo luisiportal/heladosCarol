@@ -60,6 +60,7 @@ export const createVenta = async (req, res) => {
   let fechaActual = new Date();
   let creado = fechaActual.toISOString();
   const total_venta = granTotalFactura;
+  const envio = moneda ==="CUP" ? entrega.reparto.costo_cup : entrega.reparto.costo
   try {
     await sequelize.transaction(async (t) => {
       // Crear la factura
@@ -88,7 +89,7 @@ export const createVenta = async (req, res) => {
           calle1: entrega.calle1,
           calle2: entrega.calle2,
           reparto: entrega.reparto.reparto,
-          envio: entrega.reparto.envio,
+          envio: envio,
           p_referencia: entrega.p_referencia,
           observaciones: entrega.observaciones,
         },

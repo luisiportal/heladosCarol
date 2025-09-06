@@ -48,6 +48,7 @@ const RevisarPedidoPage = () => {
     pasarela === "TropiPay" ? tropiPayFeeGet(granTotalFactura) : 0;
 
   const enviarFactura = async () => {
+    setLoader(true);
     if (moneda === "USD" && !zelleOk) {
       return setModal({
         mensaje:
