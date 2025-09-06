@@ -6,7 +6,7 @@ import MetodosPago from "./MetodosPago/MetodosPago";
 import PRoductosRevisarSection from "./PRoductosRevisarSection";
 import { useMonedaStore } from "../../../Stores/MonedaStore";
 import { useModal } from "../../../Stores/modalStore";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ArrowLeftSVG from "../../SVG/ArrowLeftSVG";
 import ArrowRight from "../../SVG/ArrowRight";
 import { createVentaRequest } from "../../../api/venta.api";
@@ -15,7 +15,6 @@ import { tropiPayFeeGet } from "../../Ventas/tropiPayFeeGet";
 import { useLoader } from "../../../Stores/loaderStore";
 
 const RevisarPedidoPage = () => {
-  const navigate = useNavigate();
   const { setLoader } = useLoader();
   const { entrega } = useEntregaStore();
   const { productosCarrito, setProductosCarrito } = useCarritoStore();
@@ -77,7 +76,7 @@ const RevisarPedidoPage = () => {
     };
 
     if (moneda === "EUR") {
-      navigate(payLink.shortUrl);
+       window.open(payLink.shortUrl, "_blank");
     }
 
     try {
