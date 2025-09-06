@@ -26,7 +26,7 @@ const RevisarPedidoPage = () => {
 
   const totalProductos = calcTotalProducto(productosCarrito, moneda);
   const productos_envio = Number(totalProductos) + Number(envio);
-  const granTotalFactura = productos_envio.toFixed(2);
+  const totalFactura = productos_envio;
   const [payLink, setPayLink] = useState({
     reference: "",
     shortUrl: "",
@@ -45,7 +45,13 @@ const RevisarPedidoPage = () => {
   const pasarela = getPasarela();
 
   const tropiPayFee =
-    pasarela === "TropiPay" ? tropiPayFeeGet(granTotalFactura) : 0;
+    pasarela === "TropiPay" ? tropiPayFeeGet(totalFactura) : 0;
+
+  const grandTotalFacturaConTropipay =
+    Number(totalFactura) + Number(tropiPayFee);
+
+  const granTotalFactura =
+    (moneda === "EUR" ? grandTotalFacturaConTropipay : totalFactura).toFixed(2);
 
   const enviarFactura = async () => {
     setLoader(true);

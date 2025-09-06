@@ -33,7 +33,7 @@ const MetodosPago = ({
       (item) => `${item.cantidad} x ${item.producto.nombre_sabor}`
     ) +
     " Envío: " +
-    entrega.reparto.envio +
+    entrega.reparto.costo +
     " EUR ";
 
   return (
