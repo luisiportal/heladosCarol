@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Recomendado from "../V2/Recomendado/Recomendado";
+import { useEffect } from "react";
 import CategoriasSelectorHome from "../V2/CategoriasModuloHome/CategoriasSelectorHome";
 import PotesModulo from "../V2/Potes/PotesModulo";
 import { Sabor } from "../../types/General.types";
@@ -15,6 +14,7 @@ import Reviews from "./Reviews";
 import Footer from "./Footer";
 import Horario from "../Horario/Horario";
 import SelecMoneda from "../SelecMoneda";
+import RecomendadoIliana from "../V2/Recomendado/RecomendadoIliana";
 
 const HomeNew = () => {
   const { setProductos } = useProductosZustand();
@@ -44,12 +44,12 @@ const HomeNew = () => {
 
           <SelecMoneda />
         </div>
-        {recomendado && <Recomendado producto={recomendado} />}
+        {recomendado && <RecomendadoIliana producto={recomendado} />}
         <CategoriasSelectorHome />
         <PotesModulo sabores={potes} />
         {combos.length > 0 && <LoQueBuscan producto={combos[0]} />}
         <BannerDisfrute />
-       {tinas.length > 0 &&  <TinasModulo tinas={tinas} />}
+        {tinas.length > 0 && <TinasModulo tinas={tinas} />}
         {combos.length > 0 && <CombosHeladosCarol combos={combos} />}
         <Reviews sabores={sabores} />
         <Footer />
