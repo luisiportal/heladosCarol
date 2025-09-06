@@ -23,7 +23,7 @@ const Recomendado = ({ producto }: { producto: Sabor }) => {
 
       <div
         onMouseLeave={() => setShowButtons(false)}
-        className="bg-neutral-300 rounded-xl shadow-md"
+        className="bg-neutral-200 rounded-xl shadow-md"
       >
         <section className="flex w-full">
           <div className="w-1/2 min-h-[140px] p-2 flex flex-col justify-center items-center gap-2">
