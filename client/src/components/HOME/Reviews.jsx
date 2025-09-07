@@ -5,7 +5,7 @@ import ListarReviewsFrontend from "../Reviews/Frontend/ListarReviewsFrontend";
 const Reviews = ({sabores}) => {
   return (
     <div className=" bg-neutral-200 p-4 my-5 rounded-lg">
-      <h2 className="flex justify-center font-irish text-2xl mb-4">
+      <h2 className="flex justify-center  mb-4 font-bold text-slate-700 text-3xl">
          Nuestros Clientes
       </h2>
       <ListarReviewsFrontend sabores={sabores} />

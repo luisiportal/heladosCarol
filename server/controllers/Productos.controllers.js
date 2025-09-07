@@ -5,16 +5,36 @@ import sequelize from "../db.js";
 
 import { registrarLog } from "./AuditLog.controllers.js";
 import { Factura } from "../models/Facturas.model.js";
+import { Entrega } from "../models/Entrega.model.js";
 
-
-export const getEstadistica= async (req, res) => {
+export const getEstadistica = async (req, res) => {
   const facturasUSD = await Factura.findAll({
-    where:{moneda:"USD"}
-  })
+    order: [["total_venta", "DESC"]],
+    where: { moneda: "USD" },
+    include: [{ model: Entrega, required: false }],
+  });
+
+  const total = facturasUSD.reduce((acumulado, factura) => {
+    return acumulado + (Number(factura.total_venta) || 0);
+  }, 0);
+
+  const conteoPorCliente = {};
+
+  facturasUSD.forEach((factura) => {
+    const nombre = factura.entrega.ordenante || "Sin nombre";
+    conteoPorCliente[nombre] = (conteoPorCliente[nombre] || 0) + 1;
+  });
+
+  const resumenConteo = Object.entries(conteoPorCliente).map(
+    ([nombre, cantidad]) => ({
+      nombre,
+      cantidad,
+    })
+  );
+  const ordenados = resumenConteo.sort((a, b) => b[1] - a[1]); // de mayor a menor
+
+  res.json({ moneda: "USD", facturado: total.toFixed(2), clientes: ordenados });
 };
-
-
-
 
 // listar todas los productos
 

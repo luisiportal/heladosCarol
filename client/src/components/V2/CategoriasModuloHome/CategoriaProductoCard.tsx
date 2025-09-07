@@ -83,7 +83,7 @@ const CategoriaProductoCard = ({ sabor }: { sabor: Sabor }) => {
         </div>
       </div>
       <div className="rounded-xl w-32 m-2 h-40 overflow-hidden">
-        <Imagen imagen_url={sabor?.ruta_image} nombre={sabor?.nombre_sabor} />
+        <Imagen imagen_url={sabor.imagenes?.[0]?.ruta_image || ""} nombre={sabor?.nombre_sabor} />
       </div>
     </div>
   );
