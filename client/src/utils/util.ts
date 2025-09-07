@@ -2,7 +2,7 @@ import { ProductoCarrito } from "../Stores/CarritoStore";
 import { Sabor } from "../types/General.types";
 
 export const filtrar = (sabores: Sabor[], tipo) => {
-  if (tipo === "Todos") return sabores;
+  if (tipo === "Todos") return sabores.sort((a, b) => a.categoria.localeCompare(b.categoria));
   return sabores?.filter(
     (item) => item.categoria === tipo && item.existencia >= 1
   );

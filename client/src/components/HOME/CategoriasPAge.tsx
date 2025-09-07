@@ -17,11 +17,11 @@ const CategoriasPAge = () => {
 
   return (
     <div>
-       <div className="pt-20 pb-2 flex justify-between p-2">
-          <Horario />
+      <div className="pt-20 pb-2 flex justify-between p-2">
+        <Horario />
 
-          <SelecMoneda />
-        </div>
+        <SelecMoneda />
+      </div>
       <section className="flex flex-col gap-5 items-center justify-center -mt-8 mb-10 mx-10">
         <CategoriasSelectorHome />
 

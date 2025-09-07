@@ -22,7 +22,7 @@ const CategoriasSelectorHome = () => {
 
         <Link to={"/categorias/Todos"}>
           {" "}
-          <CardCategoriasSelectorHome titulo="Todos" image="poteCat.jpg" />
+          <CardCategoriasSelectorHome titulo="Todos" image="todosCat.jpg" />
         </Link>
       </div>
     </section>

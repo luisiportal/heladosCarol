@@ -54,24 +54,7 @@ const TinaCard = ({ sabor, css }: { sabor: Sabor; css: string }) => {
           </div>
         </>
 
-        <button
-          onClick={() => {
-            agregarProductoAlCarrito({
-              producto: sabor,
-              cantidad: cantidad + 1,
-              productosCarrito,
-              setProductosCarrito,
-            });
-            setShowButtons(true);
-          }}
-          title="Comprar"
-          className={`transition-all duration-500 absolute top-[60%] left-1/2 transform -translate-x-1/2  -translate-y-1/2 bg-slate-700 text-white rounded-xl w-14 h-8 flex justify-center items-center ${
-            showButtons ? "opacity-0 invisible" : "opacity-100"
-          }`}
-        >
-          {" "}
-          <Cart2SVG />
-        </button>
+     
 
         <div className="rounded-xl object-cover w-full h-32 p-0.5 overflow-hidden">
           <Imagen
@@ -85,7 +68,28 @@ const TinaCard = ({ sabor, css }: { sabor: Sabor; css: string }) => {
         <h2 className="font-bold flex justify-center h-fit leading-4 px-2 pt-2 text-slate-800/80">
           {sabor.nombre_sabor}
         </h2>
-        <PrecioChiquito producto={sabor} />
+        <div className="flex justify-between m-1">
+        {" "}
+        <PrecioChiquito producto={sabor} />{" "}
+        <button
+          onClick={() => {
+            agregarProductoAlCarrito({
+              producto: sabor,
+              cantidad: cantidad + 1,
+              productosCarrito,
+              setProductosCarrito,
+            });
+            setShowButtons(true);
+          }}
+          title="Comprar"
+          className={`transition-all duration-500  bg-slate-700 text-white rounded-xl w-12 h-8 flex justify-center items-center ${
+            showButtons ? "opacity-0 invisible" : "opacity-100"
+          }`}
+        >
+          {" "}
+          <Cart2SVG />
+        </button>
+      </div>
       </div>
       <div
         className={`w-full h-3 absolute bottom-0 rounded-b-xl border border-neutral-300`}

@@ -4,11 +4,14 @@ import { saveImage } from "../controllers/upload.multer.js";
 import sequelize from "../db.js";
 
 import { registrarLog } from "./AuditLog.controllers.js";
+import { Factura } from "../models/Facturas.model.js";
 
 
 export const getEstadistica= async (req, res) => {
-  
-}
+  const facturasUSD = await Factura.findAll({
+    where:{moneda:"USD"}
+  })
+};
 
 
 
