@@ -65,7 +65,7 @@ const HomeNew = () => {
         {modo.activado != true && (
           <>
             {tinas.length > 0 && <TinasModulo tinas={tinas} />}
-            {combos.length > 0 && <CombosHeladosCarol combos={combos} />}
+            {combos.length > 0 && <CombosHeladosCarol combos={combos.slice(1)} />}
           </>
         )}
 

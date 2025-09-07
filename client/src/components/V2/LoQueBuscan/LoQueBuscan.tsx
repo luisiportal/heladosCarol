@@ -58,12 +58,12 @@ const LoQueBuscan = ({ producto }: { producto: Sabor }) => {
               }
             />
           </div>
-        
+
           <div className="rounded-xl object-cover w-40 h-full aspect-square overflow-hidden">
             {" "}
             <Imagen
               nombre={producto?.nombre_sabor}
-              imagen_url={producto?.ruta_image}
+              imagen_url={producto?.imagenes?.[0]?.ruta_image || ""}
             />
           </div>
         </div>
