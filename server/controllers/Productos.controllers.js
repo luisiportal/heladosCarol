@@ -5,6 +5,14 @@ import sequelize from "../db.js";
 
 import { registrarLog } from "./AuditLog.controllers.js";
 
+
+export const getEstadistica= async (req, res) => {
+  
+}
+
+
+
+
 // listar todas los productos
 
 export const getTodosProductos = async (req, res) => {
