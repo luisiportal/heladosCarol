@@ -17,6 +17,7 @@ export type Reparto = {
   costo: number;
   costo_cup: number;
   envio: number;
+  label:string
 };
 
 export type Modal = {

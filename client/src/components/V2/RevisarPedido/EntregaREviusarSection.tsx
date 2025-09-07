@@ -1,4 +1,3 @@
-import React from "react";
 import { Entrega } from "../../../types/General.types";
 
 const EntregaREviusarSection = ({ entrega }: { entrega: Entrega }) => {
@@ -20,7 +19,7 @@ const EntregaREviusarSection = ({ entrega }: { entrega: Entrega }) => {
             {" "}
             Dirección : Calle {entrega.calle} # {entrega.numero}{" "}
             entre {entrega.calle1}
-            {entrega.calle2} Reparto {entrega.reparto.reparto}{" "}
+            {entrega.calle2} Reparto {entrega.reparto.label}{" "}
           </p>
 
           <h2>Referencia : {entrega.p_referencia} </h2>

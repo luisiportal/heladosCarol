@@ -53,6 +53,19 @@ const PotesCard = ({ sabor, css }: { sabor: Sabor; css: string }) => {
           </div>
         </>
 
+        <img
+          className="rounded-xl object-cover w-full h-28 p-0.5"
+          src="/images/potesolonuevo.png"
+          alt={sabor.nombre_sabor}
+        />
+      </div>
+      <h2 className="font-bold flex justify-center">
+        {sabor.nombre_sabor.replace("Pote", "")}
+      </h2>
+
+      <div className="flex justify-between m-1">
+        {" "}
+        <PrecioChiquito producto={sabor} />{" "}
         <button
           onClick={() => {
             agregarProductoAlCarrito({
@@ -64,23 +77,14 @@ const PotesCard = ({ sabor, css }: { sabor: Sabor; css: string }) => {
             setShowButtons(true);
           }}
           title="Comprar"
-          className={`transition-all duration-500 absolute top-[60%] left-1/2 transform -translate-x-1/2  -translate-y-1/2 bg-slate-700 text-white rounded-xl w-14 h-8 flex justify-center items-center ${
+          className={`transition-all duration-500  bg-slate-700 text-white rounded-xl w-12 h-8 flex justify-center items-center ${
             showButtons ? "opacity-0 invisible" : "opacity-100"
           }`}
         >
           {" "}
           <Cart2SVG />
         </button>
-
-        <img
-          className="rounded-xl object-cover w-full h-32 p-0.5"
-          src="/images/potesolonuevo.png"
-          alt={sabor.nombre_sabor}
-        />
       </div>
-      <h2 className="font-bold flex justify-center">{sabor.nombre_sabor.replace("Pote", "")}</h2>
-
-      <PrecioChiquito producto={sabor} />
       <div
         className={`w-full h-3 absolute bottom-0 rounded-b-xl border border-neutral-300`}
         style={{ backgroundColor: color }}

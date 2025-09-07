@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { Sabor } from "../../../types/General.types";
 import Imagen from "../Imagen";
 import { ProductoCarrito } from "../../../Stores/CarritoStore";
 import {
@@ -50,7 +48,7 @@ const CarritoCArdProducto = ({
       <div className="w-28 h-28 aspect-square rounded-xl overflow-hidden">
         <Imagen
           nombre={item?.producto.nombre_sabor}
-          imagen_url={item?.producto?.imagenes?.[0]?.ruta_image || ""}
+          imagen_url={item?.producto?.imagenes?.[0]?.ruta_image?? item.producto.ruta_image}
         />
       </div>
       <div className="w-40 flex-col justify-between">
