@@ -11,6 +11,10 @@ const ComboCard = ({ sabor }: { sabor: Sabor }) => {
   const { setProductosCarrito, productosCarrito } = useCarritoStore();
   const [showButtons, setShowButtons] = useState(false);
 
+  const length = sabor?.imagenes?.length || 0;
+
+  const randomIndex = Math.floor(Math.random() * length);
+
   const cantidad = getCantidad(productosCarrito, sabor);
   return (
     <div
@@ -83,7 +87,10 @@ const ComboCard = ({ sabor }: { sabor: Sabor }) => {
         </div>
 
         <div className="rounded-xl w-full ml-1 h-40 overflow-hidden">
-          <Imagen imagen_url={sabor?.ruta_image} nombre={sabor?.nombre_sabor} />
+          <Imagen
+            imagen_url={sabor?.imagenes?.[randomIndex]?.ruta_image ?? ""}
+            nombre={sabor?.nombre_sabor}
+          />
         </div>
       </div>
     </div>

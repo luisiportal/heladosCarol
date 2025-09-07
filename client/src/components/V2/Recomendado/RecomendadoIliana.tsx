@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import TituloModulo from "../DesingSystem/TituloModulo";
 import Cart2SVG from "../../SVG/Cart2SVG";
 import { Sabor } from "../../../types/General.types";
-import Imagen from "../Imagen";
 import BotonesMasMenos from "../Potes/BotonesMasMenos";
 import { getCantidad } from "../../../utils/util";
 import { useCarritoStore } from "../../../Stores/CarritoStore";
 import { agregarProductoAlCarrito } from "../../../hooks/AgregarProductosCarrito";
-import { useMonedaStore } from "../../../Stores/MonedaStore";
 import PrecioCambioMoneda from "./PrecioCambioMoneda";
 import SlideImagenes from "./SlideImagenes";
 

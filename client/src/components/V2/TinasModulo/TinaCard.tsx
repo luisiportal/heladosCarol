@@ -18,7 +18,7 @@ const TinaCard = ({ sabor, css }: { sabor: Sabor; css: string }) => {
   return (
     <div
       onMouseLeave={() => setShowButtons(false)}
-      className={`relative shadow-md bg-neutral-300 rounded-xl min-h-[230px] pb-3 ${css}`}
+      className={`relative shadow-md bg-neutral-300 rounded-xl overflow-hidden min-h-[230px] pb-3 ${css}`}
     >
       <div className="relative">
         <>
