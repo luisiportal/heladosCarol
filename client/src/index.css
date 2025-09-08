@@ -19,6 +19,14 @@
 }
 
 
+.image-gallery-slide .image-gallery-image {
+  width: 100%;
+  -o-object-fit: contain;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+
 .menuAbajo {
   border-radius: 50px 50px 0 0; /* Radio del borde para la parte superior curva */
   width: 102%; /* 3/4 */

@@ -40,8 +40,8 @@ const Carusel = () => {
     },
   ];
   return (
-    <div className="w-full flex">
-      <ImageGallery items={images} showPlayButton={false} showNav={false} />
+    <div className="w-full flex rounded-xl">
+      <ImageGallery items={images} showPlayButton={false} showNav={false}  />
     </div>
   );
 };

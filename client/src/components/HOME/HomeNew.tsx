@@ -52,7 +52,7 @@ const HomeNew = () => {
           <MensajeCerrado modo={modo} />
         ) : (
           <>
-            {" "}
+       
             {recomendado && <RecomendadoIliana producto={recomendado} />}
             <CategoriasSelectorHome />
             <PotesModulo sabores={potes} />
@@ -60,7 +60,6 @@ const HomeNew = () => {
           </>
         )}
 
-        <BannerDisfrute />
 
         {modo.activado != true && (
           <>
@@ -68,6 +67,8 @@ const HomeNew = () => {
             {combos.length > 0 && <CombosHeladosCarol combos={combos.slice(1)} />}
           </>
         )}
+        <BannerDisfrute />
+
 
         <Reviews sabores={sabores} />
         <Footer />

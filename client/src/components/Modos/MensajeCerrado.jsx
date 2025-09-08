@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { getModoCerradoRequest } from "../../api/modos.api";
+
 
 const MensajeCerrado = ({ modo }) => {
   const renderModoCerrado = () => {

@@ -16,7 +16,7 @@ const ItemPublicos = ({ navigate, carrito }) => {
         <HomeSVG css={"w-8 h-8"} />
         <h3 className="text-sm font-semibold">Inicio</h3>
       </button>
-      <Link className="flex flex-col items-center justify-center" to={""}>
+      <Link className="flex flex-col items-center justify-center" to={"/carrito"}>
         <CarritoCantidadBoton cantCarrito={carrito.length} />
         <h2 className="text-sm font-semibold">Pagar</h2>
       </Link>
