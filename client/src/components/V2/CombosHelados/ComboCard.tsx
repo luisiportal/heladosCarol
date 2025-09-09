@@ -6,6 +6,7 @@ import Imagen from "../Imagen";
 import BotonesMasMenos from "../Potes/BotonesMasMenos";
 import { Sabor } from "../../../types/General.types";
 import { agregarProductoAlCarrito } from "../../../hooks/AgregarProductosCarrito";
+import PrecioCambioMoneda from "../Recomendado/PrecioCambioMoneda";
 
 const ComboCard = ({ sabor }: { sabor: Sabor }) => {
   const { setProductosCarrito, productosCarrito } = useCarritoStore();
@@ -46,12 +47,7 @@ const ComboCard = ({ sabor }: { sabor: Sabor }) => {
           >
             <Cart2SVG />
           </button>
-          <h2 className="font-bold text-4xl flex mb-1">
-            {parseInt(String(sabor?.precio_venta_cup))}
-            <span className="font-semibold text-neutral-500 text-sm uppercase mt-1 ml-1">
-              cup
-            </span>
-          </h2>
+          <PrecioCambioMoneda producto={sabor} />
         </div>
       </div>
       <div className="relative w-full">

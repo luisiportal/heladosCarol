@@ -7,7 +7,7 @@ const TinasModulo = ({ tinas }: { tinas: Sabor[] }) => {
     <section className="mt-10">
       {" "}
       <TituloModulo titulo="Tinas de Helados Carol" />
-      <div className="overflow-scroll"><div className="flex gap-3 w-max pb-2">
+      <div className={`overflow-scroll flex ${tinas.length < 3 && "justify-center"}`}><div className="flex gap-3 w-max pb-2">
         {tinas.map((sabor) => (
           <TinaCard sabor={sabor} key={sabor.id_sabor} css="w-40 h-fit" />
         ))}
