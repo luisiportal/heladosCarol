@@ -20,6 +20,9 @@ export const EnviarCorreo = async ({
   moneda,
 }) => {
 
+  console.log(productos);
+  
+
   // Crear un transportador
   let transporter = nodemailer.createTransport({
     service: "gmail",
