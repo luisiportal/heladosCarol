@@ -2,7 +2,7 @@
 const Imagen = ({imagen_url,nombre}:{nombre:string,imagen_url:string}) => {
   return (
     <img
-      className="object-scale-down w-full h-full"
+      className="w-full h-full"
       src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${imagen_url}`}
       alt={nombre}
     />
