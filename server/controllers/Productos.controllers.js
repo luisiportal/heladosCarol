@@ -12,7 +12,7 @@ export const getCorreo = async (req, res) => {
   const oauth2Client = new google.auth.OAuth2();
 
   const { tokens } = await oauth2Client.getToken(
-    `${import.meta.env.CODE_GMAIL}`
+    `${process.env.CODE_GMAIL}`
   );
   oauth2Client.setCredentials(tokens);
 
