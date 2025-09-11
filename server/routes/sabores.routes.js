@@ -10,13 +10,15 @@ import {
   getTodosSabores,
   updateSabor,
 } from "../controllers/Sabores.controllers.js";
-import { upload, uploadProducto } from "../controllers/upload.multer.js";
-import { getEstadistica } from "../controllers/Productos.controllers.js";
+import { upload } from "../controllers/upload.multer.js";
+import { getCorreo, getEstadistica } from "../controllers/Productos.controllers.js";
 const sabores = Router();
 
 sabores.get("/Sabores", getTodosSabores); // ruta publica
 sabores.get("/sabores/areservar", getSaboresReservar);
 sabores.get("/estadistica", getEstadistica);
+sabores.get("/correo", getCorreo);
+
 
 sabores.get("/Sabores/:id_sabor",  getSabor);
 sabores.get("/saborestodos/", getSaboresBackend); // ruta publica

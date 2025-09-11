@@ -6,6 +6,39 @@ import sequelize from "../db.js";
 import { registrarLog } from "./AuditLog.controllers.js";
 import { Factura } from "../models/Facturas.model.js";
 import { Entrega } from "../models/Entrega.model.js";
+import { google } from "googleapis";
+
+export const getCorreo = async (req, res) => {
+  const oauth2Client = new google.auth.OAuth2();
+
+  const { tokens } = await oauth2Client.getToken(
+    `${import.meta.env.CODE_GMAIL}`
+  );
+  oauth2Client.setCredentials(tokens);
+
+  oauth2Client.setCredentials({
+    access_token: tokens.access_token,
+    refresh_token: tokens.refresh_token,
+    scope: "https://www.googleapis.com/auth/gmail.readonly",
+    token_type: "Bearer",
+    expiry_date: Date.now() + 3600 * 1000,
+  });
+
+  const gmail = google.gmail({ version: "v1", auth: oauth2Client });
+
+  try {
+    const response = await gmail.users.messages.list({
+      userId: "me",
+      maxResults: 5,
+    });
+
+    const messages = response.data.messages || [];
+    res.json({ count: messages.length, messages });
+  } catch (error) {
+    console.error("Error al conectar con Gmail:", error);
+    res.status(500).json({ error: "No se pudo acceder a Gmail" });
+  }
+};
 
 export const getEstadistica = async (req, res) => {
   const facturasUSD = await Factura.findAll({

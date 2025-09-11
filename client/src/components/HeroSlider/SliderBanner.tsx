@@ -28,7 +28,7 @@ const SliderBanner = () => {
       <div className="relative w-full h-48 rounded-xl mt-2">
         {images.map((image, index) => (
           <img
-            src={`${import.meta.env.VITE_BACKEND_URL}/images/productos/${
+            src={`${import.meta..VITE_BACKEND_URL}/images/productos/${
               image.ruta_image
             }`}
             className={`rounded-lg w-full h-full object-fill slide ${
