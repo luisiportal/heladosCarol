@@ -9,11 +9,18 @@ import { Entrega } from "../models/Entrega.model.js";
 import { google } from "googleapis";
 
 export const getCorreo = async (req, res) => {
-  const oauth2Client = new google.auth.OAuth2();
-
-  const { tokens } = await oauth2Client.getToken(
-    `${process.env.CODE_GMAIL}`
+  const oauth2Client = new google.auth.OAuth2(
+    YOUR_CLIENT_ID,
+    YOUR_CLIENT_SECRET,
+    YOUR_REDIRECT_URL
   );
+
+  // set auth as a global default
+  google.options({
+    auth: oauth2Client,
+  });
+
+  const { tokens } = await oauth2Client.getToken(`${process.env.CODE_GMAIL}`);
   oauth2Client.setCredentials(tokens);
 
   oauth2Client.setCredentials({

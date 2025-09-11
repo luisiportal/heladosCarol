@@ -19,7 +19,6 @@ import { CarritosProvaider } from "./context/CarritosContext";
 import VentasRoutes from "./routes/VentasRoutes";
 
 import LogsPage from "./components/LogsSystem/LogsPage";
-import HomePage from "./components/HOME/HomePage";
 import CuadrePage from "./components/CuadreCaja/CuadrePage";
 import Edit from "./components/Movimientos/Edit";
 import ResumenVenta from "./components/Ventas/ResumenVenta";
@@ -45,17 +44,20 @@ import ReservaPage from "./components/Reservas/ReservaPage";
 import HomeNew from "./components/HOME/HomeNew";
 import CategoriasPAge from "./components/HOME/CategoriasPAge";
 import CarritoPage from "./components/V2/Carrito/CarritoPage";
-import EntregaYenviaForm from "./components/Comprar/SeccionAgregar/Entrega/EntregaYenviaForm";
 import EntregaPage from "./components/V2/EntregaV2/EntregaPage";
 import RevisarPedidoPage from "./components/V2/RevisarPedido/RevisarPedidoPage";
-import Modal from "./components/Utilidades/Modal";
 import EscojerMetodoPago from "./components/MetodosPago/EscojerMetodoPago";
+import Loader from "./components/Utilidades/Loader";
+import { useLoader } from "./Stores/loaderStore";
+
 const App = () => {
+  const { loader } = useLoader();
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
       <div className="bg-neutral-100">
         <ScrollToTop />
+        {loader && <Loader />}
         <SaboresContextProvider>
           <AuthProvider>
             <ReviewContextProvider>
