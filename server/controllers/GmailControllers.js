@@ -22,7 +22,7 @@ function extraerNombreZelle(texto) {
 export function saveToken(token) {
   console.log(token);
   
-  fs.writeFileSync(TOKEN_PATH, JSON.stringify(token, null, 2));
+//  fs.writeFileSync(TOKEN_PATH, JSON.stringify(token, null, 2));
 }
 
 function loadToken() {
@@ -48,12 +48,15 @@ export const iniciarLogin = (req, res) => {
   }
 };
 export const recibirCallback = async (req, res) => {
+
   const { code } = req.query;
+  console.log(code);
+  
 
   try {
     const { tokens } = await oauth2Client.getToken(code);
     oauth2Client.setCredentials(tokens);
-    saveToken(tokens);
+    //saveToken(tokens);
 
     const gmail = google.gmail({ version: "v1", auth: oauth2Client });
     const response = await gmail.users.messages.list({
