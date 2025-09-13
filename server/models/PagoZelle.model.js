@@ -13,7 +13,7 @@ export const PagoZelle = sequelize.define("pagos_zelle", {
     allowNull: false,
   },
   monto: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DECIMAL,
     allowNull: false,
 
   },
