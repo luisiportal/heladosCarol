@@ -46,7 +46,7 @@ export const checkPagoZelle = async (persona, monto, id_factura) => {
     const response = await gmail.users.messages.list({
       userId: "me",
       q: 'from:no.reply.alerts@chase.com subject:"You received money with Zelle®"',
-      maxResults: 5,
+      maxResults: 20,
     });
 
     const mensajes = await Promise.all(
