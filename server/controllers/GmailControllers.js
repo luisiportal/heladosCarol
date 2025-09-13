@@ -56,6 +56,8 @@ export const recibirCallback = async (req, res) => {
   try {
     const { tokens } = await oauth2Client.getToken(code);
     oauth2Client.setCredentials(tokens);
+    console.log(tokens);
+    
     //saveToken(tokens);
 
     const gmail = google.gmail({ version: "v1", auth: oauth2Client });
