@@ -16,6 +16,8 @@ import {
 import { enviaNotification } from "./suscriptions.controller.js";
 import { checkExistencia } from "./utilidadades/checkExistencia.js";
 import { Modos } from "../models/Modos.model.js";
+import { checkPagoZelle } from "../helpers/CheckPagoZelle.helper.js";
+import { PagoZelle } from "../models/PagoZelle.model.js";
 
 export const createVenta = async (req, res) => {
   let ruta_image = "defaultPerfil.jpg";
@@ -125,7 +127,9 @@ export const createVenta = async (req, res) => {
           { transaction: t }
         );
       }
-      NotificarFactura({
+
+      checkPagoZelle(entrega.ordenante, total_venta, factura.id);
+       NotificarFactura({
         entrega,
         factura,
         total_venta,
@@ -175,6 +179,20 @@ export const getTodosVentas = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+export const getPagoZelle = async (req, res) => {
+  const { persona, monto, id_factura } = req.body;
+
+  try {
+    const response = await checkPagoZelle(persona, monto, id_factura);
+    console.log(response);
+    
+    res.json(response);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 export const getTodosFacturas = async (req, res) => {
   const { limit, offset } = req.query;
 
@@ -198,6 +216,7 @@ export const getTodosFacturas = async (req, res) => {
           ],
         },
         { model: Entrega, required: false },
+        { model: PagoZelle, required: false },
       ],
 
       order: [["creado", "DESC"]],

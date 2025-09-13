@@ -4,15 +4,21 @@ import { authRequired } from "../middlewares/validateToken.js";
 import {
   createVenta,
   deleteFactura,
+  getPagoZelle,
   getTodosFacturas,
 } from "../controllers/Venta.controller.js";
 import { uploadFactura } from "../controllers/upload.multer.js";
-import { confirmarFactura, estadoFacturaEntregada, updateFechaFactura } from "../controllers/Facturas.controller.js";
+import {
+  confirmarFactura,
+  estadoFacturaEntregada,
+  updateFechaFactura,
+} from "../controllers/Facturas.controller.js";
 
 const ventas = Router();
 
-ventas.post("/ventas",uploadFactura.single("factura_image"),  createVenta);
-ventas.post("/reservas",uploadFactura.single("factura_image"),  createVenta);
+ventas.post("/ventas", uploadFactura.single("factura_image"), createVenta);
+ventas.post("/reservas", uploadFactura.single("factura_image"), createVenta);
+ventas.post("/ventas/pagozelle/", authRequired, getPagoZelle);
 
 ventas.get("/ventas", authRequired, getTodosFacturas);
 ventas.delete("/facturas/:id", deleteFactura);

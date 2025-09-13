@@ -7,42 +7,35 @@ import { registrarLog } from "./AuditLog.controllers.js";
 import { Factura } from "../models/Facturas.model.js";
 import { Entrega } from "../models/Entrega.model.js";
 import { google } from "googleapis";
+import {
+  GMAIL_CLIENT_ID,
+  GMAIL_CLIENT_SECRET,
+  GMAIL_REDIRECT_URL,
+} from "../config.js";
+
+const oauth2Client = new google.auth.OAuth2(
+  GMAIL_CLIENT_ID,
+  GMAIL_CLIENT_SECRET,
+  GMAIL_REDIRECT_URL
+);
 
 export const getCorreo = async (req, res) => {
-  const oauth2Client = new google.auth.OAuth2(
-    YOUR_CLIENT_ID,
-    YOUR_CLIENT_SECRET,
-    YOUR_REDIRECT_URL
-  );
-
-  // set auth as a global default
-  google.options({
-    auth: oauth2Client,
-  });
-
-  const { tokens } = await oauth2Client.getToken(`${process.env.CODE_GMAIL}`);
-  oauth2Client.setCredentials(tokens);
-
-  oauth2Client.setCredentials({
-    access_token: tokens.access_token,
-    refresh_token: tokens.refresh_token,
-    scope: "https://www.googleapis.com/auth/gmail.readonly",
-    token_type: "Bearer",
-    expiry_date: Date.now() + 3600 * 1000,
-  });
-
-  const gmail = google.gmail({ version: "v1", auth: oauth2Client });
+  const { code } = req.query;
 
   try {
-    const response = await gmail.users.messages.list({
-      userId: "me",
-      maxResults: 5,
-    });
 
-    const messages = response.data.messages || [];
-    res.json({ count: messages.length, messages });
+
+const url = oauth2Client.generateAuthUrl({
+  // 'online' (default) or 'offline' (gets refresh_token)
+  access_type: 'offline',
+
+  // If you only need one scope, you can pass it as a string
+  scope: "https://www.googleapis.com/auth/gmail"
+});
+
+    res.json(url);
   } catch (error) {
-    console.error("Error al conectar con Gmail:", error);
+    console.error("Error al obtener correos:", error);
     res.status(500).json({ error: "No se pudo acceder a Gmail" });
   }
 };
