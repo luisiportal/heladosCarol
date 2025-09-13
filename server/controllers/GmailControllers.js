@@ -3,7 +3,8 @@ import { google } from "googleapis";
 import { oauth2Client } from "../Gmail/gmailClient.js";
 
 import fs from "fs";
-import path from "path";
+
+import { TOKEN_PATH } from "../config.js";
 
 function extraerMonto(texto) {
   const regex = /Amount\s+\$([0-9]+\.[0-9]{2})/;
@@ -17,10 +18,9 @@ function extraerNombreZelle(texto) {
   return match ? match[1].trim() : null;
 }
 
-const TOKEN_PATH = path.resolve("./token.json");
 
-function saveToken(token) {
-  fs.writeFileSync(TOKEN_PATH, JSON.stringify(token));
+export function saveToken(token) {
+  fs.writeFileSync(TOKEN_PATH, JSON.stringify(token, null, 2));
 }
 
 function loadToken() {

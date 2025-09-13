@@ -1,11 +1,10 @@
 import { google } from "googleapis";
 import { oauth2Client } from "../Gmail/gmailClient.js";
 import fs from "fs";
-import path from "path";
 import { Factura } from "../models/Facturas.model.js";
 import { PagoZelle } from "../models/PagoZelle.model.js";
+import { TOKEN_PATH } from "../config.js";
 
-const TOKEN_PATH = path.resolve("./token.json");
 
 function extraerMonto(texto) {
   const regex = /Amount\s+\$([0-9]+\.[0-9]{2})/;
