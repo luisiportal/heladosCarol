@@ -2,7 +2,10 @@ import {
   confirmarFacturaRequest,
   estadoEntregadaFacturaRequest,
 } from "../../api/factura.api";
-import { deleteFacturaRequest } from "../../api/venta.api";
+import {
+  deleteFacturaRequest,
+  getReciboPagoZelleRequest,
+} from "../../api/venta.api";
 import { useAuth } from "../../context/AuthContext";
 import EvidenciaPagoZelle from "../Comprar/SeccionAgregar/EvidenciaPagoZelle";
 import CheckedSVG from "../SVG/CheckedSVG";
@@ -16,6 +19,7 @@ import TelefonoNotificarFactura from "./CardFacturaItems/TelefonoNotificarFactur
 import { useEffect, useState } from "react";
 import { useShowDialogStore } from "../../Stores/ShowDialogStore";
 import Dialog from "../Modal/Dialog";
+import UpdatrSVG from "../SVG/UpdatrSVG";
 
 function FacturaCard({
   factura,
@@ -32,9 +36,7 @@ function FacturaCard({
 }) {
   const { ventas } = factura;
   const { setModalActivo, perfil, setLoader } = useAuth();
-  const { metoPago } = useMetoPago();
   const { setShowDialog, showDialog } = useShowDialogStore();
-
   const [dialogProps, setDialogProps] = useState({
     titulo: "",
     pregunta: "",
@@ -97,6 +99,19 @@ function FacturaCard({
     }
   }, []);
 
+  const getPagoZelle = async (factura) => {
+    setLoader(true);
+    const response = await getReciboPagoZelleRequest({
+      persona: factura.entrega.ordenante,
+      monto: factura.total_venta,
+      id_factura: factura.id,
+    });
+
+        setRecargarFactura(factura.id);
+ 
+    setLoader(false);
+  };
+
   return (
     <div
       className={`my-4 md:mx-1 bg-neutral-200 shadow rounded overflow-hidden max-w-md`}
@@ -117,10 +132,49 @@ function FacturaCard({
         <div className="flex justify-between items-center font-extralight  text-sm m-2">
           {" "}
           {factura.id && (
-            <div className="flex items-center">
+            <div className="flex items-center relative group cursor-pointer ">
+              {" "}
               {<IconoPasarela pasarela={factura.pasarela} />}
               Factura : {factura.id}
-              {factura.pasarela == "TropiPay" && `-- ${factura.pagado}`}
+              {factura.pasarela != "CUP" && `-- ${factura.pagado}`}
+              {factura.pagado != "Aceptado Zelle" && (
+                <button
+                  onClick={() => getPagoZelle(factura)}
+                  className="w-5 h-5 m-1 hover:bg-vainilla rounded-xl"
+                >
+                  <UpdatrSVG />
+                </button>
+              )}
+              <div className="bg-white shadow-md rounded-xl absolute top-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500">
+                {factura.pagado === "Aceptado Zelle" && (
+                  <div className="p-2 font-semibold text-xs leading-relaxed">
+                    {" "}
+                    <h2 className="font-bold">
+                      {" "}
+                      {factura.pagos_zelle?.persona}
+                    </h2>
+                    <h2>
+                      Pagado:{" "}
+                      <span className="font-bold">
+                        {factura.pagos_zelle?.monto} USD
+                      </span>{" "}
+                    </h2>
+                    <h2>
+                      Propina:
+                      <span className="font-bold">
+                        {" "}
+                        {Number(factura.pagos_zelle?.monto) -
+                          Number(factura.total_venta)}{" "}
+                        USD
+                      </span>
+                    </h2>
+                    <h2>
+                      Transaccion en Zelle:{" "}
+                      {factura.pagos_zelle?.transaction_number}
+                    </h2>
+                  </div>
+                )}
+              </div>
             </div>
           )}
           {factura.creado && (
