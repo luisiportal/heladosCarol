@@ -137,7 +137,7 @@ function FacturaCard({
               {<IconoPasarela pasarela={factura.pasarela} />}
               Factura : {factura.id}
               {factura.pasarela != "CUP" && `-- ${factura.pagado}`}
-              {factura.pagado != "Aceptado Zelle" && (
+              {factura.pasarela ==="Zelle" && factura.pagado != "Aceptado Zelle" && (
                 <button
                   onClick={() => getPagoZelle(factura)}
                   className="w-5 h-5 m-1 hover:bg-vainilla rounded-xl"
