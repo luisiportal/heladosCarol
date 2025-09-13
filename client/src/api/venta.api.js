@@ -21,3 +21,6 @@ export const deleteFacturaRequest = async (id) =>
 export const updateFechaFacturaRequest = async (values) => {
   await axios.put(`/facturas/`, values);
 };
+
+export const getReciboPagoZelleRequest = async (data) =>
+  await axios.post(`/ventas/pagozelle/`,data);
