@@ -151,3 +151,54 @@ export const gmailInbox = async (req, res) => {
     res.status(500).json({ error: "No se pudo acceder a Gmail" });
   }
 };
+
+
+export const listarPagosZelle = async (req, res) => {
+  const token = loadToken();
+  oauth2Client.setCredentials(token);
+
+  try {
+    const gmail = google.gmail({ version: "v1", auth: oauth2Client });
+    const response = await gmail.users.messages.list({
+      userId: "me",
+      q: 'from:no.reply.alerts@chase.com subject:"You received money with Zelle®"',
+      maxResults: 50,
+    });
+
+    const mensajes = await Promise.all(
+      (response.data.messages || []).map(async (msg) => {
+        const detalle = await gmail.users.messages.get({
+          userId: "me",
+          id: msg.id,
+        });
+
+        const headers = detalle.data.payload?.headers || [];
+        const asunto =
+          headers.find((h) => h.name === "Subject")?.value || "Sin asunto";
+        const remitente =
+          headers.find((h) => h.name === "From")?.value || "Desconocido";
+
+  
+
+        const montoRecibido = extraerMonto(detalle.data.snippet);
+        const personaRecibido = extraerNombreZelle(detalle.data.snippet);
+
+
+        return {
+          id: msg.id,
+          asunto,
+          remitente,
+          resumen: detalle.data.snippet,
+          montoRecibido: montoRecibido,
+          personaRecibido: personaRecibido,
+          pago: pago,
+        };
+      })
+    );
+
+    res.json({ cantidad: mensajes.length, mensajes });
+  } catch (error) {
+    console.error("Error al obtener correos:", error);
+    res.status(500).json({ error: "No se pudo acceder a Gmail" });
+  }
+};

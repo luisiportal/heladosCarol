@@ -21,9 +21,9 @@ const ComboCard = ({ sabor }: { sabor: Sabor }) => {
     <div
       onMouseLeave={() => setShowButtons(false)}
       key={sabor.id_sabor}
-      className="bg-neutral-300 shadow-md flex rounded-xl w-full h-fit min-h-[148px] relative"
+      className="bg-neutral-300 shadow-md flex justify-between rounded-xl w-full h-fit min-h-[148px] relative"
     >
-      <div className="pl-4 pt-4 w-56 flex flex-col justify-between">
+      <div className="pl-4 pt-4 w-52 flex flex-col justify-between">
         <p className="font-bold text-xs  text-slate-700 mb-4 leading-4 h-fit">
           {sabor.description}
         </p>
@@ -50,7 +50,7 @@ const ComboCard = ({ sabor }: { sabor: Sabor }) => {
           <PrecioCambioMoneda producto={sabor} />
         </div>
       </div>
-      <div className="relative w-full">
+      <div className="relative">
         {cantidad > 0 && (
           <div className="absolute top-3 left-1 bg-slate-700 text-2xl font-bold text-white rounded-r-xl w-12 h-8 aspect-square flex justify-center items-center">
             <h2>{cantidad}</h2>
@@ -82,7 +82,7 @@ const ComboCard = ({ sabor }: { sabor: Sabor }) => {
           />
         </div>
 
-        <div className="rounded-xl ml-2 h-full full overflow-hidden">
+        <div className="rounded-xl ml-2 h-full overflow-hidden">
           <Imagen
             imagen_url={sabor?.imagenes?.[0]?.ruta_image ?? ""}
             nombre={sabor?.nombre_sabor}
