@@ -37,6 +37,8 @@ function normalizarNombre(nombre) {
 export const checkPagoZelle = async (persona, monto, id_factura) => {
   try {
     const token = loadToken();
+    console.log(token);
+    
     oauth2Client.setCredentials(token);
 
     const gmail = google.gmail({ version: "v1", auth: oauth2Client });
