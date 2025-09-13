@@ -82,7 +82,7 @@ const ComboCard = ({ sabor }: { sabor: Sabor }) => {
           />
         </div>
 
-        <div className="rounded-xl w-full ml-1 h-40 overflow-hidden">
+        <div className="rounded-xl ml-1 h-40 w-52 overflow-hidden">
           <Imagen
             imagen_url={sabor?.imagenes?.[0]?.ruta_image ?? ""}
             nombre={sabor?.nombre_sabor}

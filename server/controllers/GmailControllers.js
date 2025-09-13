@@ -20,6 +20,8 @@ function extraerNombreZelle(texto) {
 
 
 export function saveToken(token) {
+  console.log(token);
+  
   fs.writeFileSync(TOKEN_PATH, JSON.stringify(token, null, 2));
 }
 
