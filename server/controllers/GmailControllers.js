@@ -26,6 +26,8 @@ export function saveToken(token) {
 }
 
 function loadToken() {
+  console.log('intenta cargvar');
+  
   if (fs.existsSync(TOKEN_PATH)) {
     return JSON.parse(fs.readFileSync(TOKEN_PATH));
   }
