@@ -49,6 +49,7 @@ import RevisarPedidoPage from "./components/V2/RevisarPedido/RevisarPedidoPage";
 import EscojerMetodoPago from "./components/MetodosPago/EscojerMetodoPago";
 import Loader from "./components/Utilidades/Loader";
 import { useLoader } from "./Stores/loaderStore";
+import ListarPagosZelle from "./components/ListarPagosZelle/ListarPagosZelle";
 
 const App = () => {
   const { loader } = useLoader();
@@ -86,6 +87,7 @@ const App = () => {
                     <Route path="/contacto" element={<Contacto />} />
 
                     <Route path="/ordenes" element={<RastrearOrden />} />
+                    <Route path="/pagoszelle" element={<ListarPagosZelle />} />
                     <Route path="/comprar" element={<ComprarPage />} />
                     <Route path="/reservar/:metodo" element={<ComprarPage />} />
 

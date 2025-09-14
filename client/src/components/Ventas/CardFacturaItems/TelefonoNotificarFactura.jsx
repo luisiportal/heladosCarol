@@ -9,7 +9,6 @@ const TelefonoNotificarFactura = ({
   persona,
 }) => {
 
-  console.log(ventas);
   
   const items = ventas.map(
     (item) => `<<${item.cantidad} ${item.sabore.nombre_sabor} >> `

@@ -22,7 +22,6 @@ sabores.get("/estadistica", getEstadistica);
 sabores.get('/correo', iniciarLogin);         // Redirige a Google
 sabores.get('/oauth2callback', recibirCallback); // Recibe el code y muestra correos
 sabores.get('/gmail', gmailInbox); // Recibe el code y muestra correos
-sabores.get('/pagosZelle', listarPagosZelle); // Recibe el code y muestra correos
 
 
 sabores.get("/Sabores/:id_sabor",  getSabor);

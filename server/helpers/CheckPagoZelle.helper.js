@@ -4,24 +4,10 @@ import fs from "fs";
 import { Factura } from "../models/Facturas.model.js";
 import { PagoZelle } from "../models/PagoZelle.model.js";
 import { TOKEN_PATH } from "../config.js";
+import { extraerMonto, extraerNombreZelle, extraerTransaction } from "./extraerDatos.js";
 
 
-function extraerMonto(texto) {
-  const regex = /Amount\s+\$([0-9]+\.[0-9]{2})/;
-  const match = texto.match(regex);
-  return match ? parseFloat(match[1]) : null;
-}
 
-function extraerNombreZelle(texto) {
-  const regex = /Zelle\s+®\s+payment\s+(.*?)\s+sent/i;
-  const match = texto.match(regex);
-  return match ? match[1].trim() : null;
-}
-
-function extraerTransaction(texto) {
-  const match = texto.match(/Transaction number\s+(\d+)/);
-  return match ? match[1] : null;
-}
 
 function loadToken() {
   if (fs.existsSync(TOKEN_PATH)) {

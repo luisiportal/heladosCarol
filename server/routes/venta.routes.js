@@ -13,12 +13,17 @@ import {
   estadoFacturaEntregada,
   updateFechaFactura,
 } from "../controllers/Facturas.controller.js";
+import { asociarPagoZelle, listarPagosZelle } from "../controllers/GmailControllers.js";
 
 const ventas = Router();
 
 ventas.post("/ventas", uploadFactura.single("factura_image"), createVenta);
 ventas.post("/reservas", uploadFactura.single("factura_image"), createVenta);
 ventas.post("/ventas/pagozelle/", authRequired, getPagoZelle);
+
+ventas.get('/pagos/recibidos/zelle', listarPagosZelle);
+ventas.post('/ventas/pagozelle/asociar', asociarPagoZelle);
+
 
 ventas.get("/ventas", authRequired, getTodosFacturas);
 ventas.delete("/facturas/:id", deleteFactura);

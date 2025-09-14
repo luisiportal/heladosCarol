@@ -1,3 +1,5 @@
 # .gitignore
 .vercel/
 public/
+token.json
+config.js

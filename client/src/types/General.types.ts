@@ -17,7 +17,7 @@ export type Reparto = {
   costo: number;
   costo_cup: number;
   envio: number;
-  label:string
+  label: string;
 };
 
 export type Modal = {
@@ -25,6 +25,14 @@ export type Modal = {
   errorColor?: boolean;
   activo: boolean;
   navegarA?: string;
+};
+
+export type PagoZelle = {
+  personaRecibido: string;
+  montoRecibido: number;
+  fecha: string;
+  utilizado: string;
+  transaction_number: string;
 };
 
 export type Entrega = {

@@ -97,6 +97,7 @@ function FacturaCard({
         });
       }
     }
+    setLoader(false);
   }, []);
 
   const getPagoZelle = async (factura) => {
@@ -137,14 +138,15 @@ function FacturaCard({
               {<IconoPasarela pasarela={factura.pasarela} />}
               Factura : {factura.id}
               {factura.pasarela != "CUP" && `-- ${factura.pagado}`}
-              {factura.pasarela ==="Zelle" && factura.pagado != "Aceptado Zelle" && (
-                <button
-                  onClick={() => getPagoZelle(factura)}
-                  className="w-5 h-5 m-1 hover:bg-vainilla rounded-xl"
-                >
-                  <UpdatrSVG />
-                </button>
-              )}
+              {factura.pasarela === "Zelle" &&
+                factura.pagado != "Aceptado Zelle" && (
+                  <button
+                    onClick={() => getPagoZelle(factura)}
+                    className="w-5 h-5 m-1 hover:bg-vainilla rounded-xl"
+                  >
+                    <UpdatrSVG />
+                  </button>
+                )}
               <div className="bg-white shadow-md rounded-xl absolute top-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500">
                 {factura.pagado === "Aceptado Zelle" && (
                   <div className="p-2 font-semibold text-xs leading-relaxed">
@@ -169,7 +171,7 @@ function FacturaCard({
                       </span>
                     </h2>
                     <h2>
-                      Transaccion en Zelle:{" "}
+                      Transacción en Zelle:{" "}
                       {factura.pagos_zelle?.transaction_number}
                     </h2>
                   </div>

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import FacturaCard from "./FacturaCard";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import EstadisticaReserva from "../Reservas/EstadisticaReserva";
+import CardSVG from "../SVG/CardSVG";
 
 const H2FechaTitulo = ({
   fecha,
@@ -26,6 +27,7 @@ const H2FechaTitulo = ({
 
   return (
     <section className="flex flex-1 flex-col" key={fecha}>
+      <Link className=" flex gap-2 bg-vainilla rounded-xl p-2" to={"/pagoszelle"}> <CardSVG/> <h2 className="font-semibold">Pagos Recibidos por Zelle</h2></Link>
       <h2 className="p-4">
         {fecha} Venta {totalVentaDia}
       </h2>

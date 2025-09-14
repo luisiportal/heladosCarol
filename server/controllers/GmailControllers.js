@@ -5,29 +5,23 @@ import { oauth2Client } from "../Gmail/gmailClient.js";
 import fs from "fs";
 
 import { TOKEN_PATH } from "../config.js";
-
-function extraerMonto(texto) {
-  const regex = /Amount\s+\$([0-9]+\.[0-9]{2})/;
-  const match = texto.match(regex);
-  return match ? parseFloat(match[1]) : null;
-}
-
-function extraerNombreZelle(texto) {
-  const regex = /Zelle\s+®\s+payment\s+(.*?)\s+sent/i;
-  const match = texto.match(regex);
-  return match ? match[1].trim() : null;
-}
-
+import {
+  extraerMonto,
+  extraerNombreZelle,
+  extraerTransaction,
+} from "../helpers/extraerDatos.js";
+import { PagoZelle } from "../models/PagoZelle.model.js";
+import { Factura } from "../models/Facturas.model.js";
 
 export function saveToken(token) {
   console.log(token);
-  
-//  fs.writeFileSync(TOKEN_PATH, JSON.stringify(token, null, 2));
+
+  fs.writeFileSync(TOKEN_PATH, JSON.stringify(token, null, 2));
 }
 
 function loadToken() {
-  console.log('intenta cargvar');
-  
+  console.log("intenta cargvar");
+
   if (fs.existsSync(TOKEN_PATH)) {
     return JSON.parse(fs.readFileSync(TOKEN_PATH));
   }
@@ -50,17 +44,14 @@ export const iniciarLogin = (req, res) => {
   }
 };
 export const recibirCallback = async (req, res) => {
-
   const { code } = req.query;
-  console.log(code);
-  
 
   try {
     const { tokens } = await oauth2Client.getToken(code);
     oauth2Client.setCredentials(tokens);
     console.log(tokens);
-    
-    //saveToken(tokens);
+
+    saveToken(tokens);
 
     const gmail = google.gmail({ version: "v1", auth: oauth2Client });
     const response = await gmail.users.messages.list({
@@ -152,6 +143,48 @@ export const gmailInbox = async (req, res) => {
   }
 };
 
+export const asociarPagoZelle = async (req, res) => {
+  const { persona, monto, id_factura, transaction_number } = req.body;
+
+  const facturaExiste = await Factura.findByPk(id_factura);
+
+  if (!facturaExiste) {
+    return res
+      .status(404)
+      .json({ message: "No existe la factura que intenta asociar" });
+  }
+
+  if (facturaExiste.pasarela != "Zelle") {
+    return res
+      .status(404)
+      .json({ message: "La factura introducida no es de Zelle" });
+  }
+
+  const pagoExiste = await PagoZelle.findOne({
+    where: { id_factura: id_factura },
+  });
+
+  if (pagoExiste) {
+    return res.status(500).json({
+      message: `Ya la factura tiene un pago asociado`,
+    });
+  }
+
+  try {
+    const response = await PagoZelle.create({
+      persona,
+      monto,
+      id_factura,
+      transaction_number,
+    });
+
+    facturaExiste.pagado = "Aceptado Zelle";
+    await facturaExiste.save();
+    res.json({ message: "Factura Asociada" });
+  } catch (error) {
+    res.json({ message: "Error al Asociar" });
+  }
+};
 
 export const listarPagosZelle = async (req, res) => {
   const token = loadToken();
@@ -178,11 +211,16 @@ export const listarPagosZelle = async (req, res) => {
         const remitente =
           headers.find((h) => h.name === "From")?.value || "Desconocido";
 
-  
+        const timestamp = parseInt(detalle.data.internalDate, 10);
+        const date = new Date(timestamp);
 
         const montoRecibido = extraerMonto(detalle.data.snippet);
         const personaRecibido = extraerNombreZelle(detalle.data.snippet);
+        const transaction_number = extraerTransaction(detalle.data.snippet);
 
+        const pagoExiste = await PagoZelle.findOne({
+          where: { transaction_number: transaction_number },
+        });
 
         return {
           id: msg.id,
@@ -191,7 +229,10 @@ export const listarPagosZelle = async (req, res) => {
           resumen: detalle.data.snippet,
           montoRecibido: montoRecibido,
           personaRecibido: personaRecibido,
-          pago: pago,
+          utilizado: pagoExiste ? "Ya ha sido asociada" : "Sin asociar",
+          transaction_number: transaction_number,
+
+          fecha: date.toLocaleString("es-CU"),
         };
       })
     );
