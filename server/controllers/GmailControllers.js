@@ -49,9 +49,12 @@ export const recibirCallback = async (req, res) => {
   try {
     const { tokens } = await oauth2Client.getToken(code);
     oauth2Client.setCredentials(tokens);
+
+    console.log("copiar token");
+    
     console.log(tokens);
 
-    saveToken(tokens);
+    //saveToken(tokens);
 
     const gmail = google.gmail({ version: "v1", auth: oauth2Client });
     const response = await gmail.users.messages.list({
@@ -232,7 +235,7 @@ export const listarPagosZelle = async (req, res) => {
           utilizado: pagoExiste ? "Ya ha sido asociada" : "Sin asociar",
           transaction_number: transaction_number,
 
-          fecha: date.toLocaleString("es-CU"),
+          fecha: date.toLocaleString("es-ES"),
         };
       })
     );
