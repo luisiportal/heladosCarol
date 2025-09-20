@@ -51,7 +51,7 @@ export const recibirCallback = async (req, res) => {
     oauth2Client.setCredentials(tokens);
 
     console.log("copiar token");
-    
+
     console.log(tokens);
 
     //saveToken(tokens);
@@ -235,7 +235,10 @@ export const listarPagosZelle = async (req, res) => {
           utilizado: pagoExiste ? "Ya ha sido asociada" : "Sin asociar",
           transaction_number: transaction_number,
 
-          fecha: date.toLocaleString("es-ES"),
+          fecha: date.date.toLocaleString("es-CU", {
+            timeZone: "America/Havana",
+            hour12: false, // opcional: para formato 24 horas
+          }),
         };
       })
     );
