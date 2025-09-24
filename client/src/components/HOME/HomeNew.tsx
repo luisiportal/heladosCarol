@@ -18,6 +18,7 @@ import RecomendadoIliana from "../V2/Recomendado/RecomendadoIliana";
 import { useModocerrado } from "../Modos/useModoCerrado";
 import MensajeCerrado from "../Modos/MensajeCerrado";
 import TinasAgotadas from "../V2/TinasModulo/TinasAgotadas";
+import PotesAgotados from "../V2/Potes/PotesAgotados";
 
 const HomeNew = () => {
   const { setProductos } = useProductosZustand();
@@ -55,7 +56,9 @@ const HomeNew = () => {
           <>
             {recomendado && <RecomendadoIliana producto={recomendado} />}
             <CategoriasSelectorHome />
-            <PotesModulo sabores={potes} />
+            
+            {potes.length > 200 ? <PotesModulo sabores={potes}  /> : <PotesAgotados/>}
+
             {combos.length > 0 && <LoQueBuscan producto={combos[0]} />}
           </>
         )}
