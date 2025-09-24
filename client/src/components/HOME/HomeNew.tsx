@@ -17,6 +17,7 @@ import SelecMoneda from "../SelecMoneda";
 import RecomendadoIliana from "../V2/Recomendado/RecomendadoIliana";
 import { useModocerrado } from "../Modos/useModoCerrado";
 import MensajeCerrado from "../Modos/MensajeCerrado";
+import TinasAgotadas from "../V2/TinasModulo/TinasAgotadas";
 
 const HomeNew = () => {
   const { setProductos } = useProductosZustand();
@@ -52,7 +53,6 @@ const HomeNew = () => {
           <MensajeCerrado modo={modo} />
         ) : (
           <>
-       
             {recomendado && <RecomendadoIliana producto={recomendado} />}
             <CategoriasSelectorHome />
             <PotesModulo sabores={potes} />
@@ -60,15 +60,15 @@ const HomeNew = () => {
           </>
         )}
 
-
         {modo.activado != true && (
           <>
-            {tinas.length > 0 && <TinasModulo tinas={tinas} />}
-            {combos.length > 0 && <CombosHeladosCarol combos={combos.slice(1)} />}
+            {tinas.length > 0 ? <TinasModulo tinas={tinas} /> : <TinasAgotadas/>}
+            {combos.length > 0 && (
+              <CombosHeladosCarol combos={combos.slice(1)} />
+            )}
           </>
         )}
         <BannerDisfrute />
-
 
         <Reviews sabores={sabores} />
         <Footer />
