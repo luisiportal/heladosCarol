@@ -57,7 +57,7 @@ const HomeNew = () => {
             {recomendado && <RecomendadoIliana producto={recomendado} />}
             <CategoriasSelectorHome />
             
-            {potes.length > 0 ? <PotesModulo sabores={potes}  /> : <PotesAgotados/>}
+            {potes.length && potes.length > 0 ? <PotesModulo sabores={potes}  /> : <PotesAgotados/>}
 
             {combos.length > 0 && <LoQueBuscan producto={combos[0]} />}
           </>
@@ -65,7 +65,7 @@ const HomeNew = () => {
 
         {modo.activado != true && (
           <>
-            {tinas.length > 0 ? <TinasModulo tinas={tinas} /> : <TinasAgotadas/>}
+            {tinas.length && tinas.length > 0 ? <TinasModulo tinas={tinas} /> : <TinasAgotadas/>}
             {combos.length > 0 && (
               <CombosHeladosCarol combos={combos.slice(1)} />
             )}
