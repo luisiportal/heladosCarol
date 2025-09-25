@@ -57,7 +57,7 @@ const HomeNew = () => {
             {recomendado && <RecomendadoIliana producto={recomendado} />}
             <CategoriasSelectorHome />
             
-            {potes.length > 200 ? <PotesModulo sabores={potes}  /> : <PotesAgotados/>}
+            {potes.length > 0 ? <PotesModulo sabores={potes}  /> : <PotesAgotados/>}
 
             {combos.length > 0 && <LoQueBuscan producto={combos[0]} />}
           </>
