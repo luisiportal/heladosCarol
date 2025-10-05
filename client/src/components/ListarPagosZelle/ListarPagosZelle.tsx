@@ -15,7 +15,6 @@ const ListarPagosZelle = () => {
  if (isLoading) return <Loader/>
 
   const pagosZelle = data ?? ([] as PagoZelle[]);
-  console.log(pagosZelle);
 
   return (
     <div className=" w-full  pt-20 px-1 rounded-xl">
