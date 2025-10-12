@@ -3,8 +3,8 @@ import { google } from "googleapis";
 import { oauth2Client } from "../Gmail/gmailClient.js";
 
 import fs from "fs";
+import path from 'path';
 
-import { TOKEN_PATH } from "../config.js";
 import {
   extraerMonto,
   extraerNombreZelle,
