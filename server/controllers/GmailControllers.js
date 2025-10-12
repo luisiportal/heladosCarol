@@ -14,17 +14,22 @@ import { PagoZelle } from "../models/PagoZelle.model.js";
 import { Factura } from "../models/Facturas.model.js";
 
 export function saveToken(token) {
-  console.log(token);
-
-  fs.writeFileSync(TOKEN_PATH, JSON.stringify(token, null, 2));
+  const dir = path.join(__dirname, "private");
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+  }
+  const tokenPath = path.join(dir, "token_gmail.json");
+  fs.writeFileSync(tokenPath, JSON.stringify(token, null, 2), { mode: 0o600 });
 }
 
-function loadToken() {
-  console.log("intenta cargvar");
+export function loadToken() {
+  const tokenPath = path.join(__dirname, "private", "token_gmail.json");
 
-  if (fs.existsSync(TOKEN_PATH)) {
-    return JSON.parse(fs.readFileSync(TOKEN_PATH));
+  if (fs.existsSync(tokenPath)) {
+    const rawData = fs.readFileSync(tokenPath, "utf-8");
+    return JSON.parse(rawData);
   }
+
   return null;
 }
 
@@ -54,7 +59,7 @@ export const recibirCallback = async (req, res) => {
 
     console.log(tokens);
 
-    //saveToken(tokens);
+    saveToken(tokens);
 
     const gmail = google.gmail({ version: "v1", auth: oauth2Client });
     const response = await gmail.users.messages.list({
