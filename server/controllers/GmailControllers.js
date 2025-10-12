@@ -2,8 +2,6 @@
 import { google } from "googleapis";
 import { oauth2Client } from "../Gmail/gmailClient.js";
 
-import fs from "fs";
-import path from 'path';
 
 import {
   extraerMonto,
@@ -13,21 +11,38 @@ import {
 import { PagoZelle } from "../models/PagoZelle.model.js";
 import { Factura } from "../models/Facturas.model.js";
 
+
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+//  Guardar el token
 export function saveToken(token) {
   const dir = path.join(__dirname, "private");
+
   if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
+    fs.mkdirSync(dir, { recursive: true }); // Crea carpetas anidadas si es necesario
   }
+
   const tokenPath = path.join(dir, "token_gmail.json");
   fs.writeFileSync(tokenPath, JSON.stringify(token, null, 2), { mode: 0o600 });
 }
 
+// Cargar el token
 export function loadToken() {
   const tokenPath = path.join(__dirname, "private", "token_gmail.json");
 
   if (fs.existsSync(tokenPath)) {
     const rawData = fs.readFileSync(tokenPath, "utf-8");
-    return JSON.parse(rawData);
+    try {
+      return JSON.parse(rawData);
+    } catch (error) {
+      console.error("Error al parsear el token:", error);
+      return null;
+    }
   }
 
   return null;
