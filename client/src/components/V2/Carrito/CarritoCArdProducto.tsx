@@ -30,6 +30,8 @@ const CarritoCArdProducto = ({
       : existe?.producto?.precio_venta;
   const totalProducto = Number(precio) * cantidad;
 
+  
+
   return (
     <div className="flex relative gap-5 p-2 my-5 rounded-xl bg-neutral-300 shadow-md">
       <button
@@ -65,6 +67,7 @@ const CarritoCArdProducto = ({
           <div className="flex items-center gap-5">
             <button
               onClick={() => {
+              
                 agregarProductoAlCarrito({
                   producto: item?.producto,
                   cantidad: cantidad > 0 ? cantidad - 1 : cantidad,

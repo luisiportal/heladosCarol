@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from "react";
 import HomeSVG from "../SVG/HomeSVG";
 import CallSVG from "../SVG/CallSVG";
 import CarritoCantidadBoton from "./CarritoCantidadBoton";
 import { Link } from "react-router-dom";
 
 const ItemPublicos = ({ navigate, carrito }) => {
+    const playSound = () => {
+      const audio = new Audio(
+        "/sounds/santa-papa-noel-feliz-navidad-01-127494.mp3"
+      ); // ruta del archivo de sonido
+  
+      audio.volume = 0.5;
+      audio.play();
+    };
   return (
     <>
       {" "}
@@ -16,7 +23,7 @@ const ItemPublicos = ({ navigate, carrito }) => {
         <HomeSVG css={"w-8 h-8"} />
         <h3 className="text-sm font-semibold">Inicio</h3>
       </button>
-      <Link className="flex flex-col items-center justify-center" to={"/carrito"}>
+      <Link onClick={()=>playSound()} className="flex flex-col items-center justify-center" to={"/carrito"}>
         <CarritoCantidadBoton cantCarrito={carrito.length} />
         <h2 className="text-sm font-semibold">Pagar</h2>
       </Link>
