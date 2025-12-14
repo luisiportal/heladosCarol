@@ -67,7 +67,6 @@ const HomeNew = () => {
             ) : (
               <PotesAgotados />
             )}
-            <FacebookSeguir/>
 
             {combos.length > 0 && <LoQueBuscan producto={combos[0]} />}
           </>
@@ -86,6 +85,8 @@ const HomeNew = () => {
           </>
         )}
         <ReservasWhatsaoo />
+            <FacebookSeguir/>
+
         <BannerDisfrute />
 
         <Reviews sabores={sabores} />
