@@ -11,9 +11,10 @@ const FacebookSeguir = () => {
         <iframe
         title="Facebook Helados Carol"
           src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fheladoscarolhlg&tabs=timeline&width=340&height=400&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=true&appId"
-          width="340"
+          width="375"
           height="400"
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          className="rounded-xl"
         ></iframe>
       </div>
     </div>
