@@ -20,6 +20,7 @@ import MensajeCerrado from "../Modos/MensajeCerrado";
 import TinasAgotadas from "../V2/TinasModulo/TinasAgotadas";
 import PotesAgotados from "../V2/Potes/PotesAgotados";
 import ReservasWhatsaoo from "../Reservas/ReservasWhatsaoo";
+import FacebookSeguir from "../redesSociales/FacebookSeguir";
 
 const HomeNew = () => {
   const { setProductos } = useProductosZustand();
@@ -66,6 +67,7 @@ const HomeNew = () => {
             ) : (
               <PotesAgotados />
             )}
+            <FacebookSeguir/>
 
             {combos.length > 0 && <LoQueBuscan producto={combos[0]} />}
           </>
