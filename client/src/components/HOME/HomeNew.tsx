@@ -31,9 +31,16 @@ const HomeNew = () => {
   });
 
   const sabores = data?.data ?? ([] as Sabor[]);
+        const playSound = () => {
+    const audio = new Audio("/sounds/santa-papa-noel-feliz-navidad-01-127494.mp3"); // ruta del archivo de sonido
+
+    audio.volume = 0.5;
+    audio.play();
+  };
 
   useEffect(() => {
     setProductos(sabores);
+    playSound()
   }, []);
 
   const potes = filtrar(sabores, "Potes");

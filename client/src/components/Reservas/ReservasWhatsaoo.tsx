@@ -2,8 +2,15 @@ import TituloModulo from "../V2/DesingSystem/TituloModulo";
 import ImagenCustom from "./ImagenCustom";
 
 const ReservasWhatsaoo = () => {
+      const playSound = () => {
+    const audio = new Audio("/sounds/happy-birthday-242244.mp3"); // ruta del archivo de sonido
+
+    audio.volume = 0.5;
+    audio.play();
+  };
 
   const sendWhatsAppMessage = () => {
+    playSound()
     const phoneNumber = "5355079490"; // número en formato internacional
     const message = "Hola, quiero hacer una reserva";
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
