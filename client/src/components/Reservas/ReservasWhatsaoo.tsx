@@ -18,7 +18,7 @@ const ReservasWhatsaoo = () => {
       <TituloModulo titulo="Reserva tu Día Especial" />
       <section className="rounded-xl p-0.5 relative ">
         <img
-          className="rounded-xl absolute -z-10 h-full object-cover border-neutral-300 border-2"
+          className="rounded-xl absolute -z-10 w-full h-full object-cover border-neutral-300 border-2"
           src="/images/bg-reservas-modulo.webp"
           alt="Reservar"
         />
