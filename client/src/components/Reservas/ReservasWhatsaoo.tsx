@@ -23,7 +23,7 @@ const ReservasWhatsaoo = () => {
           alt="Reservar"
         />
 
-       <div className="mt-2 flex justify-center"> <img src="/images/textoReservas.svg" alt="Reservar" /></div>
+       <div className="my-4 flex justify-center"> <img src="/images/textoReservas.svg" alt="Reservar" /></div>
 
         <div className="flex gap-2 justify-center my-2">
           <ImagenCustom imagen="cake.webp" />
@@ -31,7 +31,7 @@ const ReservasWhatsaoo = () => {
           <ImagenCustom imagen="buffet.webp" />
           <ImagenCustom imagen="todosCat.webp" />
         </div>
-        <div className="flex justify-end m-1">
+        <div className="flex justify-end m-1 my-4">
           {" "}
           <button onClick={()=>sendWhatsAppMessage()} className="bg-fresa rounded-xl text-white flex gap-1 justify-center items-center p-1 font-bold w-28 border-neutral-50 border">
             <img
