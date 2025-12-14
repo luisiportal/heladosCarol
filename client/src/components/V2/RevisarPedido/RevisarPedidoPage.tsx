@@ -13,6 +13,7 @@ import { createVentaRequest } from "../../../api/venta.api";
 import { calcTotalProducto } from "../../../utils/util";
 import { tropiPayFeeGet } from "../../Ventas/tropiPayFeeGet";
 import { useLoader } from "../../../Stores/loaderStore";
+import TruckSVG from "../../SVG/TruckSVG";
 
 const RevisarPedidoPage = () => {
   const { setLoader } = useLoader();
@@ -90,7 +91,7 @@ const RevisarPedidoPage = () => {
       setProductosCarrito([]);
       localStorage.removeItem("entrega");
       localStorage.removeItem("carrito");
-    } catch (error) {
+    } catch (error:any) {
       console.log(error);
       return setModal({
         mensaje: error.response.data.message,
@@ -105,6 +106,12 @@ const RevisarPedidoPage = () => {
   return (
     <div className="bg-vainilla rounded-xl p-3 pt-20 text-left align-middle text-slate-700 font-semibold h-fit pb-28">
       <div className="bg-neutral-200 p-2 rounded-xl">
+          <div className="flex justify-center items-center gap-2  mb-2 text-xs font-light font-serif text-slate-700 ">
+                  <div className="w-5">
+                    <TruckSVG />
+                  </div>
+                  Tiempo de Entrega 2 Horas aprox.
+                </div>
         <PRoductosRevisarSection
           granTotalFactura={granTotalFactura}
           productosCarrito={productosCarrito}

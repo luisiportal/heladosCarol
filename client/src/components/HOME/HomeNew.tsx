@@ -19,6 +19,7 @@ import { useModocerrado } from "../Modos/useModoCerrado";
 import MensajeCerrado from "../Modos/MensajeCerrado";
 import TinasAgotadas from "../V2/TinasModulo/TinasAgotadas";
 import PotesAgotados from "../V2/Potes/PotesAgotados";
+import ReservasWhatsaoo from "../Reservas/ReservasWhatsaoo";
 
 const HomeNew = () => {
   const { setProductos } = useProductosZustand();
@@ -81,6 +82,7 @@ const HomeNew = () => {
             )}
           </>
         )}
+        <ReservasWhatsaoo/>
         <BannerDisfrute />
 
         <Reviews sabores={sabores} />

@@ -18,6 +18,7 @@ import TituloModulo from "../DesingSystem/TituloModulo";
 import { useEntregaStore } from "../../../Stores/EntregaStore";
 import ArrowLeftSVG from "../../SVG/ArrowLeftSVG";
 import ArrowRight from "../../SVG/ArrowRight";
+import TruckSVG from "../../SVG/TruckSVG";
 
 const EntregaPage = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -30,8 +31,9 @@ const EntregaPage = () => {
     queryFn: () => getRepartosRequest(),
   });
 
-  const repartos = data?.data ?? ([] as Reparto[]);
-  const options = repartos.map((reparto) => {
+  const repartosLeegados = data?.data;
+  const repartos = repartosLeegados as Reparto[] 
+  const options  = repartos.map((reparto) => {
     return {
       value: reparto.reparto,
       label: reparto.reparto,
@@ -57,7 +59,7 @@ const EntregaPage = () => {
     navigate("/pasarela");
   };
 
-  const handleSelectChange = (p) => {
+  const handleSelectChange = (p:any) => {
     setSelectedOption(p);
   };
   return (
@@ -80,8 +82,14 @@ const EntregaPage = () => {
           <Form>
             <div className="pb-52 m-2 -mt-2">
               {" "}
-              <div className="flex justify-center">
+              <div className="flex flex-col items-center justify-center">
                 <TituloModulo titulo="Datos de Entrega" />
+                <div className="flex justify-center items-center gap-2 -mt-5 mb-2 text-xs font-light font-serif text-slate-700 ">
+                  <div className="w-5">
+                    <TruckSVG />
+                  </div>
+                  2 Horas aprox.
+                </div>
               </div>
               <div className="bg-fresa p-2 mb-2 pt-5 rounded-xl">
                 {" "}

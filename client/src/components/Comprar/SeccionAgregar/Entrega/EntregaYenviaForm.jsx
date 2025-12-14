@@ -196,6 +196,7 @@ const EntregaYenviaForm = ({
                   <h2 className="font-inspiration text-2xl flex justify-center p-1">
                     Datos de Entrega
                   </h2>
+                  
                   <div className="bg-fresa p-2 mb-2 pt-5 rounded-xl">
                     {" "}
                     <InputEntrega
