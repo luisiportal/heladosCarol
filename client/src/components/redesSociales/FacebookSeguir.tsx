@@ -1,22 +1,23 @@
-import TituloModulo from "../V2/DesingSystem/TituloModulo"
+import TituloModulo from "../V2/DesingSystem/TituloModulo";
 
 const FacebookSeguir = () => {
   return (
-     <div>
-      <div className="flex items-center justify-between mx-2 my-5">
-      <TituloModulo titulo="Síguenos en Facebook" />
+    <div>
+      <div className="flex items-center justify-between">
+        <TituloModulo titulo="Síguenos en Facebook" />
       </div>
 
-      <div className="w-full flex justify-center p-2">
+      <div className="w-full flex justify-center bg-red-500">
         <iframe
-          className="w-full"
-          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fheladoscarolhlg&tabs=timeline"
+        title="Facebook Helados Carol"
+          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fheladoscarolhlg&tabs=timeline&width=340&height=400&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=true&appId"
+          width="340"
+          height="400"
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          title="Facebook Page"
         ></iframe>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FacebookSeguir
+export default FacebookSeguir;
