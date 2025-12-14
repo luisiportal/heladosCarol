@@ -31,16 +31,19 @@ const HomeNew = () => {
   });
 
   const sabores = data?.data ?? ([] as Sabor[]);
-        const playSound = () => {
-    const audio = new Audio("/sounds/santa-papa-noel-feliz-navidad-01-127494.mp3"); // ruta del archivo de sonido
+  const playSound = () => {
+    const audio = new Audio(
+      "/sounds/santa-papa-noel-feliz-navidad-01-127494.mp3"
+    ); // ruta del archivo de sonido
 
     audio.volume = 0.5;
     audio.play();
   };
 
   useEffect(() => {
+    playSound();
+
     setProductos(sabores);
-    playSound()
   }, []);
 
   const potes = filtrar(sabores, "Potes");
@@ -79,17 +82,15 @@ const HomeNew = () => {
           <>
             {tinas.length > 0 ? (
               <TinasModulo tinas={tinas} />
-
             ) : (
               <TinasAgotadas />
-
             )}
             {combos.length > 0 && (
               <CombosHeladosCarol combos={combos.slice(1)} />
             )}
           </>
         )}
-        <ReservasWhatsaoo/>
+        <ReservasWhatsaoo />
         <BannerDisfrute />
 
         <Reviews sabores={sabores} />
