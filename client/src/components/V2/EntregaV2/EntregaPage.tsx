@@ -33,7 +33,7 @@ const EntregaPage = () => {
 
   const repartosLeegados = data?.data;
   const repartos = repartosLeegados as Reparto[] 
-  const options  = repartos.map((reparto) => {
+  const options  = repartos?.map((reparto) => {
     return {
       value: reparto.reparto,
       label: reparto.reparto,
