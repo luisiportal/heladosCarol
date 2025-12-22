@@ -110,7 +110,7 @@ const RevisarPedidoPage = () => {
                   <div className="w-5">
                     <TruckSVG />
                   </div>
-                  Tiempo de Entrega 2 Horas aprox.
+                  Tiempo de Entrega desde 30 min hasta 2 Horas aprox.
                 </div>
         <PRoductosRevisarSection
           granTotalFactura={granTotalFactura}
