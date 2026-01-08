@@ -33,10 +33,7 @@ const HomeNew = () => {
 
   const sabores = data?.data ?? ([] as Sabor[]);
 
-
   useEffect(() => {
-
-
     setProductos(sabores);
   }, []);
 
@@ -85,7 +82,7 @@ const HomeNew = () => {
           </>
         )}
         <ReservasWhatsaoo />
-            <FacebookSeguir/>
+        <FacebookSeguir />
 
         <BannerDisfrute />
 

@@ -55,7 +55,7 @@ const PotesCard = ({ sabor, css }: { sabor: Sabor; css: string }) => {
 
         <img
           className="rounded-xl object-cover w-full h-28 p-0.5"
-          src="/images/potesolonuevo.png"
+          src="/images/potes2026.webp"
           alt={sabor.nombre_sabor}
         />
       </div>
