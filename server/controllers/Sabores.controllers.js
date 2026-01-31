@@ -5,8 +5,11 @@ import { Sabor } from "../models/Sabor.model.js";
 import { Moneda } from "../models/Monedas.model.js";
 import { Imagen } from "../models/Imagenes.model.js";
 import { deleteImagenesSabores } from "./utilidadades/deleteImagenesSabores.js";
-import { resizeSharp } from "./utilidadades/sharpResize.js";
+import path from "path";
+import fs from "fs";
+//import { resizeSharp } from "./utilidadades/sharpResize.js";
 import { Op } from "sequelize";
+import { log } from "console";
 // listar todas los sabores
 export const getSaboresBackend = async (req, res) => {
   try {
@@ -132,19 +135,31 @@ export const createSabor = async (req, res) => {
             reservar,
             nuevo,
           },
-          { transaction: t }
+          { transaction: t },
         );
 
         try {
+          const outputPath = path.join(
+            "./public",
+            "images",
+            "productos",
+            `producto_${file.originalname}`,
+          );
           for (const file of files) {
-            await resizeSharp(file);
+            //await resizeSharp(file);
+
+            // Ruta donde quieres guardar la imagen
+            const dir = path.dirname(outputPath);
+            const filePath = path.join(dir, `${file.originalname}`);
+            // Guardar físicamente el archivo en disco
+            fs.writeFileSync(filePath, file.buffer);
 
             await Imagen.create(
               {
                 ruta_image: `producto_${file.originalname}`,
                 id_recurso: responseSabor.id_sabor,
               },
-              { transaction: t }
+              { transaction: t },
             );
           }
         } catch (error) {
@@ -217,16 +232,19 @@ export const updateSabor = async (req, res) => {
       response.nuevo = nuevo;
 
       await response.save({ transaction: t });
+
       for (const file of files) {
-        await resizeSharp(file);
+     
+        // await resizeSharp(file);
+
 
         await Imagen.create(
           {
-            ruta_image: `producto_${file.filename}`,
+            ruta_image: `${file.filename}`,
 
             id_recurso: id_sabor,
           },
-          { transaction: t }
+          { transaction: t },
         );
       }
 
@@ -235,7 +253,7 @@ export const updateSabor = async (req, res) => {
         "Sabor",
         `${response.nombre_sabor}   `,
         req,
-        t
+        t,
       ); // Asegúrate de que registrarLog acepta la transacción como argumento
       res.status(201).send("Producto Actualizado");
     });
@@ -261,7 +279,7 @@ export const deleteSabor = async (req, res) => {
             id_sabor: id_sabor,
           },
         },
-        { transaction: t }
+        { transaction: t },
       );
       await registrarLog(
         "Eliminó",
@@ -269,7 +287,7 @@ export const deleteSabor = async (req, res) => {
         `${saborTraidoDB.nombre_sabor} cantidad : ${saborTraidoDB.existencia}`,
         req,
         t,
-        req.params.id_sabor
+        req.params.id_sabor,
       );
       res.sendStatus(204);
     });

@@ -1,7 +1,6 @@
 import express from "express";
 import multer from "multer";
 import fs from "fs";
-import path from 'path';
 
 
 const app = express();
@@ -68,7 +67,7 @@ const storage = multer.diskStorage({
     cb(null, 'public/images/productos');
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, `producto_${file.originalname}`);
   }
 });
 

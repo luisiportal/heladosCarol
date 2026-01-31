@@ -28,44 +28,54 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-app.use(
-  cors({
-    origin: FRONTEND_URL,
-    credentials: true,
-  })
-);
-associations();
-await sequelize.sync({ alter: true });
-sequelize.query(
-  'ALTER TABLE public.movimientos ALTER COLUMN "createdAt" SET DEFAULT now();'
-);
-sequelize.query(
-  'ALTER TABLE public.movimientos ALTER COLUMN "updatedAt" SET DEFAULT now();'
-);
 
-app.use("/images", express.static(path.join(__dirname, "/public/images")));
-app.disable("x-powered-by");
-app.use(cookieParser());
-app.use(express.json());
-app.use(indexRoutes);
-app.use(sabores);
-app.use(loginRouter);
-app.use(movimientos);
-app.use(moneda);
-app.use(ventas);
-app.use(audiTlogs);
-app.use(cuadre_caja);
-app.use(reviews);
-app.use(repartos);
-app.use(rastrearOrden);
-app.use(modos);
-app.use(frases);
-app.use(tropipay);
-app.use(enzona);
-app.use(reservas);
+async function start() {
+  app.use(
+    cors({
+      origin: FRONTEND_URL,
+      credentials: true,
+    })
+  );
 
-app.use(suscription);
+  associations();
 
-app.listen(PUERTO, () => {
-  console.log(`El server esta en el puerto : ${PUERTO}....`);
-});
+  await sequelize.sync({ alter: true });
+
+  await sequelize.query(
+    'ALTER TABLE public.movimientos ALTER COLUMN "createdAt" SET DEFAULT now();'
+  );
+
+  await sequelize.query(
+    'ALTER TABLE public.movimientos ALTER COLUMN "updatedAt" SET DEFAULT now();'
+  );
+
+  app.use("/images", express.static(path.join(__dirname, "/public/images")));
+  app.disable("x-powered-by");
+  app.use(cookieParser());
+  app.use(express.json());
+  app.use(indexRoutes);
+  app.use(sabores);
+  app.use(loginRouter);
+  app.use(movimientos);
+  app.use(moneda);
+  app.use(ventas);
+  app.use(audiTlogs);
+  app.use(cuadre_caja);
+  app.use(reviews);
+  app.use(repartos);
+  app.use(rastrearOrden);
+  app.use(modos);
+  app.use(frases);
+  app.use(tropipay);
+  app.use(enzona);
+  app.use(reservas);
+  app.use(suscription);
+
+  const PORT = process.env.PORT || PUERTO;
+
+  app.listen(PORT, () => {
+    console.log(`Servidor corriendo en puerto: ${PORT}`);
+  });
+}
+
+start();

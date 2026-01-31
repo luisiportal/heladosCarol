@@ -1,6 +1,6 @@
-import { Form, Formik, useFormik } from "formik";
+import { Form, Formik } from "formik";
 import { useSabores } from "../../context/SaboresProvider";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import Loader from "../Utilidades/Loader";
@@ -8,13 +8,15 @@ import { saboresSchema } from "../../schemas/schemas";
 import Unchecked from "../SVG/Unchecked";
 import { Imagen, Sabor } from "../../types/General.types";
 import { useModal } from "../../Stores/modalStore";
+import RecortarImagen from "../RecortarImagen/RecortarImagen";
 
 const SaboresForm = () => {
   const { createSabor, getSabor, updateSabor } = useSabores();
 
   const { loader, setLoader } = useAuth();
-  const {setModal}=useModal()
+  const { setModal } = useModal();
   const [files, setFiles] = useState<File[]>([]);
+  const [recortarIMG, setIMGRecortar] = useState("");
 
   const [imagenes, setImagenes] = useState<Imagen[]>([]);
   const [imgToDelete, setImgToDelete] = useState<any[]>([]);
@@ -113,13 +115,17 @@ const SaboresForm = () => {
   const deleteOnline = (id_imagen: number) => {
     setImgToDelete([...imgToDelete, { id_imagen }]);
     const delonline = imagenes.filter(
-      (imgdel) => imgdel.id_imagen !== id_imagen
+      (imgdel) => imgdel.id_imagen !== id_imagen,
     );
+       setIMGRecortar("");
     setImagenes(delonline);
+  
   };
 
-  const deleteIMG = (index) => {
+  const deleteIMG = (index: number) => {
     const deleteItem = files.filter((file, i) => i !== index);
+    setIMGRecortar("");
+
     setFiles(deleteItem);
   };
 
@@ -142,7 +148,17 @@ const SaboresForm = () => {
               <section className="flex flex-wrap gap-2">
                 {imagenes.length > 0 &&
                   imagenes.map((imagen) => (
-                    <div key={imagen.id_imagen} className="relative">
+                    <div
+                      onClick={() =>
+                        setIMGRecortar(
+                          `${
+                            import.meta.env.VITE_BACKEND_URL
+                          }/images/productos/${imagen.ruta_image}`,
+                        )
+                      }
+                      key={imagen.id_imagen}
+                      className="relative"
+                    >
                       {" "}
                       <img
                         key={imagen.id_imagen} // Asegúrate de que cada imagen tenga una clave única para React
@@ -155,7 +171,7 @@ const SaboresForm = () => {
                       <button
                         title="Eliminar"
                         type="button"
-                        className="absolute top-0 z-50"
+                        className="absolute top-0 z-50 bg-red-500 rounded-full p-0.5"
                         onClick={() => deleteOnline(imagen.id_imagen)}
                       >
                         <Unchecked />
@@ -166,7 +182,13 @@ const SaboresForm = () => {
                 {
                   /*muestra la imagen preview */ files.length > 0 &&
                     files.map((file, index) => (
-                      <div className="relative" key={index}>
+                      <div
+                        onClick={() =>
+                          setIMGRecortar(`${URL.createObjectURL(file)}`)
+                        }
+                        className="relative"
+                        key={index}
+                      >
                         <img
                           className="w-20 h-20 shadow-xl border-slate-50 border-spacing-2 rounded-md"
                           src={URL.createObjectURL(file)}
@@ -174,7 +196,7 @@ const SaboresForm = () => {
                         />
                         <button
                           title="Eliminar Imagen"
-                          className="absolute top-0 z-50"
+                          className="absolute top-0 z-50 bg-red-500 rounded-full p-0.5"
                           onClick={() => deleteIMG(index)}
                         >
                           <Unchecked />
@@ -182,6 +204,14 @@ const SaboresForm = () => {
                       </div>
                     ))
                 }
+                {recortarIMG.length > 0 && (
+                  <RecortarImagen
+                    files={files}
+                    setFiles={setFiles}
+                    imagen={recortarIMG}
+                    setIMGRecortar={setIMGRecortar}
+                  />
+                )}
               </section>
               <label htmlFor="nombre" className="block">
                 * Sabor:
@@ -367,7 +397,9 @@ const SaboresForm = () => {
                   Ocultar
                 </label>
               </div>
+
               <label htmlFor="ruta_image" className="block"></label>
+
               <input
                 title="imagenes"
                 name="ruta_image"
@@ -396,6 +428,7 @@ const SaboresForm = () => {
           )}
         </Formik>
       </div>
+
       {loader && <Loader />}
     </div>
   );

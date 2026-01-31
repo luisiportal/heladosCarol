@@ -1,6 +1,5 @@
 import { Imagen } from "../../models/Imagenes.model.js";
-import fs from "fs";
-import path from "path";
+import fs from "fs/promises";
 
 export const deleteImagenesSabores = async (imgToDelete) => {
   console.log(imgToDelete);
@@ -16,7 +15,8 @@ export const deleteImagenesSabores = async (imgToDelete) => {
         const imagePath = `public/images/productos/${imagen.ruta_image}`;
 
         try {
-          await fs.promises.unlink(imagePath);
+         // await fs.promises.unlink(imagePath); viejo
+          await fs.rm(imagePath, { force: true });
           console.log(`Archivo ${imagePath} eliminado correctamente.`);
         } catch (err) {
           console.error(`Error al eliminar el archivo ${imagePath}:`, err);
