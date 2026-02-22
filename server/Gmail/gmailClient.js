@@ -5,7 +5,6 @@ import {
   GMAIL_REDIRECT_URL,
 } from "../config.js";
 
-console.log(GMAIL_CLIENT_ID);
 
 
 export const oauth2Client = new google.auth.OAuth2(

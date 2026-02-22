@@ -74,9 +74,7 @@ const PotesAgotados = () => {
 
           <div className="absolute left-1/2 top-8 -translate-x-1/2  p-2 font-bold text-white    bg-red-500 rounded-xl w-60 text-center">
             Agotados por alta demanda. Estamos trabajando para volver a servirte.
-            <h4 className="font-light text-xs text-right">
-              volvemos mañana...Gracias
-            </h4>
+           
           </div>
         </div>
       </section>

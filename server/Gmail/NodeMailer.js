@@ -1,4 +1,4 @@
-import { FRONTEND_URL, GMAIL_KEY } from "../config.js";
+import { CORREO_PASS, FRONTEND_URL, GMAIL_KEY } from "../config.js";
 
 import nodemailer from "nodemailer";
 import hbs from "nodemailer-express-handlebars";
@@ -19,16 +19,13 @@ export const EnviarCorreo = async ({
   plantilla,
   moneda,
 }) => {
-
-  console.log(productos);
-  
-
-  // Crear un transportador
   let transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "mail.heladoscarol.com", // servidor SMTP del hosting
+    port: 465, // 465 para SSL o 587 para STARTTLS
+    secure: true, // true si usas 465, false si usas 587
     auth: {
-      user: "heladoscarol@gmail.com",
-      pass: GMAIL_KEY,
+      user: "facturas@heladoscarol.com", // tu correo completo
+      pass: CORREO_PASS, // la contraseña del correo en cPanel
     },
   });
 
@@ -49,16 +46,16 @@ export const EnviarCorreo = async ({
 
   // Configurar opciones de correo
   let mailOptions = {
-    from: '"Helados Carol" <heladoscarol@gmail.com>',
+    from: '"Helados Carol" <facturas@heladoscarol.com>',
     to: to,
     subject: subject,
     template: plantilla,
     context: {
-      entrega:entrega,
-      factura:factura,
-      productos:productos,
-      total_venta:total_venta,
-      moneda:moneda,
+      entrega: entrega,
+      factura: factura,
+      productos: productos,
+      total_venta: total_venta,
+      moneda: moneda,
     },
     attachments: [
       {

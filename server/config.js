@@ -25,5 +25,6 @@ export const CONSUMER_SECRET = "";
 export const GMAIL_CLIENT_ID = process.env.GMAIL_CLIENT_ID ;
 export const GMAIL_CLIENT_SECRET = process.env.GMAIL_CLIENT_SECRET ;
 export const GMAIL_REDIRECT_URL = process.env.GMAIL_REDIRECT_URL ;
+export const CORREO_PASS = process.env.CORREO_PASS ;
 
 export const TOKEN_PATH = path.resolve( process.env.TOKEN_PATH || "./token.json" );

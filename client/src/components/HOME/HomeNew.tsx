@@ -26,17 +26,19 @@ const HomeNew = () => {
   const { setProductos } = useProductosZustand();
   const { modo } = useModocerrado();
 
-  const { data } = useQuery({
-    queryKey: ["prodcutos"],
+  const { data, isLoading } = useQuery({
+    queryKey: ["productos"],
     queryFn: () => getSaboresRequest(),
   });
+
+ 
 
   const sabores = data?.data ?? ([] as Sabor[]);
 
   useEffect(() => {
     setProductos(sabores);
   }, []);
-
+ if (isLoading) return "Cargando";
   const potes = filtrar(sabores, "Potes");
   const combos = filtrar(sabores, "Combos");
   const tinas = filtrar(sabores, "Tinas");
